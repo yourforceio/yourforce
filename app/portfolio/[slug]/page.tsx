@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink, Code2 } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import Container from "@/components/layout/Container";
@@ -181,7 +181,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
                         target="_blank"
                         className="flex items-center gap-2 font-medium text-slate-700 hover:text-slate-900"
                       >
-                        <Github className="h-4 w-4" />
+                        <Code2 className="h-4 w-4" />
                         Source Code
                       </Link>
                     )}
