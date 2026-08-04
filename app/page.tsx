@@ -7,15 +7,15 @@ import Process from "@/components/sections/Process";
 import CTA from "@/components/sections/CTA";
 
 export default function Home() {
-    return (
-        <main>
-            <Hero />
-            <Services />
-            <About />
-            <Portfolio />
-            <WhyChoose />
-            <Process />
-            <CTA />
-        </main>
-    );
+  return (
+    <main>
+      <Hero />
+      <Services />
+      <About />
+      <Portfolio />
+      <WhyChoose />
+      <Process />
+      <CTA />
+    </main>
+  );
 }

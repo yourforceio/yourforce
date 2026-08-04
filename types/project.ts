@@ -1,39 +1,39 @@
 export type Technology = {
-    name: string;
+  name: string;
 };
 
 export type ProjectMetric = {
-    value: string;
-    label: string;
+  value: string;
+  label: string;
 };
 
 export type PortfolioProject = {
-    slug: string;
-    featured: boolean;
+  slug: string;
+  featured: boolean;
 
-    category: string;
-    title: string;
+  category: string;
+  title: string;
 
-    shortDescription: string;
-    description: string;
+  shortDescription: string;
+  description: string;
 
-    image: string;
+  image: string;
 
-    technologies: Technology[];
+  technologies: Technology[];
 
-    overview: string;
-    challenge: string;
-    solution: string;
+  overview: string;
+  challenge: string;
+  solution: string;
 
-    metrics: ProjectMetric[];
+  metrics: ProjectMetric[];
 
-    liveUrl?: string;
-    githubUrl?: string;
+  liveUrl?: string;
+  githubUrl?: string;
 };
 
 export type Projects = {
-    badge: string;
-    heading: string;
-    description: string;
-    items: PortfolioProject[];
+  badge: string;
+  heading: string;
+  description: string;
+  items: PortfolioProject[];
 };

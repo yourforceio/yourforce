@@ -4,9 +4,9 @@ export type AboutStat = {
 };
 
 export type About = {
-    badge: string;
-    heading: string;
-    description: string;
-    highlights: string[];
-    stats: AboutStat[];
+  badge: string;
+  heading: string;
+  description: string;
+  highlights: string[];
+  stats: AboutStat[];
 };

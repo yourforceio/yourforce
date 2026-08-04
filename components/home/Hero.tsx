@@ -13,8 +13,8 @@ export default function Hero() {
         </h1>
 
         <p className="mt-8 text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
-          Helping brands build scalable Salesforce Commerce Cloud,
-          Headless, Full-Stack and AI-powered commerce solutions.
+          Helping brands build scalable Salesforce Commerce Cloud, Headless,
+          Full-Stack and AI-powered commerce solutions.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">

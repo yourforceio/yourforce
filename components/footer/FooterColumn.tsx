@@ -4,29 +4,26 @@ import { ArrowUpRight } from "lucide-react";
 import type { FooterColumn as FooterColumnType } from "@/types/footer";
 
 type Props = {
-    column: FooterColumnType;
+  column: FooterColumnType;
 };
 
 export default function FooterColumn({ column }: Props) {
-    return (
-        <div>
+  return (
+    <div>
+      {/* Title */}
 
-            {/* Title */}
+      <h3 className="text-lg font-semibold tracking-tight text-white">
+        {column.title}
+      </h3>
 
-            <h3 className="text-lg font-semibold tracking-tight text-white">
-                {column.title}
-            </h3>
+      {/* Links */}
 
-            {/* Links */}
-
-            <ul className="mt-7 space-y-5">
-
-                {column.links.map((link) => (
-                    <li key={link.label}>
-
-                        <Link
-                            href={link.href}
-                            className="
+      <ul className="mt-7 space-y-5">
+        {column.links.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.href}
+              className="
                                 group
                                 inline-flex
                                 min-h-12
@@ -39,33 +36,27 @@ export default function FooterColumn({ column }: Props) {
 
                                 hover:text-blue-400
                             "
-                        >
-                            {/* Animated Arrow */}
+            >
+              {/* Animated Arrow */}
 
-                            <ArrowUpRight
-                                size={15}
-                                className="opacity-0 -translate-x-2 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
-                            />
+              <ArrowUpRight
+                size={15}
+                className="opacity-0 -translate-x-2 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+              />
 
-                            {/* Label */}
+              {/* Label */}
 
-                            <span className="relative">
+              <span className="relative">
+                {link.label}
 
-                                {link.label}
+                {/* Underline */}
 
-                                {/* Underline */}
-
-                                <span className="absolute -bottom-1 left-0 h-px w-0 bg-blue-500 transition-all duration-300 group-hover:w-full" />
-
-                            </span>
-
-                        </Link>
-
-                    </li>
-                ))}
-
-            </ul>
-
-        </div>
-    );
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-blue-500 transition-all duration-300 group-hover:w-full" />
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }

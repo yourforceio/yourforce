@@ -9,7 +9,6 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
-        
         {/* Brand / Logo */}
         <div className="flex items-center">
           <Logo />
@@ -27,7 +26,6 @@ export default function Navbar() {
             {site.hireus}
           </Button>
         </div>
-
       </nav>
     </header>
   );

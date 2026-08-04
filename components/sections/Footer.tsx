@@ -7,73 +7,60 @@ import SocialLinks from "@/components/footer/SocialLinks";
 import { footer } from "@/data/footer";
 
 export default function Footer() {
-    return (
-        <footer className="pt-20 border-t border-slate-800 bg-slate-950">
+  return (
+    <footer className="pt-20 border-t border-slate-800 bg-slate-950">
+      <div className="mx-auto max-w-7xl px-6 py-28 lg:px-8">
+        <div className="grid gap-16 lg:grid-cols-12">
+          {/* Company */}
 
-            <div className="mx-auto max-w-7xl px-6 py-28 lg:px-8">
+          <div className="lg:col-span-4">
+            <Link
+              href="/"
+              className="text-4xl font-black tracking-tight text-white transition-colors duration-300 hover:text-blue-400"
+            >
+              {footer.company.name}
+            </Link>
 
-                <div className="grid gap-16 lg:grid-cols-12">
+            <p className="mt-3 text-sm font-medium tracking-wide text-blue-400">
+              {footer.company.tagline}
+            </p>
 
-                    {/* Company */}
+            <p className="mt-6 max-w-xl leading-9 text-slate-400">
+              {footer.company.description}
+            </p>
 
-                    <div className="lg:col-span-4">
+            <div className="mt-8">
+              <SocialLinks socials={footer.socials} />
+            </div>
+          </div>
 
-                        <Link
-                            href="/"
-                            className="text-4xl font-black tracking-tight text-white transition-colors duration-300 hover:text-blue-400"
-                        >
-                            {footer.company.name}
-                        </Link>
+          {/* Footer Columns */}
 
-                        <p className="mt-3 text-sm font-medium tracking-wide text-blue-400">
-                            {footer.company.tagline}
-                        </p>
-
-                        <p className="mt-6 max-w-xl leading-9 text-slate-400">
-                            {footer.company.description}
-                        </p>
-
-                        <div className="mt-8">
-                            <SocialLinks socials={footer.socials} />
-                        </div>
-
-                    </div>
-
-                    {/* Footer Columns */}
-
-                    <div
-                        className="
+          <div
+            className="
                             grid
                             gap-10
                             sm:grid-cols-2
                             lg:col-span-8
                             lg:grid-cols-4
                         "
-                    >
-                        {footer.columns.map((column) => (
-                            <FooterColumn
-                                key={column.title}
-                                column={column}
-                            />
-                        ))}
-                    </div>
+          >
+            {footer.columns.map((column) => (
+              <FooterColumn key={column.title} column={column} />
+            ))}
+          </div>
+        </div>
 
-                </div>
+        {/* Divider */}
 
-                {/* Divider */}
-
-                <div className="mt-20 border-t border-slate-800 pt-10">
-
-                    <FooterBottom
-                        copyright={footer.bottom.copyright}
-                        builtWith={footer.bottom.builtWith}
-                        links={footer.bottom.links}
-                    />
-
-                </div>
-
-            </div>
-
-        </footer>
-    );
+        <div className="mt-20 border-t border-slate-800 pt-10">
+          <FooterBottom
+            copyright={footer.bottom.copyright}
+            builtWith={footer.bottom.builtWith}
+            links={footer.bottom.links}
+          />
+        </div>
+      </div>
+    </footer>
+  );
 }

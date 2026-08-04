@@ -1,38 +1,38 @@
 import type { IconType } from "react-icons";
 
 export interface FooterLink {
-    label: string;
-    href: string;
+  label: string;
+  href: string;
 }
 
 export interface FooterColumn {
-    title: string;
-    links: FooterLink[];
+  title: string;
+  links: FooterLink[];
 }
 
 export interface FooterSocial {
-    name: string;
-    href: string;
-    icon: ComponentType<{
-        size?: number;
-        className?: string;
-    }>;
+  name: string;
+  href: string;
+  icon: ComponentType<{
+    size?: number;
+    className?: string;
+  }>;
 }
 
 export interface FooterData {
-    company: {
-        name: string;
-        tagline: string;
-        description: string;
-    };
+  company: {
+    name: string;
+    tagline: string;
+    description: string;
+  };
 
-    columns: FooterColumn[];
+  columns: FooterColumn[];
 
-    socials: FooterSocial[];
+  socials: FooterSocial[];
 
-    bottom: {
-        copyright: string;
-        builtWith: string;
-        links: IconType;
-    };
+  bottom: {
+    copyright: string;
+    builtWith: string;
+    links: IconType;
+  };
 }

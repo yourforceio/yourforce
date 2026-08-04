@@ -24,9 +24,9 @@ export default function NavLinks({ className = "" }: NavLinksProps) {
                 transition-colors
                 hover:text-blue-400
             "
-        >
+          >
             {item.label}
-        </Link>
+          </Link>
         </li>
       ))}
     </ul>
