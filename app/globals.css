@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.card {
+  @apply rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300;
+}
+
+.card-hover {
+  @apply hover:-translate-y-2 hover:border-blue-200 hover:shadow-xl;
+}
