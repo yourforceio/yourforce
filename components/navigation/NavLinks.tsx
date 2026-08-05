@@ -11,8 +11,16 @@ import { usePathname } from "next/navigation";
 import { navigation } from "@/data/navigation";
 
 type NavLinksProps = {
+  /**
+   * Used by the mobile menu to close after navigation.
+   */
   onNavigate?: () => void;
+
+  /**
+   * Enables the vertical mobile navigation layout.
+   */
   mobile?: boolean;
+
   className?: string;
 };
 
@@ -21,6 +29,12 @@ type ObservedSection = {
   href: string;
 };
 
+/**
+ * Match a pathname against a configured route prefix.
+ *
+ * The homepage must use exact matching because "/" would
+ * otherwise match every route.
+ */
 function matchesRoute(
   pathname: string,
   prefix: string,
@@ -35,11 +49,14 @@ function matchesRoute(
   );
 }
 
+/**
+ * Determine which navigation item is active for a route.
+ */
 function getRouteActiveHref(
   pathname: string,
 ): string {
-  const activeItem =
-    navigation.find((item) =>
+  const activeItem = navigation.find(
+    (item) =>
       item.routePrefixes?.some(
         (prefix) =>
           matchesRoute(
@@ -47,31 +64,36 @@ function getRouteActiveHref(
             prefix,
           ),
       ),
-    );
+  );
 
   return activeItem?.href ?? "";
 }
 
+/**
+ * Find the homepage sections that participate in scroll-spy.
+ */
 function getHomepageSections(): ObservedSection[] {
   return navigation.flatMap(
     (item) =>
-      (
-        item.sectionIds ?? []
-      ).flatMap((sectionId) => {
-        const element =
-          document.getElementById(
-            sectionId,
-          );
+      (item.sectionIds ?? []).flatMap(
+        (sectionId) => {
+          const element =
+            document.getElementById(
+              sectionId,
+            );
 
-        return element
-          ? [
-              {
-                element,
-                href: item.href,
-              },
-            ]
-          : [];
-      }),
+          if (!element) {
+            return [];
+          }
+
+          return [
+            {
+              element,
+              href: item.href,
+            },
+          ];
+        },
+      ),
   );
 }
 
@@ -82,11 +104,19 @@ export default function NavLinks({
 }: NavLinksProps) {
   const pathname = usePathname();
 
+  /**
+   * Homepage active state is controlled by the
+   * IntersectionObserver callback.
+   */
   const [
     activeSectionHref,
     setActiveSectionHref,
   ] = useState("/");
 
+  /**
+   * Non-homepage active state is derived directly
+   * from the current pathname.
+   */
   const routeActiveHref =
     getRouteActiveHref(pathname);
 
@@ -112,7 +142,7 @@ export default function NavLinks({
     const observer =
       new IntersectionObserver(
         (entries) => {
-          const activeEntry =
+          const visibleEntry =
             entries
               .filter(
                 (entry) =>
@@ -127,7 +157,7 @@ export default function NavLinks({
                   first.intersectionRatio,
               )[0];
 
-          if (!activeEntry) {
+          if (!visibleEntry) {
             return;
           }
 
@@ -135,7 +165,7 @@ export default function NavLinks({
             observedSections.find(
               ({ element }) =>
                 element ===
-                activeEntry.target,
+                visibleEntry.target,
             );
 
           if (!matchedSection) {
@@ -183,79 +213,93 @@ export default function NavLinks({
         className={
           mobile
             ? "flex flex-col gap-2"
-            : "flex items-center gap-2"
+            : "flex items-center gap-3"
         }
       >
-        {navigation.map(
-          (item) => {
-            const isActive =
-              activeHref ===
-              item.href;
+        {navigation.map((item) => {
+          const isActive =
+            activeHref === item.href;
 
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={
-                    onNavigate
+          const ariaCurrent =
+            isActive
+              ? item.href.includes("#")
+                ? "location"
+                : "page"
+              : undefined;
+
+          return (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                onClick={onNavigate}
+                aria-current={ariaCurrent}
+                className={`
+                  inline-flex
+                  items-center
+                  justify-center
+                  font-medium
+                  transition-colors
+                  duration-200
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-blue-400
+                  focus-visible:ring-offset-2
+                  focus-visible:ring-offset-slate-950
+
+                  ${
+                    mobile
+                      ? `
+                        w-full
+                        rounded-xl
+                        border-0
+                        px-4
+                        py-3
+                        text-base
+                      `
+                      : `
+                        rounded-none
+                        border-b-2
+                        bg-transparent
+                        px-2
+                        py-4
+                        text-sm
+                        shadow-none
+                        ring-0
+                      `
                   }
-                  aria-current={
+
+                  ${
                     isActive
-                      ? "page"
-                      : undefined
-                  }
-                  className={`
-                    inline-flex
-                    items-center
-                    justify-center
-                    rounded-xl
-                    font-medium
-                    transition-all
-                    duration-200
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-blue-400
-                    focus-visible:ring-offset-2
-                    focus-visible:ring-offset-slate-950
-
-                    ${
-                      mobile
+                      ? mobile
                         ? `
-                          w-full
-                          px-4
-                          py-3
-                          text-base
-                        `
-                        : `
-                          px-4
-                          py-2.5
-                          text-sm
-                        `
-                    }
-
-                    ${
-                      isActive
-                        ? `
-                          bg-blue-500/15
+                          bg-blue-500/10
                           text-white
-                          shadow-sm
-                          ring-1
-                          ring-blue-400/15
                         `
                         : `
+                          border-blue-400
+                          text-white
+                        `
+                      : mobile
+                        ? `
+                          bg-transparent
                           text-slate-300
                           hover:bg-white/5
                           hover:text-white
                         `
-                    }
-                  `}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            );
-          },
-        )}
+                        : `
+                          border-transparent
+                          text-slate-300
+                          hover:border-blue-400/50
+                          hover:text-white
+                        `
+                  }
+                `}
+              >
+                {item.label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
