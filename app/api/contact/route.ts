@@ -8,7 +8,7 @@ import { getResend } from "@/lib/resend";
 import { contactSchema } from "@/lib/validations/contact";
 
 const FROM_EMAIL =
-  "YourForce <contact@yourforce.io>";
+  "YourForce <hello@yourforce.io>";
 
 export async function POST(
   request: Request,
