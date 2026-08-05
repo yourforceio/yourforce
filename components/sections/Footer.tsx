@@ -1,66 +1,117 @@
-import Link from "next/link";
+import Logo from "@/components/branding/Logo";
+import Container from "@/components/layout/Container";
 
-import FooterColumn from "@/components/footer/FooterColumn";
 import FooterBottom from "@/components/footer/FooterBottom";
+import FooterColumn from "@/components/footer/FooterColumn";
 import SocialLinks from "@/components/footer/SocialLinks";
 
 import { footer } from "@/data/footer";
 
 export default function Footer() {
   return (
-    <footer className="pt-20 border-t border-slate-800 bg-slate-950">
-      <div className="mx-auto max-w-7xl px-6 py-28 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-12">
-          {/* Company */}
+    <footer
+      className="
+        relative
+        overflow-hidden
+        border-t
+        border-white/10
+        bg-slate-950
+        text-white
+      "
+    >
+      {/* Background decoration */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-40 top-0 h-[360px] w-[360px] rounded-full bg-blue-600/10 blur-[130px]" />
 
-          <div className="lg:col-span-4">
-            <Link
-              href="/"
-              className="text-4xl font-black tracking-tight text-white transition-colors duration-300 hover:text-blue-400"
+        <div className="absolute -right-40 bottom-0 h-[320px] w-[320px] rounded-full bg-cyan-500/[0.06] blur-[120px]" />
+
+        <div
+          className="
+            absolute
+            inset-0
+            opacity-[0.025]
+            [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+            [background-size:48px_48px]
+          "
+        />
+      </div>
+
+      <Container>
+        <div className="relative pb-12 pt-16 lg:pb-14 lg:pt-20">
+          <div className="grid gap-14 lg:grid-cols-[1.05fr_1.95fr] lg:gap-20">
+            {/* Company information */}
+            <div className="max-w-md">
+              <Logo />
+
+              <p className="mt-6 text-sm font-semibold tracking-wide text-blue-400">
+                {footer.company.tagline}
+              </p>
+
+              <p className="mt-5 text-sm leading-7 text-slate-400">
+                {footer.company.description}
+              </p>
+
+              {/* Availability */}
+              <div
+                className="
+                  mt-6
+                  inline-flex
+                  items-center
+                  gap-2.5
+                  rounded-full
+                  border
+                  border-emerald-500/20
+                  bg-emerald-500/[0.06]
+                  px-3.5
+                  py-2
+                  text-xs
+                  font-semibold
+                  text-emerald-300
+                "
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
+
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+
+                {footer.company.availability}
+              </div>
+
+              <div className="mt-7">
+                <SocialLinks socials={footer.socials} />
+              </div>
+            </div>
+
+            {/* Footer navigation */}
+            <div
+              className="
+                grid
+                gap-10
+                sm:grid-cols-2
+                xl:grid-cols-[0.8fr_1.25fr_0.95fr_0.9fr]
+                xl:gap-12
+              "
             >
-              {footer.company.name}
-            </Link>
-
-            <p className="mt-3 text-sm font-medium tracking-wide text-blue-400">
-              {footer.company.tagline}
-            </p>
-
-            <p className="mt-6 max-w-xl leading-9 text-slate-400">
-              {footer.company.description}
-            </p>
-
-            <div className="mt-8">
-              <SocialLinks socials={footer.socials} />
+              {footer.columns.map((column) => (
+                <FooterColumn
+                  key={column.title}
+                  column={column}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Footer Columns */}
-
-          <div
-            className="
-                            grid
-                            gap-10
-                            sm:grid-cols-2
-                            lg:col-span-8
-                            lg:grid-cols-4
-                        "
-          >
-            {footer.columns.map((column) => (
-              <FooterColumn key={column.title} column={column} />
-            ))}
+          {/* Bottom bar */}
+          <div className="mt-14 border-t border-white/10 pt-8">
+            <FooterBottom
+              copyright={footer.bottom.copyright}
+              builtWith={footer.bottom.builtWith}
+              links={footer.bottom.links}
+            />
           </div>
         </div>
-
-        {/* Divider */}
-
-        <div className="mt-20 border-t border-slate-800 pt-10">
-          <FooterBottom
-            copyright={footer.bottom.copyright}
-            builtWith={footer.bottom.builtWith}
-            links={footer.bottom.links}
-          />
-        </div>
-      </div>
+      </Container>
     </footer>
   );
 }

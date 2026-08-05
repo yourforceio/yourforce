@@ -1,24 +1,47 @@
+import {
+  Clock3,
+  Globe2,
+  Mail,
+  MapPin,
+} from "lucide-react";
+
 import type { ContactData } from "@/types/contact";
 
 export const contact: ContactData = {
   hero: {
-    badge: "Let's Talk",
+    badge: "Let’s Talk",
 
-    title: "Let's Build",
+    title: "Tell Us What",
 
-    highlight: "Something Exceptional",
+    highlight: "You’re Building.",
 
     description:
-      "Whether you're launching a new digital product, modernizing your commerce platform, or looking for a trusted Salesforce Commerce Cloud partner, we'd love to hear from you.",
+      "Share your commerce challenge, modernization plans, integration requirements, or software product idea. We’ll help you identify a practical technical direction and the right next step.",
+
+    highlights: [
+      "Multi-platform commerce",
+      "Senior engineering involvement",
+      "Global remote delivery",
+    ],
   },
 
   form: {
-    title: "Start Your Project",
+    eyebrow: "Project Enquiry",
+
+    title: "Tell us about your project",
 
     description:
-      "Tell us about your project and we'll get back to you within one business day.",
+      "Provide a few details about your goals, current platform, and delivery requirements. We typically respond within one business day.",
 
-    submitLabel: "Send Message",
+    requiredNote:
+      "Required fields are marked with an asterisk.",
+
+    submitLabel: "Send Project Enquiry",
+
+    submittingLabel: "Sending Enquiry...",
+
+    privacyNote:
+      "Your information is used only to respond to your enquiry.",
 
     fields: [
       {
@@ -27,108 +50,277 @@ export const contact: ContactData = {
         type: "text",
         required: true,
         placeholder: "John Doe",
+        autoComplete: "name",
       },
-      {
-        name: "company",
-        label: "Company",
-        type: "text",
-        placeholder: "Your Company",
-      },
+
       {
         name: "email",
         label: "Email Address",
         type: "email",
         required: true,
         placeholder: "john@example.com",
+        autoComplete: "email",
       },
+
       {
         name: "phone",
         label: "Phone Number",
         type: "tel",
-        placeholder: "+1 234 567 890",
+        placeholder: "+92 300 1234567",
+        autoComplete: "tel",
       },
+
       {
         name: "service",
-        label: "Service",
+        label: "Service Required",
         type: "select",
+        required: true,
+        placeholder: "Select a service",
+
+        helper:
+          "Choose the closest option. We’ll refine it during discovery.",
+
         options: [
-          "Salesforce Commerce Cloud",
-          "Headless Commerce",
-          "PWA Kit Development",
-          "System Integration",
-          "Digital Transformation",
-          "Other",
+          {
+            label: "Commerce Platform Engineering",
+            value: "Commerce Platform Engineering",
+            slug: "commerce-platform-engineering",
+          },
+          {
+            label: "Headless Commerce & Storefronts",
+            value: "Headless Commerce & Storefronts",
+            slug: "headless-commerce",
+          },
+          {
+            label: "Migration & Modernization",
+            value: "Migration & Modernization",
+            slug: "migration-modernization",
+          },
+          {
+            label: "Integrations & Automation",
+            value: "Integrations & Automation",
+            slug: "integrations-automation",
+          },
+          {
+            label: "Enterprise Software & Consulting",
+            value: "Enterprise Software & Consulting",
+            slug: "enterprise-software",
+          },
+          {
+            label: "Architecture & Technical Consulting",
+            value: "Architecture & Technical Consulting",
+            slug: "technical-consulting",
+          },
+          {
+            label: "Other",
+            value: "Other",
+            slug: "other",
+          },
         ],
       },
+
       {
         name: "budget",
         label: "Estimated Budget",
         type: "select",
-        options: ["Under $10k", "$10k - $25k", "$25k - $50k", "$50k+"],
+        placeholder: "Select a budget range",
+
+        helper:
+          "An approximate range helps us recommend the right approach.",
+
+        options: [
+          {
+            label: "Less than $5,000",
+            value: "Less than $5,000",
+          },
+          {
+            label: "$5,000 – $10,000",
+            value: "$5,000 – $10,000",
+          },
+          {
+            label: "$10,000 – $25,000",
+            value: "$10,000 – $25,000",
+          },
+          {
+            label: "$25,000 – $50,000",
+            value: "$25,000 – $50,000",
+          },
+          {
+            label: "$50,000+",
+            value: "$50,000+",
+          },
+          {
+            label: "Prefer not to say",
+            value: "Prefer not to say",
+          },
+        ],
       },
+
+      {
+        name: "timeline",
+        label: "Preferred Timeline",
+        type: "select",
+        placeholder: "Select a timeline",
+
+        helper:
+          "Select the nearest timeframe, even if it is flexible.",
+
+        options: [
+          {
+            label: "As soon as possible",
+            value: "ASAP",
+          },
+          {
+            label: "Within 1 month",
+            value: "Within 1 Month",
+          },
+          {
+            label: "Within 2–3 months",
+            value: "2–3 Months",
+          },
+          {
+            label: "Within 3–6 months",
+            value: "3–6 Months",
+          },
+          {
+            label: "Flexible",
+            value: "Flexible",
+          },
+        ],
+      },
+
       {
         name: "message",
         label: "Project Details",
         type: "textarea",
         required: true,
+        fullWidth: true,
+        rows: 7,
+
         placeholder:
-          "Tell us about your project, goals, timeline, and challenges...",
+          "Describe your current platform, business goals, required integrations, timeline, and any challenges you are facing...",
       },
     ],
   },
 
-  info: [
-    {
-      icon: "📧",
-      title: "Email",
+  info: {
+    eyebrow: "Get In Touch",
+
+    title: "Start with a practical conversation.",
+
+    description:
+      "You’ll speak directly with an experienced engineering partner who can help evaluate your challenge, clarify priorities, and identify the most suitable next step.",
+
+    primaryContact: {
+      title: "Email YourForce",
       value: "hello@yourforce.io",
-      description: "We'll reply within one business day.",
+
+      description:
+        "Send your requirements directly. We typically reply within one business day.",
+
+      href: "mailto:hello@yourforce.io",
+      icon: Mail,
     },
-    {
-      icon: "🌍",
-      title: "Location",
-      value: "Lahore, Pakistan",
-      description: "Serving clients worldwide remotely.",
+
+    details: [
+      {
+        title: "Delivery Base",
+        value: "Lahore, Pakistan",
+
+        description:
+          "Supporting international teams through remote delivery.",
+
+        icon: MapPin,
+      },
+      {
+        title: "Working Hours",
+        value: "Monday – Friday",
+        description: "09:00 AM – 06:00 PM (PKT)",
+        icon: Clock3,
+      },
+      {
+        title: "Remote Collaboration",
+        value: "Worldwide",
+
+        description:
+          "Flexible overlap with North American, European, and Middle Eastern teams.",
+
+        icon: Globe2,
+      },
+    ],
+
+    nextSteps: {
+      eyebrow: "What Happens Next",
+
+      title: "A clear first step",
+
+      items: [
+        {
+          number: "01",
+          title: "We review your enquiry",
+
+          description:
+            "We assess your goals, current platform, requirements, and known constraints.",
+        },
+        {
+          number: "02",
+          title: "We share initial direction",
+
+          description:
+            "You receive practical observations and any important follow-up questions.",
+        },
+        {
+          number: "03",
+          title: "We agree on the next step",
+
+          description:
+            "When appropriate, we arrange a discovery discussion and define the way forward.",
+        },
+      ],
     },
-    {
-      icon: "💼",
-      title: "Availability",
-      value: "Monday – Friday",
-      description: "09:00 AM – 06:00 PM (PKT)",
+
+    response: {
+      label: "Response Time",
+
+      text:
+        "We typically respond within one business day.",
     },
-    {
-      icon: "⚡",
-      title: "Response Time",
-      value: "< 24 Hours",
-      description: "Fast responses for all enquiries.",
-    },
-  ],
+  },
 
   faq: {
     title: "Frequently Asked Questions",
 
-    description: "Answers to some of the most common questions we receive.",
+    description:
+      "Answers to some of the most common questions we receive.",
 
     items: [
       {
-        question: "How quickly can you start a project?",
+        question:
+          "How quickly can you start a project?",
+
         answer:
-          "Most projects can begin within one week depending on availability and project scope.",
+          "Project availability depends on scope and current commitments. After reviewing your requirements, we can provide a realistic start date and delivery approach.",
       },
       {
-        question: "Do you work with international clients?",
+        question:
+          "Do you work with international clients?",
+
         answer:
-          "Yes. YourForce works remotely with companies across North America, Europe, the Middle East, and Asia.",
+          "Yes. YourForce supports companies remotely across North America, Europe, the Middle East, and Asia.",
       },
       {
-        question: "What industries do you specialize in?",
+        question:
+          "Which commerce platforms do you support?",
+
         answer:
-          "We specialize in eCommerce, retail, enterprise software, and digital transformation projects.",
+          "We support Salesforce Commerce Cloud, Adobe Commerce, Shopify, WooCommerce, and modern headless commerce architectures.",
       },
       {
-        question: "Can you work with existing development teams?",
+        question:
+          "Can you work with an existing development team?",
+
         answer:
-          "Absolutely. We frequently collaborate with in-house teams and technology partners.",
+          "Yes. We can collaborate with internal engineering teams, agencies, platform partners, and other technology vendors.",
       },
     ],
   },

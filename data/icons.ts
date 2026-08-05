@@ -1,3 +1,12 @@
+import {
+  ShoppingCart,
+  MonitorSmartphone,
+  Building2,
+  CloudCog,
+  LayoutTemplate,
+  Lightbulb,
+} from "lucide-react";
+
 const serviceIcons = {
   shoppingCart: ShoppingCart,
   monitorSmartphone: MonitorSmartphone,
@@ -6,3 +15,5 @@ const serviceIcons = {
   layoutTemplate: LayoutTemplate,
   lightbulb: Lightbulb,
 };
+
+export default serviceIcons;

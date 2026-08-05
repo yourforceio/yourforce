@@ -1,131 +1,178 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
 import { contact } from "@/data/contact";
 
 export default function ContactInfo() {
+  const PrimaryIcon = contact.info.primaryContact.icon;
+
   return (
-    <div className="space-y-6">
-      <div>
-        <p className="text-sm font-semibold uppercase tracking-widest text-blue-400">
-          Get In Touch
-        </p>
-
-        <h2 className="mt-2 text-3xl font-bold text-white">
-          Let&apos;s build something exceptional.
-        </h2>
-
-        <p className="mt-3 text-slate-400">
-          We&apos;d love to hear about your project, answer your questions, and
-          discuss how YourForce can help your business grow.
-        </p>
-      </div>
-
-      {contact.info.map((item) => (
-        <div
-          key={item.title}
-          className="
-                        group
-                        flex
-                        items-start
-                        gap-5
-                        rounded-2xl
-                        border
-                        border-slate-800
-                        bg-slate-900/70
-                        p-6
-                        transition-all
-                        duration-300
-
-                        hover:-translate-y-1
-                        hover:border-blue-500/40
-                        hover:shadow-lg
-                        hover:shadow-blue-500/10
-                    "
-        >
-          <div
-            className="
-                            flex
-                            h-14
-                            w-14
-                            shrink-0
-                            items-center
-                            justify-center
-                            rounded-xl
-                            bg-blue-600/10
-                            text-2xl
-                            transition
-
-                            group-hover:bg-blue-600/20
-                        "
-          >
-            {item.icon}
-          </div>
-
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-
-            {item.title === "Email" ? (
-              <a
-                href={`mailto:${item.value}`}
-                className="
-                                    mt-2
-                                    inline-block
-                                    text-lg
-                                    font-medium
-                                    text-blue-400
-                                    transition
-                                    hover:text-blue-300
-                                "
-              >
-                {item.value}
-              </a>
-            ) : (
-              <p className="mt-2 text-lg text-blue-400">{item.value}</p>
-            )}
-
-            <p className="mt-2 text-slate-400">{item.description}</p>
-          </div>
-
-          <div
-            className="
-                            text-slate-600
-                            transition
-                            group-hover:translate-x-1
-                            group-hover:text-blue-400
-                        "
-          >
-            →
-          </div>
-        </div>
-      ))}
-
+    <aside className="h-fit self-start">
       <div
         className="
+          relative
+          overflow-hidden
+          rounded-3xl
+          border
+          border-slate-800
+          bg-slate-900/70
+          p-6
+          shadow-2xl
+          shadow-black/10
+          backdrop-blur-xl
+          sm:p-8
+        "
+      >
+        {/* Background decoration */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-blue-600/15 blur-[90px]" />
+
+        <div className="relative">
+          {/* Introduction */}
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
+            {contact.info.eyebrow}
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-white">
+            {contact.info.title}
+          </h2>
+
+          <p className="mt-4 leading-7 text-slate-400">
+            {contact.info.description}
+          </p>
+
+          {/* Primary contact */}
+          <Link
+            href={contact.info.primaryContact.href ?? "/contact"}
+            className="
+              group
+              mt-7
+              flex
+              items-start
+              gap-4
+              rounded-2xl
+              border
+              border-blue-500/30
+              bg-blue-500/10
+              p-5
+              transition-all
+              duration-200
+              hover:-translate-y-0.5
+              hover:border-blue-400/50
+              hover:bg-blue-500/15
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-blue-400
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-slate-950
+            "
+          >
+            <span
+              className="
+                flex
+                h-12
+                w-12
+                shrink-0
+                items-center
+                justify-center
+                rounded-xl
+                bg-blue-600
+                text-white
+              "
+            >
+              <PrimaryIcon
+                aria-hidden="true"
+                className="h-5 w-5"
+              />
+            </span>
+
+            <span className="min-w-0 flex-1">
+              <span className="block text-xs font-bold uppercase tracking-[0.16em] text-blue-400">
+                {contact.info.primaryContact.title}
+              </span>
+
+              <span className="mt-2 block break-words text-lg font-semibold text-white">
+                {contact.info.primaryContact.value}
+              </span>
+
+              <span className="mt-2 block text-sm leading-6 text-slate-400">
+                {contact.info.primaryContact.description}
+              </span>
+            </span>
+
+            <ArrowUpRight
+              aria-hidden="true"
+              className="
+                h-5
+                w-5
+                shrink-0
+                text-blue-400
+                transition-transform
+                duration-200
+                group-hover:-translate-y-0.5
+                group-hover:translate-x-0.5
+              "
+            />
+          </Link>
+
+          {/* Delivery information */}
+          <div className="mt-5 space-y-3">
+            {contact.info.details.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div
+                  key={item.title}
+                  className="
+                    flex
+                    items-start
+                    gap-4
                     rounded-2xl
                     border
-                    border-blue-500/20
-                    bg-gradient-to-r
-                    from-blue-600/10
-                    to-slate-900
-                    p-6
-                "
-      >
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-lg font-semibold text-white">
-              Trusted Worldwide
-            </p>
+                    border-slate-800
+                    bg-slate-950/45
+                    p-4
+                  "
+                >
+                  <span
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-xl
+                      border
+                      border-slate-700
+                      bg-slate-900
+                      text-blue-400
+                    "
+                  >
+                    <Icon
+                      aria-hidden="true"
+                      className="h-[18px] w-[18px]"
+                    />
+                  </span>
 
-            <p className="mt-1 text-slate-400">
-              Helping businesses build scalable commerce platforms and
-              enterprise software.
-            </p>
-          </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                      {item.title}
+                    </p>
 
-          <div className="text-right">
-            <p className="text-2xl">⭐⭐⭐⭐⭐</p>
-            <p className="text-sm text-slate-400">Fast response</p>
+                    <p className="mt-1 font-semibold text-slate-200">
+                      {item.value}
+                    </p>
+
+                    <p className="mt-1 text-sm leading-6 text-slate-500">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }

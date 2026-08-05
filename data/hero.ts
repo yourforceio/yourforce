@@ -1,20 +1,20 @@
 import type { Hero } from "@/types/hero";
 
 export const hero: Hero = {
-  badge: "⚡ Engineering Excellence",
+  badge: "⚡ Multi-Platform Commerce Engineering",
 
   heading: {
-    primary: "Your Vision.",
-    accent: "Our Engineering Force.",
+    primary: "Digital Commerce.",
+    accent: "Engineered to Scale.",
   },
 
   description:
-    "We engineer scalable web applications, enterprise software, and digital commerce solutions that turn ambitious ideas into reliable, high-performing products.",
+    "YourForce builds scalable commerce platforms, headless storefronts, enterprise applications, and integrations across Salesforce Commerce Cloud, Adobe Commerce, Shopify, and WooCommerce.",
 
   actions: [
     {
-      label: "Let's Build Together",
-      href: "/services",
+      label: "Start Your Project",
+      href: "/contact",
       variant: "primary",
     },
     {
@@ -24,30 +24,58 @@ export const hero: Hero = {
     },
   ],
 
+  technologies: {
+    title: "Commerce Expertise",
+
+    items: [
+      {
+        name: "Salesforce Commerce Cloud",
+      },
+      {
+        name: "Adobe Commerce (Magento)",
+      },
+      {
+        name: "Shopify",
+      },
+      {
+        name: "WooCommerce",
+      },
+      {
+        name: "Headless Commerce",
+      },
+      {
+        name: "Next.js",
+      },
+    ],
+  },
+
   stats: [
     {
       value: "15+",
-      label: "Years Experience",
+      label: "Years Software Engineering",
     },
     {
-      value: "100+",
-      label: "Projects Delivered",
+      value: "8+",
+      label: "Years Enterprise Commerce",
     },
     {
-      value: "10+",
-      label: "Technologies Mastered",
+      value: "4",
+      label: "Commerce Platforms Supported",
     },
   ],
 
-  technologies: {
-    title: "Expertise Across",
-    items: [
-      { name: "Salesforce Commerce Cloud" },
-      { name: "React" },
-      { name: "Next.js" },
-      { name: "Node.js" },
-      { name: "TypeScript" },
-      { name: "AWS" },
-    ],
+  visual: {
+    eyebrow: "Commerce Modernization",
+
+    title: "Flexible Commerce Architecture",
+
+    description:
+      "Modern storefronts, integrations, migrations, and scalable commerce experiences.",
+
+    image:
+      "/images/projects/enterprise-fashion-commerce.jpg",
+
+    alt:
+      "Modern digital commerce storefront displayed across desktop and mobile devices",
   },
 };

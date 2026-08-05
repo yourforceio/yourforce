@@ -1,81 +1,165 @@
 import type { Services } from "@/types/service";
 
 export const services: Services = {
-  badge: "⚡ Our Services",
+  badge: "⚡ Commerce & Software Services",
 
-  heading: "Engineering Solutions Built for Modern Businesses",
+  heading:
+    "Build, Modernize, and Scale Digital Commerce",
 
   description:
-    "From enterprise commerce to custom web applications, we deliver reliable software that helps businesses innovate and scale.",
+    "YourForce delivers platform engineering, headless storefronts, commerce modernization, enterprise integrations, and custom software across leading commerce technologies.",
 
   items: [
     {
-      title: "Enterprise eCommerce",
-      description: "Scalable commerce solutions built for growing brands.",
-      icon: "shoppingCart",
-      stack: [
-        { name: "Salesforce Commerce Cloud" },
-        { name: "Shopify Plus" },
-        { name: "Composable Commerce" },
-        { name: "Headless Commerce" },
-      ],
-    },
-    {
-      title: "Custom Web Applications",
+      eyebrow: "Core Capability",
+
+      title: "Commerce Platform Engineering",
+
       description:
-        "Modern React and Next.js applications tailored to your business.",
-      icon: "monitorSmartphone",
+        "Design, development, customization, and long-term support for scalable commerce platforms across Salesforce Commerce Cloud, Adobe Commerce, Shopify, and WooCommerce.",
+
+      icon: "commercePlatform",
+
       stack: [
-        { name: "Next.js" },
-        { name: "React" },
-        { name: "TypeScript" },
-        { name: "Node.js" },
+        {
+          name: "Salesforce Commerce Cloud",
+        },
+        {
+          name: "Adobe Commerce (Magento)",
+        },
+        {
+          name: "Shopify Plus",
+        },
+        {
+          name: "WooCommerce",
+        },
       ],
+
+      href: "/contact",
+
+      ctaLabel: "Discuss Your Commerce Platform",
+
+      featured: true,
     },
+
     {
-      title: "Enterprise Software",
+      eyebrow: "Modern Storefronts",
+
+      title: "Headless Commerce & Storefronts",
+
       description:
-        "Business systems that automate processes and improve efficiency.",
-      icon: "building2",
+        "Fast, flexible storefront experiences built with modern frontend technologies and connected to commerce platforms through secure APIs.",
+
+      icon: "headlessStorefront",
+
       stack: [
-        { name: "Microservices" },
-        { name: "Sacalable APIs" },
-        { name: "Cloud Ready" },
+        {
+          name: "Next.js",
+        },
+        {
+          name: "React",
+        },
+        {
+          name: "PWA Kit",
+        },
+        {
+          name: "Commerce APIs",
+        },
       ],
+
+      href: "/contact",
+
+      ctaLabel: "Build a Headless Storefront",
     },
+
     {
-      title: "Cloud & API Integrations",
-      description: "Connect systems and automate workflows with secure APIs.",
-      icon: "cloudCog",
-      stack: [
-        { name: "REST APIs" },
-        { name: "GraphQL" },
-        { name: "Webhooks" },
-        { name: "OAuth" },
-      ],
-    },
-    {
-      title: "Frontend Engineering",
+      eyebrow: "Platform Evolution",
+
+      title: "Migration & Modernization",
+
       description:
-        "Fast, responsive, and accessible user interfaces built with React.",
-      icon: "layoutTemplate",
+        "Replatform legacy commerce systems, upgrade storefront architecture, and introduce modern capabilities through practical phased transformation.",
+
+      icon: "modernization",
+
       stack: [
-        { name: "React" },
-        { name: "Next.js" },
-        { name: "Tailwind CSS" },
-        { name: "Accessibility" },
+        {
+          name: "Replatforming",
+        },
+        {
+          name: "Platform Upgrades",
+        },
+        {
+          name: "Hybrid Commerce",
+        },
+        {
+          name: "Performance",
+        },
       ],
+
+      href: "/contact",
+
+      ctaLabel: "Plan Your Modernization",
     },
+
     {
-      title: "Software Architecture & Consulting",
+      eyebrow: "Connected Commerce",
+
+      title: "Integrations & Automation",
+
       description:
-        "Architecture reviews, technical guidance, and solution planning.",
-      icon: "lightBulb",
+        "Connect commerce platforms with payments, order management, search, tax, marketing, shipping, analytics, and other business-critical systems.",
+
+      icon: "integrations",
+
       stack: [
-        { name: "System Design" },
-        { name: "Scalability" },
-        { name: "Performance" },
+        {
+          name: "Payments",
+        },
+        {
+          name: "OMS & ERP",
+        },
+        {
+          name: "CRM & Marketing",
+        },
+        {
+          name: "APIs & Webhooks",
+        },
       ],
+
+      href: "/contact",
+
+      ctaLabel: "Discuss Your Integrations",
+    },
+
+    {
+      eyebrow: "Beyond Commerce",
+
+      title: "Enterprise Software & Consulting",
+
+      description:
+        "Custom business applications, internal portals, workflow automation, architecture reviews, technical roadmaps, and delivery guidance.",
+
+      icon: "enterpriseSoftware",
+
+      stack: [
+        {
+          name: "Custom Portals",
+        },
+        {
+          name: "Workflow Automation",
+        },
+        {
+          name: "Solution Architecture",
+        },
+        {
+          name: "Technical Consulting",
+        },
+      ],
+
+      href: "/contact",
+
+      ctaLabel: "Explore a Custom Solution",
     },
   ],
 };

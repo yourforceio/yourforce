@@ -15,6 +15,8 @@ export const site = {
 
   twitter: "@yourforce",
 
+  hireUs: "Start Your Project",
+
   keywords: [
     "Salesforce Commerce Cloud",
     "SFCC",

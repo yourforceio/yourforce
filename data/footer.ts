@@ -1,85 +1,89 @@
-import type { FooterData } from "@/types/footer";
+import {
+  Globe2,
+  Mail,
+  MapPin,
+} from "lucide-react";
 
 import { FaLinkedinIn } from "react-icons/fa";
 
-import { Mail, MapPin } from "lucide-react";
+import { navigation } from "@/data/navigation";
+
+import type { FooterData } from "@/types/footer";
+
+const footerNavigationLinks = navigation
+  .filter((item) => item.showInFooter !== false)
+  .map((item) => ({
+    label: item.label,
+    href: item.href,
+  }));
 
 export const footer: FooterData = {
   company: {
-    name: "YourForce",
-
-    tagline: "Your Vision. Our Engineering Force.",
+    tagline: "Digital Commerce. Engineered to Scale.",
 
     description:
-      "We build scalable digital products, enterprise platforms, and Salesforce Commerce Cloud solutions for businesses ready to grow.",
+      "YourForce helps businesses build, modernize, and scale commerce platforms, headless storefronts, enterprise integrations, and custom software across leading technologies.",
+
+    availability:
+      "Available for global remote delivery",
   },
 
   columns: [
     {
-      title: "Quick Links",
+      title: "Navigate",
+      links: footerNavigationLinks,
+    },
+
+    {
+      title: "Capabilities",
 
       links: [
         {
-          label: "Home",
-          href: "/",
+          label: "Commerce Platform Engineering",
+          href: "/#services",
         },
         {
-          label: "About",
-          href: "/about",
+          label: "Headless Commerce",
+          href: "/#services",
         },
         {
-          label: "Services",
-          href: "/services",
+          label: "Migration & Modernization",
+          href: "/#services",
         },
         {
-          label: "Portfolio",
-          href: "/portfolio",
+          label: "Integrations & Automation",
+          href: "/#services",
+        },
+        {
+          label: "Enterprise Software",
+          href: "/#services",
         },
       ],
     },
 
     {
-      title: "Services",
+      title: "Platforms",
 
       links: [
         {
           label: "Salesforce Commerce Cloud",
-          href: "/services",
+          href: "/#services",
         },
         {
-          label: "Headless Commerce",
-          href: "/services",
+          label: "Adobe Commerce",
+          href: "/#services",
         },
         {
-          label: "PWA Kit Development",
-          href: "/services",
+          label: "Shopify",
+          href: "/#services",
         },
         {
-          label: "System Integrations",
-          href: "/services",
-        },
-      ],
-    },
-
-    {
-      title: "Resources",
-
-      links: [
-        {
-          label: "Portfolio",
-          href: "/portfolio",
+          label: "WooCommerce",
+          href: "/#services",
         },
         {
-          label: "Insights",
-          href: "/blog",
-        },
-        {
-          label: "Privacy",
-          href: "/privacy",
-        },
-        {
-          label: "Terms",
-          href: "/terms",
+          label: "Headless Architecture",
+          href: "/#services",
         },
       ],
     },
@@ -89,16 +93,20 @@ export const footer: FooterData = {
 
       links: [
         {
-          label: "Lahore, Pakistan",
-          href: "#",
+          label: "hello@yourforce.io",
+          description: "Project enquiries",
+          href: "mailto:hello@yourforce.io",
+          icon: Mail,
         },
         {
-          label: "hello@yourforce.io",
-          href: "mailto:hello@yourforce.io",
+          label: "Lahore, Pakistan",
+          description: "Delivery base",
+          icon: MapPin,
         },
         {
           label: "Remote Worldwide",
-          href: "#",
+          description: "Supporting global teams",
+          icon: Globe2,
         },
       ],
     },
@@ -107,35 +115,23 @@ export const footer: FooterData = {
   socials: [
     {
       name: "LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/company/yourforce",
+      external: true,
       icon: FaLinkedinIn,
     },
     {
-      name: "Email",
+      name: "Email YourForce",
       href: "mailto:hello@yourforce.io",
       icon: Mail,
-    },
-    {
-      name: "Location",
-      href: "#",
-      icon: MapPin,
     },
   ],
 
   bottom: {
     copyright: `© ${new Date().getFullYear()} YourForce. All rights reserved.`,
 
-    builtWith: "Built with Next.js, TypeScript & Tailwind CSS",
+    builtWith:
+      "Designed and developed by YourForce",
 
-    links: [
-      {
-        label: "Privacy",
-        href: "/privacy",
-      },
-      {
-        label: "Terms",
-        href: "/terms",
-      },
-    ],
+    links: [],
   },
 };

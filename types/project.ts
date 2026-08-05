@@ -7,6 +7,37 @@ export type ProjectMetric = {
   label: string;
 };
 
+export type ProjectSummary = {
+  platform: string;
+  architecture: string;
+  commerceModel: string;
+  deliveryFocus: string;
+};
+
+export type ProjectMetricSection = {
+  eyebrow: string;
+  title: string;
+  description: string;
+};
+
+export type ProjectCTA = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  service: string;
+};
+
+export type ProjectCaseStudy = {
+  imageEyebrow: string;
+  imageLabel: string;
+
+  summary: ProjectSummary;
+
+  metricSection: ProjectMetricSection;
+
+  cta: ProjectCTA;
+};
+
 export type PortfolioProject = {
   slug: string;
   featured: boolean;
@@ -27,6 +58,8 @@ export type PortfolioProject = {
 
   metrics: ProjectMetric[];
 
+  caseStudy: ProjectCaseStudy;
+
   liveUrl?: string;
   githubUrl?: string;
 };
@@ -35,5 +68,6 @@ export type Projects = {
   badge: string;
   heading: string;
   description: string;
+  highlights: string[];
   items: PortfolioProject[];
 };

@@ -1,10 +1,16 @@
-import type { Metadata } from "next";
+import type {
+  Metadata,
+  Viewport,
+} from "next";
+
+import {
+  Geist,
+  Geist_Mono,
+} from "next/font/google";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/sections/Footer";
 
-import { Geist, Geist_Mono } from "next/font/google";
-import StructuredData from "@/components/seo/StructuredData";
 import { site } from "@/data/site";
 
 import "./globals.css";
@@ -12,15 +18,26 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#020617",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+
+  applicationName: site.name,
 
   title: {
     default: site.title,
@@ -29,22 +46,34 @@ export const metadata: Metadata = {
 
   description: site.description,
 
+  /*
+   * This is safe to keep, but Google does not use the
+   * meta keywords field as a ranking signal.
+   */
   keywords: site.keywords,
 
   authors: [
     {
-      name: "YourForce",
+      name: site.name,
       url: site.url,
     },
   ],
 
-  creator: "YourForce",
+  creator: site.name,
+  publisher: site.name,
 
-  publisher: "YourForce",
+  referrer: "origin-when-cross-origin",
+
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 
   robots: {
     index: true,
     follow: true,
+
     googleBot: {
       index: true,
       follow: true,
@@ -57,16 +86,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: site.locale,
-    url: site.url,
     siteName: site.name,
     title: site.title,
     description: site.description,
+
+    /*
+     * Do not define a fixed URL here.
+     * Each page will provide its own Open Graph URL.
+     */
     images: [
       {
         url: site.image,
         width: 1200,
         height: 630,
-        alt: "YourForce",
+        alt: `${site.name} — Enterprise Software Development`,
       },
     ],
   },
@@ -75,8 +108,18 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
-    images: [site.image],
-    creator: "YourForce",
+    images: [
+      {
+        url: site.image,
+        alt: `${site.name} — Enterprise Software Development`,
+      },
+    ],
+
+    /*
+     * Add this only when you have an actual X handle:
+     *
+     * creator: "@yourforceio",
+     */
   },
 
   icons: {
@@ -127,8 +170,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body>
-        <StructuredData />
+      <body className="min-h-full bg-slate-950 text-slate-100">
         <Navbar />
 
         {children}

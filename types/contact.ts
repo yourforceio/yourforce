@@ -1,17 +1,55 @@
-export interface ContactInfoCard {
-  title: string;
+import type { LucideIcon } from "lucide-react";
+
+export type ContactFieldName =
+  | "name"
+  | "email"
+  | "phone"
+  | "service"
+  | "budget"
+  | "timeline"
+  | "message";
+
+export interface ContactSelectOption {
+  label: string;
   value: string;
-  description: string;
-  icon: string;
+
+  /**
+   * Optional URL value used for service preselection:
+   * /contact?service=headless-commerce
+   */
+  slug?: string;
 }
 
 export interface ContactFormField {
-  name: string;
+  name: ContactFieldName;
   label: string;
-  type: "text" | "email" | "tel" | "select" | "textarea";
+  type:
+    | "text"
+    | "email"
+    | "tel"
+    | "select"
+    | "textarea";
   required?: boolean;
   placeholder?: string;
-  options?: string[];
+  autoComplete?: string;
+  helper?: string;
+  options?: ContactSelectOption[];
+  fullWidth?: boolean;
+  rows?: number;
+}
+
+export interface ContactInfoItem {
+  title: string;
+  value: string;
+  description: string;
+  icon: LucideIcon;
+  href?: string;
+}
+
+export interface ContactNextStep {
+  number: string;
+  title: string;
+  description: string;
 }
 
 export interface ContactFAQ {
@@ -25,16 +63,40 @@ export interface ContactData {
     title: string;
     highlight: string;
     description: string;
+    highlights: string[];
   };
 
   form: {
+    eyebrow: string;
     title: string;
     description: string;
+    requiredNote: string;
     submitLabel: string;
+    submittingLabel: string;
+    privacyNote: string;
     fields: ContactFormField[];
   };
 
-  info: ContactInfoCard[];
+  info: {
+    eyebrow: string;
+    title: string;
+    description: string;
+
+    primaryContact: ContactInfoItem;
+
+    details: ContactInfoItem[];
+
+    nextSteps: {
+      eyebrow: string;
+      title: string;
+      items: ContactNextStep[];
+    };
+
+    response: {
+      label: string;
+      text: string;
+    };
+  };
 
   faq: {
     title: string;

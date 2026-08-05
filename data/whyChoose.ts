@@ -1,10 +1,7 @@
 import {
-  ShieldCheck,
-  Rocket,
-  Cpu,
+  Handshake,
   Layers3,
-  Users,
-  MessageSquare,
+  RefreshCw,
 } from "lucide-react";
 
 import type { WhyChoose } from "@/types/whyChoose";
@@ -12,47 +9,65 @@ import type { WhyChoose } from "@/types/whyChoose";
 export const whyChoose: WhyChoose = {
   badge: "⭐ Why Choose YourForce",
 
-  heading: "Built for Long-Term Success",
+  heading:
+    "Built for Complex Commerce. Designed for Long-Term Growth.",
 
   description:
-    "We combine enterprise engineering expertise with modern technologies to deliver software that is scalable, maintainable, and built for business growth.",
+    "YourForce combines enterprise-commerce experience, practical modernization strategies, and direct technical collaboration to deliver platforms that remain scalable, maintainable, and ready for change.",
+
+  supportingText:
+    "Deep enterprise-commerce experience with broader delivery capabilities across leading platforms, integrations, and modern frontend architecture.",
 
   items: [
     {
-      icon: ShieldCheck,
-      title: "Enterprise Expertise",
+      eyebrow: "Platform Expertise",
+
+      title: "Multi-Platform Commerce Engineering",
+
       description:
-        "15+ years delivering enterprise-grade commerce and business platforms.",
-    },
-    {
-      icon: Rocket,
-      title: "Performance First",
-      description:
-        "Fast, optimized applications focused on user experience and business outcomes.",
-    },
-    {
-      icon: Cpu,
-      title: "Modern Technology",
-      description:
-        "React, Next.js, Salesforce Commerce Cloud, Node.js and cloud-native architecture.",
-    },
-    {
+        "We help businesses build and evolve commerce experiences across Salesforce Commerce Cloud, Adobe Commerce, Shopify, WooCommerce, and modern headless architectures.",
+
       icon: Layers3,
-      title: "Scalable Architecture",
-      description:
-        "Clean, maintainable code designed to support long-term product evolution.",
+
+      highlights: [
+        "Platform-fit guidance",
+        "Storefront and backend engineering",
+        "Commerce ecosystem integrations",
+      ],
     },
+
     {
-      icon: MessageSquare,
-      title: "Transparent Communication",
+      eyebrow: "Modernization Strategy",
+
+      title: "Progressive Change Without Unnecessary Risk",
+
       description:
-        "Clear updates, predictable delivery, and close collaboration throughout every project.",
+        "We modernize legacy platforms through practical, phased delivery that protects active business operations while introducing better architecture and customer experiences.",
+
+      icon: RefreshCw,
+
+      highlights: [
+        "Phased replatforming",
+        "Hybrid and headless transitions",
+        "Performance and delivery improvements",
+      ],
     },
+
     {
-      icon: Users,
-      title: "Long-Term Partnership",
+      eyebrow: "Delivery Partnership",
+
+      title: "Direct, Transparent, Long-Term Collaboration",
+
       description:
-        "We don't disappear after launch—we continue supporting and improving your product.",
+        "We work closely with stakeholders throughout planning, implementation, launch, and continuous improvement—with clear communication and visible technical decisions.",
+
+      icon: Handshake,
+
+      highlights: [
+        "Senior engineering involvement",
+        "Clear progress and communication",
+        "Support and optimization after launch",
+      ],
     },
   ],
 };
