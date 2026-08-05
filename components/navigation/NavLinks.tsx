@@ -11,17 +11,8 @@ import { usePathname } from "next/navigation";
 import { navigation } from "@/data/navigation";
 
 type NavLinksProps = {
-  /**
-   * Called after a link is selected.
-   * Useful for closing the mobile navigation.
-   */
   onNavigate?: () => void;
-
-  /**
-   * Displays the links vertically for a mobile menu.
-   */
   mobile?: boolean;
-
   className?: string;
 };
 
@@ -34,10 +25,6 @@ function matchesRoute(
   pathname: string,
   prefix: string,
 ): boolean {
-  /**
-   * The homepage prefix must use exact matching.
-   * Otherwise "/" would match every route.
-   */
   if (prefix === "/") {
     return pathname === "/";
   }
@@ -51,20 +38,26 @@ function matchesRoute(
 function getRouteActiveHref(
   pathname: string,
 ): string {
-  const activeItem = navigation.find(
-    (item) =>
-      item.routePrefixes?.some((prefix) =>
-        matchesRoute(pathname, prefix),
+  const activeItem =
+    navigation.find((item) =>
+      item.routePrefixes?.some(
+        (prefix) =>
+          matchesRoute(
+            pathname,
+            prefix,
+          ),
       ),
-  );
+    );
 
   return activeItem?.href ?? "";
 }
 
 function getHomepageSections(): ObservedSection[] {
-  return navigation.flatMap((item) =>
-    (item.sectionIds ?? []).flatMap(
-      (sectionId) => {
+  return navigation.flatMap(
+    (item) =>
+      (
+        item.sectionIds ?? []
+      ).flatMap((sectionId) => {
         const element =
           document.getElementById(
             sectionId,
@@ -78,8 +71,7 @@ function getHomepageSections(): ObservedSection[] {
               },
             ]
           : [];
-      },
-    ),
+      }),
   );
 }
 
@@ -90,10 +82,6 @@ export default function NavLinks({
 }: NavLinksProps) {
   const pathname = usePathname();
 
-  /**
-   * This state is only for homepage scroll-spy updates.
-   * Route-based active state is derived directly from pathname.
-   */
   const [
     activeSectionHref,
     setActiveSectionHref,
@@ -108,10 +96,6 @@ export default function NavLinks({
       : routeActiveHref;
 
   useEffect(() => {
-    /**
-     * Scroll-spy is only needed on the homepage.
-     * No synchronous state update is performed here.
-     */
     if (pathname !== "/") {
       return;
     }
@@ -128,22 +112,22 @@ export default function NavLinks({
     const observer =
       new IntersectionObserver(
         (entries) => {
-          const visibleEntries =
+          const activeEntry =
             entries
               .filter(
                 (entry) =>
                   entry.isIntersecting,
               )
               .sort(
-                (first, second) =>
+                (
+                  first,
+                  second,
+                ) =>
                   second.intersectionRatio -
                   first.intersectionRatio,
-              );
+              )[0];
 
-          const visibleEntry =
-            visibleEntries[0];
-
-          if (!visibleEntry) {
+          if (!activeEntry) {
             return;
           }
 
@@ -151,26 +135,18 @@ export default function NavLinks({
             observedSections.find(
               ({ element }) =>
                 element ===
-                visibleEntry.target,
+                activeEntry.target,
             );
 
           if (!matchedSection) {
             return;
           }
 
-          /**
-           * This update happens inside the observer callback,
-           * which is an external-system subscription callback.
-           */
           setActiveSectionHref(
             matchedSection.href,
           );
         },
         {
-          /**
-           * Uses a narrow activation area near the upper-middle
-           * part of the viewport.
-           */
           rootMargin:
             "-20% 0px -65% 0px",
 
@@ -194,10 +170,6 @@ export default function NavLinks({
     };
   }, [pathname]);
 
-  const handleNavigation = () => {
-    onNavigate?.();
-  };
-
   return (
     <nav
       aria-label={
@@ -211,98 +183,79 @@ export default function NavLinks({
         className={
           mobile
             ? "flex flex-col gap-2"
-            : "flex items-center gap-1"
+            : "flex items-center gap-2"
         }
       >
-        {navigation.map((item) => {
-          const isActive =
-            activeHref === item.href;
+        {navigation.map(
+          (item) => {
+            const isActive =
+              activeHref ===
+              item.href;
 
-          return (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                onClick={
-                  handleNavigation
-                }
-                aria-current={
-                  isActive
-                    ? "page"
-                    : undefined
-                }
-                className={`
-                  relative
-                  inline-flex
-                  items-center
-                  font-medium
-                  transition-colors
-                  duration-200
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-blue-400
-                  focus-visible:ring-offset-2
-                  focus-visible:ring-offset-slate-950
-
-                  ${
-                    mobile
-                      ? `
-                        w-full
-                        rounded-xl
-                        px-4
-                        py-3
-                        text-base
-                      `
-                      : `
-                        rounded-lg
-                        px-3
-                        py-2
-                        text-sm
-                      `
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  onClick={
+                    onNavigate
                   }
-
-                  ${
+                  aria-current={
                     isActive
-                      ? `
-                        bg-blue-500/10
-                        text-blue-400
-                      `
-                      : `
-                        text-slate-300
-                        hover:bg-white/5
-                        hover:text-white
-                      `
+                      ? "page"
+                      : undefined
                   }
-                `}
-              >
-                {item.label}
+                  className={`
+                    inline-flex
+                    items-center
+                    justify-center
+                    rounded-xl
+                    font-medium
+                    transition-all
+                    duration-200
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-blue-400
+                    focus-visible:ring-offset-2
+                    focus-visible:ring-offset-slate-950
 
-                {!mobile && (
-                  <span
-                    aria-hidden="true"
-                    className={`
-                      absolute
-                      bottom-0
-                      left-3
-                      right-3
-                      h-0.5
-                      origin-center
-                      rounded-full
-                      bg-blue-400
-                      transition-transform
-                      duration-200
+                    ${
+                      mobile
+                        ? `
+                          w-full
+                          px-4
+                          py-3
+                          text-base
+                        `
+                        : `
+                          px-4
+                          py-2.5
+                          text-sm
+                        `
+                    }
 
-                      ${
-                        isActive
-                          ? "scale-x-100"
-                          : "scale-x-0"
-                      }
-                    `}
-                  />
-                )}
-              </Link>
-            </li>
-          );
-        })}
+                    ${
+                      isActive
+                        ? `
+                          bg-blue-500/15
+                          text-white
+                          shadow-sm
+                          ring-1
+                          ring-blue-400/15
+                        `
+                        : `
+                          text-slate-300
+                          hover:bg-white/5
+                          hover:text-white
+                        `
+                    }
+                  `}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          },
+        )}
       </ul>
     </nav>
   );
