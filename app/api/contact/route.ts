@@ -1,124 +1,158 @@
+import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
 
 import AutoReply from "@/emails/AutoReply";
 import ContactEmail from "@/emails/ContactEmail";
-import { resend } from "@/lib/resend";
+
+import { getResend } from "@/lib/resend";
 import { contactSchema } from "@/lib/validations/contact";
 
-export async function POST(request: Request) {
+const FROM_EMAIL =
+  "YourForce <contact@yourforce.io>";
+
+export async function POST(
+  request: Request,
+) {
   try {
-    if (!process.env.RESEND_API_KEY || !process.env.CONTACT_EMAIL) {
-      console.error(
-        "Missing RESEND_API_KEY or CONTACT_EMAIL environment variable.",
-      );
+    let body: unknown;
 
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Email service is not configured.",
-        },
-        { status: 500 },
-      );
-    }
-
-    const body: unknown = await request.json();
-
-    const validation = contactSchema.safeParse(body);
-
-    if (!validation.success) {
+    try {
+      body = await request.json();
+    } catch {
       return NextResponse.json(
         {
           success: false,
           message:
-            validation.error.issues[0]?.message ??
-            "Invalid form submission.",
-          errors: validation.error.flatten().fieldErrors,
+            "The submitted request is not valid JSON.",
         },
-        { status: 400 },
+        {
+          status: 400,
+        },
       );
     }
 
-    const data = validation.data;
+    const validationResult =
+      contactSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      const validationMessage =
+        validationResult.error.issues[0]
+          ?.message ??
+        "Please check the submitted information.";
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: validationMessage,
+        },
+        {
+          status: 400,
+        },
+      );
+    }
+
+    const data = validationResult.data;
 
     /**
-     * Honeypot spam protection
+     * Honeypot spam protection.
      *
-     * Real users cannot see or focus this field. Bots often fill every
-     * available input, including this one.
-     *
-     * Return a successful response so bots do not learn that they were
-     * detected, but do not send either email.
+     * A genuine user should never populate this field.
      */
     if (data.website) {
-      console.warn("Honeypot spam submission blocked.");
-
       return NextResponse.json({
         success: true,
-        message: "Your message has been sent successfully.",
+        message:
+          "Your enquiry has been received.",
       });
     }
 
-    // Send the inquiry notification to YourForce.
-    const notification = await resend.emails.send({
-      from: "YourForce <hello@yourforce.io>",
-      to: process.env.CONTACT_EMAIL,
-      replyTo: data.email,
-      subject: `New ${data.service} inquiry from ${data.name}`,
-      react: ContactEmail(data),
-    });
+    const contactEmail =
+      process.env.CONTACT_EMAIL?.trim();
 
-    if (notification.error) {
-      console.error(
-        "Contact notification failed:",
-        notification.error,
-      );
-
-      return NextResponse.json(
-        {
-          success: false,
-          message:
-            "Unable to send your message. Please try again.",
-        },
-        { status: 502 },
+    if (!contactEmail) {
+      throw new Error(
+        "CONTACT_EMAIL is not configured.",
       );
     }
 
-    // Send an acknowledgement email to the visitor.
-    const autoReply = await resend.emails.send({
-      from: "YourForce <hello@yourforce.io>",
-      to: data.email,
-      replyTo: process.env.CONTACT_EMAIL,
-      subject: "We've received your message",
-      react: AutoReply({
-        name: data.name,
-        service: data.service,
-      }),
-    });
+    /**
+     * Resend is initialized only when a valid request
+     * reaches the endpoint.
+     */
+    const resend = getResend();
 
     /**
-     * The main inquiry was already delivered, so an auto-reply failure
-     * should be logged without failing the visitor's form submission.
+     * ContactEmail expects the complete parsed
+     * ContactFormData object, including website.
      */
-    if (autoReply.error) {
-      console.error(
-        "Contact auto-reply failed:",
-        autoReply.error,
+    const [
+      contactEmailHtml,
+      autoReplyHtml,
+    ] = await Promise.all([
+      render(
+        ContactEmail(data),
+      ),
+
+      render(
+        AutoReply({
+          name: data.name,
+          service: data.service,
+        }),
+      ),
+    ]);
+
+    const {
+      error: contactSendError,
+    } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: contactEmail,
+      replyTo: data.email,
+      subject: `New enquiry from ${data.name}`,
+      html: contactEmailHtml,
+    });
+
+    if (contactSendError) {
+      throw new Error(
+        `Unable to send contact notification: ${contactSendError.message}`,
+      );
+    }
+
+    const {
+      error: autoReplySendError,
+    } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: data.email,
+      subject:
+        "We've received your enquiry",
+      html: autoReplyHtml,
+    });
+
+    if (autoReplySendError) {
+      throw new Error(
+        `Unable to send visitor acknowledgment: ${autoReplySendError.message}`,
       );
     }
 
     return NextResponse.json({
       success: true,
-      message: "Your message has been sent successfully.",
+      message:
+        "Thank you. Your enquiry has been sent successfully.",
     });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error(
+      "Contact form submission failed:",
+      error,
+    );
 
     return NextResponse.json(
       {
         success: false,
-        message: "Something went wrong. Please try again.",
+        message:
+          "Unable to send your enquiry. Please try again.",
       },
-      { status: 500 },
+      {
+        status: 500,
+      },
     );
   }
 }
