@@ -1,11 +1,13 @@
 export const site = {
   name: "YourForce",
-  title: "YourForce | Enterprise Software & Salesforce Commerce Cloud Experts",
+
+  title:
+    "YourForce | Enterprise Software & Digital Commerce Engineering",
 
   description:
-    "YourForce builds scalable digital products, enterprise platforms, and Salesforce Commerce Cloud solutions for ambitious businesses worldwide.",
+    "YourForce delivers scalable enterprise software, digital commerce engineering, headless platforms, systems integration, and modern web experiences for businesses worldwide.",
 
-  url: "https://yourforce.io",
+  url: "https://www.yourforce.io",
 
   image: "/og-image.png",
 
@@ -18,15 +20,23 @@ export const site = {
   hireUs: "Start Your Project",
 
   keywords: [
+    "Digital Commerce",
+    "Enterprise Software Development",
+    "Commerce Platform Engineering",
+    "Headless Commerce",
+    "Composable Commerce",
     "Salesforce Commerce Cloud",
     "SFCC",
-    "Headless Commerce",
+    "Adobe Commerce",
+    "Magento",
+    "Shopify",
+    "WooCommerce",
     "PWA Kit",
     "Next.js",
     "React",
-    "Enterprise Software",
-    "Software Development",
-    "Commerce Cloud Development",
-    "Digital Transformation",
+    "Platform Modernization",
+    "Systems Integration",
+    "Solution Architecture",
+    "Technical Consulting",
   ],
 };

@@ -51,7 +51,7 @@ export default function StructuredData() {
         },
 
         sameAs: [
-          "https://www.linkedin.com/company/yourforce",
+          "https://www.linkedin.com/company/yourforce-io",
         ],
       },
 

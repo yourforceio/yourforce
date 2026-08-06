@@ -122,7 +122,7 @@ export const footer: FooterData = {
   socials: [
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/in/amirshaheen",
+      href: "https://www.linkedin.com/company/yourforce-io",
       icon: FaLinkedinIn,
     },
     {
