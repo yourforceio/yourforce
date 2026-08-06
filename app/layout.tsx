@@ -46,6 +46,10 @@ export const metadata: Metadata = {
 
   description: site.description,
 
+  verification: {
+    google: "IeN-QPq7-bWJ2dbH5rFOdToKbTImgbqkjRWWrwhfe3E",
+  },
+
   /*
    * This is safe to keep, but Google does not use the
    * meta keywords field as a ranking signal.
