@@ -11,16 +11,8 @@ import { usePathname } from "next/navigation";
 import { navigation } from "@/data/navigation";
 
 type NavLinksProps = {
-  /**
-   * Used by the mobile menu to close after navigation.
-   */
   onNavigate?: () => void;
-
-  /**
-   * Enables the vertical mobile navigation layout.
-   */
   mobile?: boolean;
-
   className?: string;
 };
 
@@ -29,12 +21,8 @@ type ObservedSection = {
   href: string;
 };
 
-/**
- * Match a pathname against a configured route prefix.
- *
- * The homepage must use exact matching because "/" would
- * otherwise match every route.
- */
+const SECTION_ACTIVATION_OFFSET = 160;
+
 function matchesRoute(
   pathname: string,
   prefix: string,
@@ -49,9 +37,6 @@ function matchesRoute(
   );
 }
 
-/**
- * Determine which navigation item is active for a route.
- */
 function getRouteActiveHref(
   pathname: string,
 ): string {
@@ -69,12 +54,9 @@ function getRouteActiveHref(
   return activeItem?.href ?? "";
 }
 
-/**
- * Find the homepage sections that participate in scroll-spy.
- */
 function getHomepageSections(): ObservedSection[] {
-  return navigation.flatMap(
-    (item) =>
+  return navigation
+    .flatMap((item) =>
       (item.sectionIds ?? []).flatMap(
         (sectionId) => {
           const element =
@@ -94,7 +76,65 @@ function getHomepageSections(): ObservedSection[] {
           ];
         },
       ),
-  );
+    )
+    .sort((first, second) => {
+      const firstTop =
+        first.element.getBoundingClientRect()
+          .top + window.scrollY;
+
+      const secondTop =
+        second.element.getBoundingClientRect()
+          .top + window.scrollY;
+
+      return firstTop - secondTop;
+    });
+}
+
+function getActiveHomepageHref(
+  sections: ObservedSection[],
+): string {
+  if (sections.length === 0) {
+    return "/";
+  }
+
+  const activationPoint =
+    window.scrollY +
+    SECTION_ACTIVATION_OFFSET;
+
+  let activeHref =
+    sections[0]?.href ?? "/";
+
+  for (const section of sections) {
+    const sectionTop =
+      section.element.getBoundingClientRect()
+        .top + window.scrollY;
+
+    if (
+      activationPoint >= sectionTop
+    ) {
+      activeHref = section.href;
+    } else {
+      break;
+    }
+  }
+
+  const documentHeight =
+    document.documentElement.scrollHeight;
+
+  const viewportBottom =
+    window.scrollY +
+    window.innerHeight;
+
+  const hasReachedPageBottom =
+    viewportBottom >= documentHeight - 4;
+
+  if (hasReachedPageBottom) {
+    activeHref =
+      sections[sections.length - 1]
+        ?.href ?? activeHref;
+  }
+
+  return activeHref;
 }
 
 export default function NavLinks({
@@ -104,19 +144,11 @@ export default function NavLinks({
 }: NavLinksProps) {
   const pathname = usePathname();
 
-  /**
-   * Homepage active state is controlled by the
-   * IntersectionObserver callback.
-   */
   const [
     activeSectionHref,
     setActiveSectionHref,
   ] = useState("/");
 
-  /**
-   * Non-homepage active state is derived directly
-   * from the current pathname.
-   */
   const routeActiveHref =
     getRouteActiveHref(pathname);
 
@@ -130,75 +162,89 @@ export default function NavLinks({
       return;
     }
 
-    const observedSections =
-      getHomepageSections();
+    let animationFrameId = 0;
 
-    if (
-      observedSections.length === 0
-    ) {
-      return;
-    }
+    const updateActiveSection = () => {
+      const sections =
+        getHomepageSections();
 
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-          const visibleEntry =
-            entries
-              .filter(
-                (entry) =>
-                  entry.isIntersecting,
-              )
-              .sort(
-                (
-                  first,
-                  second,
-                ) =>
-                  second.intersectionRatio -
-                  first.intersectionRatio,
-              )[0];
+      const nextActiveHref =
+        getActiveHomepageHref(sections);
 
-          if (!visibleEntry) {
-            return;
-          }
+      setActiveSectionHref(
+        (currentActiveHref) =>
+          currentActiveHref ===
+          nextActiveHref
+            ? currentActiveHref
+            : nextActiveHref,
+      );
+    };
 
-          const matchedSection =
-            observedSections.find(
-              ({ element }) =>
-                element ===
-                visibleEntry.target,
-            );
-
-          if (!matchedSection) {
-            return;
-          }
-
-          setActiveSectionHref(
-            matchedSection.href,
-          );
-        },
-        {
-          rootMargin:
-            "-20% 0px -65% 0px",
-
-          threshold: [
-            0,
-            0.1,
-            0.25,
-            0.5,
-          ],
-        },
+    const scheduleUpdate = () => {
+      window.cancelAnimationFrame(
+        animationFrameId,
       );
 
-    observedSections.forEach(
-      ({ element }) => {
-        observer.observe(element);
+      animationFrameId =
+        window.requestAnimationFrame(
+          updateActiveSection,
+        );
+    };
+
+    scheduleUpdate();
+
+    window.addEventListener(
+      "scroll",
+      scheduleUpdate,
+      {
+        passive: true,
       },
     );
 
+    window.addEventListener(
+      "resize",
+      scheduleUpdate,
+    );
+
+    window.addEventListener(
+      "hashchange",
+      scheduleUpdate,
+    );
+
     return () => {
-      observer.disconnect();
+      window.cancelAnimationFrame(
+        animationFrameId,
+      );
+
+      window.removeEventListener(
+        "scroll",
+        scheduleUpdate,
+      );
+
+      window.removeEventListener(
+        "resize",
+        scheduleUpdate,
+      );
+
+      window.removeEventListener(
+        "hashchange",
+        scheduleUpdate,
+      );
     };
   }, [pathname]);
+
+  const handleNavigation = (
+    href: string,
+  ) => {
+    onNavigate?.();
+
+    if (
+      pathname === "/" &&
+      href.startsWith("/#")
+    ) {
+      setActiveSectionHref(href);
+    }
+  };
 
   return (
     <nav
@@ -231,8 +277,12 @@ export default function NavLinks({
             <li key={item.href}>
               <Link
                 href={item.href}
-                onClick={onNavigate}
                 aria-current={ariaCurrent}
+                onClick={() =>
+                  handleNavigation(
+                    item.href,
+                  )
+                }
                 className={`
                   inline-flex
                   items-center
@@ -261,7 +311,8 @@ export default function NavLinks({
                         border-b-2
                         bg-transparent
                         px-2
-                        py-4
+                        pt-3
+                        pb-2
                         text-sm
                         shadow-none
                         ring-0
@@ -289,7 +340,6 @@ export default function NavLinks({
                         : `
                           border-transparent
                           text-slate-300
-                          hover:border-blue-400/50
                           hover:text-white
                         `
                   }

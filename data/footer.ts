@@ -4,38 +4,57 @@ import {
   MapPin,
 } from "lucide-react";
 
-import { FaLinkedinIn } from "react-icons/fa";
+import {
+  FaLinkedinIn,
+  FaLocationDot,
+} from "react-icons/fa6";
 
-import { navigation } from "@/data/navigation";
+import { MdEmail } from "react-icons/md";
 
 import type { FooterData } from "@/types/footer";
 
-const footerNavigationLinks = navigation
-  .filter((item) => item.showInFooter !== false)
-  .map((item) => ({
-    label: item.label,
-    href: item.href,
-  }));
-
 export const footer: FooterData = {
   company: {
-    tagline: "Digital Commerce. Engineered to Scale.",
+    tagline:
+      "Enterprise Software. Commerce. Innovation.",
 
     description:
-      "YourForce helps businesses build, modernize, and scale commerce platforms, headless storefronts, enterprise integrations, and custom software across leading technologies.",
+      "We build scalable digital commerce platforms, enterprise software, and modern web experiences designed for long-term growth.",
 
     availability:
-      "Available for global remote delivery",
+      "Available for selected projects worldwide.",
   },
 
   columns: [
     {
-      title: "Navigate",
-      links: footerNavigationLinks,
+      title: "Quick Links",
+
+      links: [
+        {
+          label: "Home",
+          href: "/",
+        },
+        {
+          label: "Portfolio",
+          href: "/portfolio",
+        },
+        {
+          label: "Services",
+          href: "/#services",
+        },
+        {
+          label: "About",
+          href: "/#about",
+        },
+        {
+          label: "Contact",
+          href: "/contact",
+        },
+      ],
     },
 
     {
-      title: "Capabilities",
+      title: "Services",
 
       links: [
         {
@@ -47,43 +66,31 @@ export const footer: FooterData = {
           href: "/#services",
         },
         {
-          label: "Migration & Modernization",
-          href: "/#services",
-        },
-        {
-          label: "Integrations & Automation",
+          label: "Platform Modernization",
           href: "/#services",
         },
         {
           label: "Enterprise Software",
           href: "/#services",
         },
+        {
+          label: "Architecture & Consulting",
+          href: "/#services",
+        },
       ],
     },
 
     {
-      title: "Platforms",
+      title: "Resources",
 
       links: [
         {
-          label: "Salesforce Commerce Cloud",
-          href: "/#services",
+          label: "Case Studies",
+          href: "/portfolio",
         },
         {
-          label: "Adobe Commerce",
-          href: "/#services",
-        },
-        {
-          label: "Shopify",
-          href: "/#services",
-        },
-        {
-          label: "WooCommerce",
-          href: "/#services",
-        },
-        {
-          label: "Headless Architecture",
-          href: "/#services",
+          label: "Privacy Policy",
+          href: "/privacy",
         },
       ],
     },
@@ -115,14 +122,18 @@ export const footer: FooterData = {
   socials: [
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/company/yourforce",
-      external: true,
+      href: "https://www.linkedin.com/in/amirshaheen",
       icon: FaLinkedinIn,
     },
     {
-      name: "Email YourForce",
+      name: "Email",
       href: "mailto:hello@yourforce.io",
-      icon: Mail,
+      icon: MdEmail,
+    },
+    {
+      name: "Location",
+      href: "/contact",
+      icon: FaLocationDot,
     },
   ],
 
@@ -130,8 +141,13 @@ export const footer: FooterData = {
     copyright: `© ${new Date().getFullYear()} YourForce. All rights reserved.`,
 
     builtWith:
-      "Designed and developed by YourForce",
+      "Built for modern digital commerce.",
 
-    links: [],
+    links: [
+      {
+        label: "Privacy Policy",
+        href: "/privacy",
+      },
+    ],
   },
 };

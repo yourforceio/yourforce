@@ -22,8 +22,7 @@ export default function Navbar() {
         backdrop-blur-xl
       "
     >
-      <nav
-        aria-label="Main navigation"
+      <div
         className="
           mx-auto
           flex
@@ -39,37 +38,7 @@ export default function Navbar() {
         <Logo />
 
         {/* Desktop navigation */}
-        <NavLinks
-          className="
-            hidden
-            items-center
-            gap-8
-            text-sm
-            font-medium
-            text-slate-300
-            md:flex
-
-            [&_a]:relative
-            [&_a]:py-2
-            [&_a]:transition-colors
-            [&_a]:duration-200
-            [&_a]:hover:text-white
-
-            [&_a]:after:absolute
-            [&_a]:after:-bottom-1
-            [&_a]:after:left-0
-            [&_a]:after:h-0.5
-            [&_a]:after:w-0
-            [&_a]:after:rounded-full
-            [&_a]:after:bg-blue-500
-            [&_a]:after:transition-all
-            [&_a]:after:duration-200
-            [&_a]:hover:after:w-full
-
-            [&_a[aria-current='page']]:text-white
-            [&_a[aria-current='page']]:after:w-full
-          "
-        />
+        <NavLinks className="hidden md:block" />
 
         {/* Primary action */}
         <Link
@@ -103,7 +72,7 @@ export default function Navbar() {
         >
           {site.hireUs}
         </Link>
-      </nav>
+      </div>
     </header>
   );
 }

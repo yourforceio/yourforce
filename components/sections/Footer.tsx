@@ -1,9 +1,8 @@
 import Logo from "@/components/branding/Logo";
-import Container from "@/components/layout/Container";
-
 import FooterBottom from "@/components/footer/FooterBottom";
 import FooterColumn from "@/components/footer/FooterColumn";
 import SocialLinks from "@/components/footer/SocialLinks";
+import Container from "@/components/layout/Container";
 
 import { footer } from "@/data/footer";
 
@@ -37,7 +36,7 @@ export default function Footer() {
       </div>
 
       <Container>
-        <div className="relative pb-12 pt-16 lg:pb-14 lg:pt-20">
+        <div className="relative pb-8 pt-16 lg:pb-10 lg:pt-20">
           <div className="grid gap-14 lg:grid-cols-[1.05fr_1.95fr] lg:gap-20">
             {/* Company information */}
             <div className="max-w-md">
@@ -103,7 +102,7 @@ export default function Footer() {
           </div>
 
           {/* Bottom bar */}
-          <div className="mt-14 border-t border-white/10 pt-8">
+          <div className="mt-10 border-t border-white/10 pt-6">
             <FooterBottom
               copyright={footer.bottom.copyright}
               builtWith={footer.bottom.builtWith}
