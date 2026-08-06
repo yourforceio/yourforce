@@ -89,6 +89,10 @@ export const footer: FooterData = {
           href: "/portfolio",
         },
         {
+          label: "Workplace",
+          href: "/workplace",
+        },
+        {
           label: "Privacy Policy",
           href: "/privacy",
         },
@@ -122,7 +126,7 @@ export const footer: FooterData = {
   socials: [
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/company/yourforce-io",
+      href: "https://www.linkedin.com/company/yourforce-io/",
       icon: FaLinkedinIn,
     },
     {
@@ -143,11 +147,6 @@ export const footer: FooterData = {
     builtWith:
       "Built for modern digital commerce.",
 
-    links: [
-      {
-        label: "Privacy Policy",
-        href: "/privacy",
-      },
-    ],
+    links: [],
   },
 };
