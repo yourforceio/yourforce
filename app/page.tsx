@@ -9,6 +9,7 @@ import Portfolio from "@/components/sections/Portfolio";
 import Process from "@/components/sections/Process";
 import Services from "@/components/sections/Services";
 import WhyChoose from "@/components/sections/WhyChoose";
+import Highlights from "@/components/sections/Highlights";
 
 import { site } from "@/data/site";
 
@@ -64,6 +65,8 @@ export default function Home() {
         <Portfolio />
 
         <Services />
+
+        <Highlights />
 
         <About />
 

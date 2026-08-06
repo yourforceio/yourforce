@@ -18,7 +18,10 @@ export const navigation: NavigationItem[] = [
   {
     label: "Services",
     href: "/#services",
-    sectionIds: ["services"],
+    sectionIds: [
+      "services",
+      "highlights",
+    ],
     showInFooter: true,
   },
   {
