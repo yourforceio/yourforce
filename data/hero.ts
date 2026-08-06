@@ -1,15 +1,19 @@
 import type { Hero } from "@/types/hero";
 
 export const hero: Hero = {
-  badge: "⚡ Multi-Platform Commerce Engineering",
+  badge:
+    "Global Engineering • Remote-First Delivery",
 
   heading: {
-    primary: "Digital Commerce.",
-    accent: "Engineered to Scale.",
+    primary:
+      "Enterprise Software & Digital Commerce.",
+
+    accent:
+      "Engineered for Growth.",
   },
 
   description:
-    "YourForce builds scalable commerce platforms, headless storefronts, enterprise applications, and integrations across Salesforce Commerce Cloud, Adobe Commerce, Shopify, and WooCommerce.",
+    "We build and modernize scalable commerce platforms, enterprise software, headless storefronts, and integrations for businesses worldwide.",
 
   actions: [
     {
@@ -18,21 +22,21 @@ export const hero: Hero = {
       variant: "primary",
     },
     {
-      label: "View Our Work",
+      label: "Explore Our Work",
       href: "/portfolio",
       variant: "secondary",
     },
   ],
 
   technologies: {
-    title: "Commerce Expertise",
+    title: "Platforms & Technologies",
 
     items: [
       {
         name: "Salesforce Commerce Cloud",
       },
       {
-        name: "Adobe Commerce (Magento)",
+        name: "Adobe Commerce",
       },
       {
         name: "Shopify",
@@ -41,10 +45,10 @@ export const hero: Hero = {
         name: "WooCommerce",
       },
       {
-        name: "Headless Commerce",
+        name: "Next.js",
       },
       {
-        name: "Next.js",
+        name: "React",
       },
     ],
   },
@@ -56,21 +60,23 @@ export const hero: Hero = {
     },
     {
       value: "8+",
-      label: "Years Enterprise Commerce",
+      label: "Years Digital Commerce",
     },
     {
       value: "4",
-      label: "Commerce Platforms Supported",
+      label: "Core Commerce Platforms",
     },
   ],
 
   visual: {
-    eyebrow: "Commerce Modernization",
+    eyebrow:
+      "Commerce Platform Modernization",
 
-    title: "Flexible Commerce Architecture",
+    title:
+      "Modern Commerce Experiences",
 
     description:
-      "Modern storefronts, integrations, migrations, and scalable commerce experiences.",
+      "Headless storefronts, integrations, migrations, and scalable architecture built for growth.",
 
     image:
       "/images/projects/enterprise-fashion-commerce.jpg",
