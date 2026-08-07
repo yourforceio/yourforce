@@ -4,12 +4,7 @@ import {
   MapPin,
 } from "lucide-react";
 
-import {
-  FaLinkedinIn,
-  FaLocationDot,
-} from "react-icons/fa6";
-
-import { MdEmail } from "react-icons/md";
+import { FaLinkedinIn } from "react-icons/fa6";
 
 import type { FooterData } from "@/types/footer";
 
@@ -109,8 +104,8 @@ export const footer: FooterData = {
       links: [
         {
           label: "hello@yourforce.io",
-          description: "Project enquiries",
           href: "mailto:hello@yourforce.io",
+          description: "Project enquiries",
           icon: Mail,
         },
         {
@@ -119,8 +114,8 @@ export const footer: FooterData = {
           icon: MapPin,
         },
         {
-          label: "Remote Worldwide",
-          description: "Supporting global teams",
+          label: "Worldwide",
+          description: "Remote delivery",
           icon: Globe2,
         },
       ],
@@ -130,18 +125,19 @@ export const footer: FooterData = {
   socials: [
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/company/yourforce-io/",
+      href:
+        "https://www.linkedin.com/company/yourforce-io/",
       icon: FaLinkedinIn,
     },
     {
       name: "Email",
       href: "mailto:hello@yourforce.io",
-      icon: MdEmail,
+      icon: Mail,
     },
     {
       name: "Location",
       href: "/contact",
-      icon: FaLocationDot,
+      icon: MapPin,
     },
   ],
 
