@@ -8,6 +8,7 @@ export const navigation: NavigationItem[] = [
     routePrefixes: ["/"],
     showInFooter: true,
   },
+
   {
     label: "Portfolio",
     href: "/portfolio",
@@ -15,6 +16,14 @@ export const navigation: NavigationItem[] = [
     routePrefixes: ["/portfolio"],
     showInFooter: true,
   },
+
+  {
+    label: "Labs",
+    href: "/lab",
+    routePrefixes: ["/lab"],
+    showInFooter: false,
+  },
+
   {
     label: "Services",
     href: "/#services",
@@ -24,6 +33,7 @@ export const navigation: NavigationItem[] = [
     ],
     showInFooter: true,
   },
+
   {
     label: "About",
     href: "/#about",
@@ -35,6 +45,7 @@ export const navigation: NavigationItem[] = [
     ],
     showInFooter: true,
   },
+
   {
     label: "Contact",
     href: "/contact",

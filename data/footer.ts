@@ -89,6 +89,10 @@ export const footer: FooterData = {
           href: "/portfolio",
         },
         {
+          label: "Our Engineering Lab",
+          href: "/lab",
+        },
+        {
           label: "Workplace",
           href: "/workplace",
         },
@@ -142,7 +146,8 @@ export const footer: FooterData = {
   ],
 
   bottom: {
-    copyright: `© ${new Date().getFullYear()} YourForce. All rights reserved.`,
+    copyright:
+      `© ${new Date().getFullYear()} YourForce. All rights reserved.`,
 
     builtWith:
       "Built for modern digital commerce.",
