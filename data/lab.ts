@@ -10,15 +10,15 @@ import type { LabData } from "@/types/lab";
 export const lab: LabData = {
   metadata: {
     title:
-      "YourForce Labs | Interactive Commerce & Software Experiences",
+      "YourForce Engineering Lab | Interactive Commerce & Software Experiences",
 
     description:
-      "Explore interactive commerce experiences, engineering prototypes, and technical showcases built by YourForce.io across headless commerce, product discovery, omnichannel fulfilment, and agentic shopping.",
+      "Explore interactive commerce experiences and engineering prototypes built by YourForce.io across headless commerce, product discovery, omnichannel fulfilment, and agentic guided shopping.",
   },
 
   hero: {
     badge:
-      "YourForce Labs",
+      "YourForce Engineering Lab",
 
     heading: {
       primary:
@@ -41,13 +41,13 @@ export const lab: LabData = {
 
   introduction: {
     eyebrow:
-      "Inside YourForce Labs",
+      "Inside The Lab",
 
     heading:
       "From engineering concepts to working experiences.",
 
     description:
-      "YourForce Labs is where we turn architecture ideas, commerce patterns, integrations, and customer experiences into practical interactive demonstrations.",
+      "The Engineering Lab is where we turn architecture ideas, commerce patterns, integrations, and customer experiences into practical interactive demonstrations.",
   },
 
   items: [
@@ -79,6 +79,20 @@ export const lab: LabData = {
         "Cart interactions",
         "Responsive storefront",
       ],
+
+      preview: {
+        src:
+          "/images/lab/headless-commerce-preview.png",
+
+        alt:
+          "Preview of the interactive Headless Commerce Storefront lab",
+      },
+
+      duration:
+        "~2 min interactive demo",
+
+      added:
+        "Added Aug 2026",
 
       href:
         "/lab/headless-commerce",
@@ -122,6 +136,20 @@ export const lab: LabData = {
         "Recommendations",
       ],
 
+      preview: {
+        src:
+          "/images/lab/product-discovery-preview.png",
+
+        alt:
+          "Preview of the interactive Smart Product Discovery lab",
+      },
+
+      duration:
+        "~2 min interactive demo",
+
+      added:
+        "Added Aug 2026",
+
       href:
         "/lab/product-discovery",
 
@@ -146,7 +174,7 @@ export const lab: LabData = {
         "Omnichannel Fulfilment",
 
       description:
-        "An interactive store-pickup experience demonstrating location discovery, store-level inventory, preferred stores, pickup selection, and modern BOPIS customer journeys.",
+        "A store pickup and fulfilment experience demonstrating location discovery, inventory availability, preferred stores, and fulfilment selection.",
 
       technologies: [
         "Next.js",
@@ -160,6 +188,20 @@ export const lab: LabData = {
         "Pickup selection",
         "Preferred store",
       ],
+
+      preview: {
+        src:
+          "/images/lab/omnichannel-fulfilment-preview.png",
+
+        alt:
+          "Preview of the interactive Omnichannel Fulfilment lab",
+      },
+
+      duration:
+        "~2 min interactive demo",
+
+      added:
+        "Added Aug 2026",
 
       href:
         "/lab/omnichannel-fulfilment",
@@ -185,10 +227,10 @@ export const lab: LabData = {
         "Agentic Guided Shopping",
 
       description:
-        "A conversational shopping experience designed to understand customer intent, discover relevant products, evaluate availability, and guide shoppers toward the right fulfilment option.",
+        "A conversational shopping experience demonstrating customer intent, product recommendations, inventory awareness, and guided fulfilment.",
 
       technologies: [
-        "AI",
+        "Agentic UX",
         "Commerce APIs",
         "React",
       ],
@@ -199,6 +241,20 @@ export const lab: LabData = {
         "Inventory awareness",
         "Guided fulfilment",
       ],
+
+      preview: {
+        src:
+          "/images/lab/agentic-guided-shopping-preview.png",
+
+        alt:
+          "Preview of the interactive Agentic Guided Shopping lab",
+      },
+
+      duration:
+        "~2 min interactive demo",
+
+      added:
+        "Added Aug 2026",
 
       href:
         "/lab/agentic-guided-shopping",
@@ -211,15 +267,26 @@ export const lab: LabData = {
     },
   ],
 
+  roadmap: {
+    eyebrow:
+      "The Lab Continues",
+
+    heading:
+      "More engineering experiences are coming.",
+
+    description:
+      "We continue exploring practical ideas across digital commerce, AI-assisted experiences, integrations, performance, and modern software architecture.",
+  },
+
   philosophy: {
     eyebrow:
-      "Why YourForce Labs",
+      "Why The Engineering Lab",
 
     heading:
       "Show the engineering, not just the outcome.",
 
     paragraphs: [
-      "Case studies demonstrate what we have delivered. YourForce Labs demonstrates how we think about architecture, customer experience, performance, integrations, and implementation.",
+      "Case studies demonstrate what we have delivered. The Engineering Lab demonstrates how we think about architecture, customer experience, performance, integrations, and implementation.",
 
       "Each experience focuses on a practical engineering challenge and uses simulated data unless a real platform or external integration is explicitly identified.",
     ],

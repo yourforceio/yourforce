@@ -7,7 +7,6 @@ export type LabStatus =
 export type LabItem = {
   slug: string;
   number: string;
-
   eyebrow: string;
   title: string;
   description: string;
@@ -15,11 +14,17 @@ export type LabItem = {
   technologies: string[];
   capabilities: string[];
 
+  preview: {
+    src: string;
+    alt: string;
+  };
+
+  duration: string;
+  added: string;
+
   href: string;
   status: LabStatus;
-
   icon: LucideIcon;
-
   featured?: boolean;
 };
 
@@ -49,6 +54,12 @@ export type LabData = {
   };
 
   items: LabItem[];
+
+  roadmap: {
+    eyebrow: string;
+    heading: string;
+    description: string;
+  };
 
   philosophy: {
     eyebrow: string;
