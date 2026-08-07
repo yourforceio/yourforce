@@ -224,7 +224,7 @@ export const contact: ContactData = {
 
     details: [
       {
-        title: "Delivery Base",
+        title: "Engineering Base",
         value: "Lahore, Pakistan",
 
         description:
@@ -232,18 +232,23 @@ export const contact: ContactData = {
 
         icon: MapPin,
       },
+
       {
-        title: "Working Hours",
-        value: "Monday – Friday",
-        description: "09:00 AM – 06:00 PM (PKT)",
+        title: "Availability",
+        value: "Flexible, Time-Zone Aligned",
+
+        description:
+          "Available across global business hours, with flexible overlap based on project and team needs.",
+
         icon: Clock3,
       },
+
       {
         title: "Remote Collaboration",
         value: "Worldwide",
 
         description:
-          "Flexible overlap with North American, European, and Middle Eastern teams.",
+          "Working seamlessly with distributed teams across North America, Europe, the Middle East, and beyond.",
 
         icon: Globe2,
       },

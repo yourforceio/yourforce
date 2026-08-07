@@ -371,12 +371,13 @@ export default function LabPage() {
                           absolute
                           inset-0
                           bg-gradient-to-t
-                          from-slate-950/30
+                          from-slate-950/20
                           via-transparent
                           to-transparent
                         "
                       />
 
+                      {/* Lab number / featured */}
                       <div
                         className="
                           absolute
@@ -436,11 +437,12 @@ export default function LabPage() {
                         )}
                       </div>
 
+                      {/* Interactive preview — positioned away from image captions */}
                       <div
                         className="
                           absolute
-                          bottom-4
-                          left-4
+                          right-4
+                          top-4
                         "
                       >
                         <span
@@ -448,7 +450,7 @@ export default function LabPage() {
                             rounded-full
                             border
                             border-white/30
-                            bg-slate-950/75
+                            bg-slate-950/80
                             px-3
                             py-1.5
                             text-[10px]
@@ -456,6 +458,7 @@ export default function LabPage() {
                             uppercase
                             tracking-[0.12em]
                             text-white
+                            shadow-sm
                             backdrop-blur
                           "
                         >

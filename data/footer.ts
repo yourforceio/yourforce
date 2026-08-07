@@ -115,7 +115,7 @@ export const footer: FooterData = {
         },
         {
           label: "Lahore, Pakistan",
-          description: "Delivery base",
+          description: "Engineering base",
           icon: MapPin,
         },
         {
