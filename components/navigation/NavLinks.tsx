@@ -22,6 +22,7 @@ type ObservedSection = {
 };
 
 const SECTION_ACTIVATION_OFFSET = 160;
+const DESKTOP_MEDIA_QUERY = "(min-width: 768px)";
 
 function matchesRoute(
   pathname: string,
@@ -55,86 +56,25 @@ function getRouteActiveHref(
 }
 
 function getHomepageSections(): ObservedSection[] {
-  return navigation
-    .flatMap((item) =>
-      (item.sectionIds ?? []).flatMap(
-        (sectionId) => {
-          const element =
-            document.getElementById(
-              sectionId,
-            );
+  return navigation.flatMap((item) =>
+    (item.sectionIds ?? []).flatMap(
+      (sectionId) => {
+        const element =
+          document.getElementById(sectionId);
 
-          if (!element) {
-            return [];
-          }
+        if (!element) {
+          return [];
+        }
 
-          return [
-            {
-              element,
-              href: item.href,
-            },
-          ];
-        },
-      ),
-    )
-    .sort((first, second) => {
-      const firstTop =
-        first.element.getBoundingClientRect()
-          .top + window.scrollY;
-
-      const secondTop =
-        second.element.getBoundingClientRect()
-          .top + window.scrollY;
-
-      return firstTop - secondTop;
-    });
-}
-
-function getActiveHomepageHref(
-  sections: ObservedSection[],
-): string {
-  if (sections.length === 0) {
-    return "/";
-  }
-
-  const activationPoint =
-    window.scrollY +
-    SECTION_ACTIVATION_OFFSET;
-
-  let activeHref =
-    sections[0]?.href ?? "/";
-
-  for (const section of sections) {
-    const sectionTop =
-      section.element.getBoundingClientRect()
-        .top + window.scrollY;
-
-    if (
-      activationPoint >= sectionTop
-    ) {
-      activeHref = section.href;
-    } else {
-      break;
-    }
-  }
-
-  const documentHeight =
-    document.documentElement.scrollHeight;
-
-  const viewportBottom =
-    window.scrollY +
-    window.innerHeight;
-
-  const hasReachedPageBottom =
-    viewportBottom >= documentHeight - 4;
-
-  if (hasReachedPageBottom) {
-    activeHref =
-      sections[sections.length - 1]
-        ?.href ?? activeHref;
-  }
-
-  return activeHref;
+        return [
+          {
+            element,
+            href: item.href,
+          },
+        ];
+      },
+    ),
+  );
 }
 
 export default function NavLinks({
@@ -162,76 +102,144 @@ export default function NavLinks({
       return;
     }
 
-    let animationFrameId = 0;
+    const desktopMediaQuery =
+      window.matchMedia(
+        DESKTOP_MEDIA_QUERY,
+      );
 
-    const updateActiveSection = () => {
+    let observer: IntersectionObserver | null =
+      null;
+
+    const stopObserving = () => {
+      observer?.disconnect();
+      observer = null;
+    };
+
+    const startObserving = () => {
+      stopObserving();
+
+      /*
+       * The desktop navigation is hidden below md.
+       *
+       * Do not perform section tracking for that
+       * hidden navigation on mobile.
+       *
+       * A dedicated mobile NavLinks instance can
+       * still enable tracking through mobile=true.
+       */
+      if (
+        !mobile &&
+        !desktopMediaQuery.matches
+      ) {
+        return;
+      }
+
       const sections =
         getHomepageSections();
 
-      const nextActiveHref =
-        getActiveHomepageHref(sections);
+      if (sections.length === 0) {
+        return;
+      }
 
-      setActiveSectionHref(
-        (currentActiveHref) =>
-          currentActiveHref ===
-          nextActiveHref
-            ? currentActiveHref
-            : nextActiveHref,
-      );
-    };
-
-    const scheduleUpdate = () => {
-      window.cancelAnimationFrame(
-        animationFrameId,
+      const hrefByElement = new Map<
+        Element,
+        string
+      >(
+        sections.map((section) => [
+          section.element,
+          section.href,
+        ]),
       );
 
-      animationFrameId =
-        window.requestAnimationFrame(
-          updateActiveSection,
+      observer = new IntersectionObserver(
+        (entries) => {
+          const intersectingEntries =
+            entries
+              .filter(
+                (entry) =>
+                  entry.isIntersecting,
+              )
+              .sort(
+                (first, second) =>
+                  first.boundingClientRect.top -
+                  second.boundingClientRect.top,
+              );
+
+          const activeEntry =
+            intersectingEntries[0];
+
+          if (!activeEntry) {
+            return;
+          }
+
+          const nextActiveHref =
+            hrefByElement.get(
+              activeEntry.target,
+            );
+
+          if (!nextActiveHref) {
+            return;
+          }
+
+          setActiveSectionHref(
+            (currentActiveHref) =>
+              currentActiveHref ===
+              nextActiveHref
+                ? currentActiveHref
+                : nextActiveHref,
+          );
+        },
+        {
+          /*
+           * Activate a section shortly after it
+           * passes beneath the sticky header.
+           *
+           * The large bottom margin creates a
+           * focused activation zone near the
+           * upper portion of the viewport.
+           */
+          root: null,
+          rootMargin: `-${SECTION_ACTIVATION_OFFSET}px 0px -65% 0px`,
+          threshold: 0,
+        },
+      );
+
+      sections.forEach((section) => {
+        observer?.observe(
+          section.element,
         );
+      });
     };
 
-    scheduleUpdate();
+    startObserving();
 
-    window.addEventListener(
-      "scroll",
-      scheduleUpdate,
-      {
-        passive: true,
-      },
-    );
+    /*
+     * Re-create the observer only if crossing
+     * the md breakpoint changes whether this
+     * navigation is visible.
+     */
+    const handleBreakpointChange = () => {
+      startObserving();
+    };
 
-    window.addEventListener(
-      "resize",
-      scheduleUpdate,
-    );
-
-    window.addEventListener(
-      "hashchange",
-      scheduleUpdate,
-    );
+    if (!mobile) {
+      desktopMediaQuery.addEventListener(
+        "change",
+        handleBreakpointChange,
+      );
+    }
 
     return () => {
-      window.cancelAnimationFrame(
-        animationFrameId,
-      );
+      stopObserving();
 
-      window.removeEventListener(
-        "scroll",
-        scheduleUpdate,
-      );
-
-      window.removeEventListener(
-        "resize",
-        scheduleUpdate,
-      );
-
-      window.removeEventListener(
-        "hashchange",
-        scheduleUpdate,
-      );
+      if (!mobile) {
+        desktopMediaQuery.removeEventListener(
+          "change",
+          handleBreakpointChange,
+        );
+      }
     };
-  }, [pathname]);
+  }, [pathname, mobile]);
 
   const handleNavigation = (
     href: string,
@@ -299,49 +307,49 @@ export default function NavLinks({
                   ${
                     mobile
                       ? `
-                        w-full
-                        rounded-xl
-                        border-0
-                        px-4
-                        py-3
-                        text-base
-                      `
+                          w-full
+                          rounded-xl
+                          border-0
+                          px-4
+                          py-3
+                          text-base
+                        `
                       : `
-                        rounded-none
-                        border-b-2
-                        bg-transparent
-                        px-2
-                        pt-3
-                        pb-2
-                        text-sm
-                        shadow-none
-                        ring-0
-                      `
+                          rounded-none
+                          border-b-2
+                          bg-transparent
+                          px-2
+                          pt-3
+                          pb-2
+                          text-sm
+                          shadow-none
+                          ring-0
+                        `
                   }
 
                   ${
                     isActive
                       ? mobile
                         ? `
-                          bg-blue-500/10
-                          text-white
-                        `
+                            bg-blue-500/10
+                            text-white
+                          `
                         : `
-                          border-blue-400
-                          text-white
-                        `
+                            border-blue-400
+                            text-white
+                          `
                       : mobile
                         ? `
-                          bg-transparent
-                          text-slate-300
-                          hover:bg-white/5
-                          hover:text-white
-                        `
+                            bg-transparent
+                            text-slate-300
+                            hover:bg-white/5
+                            hover:text-white
+                          `
                         : `
-                          border-transparent
-                          text-slate-300
-                          hover:text-white
-                        `
+                            border-transparent
+                            text-slate-300
+                            hover:text-white
+                          `
                   }
                 `}
               >
