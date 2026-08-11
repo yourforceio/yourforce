@@ -20,9 +20,9 @@ export default function Footer() {
     >
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-0 h-[360px] w-[360px] rounded-full bg-blue-600/10 blur-[130px]" />
+        <div className="absolute -left-40 top-0 hidden h-[360px] w-[360px] rounded-full bg-blue-600/10 blur-[130px] md:block" />
 
-        <div className="absolute -right-40 bottom-0 h-[320px] w-[320px] rounded-full bg-cyan-500/[0.06] blur-[120px]" />
+        <div className="absolute -right-40 bottom-0 hidden h-[320px] w-[320px] rounded-full bg-cyan-500/[0.06] blur-[120px] md:block" />
 
         <div
           className="

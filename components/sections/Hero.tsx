@@ -32,11 +32,11 @@ export default function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
       >
-        <div className="absolute -left-48 top-0 h-[540px] w-[540px] rounded-full bg-blue-600/20 blur-[160px]" />
+        <div className="absolute -left-48 top-0 hidden h-[540px] w-[540px] rounded-full bg-blue-600/20 blur-[160px] md:block" />
 
-        <div className="absolute -right-44 bottom-0 h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[160px]" />
+        <div className="absolute -right-44 bottom-0 hidden h-[500px] w-[500px] rounded-full bg-cyan-500/10 blur-[160px] md:block" />
 
-        <div className="absolute left-[45%] top-20 h-64 w-64 rounded-full bg-blue-500/[0.06] blur-[110px]" />
+        <div className="absolute left-[45%] top-20 hidden h-64 w-64 rounded-full bg-blue-500/[0.06] blur-[110px] md:block" />
 
         <div
           className="
@@ -84,7 +84,7 @@ export default function Hero() {
                 text-sm
                 font-semibold
                 text-blue-200
-                backdrop-blur-sm
+                md:backdrop-blur-sm
               "
             >
               <span className="relative flex h-2 w-2">
@@ -221,7 +221,7 @@ export default function Hero() {
                           text-xs
                           font-semibold
                           text-slate-300
-                          backdrop-blur-sm
+                          md:backdrop-blur-sm
                           transition-all
                           duration-200
                           hover:-translate-y-0.5
@@ -245,7 +245,7 @@ export default function Hero() {
           <div className="relative min-w-0 lg:pl-4">
             <div
               aria-hidden="true"
-              className="absolute -inset-8 rounded-[3rem] bg-blue-600/10 blur-3xl"
+              className="absolute -inset-8 hidden rounded-[3rem] bg-blue-600/10 blur-3xl md:block"
             />
 
             {/* Browser frame */}
@@ -260,7 +260,7 @@ export default function Hero() {
                 p-2
                 shadow-2xl
                 shadow-black/40
-                backdrop-blur-xl
+                md:backdrop-blur-xl
               "
             >
               {/* Browser toolbar */}
@@ -345,7 +345,7 @@ export default function Hero() {
                 px-4
                 py-3.5
                 shadow-xl
-                backdrop-blur-xl
+                md:backdrop-blur-xl
                 xl:flex
               "
             >
@@ -394,7 +394,7 @@ export default function Hero() {
                     bg-slate-900/70
                     px-5
                     py-5
-                    backdrop-blur
+                    md:backdrop-blur
                     transition-all
                     duration-200
                     hover:-translate-y-1

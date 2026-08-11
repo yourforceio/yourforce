@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
 
 import {
   Menu,
@@ -10,30 +10,28 @@ import {
 import NavLinks from "@/components/navigation/NavLinks";
 
 export default function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const detailsRef =
+    useRef<HTMLDetailsElement>(null);
 
   const closeMenu = () => {
-    setIsOpen(false);
+    if (detailsRef.current) {
+      detailsRef.current.open = false;
+    }
   };
 
   return (
-    <div className="md:hidden">
-      <button
-        type="button"
-        aria-label={
-          isOpen
-            ? "Close navigation menu"
-            : "Open navigation menu"
-        }
-        aria-expanded={isOpen}
-        aria-controls="mobile-navigation"
-        onClick={() =>
-          setIsOpen((current) => !current)
-        }
+    <details
+      ref={detailsRef}
+      className="group md:hidden"
+    >
+      <summary
+        aria-label="Toggle navigation menu"
         className="
           inline-flex
           h-11
           w-11
+          cursor-pointer
+          list-none
           items-center
           justify-center
           rounded-xl
@@ -41,7 +39,7 @@ export default function MobileMenu() {
           border-white/10
           bg-white/[0.04]
           text-slate-200
-          transition-all
+          transition-colors
           duration-200
           hover:border-blue-500/40
           hover:bg-blue-500/10
@@ -51,46 +49,56 @@ export default function MobileMenu() {
           focus-visible:ring-blue-400
           focus-visible:ring-offset-2
           focus-visible:ring-offset-slate-950
+          [&::-webkit-details-marker]:hidden
         "
       >
-        {isOpen ? (
-          <X
-            aria-hidden="true"
-            className="h-5 w-5"
-          />
-        ) : (
-          <Menu
-            aria-hidden="true"
-            className="h-5 w-5"
-          />
-        )}
-      </button>
+        <span className="sr-only">
+          Toggle navigation menu
+        </span>
 
-      {isOpen && (
-        <div
-          id="mobile-navigation"
+        <Menu
+          aria-hidden="true"
           className="
-            absolute
-            inset-x-0
-            top-full
-            border-t
-            border-white/10
-            bg-slate-950/98
-            px-6
-            py-5
-            shadow-2xl
-            shadow-black/30
-            backdrop-blur-xl
+            h-5
+            w-5
+            group-open:hidden
           "
-        >
-          <div className="mx-auto max-w-7xl">
-            <NavLinks
-              mobile
-              onNavigate={closeMenu}
-            />
-          </div>
+        />
+
+        <X
+          aria-hidden="true"
+          className="
+            hidden
+            h-5
+            w-5
+            group-open:block
+          "
+        />
+      </summary>
+
+      <div
+        id="mobile-navigation"
+        className="
+          fixed
+          inset-x-0
+          top-[72px]
+          z-[60]
+          border-t
+          border-white/10
+          bg-slate-950
+          px-6
+          py-5
+          shadow-2xl
+          shadow-black/30
+        "
+      >
+        <div className="mx-auto max-w-7xl">
+          <NavLinks
+            mobile
+            onNavigate={closeMenu}
+          />
         </div>
-      )}
-    </div>
+      </div>
+    </details>
   );
 }

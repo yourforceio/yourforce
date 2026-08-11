@@ -107,7 +107,7 @@ export default function About() {
 
           {/* Experience panel */}
           <div className="relative min-w-0">
-            <div className="absolute -inset-8 rounded-[3rem] bg-blue-600/10 blur-3xl" />
+            <div className="absolute -inset-8 hidden rounded-[3rem] bg-blue-600/10 blur-3xl md:block" />
 
             <div
               className="
@@ -125,7 +125,7 @@ export default function About() {
               "
             >
               {/* Background decoration */}
-              <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-600/20 blur-[90px]" />
+              <div className="pointer-events-none absolute -right-20 -top-20 hidden h-64 w-64 rounded-full bg-blue-600/20 blur-[90px] md:block" />
 
               <div
                 className="
@@ -159,7 +159,7 @@ export default function About() {
                         border-slate-800
                         bg-slate-900/70
                         p-5
-                        backdrop-blur
+                        md:backdrop-blur
                         transition-all
                         duration-200
                         hover:-translate-y-0.5

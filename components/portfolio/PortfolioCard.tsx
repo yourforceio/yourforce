@@ -110,7 +110,7 @@ export default function PortfolioCard({
               leading-4
               text-slate-800
               shadow-sm
-              backdrop-blur-md
+              md:backdrop-blur-md
             "
           >
             {project.category}

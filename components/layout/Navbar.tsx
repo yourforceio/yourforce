@@ -16,9 +16,10 @@ export default function Navbar() {
         w-full
         border-b
         border-white/10
-        bg-slate-950/90
+        bg-slate-950
         shadow-[0_8px_30px_rgba(2,6,23,0.18)]
-        backdrop-blur-xl
+        md:bg-slate-950/90
+        md:backdrop-blur-xl
       "
     >
       <div

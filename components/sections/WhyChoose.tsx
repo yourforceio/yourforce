@@ -12,9 +12,9 @@ export default function WhyChoose() {
     >
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-48 top-0 h-[460px] w-[460px] rounded-full bg-blue-600/15 blur-[140px]" />
+        <div className="absolute -left-48 top-0 hidden h-[460px] w-[460px] rounded-full bg-blue-600/15 blur-[140px] md:block" />
 
-        <div className="absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[140px]" />
+        <div className="absolute -right-40 bottom-0 hidden h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[140px] md:block" />
 
         <div
           className="
@@ -44,7 +44,7 @@ export default function WhyChoose() {
                 text-sm
                 font-medium
                 text-blue-300
-                backdrop-blur-sm
+                md:backdrop-blur-sm
               "
             >
               {whyChoose.badge}
@@ -65,7 +65,7 @@ export default function WhyChoose() {
             </p>
 
             {/* Supporting statement */}
-            <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/60 p-5 backdrop-blur">
+            <div className="mt-10 rounded-2xl border border-slate-800 bg-slate-900/60 p-5 md:backdrop-blur">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
                 Our Approach
               </p>
@@ -167,7 +167,7 @@ export default function WhyChoose() {
                       `}
                     >
                       {isFeatured && (
-                        <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/15 blur-[90px]" />
+                        <div className="pointer-events-none absolute -right-20 -top-20 hidden h-64 w-64 rounded-full bg-blue-500/15 blur-[90px] md:block" />
                       )}
 
                       <div className="relative">

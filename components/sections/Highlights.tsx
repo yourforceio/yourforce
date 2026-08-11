@@ -21,9 +21,9 @@ export default function Highlights() {
     >
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-blue-500/[0.06] blur-[110px]" />
+        <div className="absolute -left-32 top-10 hidden h-72 w-72 rounded-full bg-blue-500/[0.06] blur-[110px] md:block" />
 
-        <div className="absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-cyan-500/[0.06] blur-[110px]" />
+        <div className="absolute -right-32 bottom-0 hidden h-72 w-72 rounded-full bg-cyan-500/[0.06] blur-[110px] md:block" />
 
         <div
           className="

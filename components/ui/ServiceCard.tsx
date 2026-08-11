@@ -37,7 +37,7 @@ export default function ServiceCard({
         `}
       >
         {/* Background decoration */}
-        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-blue-600/20 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-24 -top-24 hidden h-80 w-80 rounded-full bg-blue-600/20 blur-[100px] md:block" />
 
         <div
           className="
@@ -129,7 +129,7 @@ export default function ServiceCard({
               border-slate-800
               bg-slate-900/70
               p-6
-              backdrop-blur
+              md:backdrop-blur
               lg:p-7
             "
           >

@@ -41,9 +41,9 @@ export default function CTA() {
         >
           {/* Background decoration */}
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -left-32 top-0 h-[380px] w-[380px] rounded-full bg-blue-600/20 blur-[130px]" />
+            <div className="absolute -left-32 top-0 hidden h-[380px] w-[380px] rounded-full bg-blue-600/20 blur-[130px] md:block" />
 
-            <div className="absolute -right-32 bottom-0 h-[360px] w-[360px] rounded-full bg-cyan-500/10 blur-[130px]" />
+            <div className="absolute -right-32 bottom-0 hidden h-[360px] w-[360px] rounded-full bg-cyan-500/10 blur-[130px] md:block" />
 
             <div
               className="
@@ -72,7 +72,7 @@ export default function CTA() {
                 text-sm
                 font-medium
                 text-blue-300
-                backdrop-blur-sm
+                md:backdrop-blur-sm
               "
             >
               <span aria-hidden="true">
@@ -208,12 +208,12 @@ export default function CTA() {
               border-slate-800
               bg-slate-900/80
               p-6
-              backdrop-blur-xl
+              md:backdrop-blur-xl
               sm:p-8
               lg:mt-0
             "
           >
-            <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-blue-600/15 blur-[80px]" />
+            <div className="pointer-events-none absolute -right-20 -top-20 hidden h-56 w-56 rounded-full bg-blue-600/15 blur-[80px] md:block" />
 
             <div className="relative">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
