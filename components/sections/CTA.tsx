@@ -197,7 +197,7 @@ export default function CTA() {
             </div>
           </div>
 
-          {/* Next steps panel */}
+          {/* Response reassurance panel */}
           <div
             className="
               relative
@@ -217,64 +217,24 @@ export default function CTA() {
 
             <div className="relative">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
-                {cta.process.eyebrow}
+                {cta.process.response.label}
               </p>
 
               <h3 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                {cta.process.title}
+                {cta.process.response.text}
               </h3>
 
               <p className="mt-4 leading-7 text-slate-400">
-                {cta.process.description}
+                No obligation — just a practical conversation about your
+                platform, priorities, and the right next step.
               </p>
-
-              {/* Process steps */}
-              <ol className="mt-8 space-y-5">
-                {cta.process.steps.map(
-                  (step) => (
-                    <li
-                      key={step.number}
-                      className="grid grid-cols-[44px_minmax(0,1fr)] gap-4"
-                    >
-                      <span
-                        className="
-                          flex
-                          h-11
-                          w-11
-                          items-center
-                          justify-center
-                          rounded-xl
-                          border
-                          border-blue-500/30
-                          bg-blue-500/10
-                          text-xs
-                          font-black
-                          text-blue-400
-                        "
-                      >
-                        {step.number}
-                      </span>
-
-                      <div className="min-w-0">
-                        <h4 className="font-semibold text-white">
-                          {step.title}
-                        </h4>
-
-                        <p className="mt-1 text-sm leading-6 text-slate-400">
-                          {step.description}
-                        </p>
-                      </div>
-                    </li>
-                  ),
-                )}
-              </ol>
 
               {/* Response information */}
               <div
                 className="
                   mt-8
                   flex
-                  items-start
+                  items-center
                   gap-3
                   rounded-2xl
                   border
@@ -290,21 +250,10 @@ export default function CTA() {
                   />
                 </span>
 
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-400">
-                    {
-                      cta.process.response
-                        .label
-                    }
-                  </p>
-
-                  <p className="mt-1 text-sm font-semibold leading-6 text-slate-200">
-                    {
-                      cta.process.response
-                        .text
-                    }
-                  </p>
-                </div>
+                <p className="text-sm font-semibold leading-6 text-slate-200">
+                  Full process breakdown above ↑ — Discovery, Planning,
+                  Development, Launch.
+                </p>
               </div>
             </div>
           </div>
