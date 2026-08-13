@@ -1,4 +1,4 @@
-import { BadgeDollarSign, Globe2, Handshake, Layers3, RefreshCw } from "lucide-react";
+import { Globe2, Handshake, Layers3, RefreshCw } from "lucide-react";
 
 import type { WhyChoose } from "@/types/whyChoose";
 
