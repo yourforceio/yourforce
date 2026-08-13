@@ -2,6 +2,8 @@ export type Technology = {
   name: string;
 };
 
+export type ProjectVisualTheme = "indigo" | "gold" | "charcoal" | "crimson";
+
 export type ProjectMetric = {
   value: string;
   label: string;
@@ -49,6 +51,7 @@ export type PortfolioProject = {
   description: string;
 
   image: string;
+  visualTheme: ProjectVisualTheme;
 
   technologies: Technology[];
 

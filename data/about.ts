@@ -1,19 +1,18 @@
 import type { About } from "@/types/about";
 
 export const about: About = {
-  badge: "⚡ About YourForce",
+  badge: "About YourForce",
 
-  heading:
-    "Enterprise Commerce Experience. Modern Engineering Delivery.",
+  heading: "Enterprise commerce experience. Practical engineering delivery.",
 
   description:
-    "YourForce helps businesses build, modernize, and scale digital commerce and enterprise software. Backed by more than 15 years of professional engineering experience, we combine deep enterprise-commerce knowledge with capabilities across Salesforce Commerce Cloud, Adobe Commerce, Shopify, WooCommerce, headless storefronts, integrations, and custom applications.",
+    "YourForce helps businesses modernize digital commerce and enterprise software with direct senior engineering involvement. We bring more than 15 years of software delivery experience across platform modernization, headless storefronts, integrations, and custom applications.",
 
   highlights: [
-    "Multi-platform commerce architecture and delivery",
+    "Enterprise commerce architecture and delivery",
     "Headless storefronts with React and Next.js",
-    "Complex integrations, migrations, and modernization",
-    "Long-term technical partnership beyond launch",
+    "Complex integrations and phased modernization",
+    "Support from discovery through post-launch",
   ],
 
   statsTitle: "Experience at a Glance",

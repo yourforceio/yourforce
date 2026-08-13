@@ -1,13 +1,14 @@
 "use client";
 
 import {
-  Bot,
   CheckCircle2,
+  ListFilter,
   MapPin,
   PackageCheck,
+  Search,
   Send,
   ShoppingBag,
-  Sparkles,
+  SlidersHorizontal,
   User,
 } from "lucide-react";
 
@@ -16,32 +17,45 @@ import { useState } from "react";
 import { agenticGuidedShopping } from "@/data/agentic-guided-shopping";
 
 import type {
+  GuidedShoppingInterpretation,
   GuidedShoppingMessage,
   GuidedShoppingProduct,
 } from "@/types/agentic-guided-shopping";
 
-const formatCurrency = (
-  value: number,
-) =>
-  new Intl.NumberFormat(
-    "en-US",
-    {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    },
-  ).format(value);
+const ignoredWords = new Set([
+  "about",
+  "available",
+  "below",
+  "find",
+  "from",
+  "looking",
+  "maximum",
+  "near",
+  "need",
+  "option",
+  "product",
+  "show",
+  "something",
+  "store",
+  "than",
+  "that",
+  "this",
+  "under",
+  "which",
+  "with",
+]);
+
+const formatCurrency = (value: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(value);
 
 const createMessageId = () =>
-  `${Date.now()}-${Math.random()
-    .toString(36)
-    .slice(2)}`;
+  `${Date.now()}-${Math.random().toString(36).slice(2)}`;
 
-function ProductVisual({
-  product,
-}: {
-  product: GuidedShoppingProduct;
-}) {
+function ProductVisual({ product }: { product: GuidedShoppingProduct }) {
   return (
     <div
       className="
@@ -51,8 +65,7 @@ function ProductVisual({
         rounded-2xl
       "
       style={{
-        background:
-          `linear-gradient(145deg, ${product.visual.from}, ${product.visual.to})`,
+        background: `linear-gradient(145deg, ${product.visual.from}, ${product.visual.to})`,
       }}
     >
       <div
@@ -85,8 +98,7 @@ function ProductVisual({
           "
           strokeWidth={1.2}
           style={{
-            color:
-              product.visual.accent,
+            color: product.visual.accent,
           }}
         />
       </div>
@@ -94,31 +106,24 @@ function ProductVisual({
   );
 }
 
-function extractBudget(
-  query: string,
-) {
-  const match =
-    query.match(
-      /(?:under|below|less than|max|maximum|up to)\s*\$?\s*(\d+)/i,
-    );
+function extractBudget(query: string) {
+  const match = query.match(
+    /(?:under|below|less than|max|maximum|up to)\s*\$?\s*(\d+)/i,
+  );
 
   if (!match?.[1]) {
     return null;
   }
 
-  return Number(
-    match[1],
-  );
+  return Number(match[1]);
 }
 
-function scoreProduct(
-  product: GuidedShoppingProduct,
-  query: string,
-) {
-  const normalized =
-    query.toLowerCase();
+function scoreProduct(product: GuidedShoppingProduct, query: string) {
+  const normalized = query.toLowerCase();
 
   let score = 0;
+
+  const matchedTerms = new Set<string>();
 
   const searchable = [
     product.name,
@@ -127,339 +132,333 @@ function scoreProduct(
     ...product.attributes,
     ...product.useCases,
     ...product.keywords,
-  ].map(
-    (value) =>
-      value.toLowerCase(),
-  );
+  ].map((value) => value.toLowerCase());
 
-  const words =
-    normalized
-      .replace(
-        /[^a-z0-9\s]/g,
-        " ",
-      )
-      .split(/\s+/)
-      .filter(
-        (word) =>
-          word.length > 2,
-      );
+  const words = normalized
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((word) => word.length > 2 && !ignoredWords.has(word));
 
-  words.forEach(
-    (word) => {
-      if (
-        searchable.some(
-          (value) =>
-            value.includes(
-              word,
-            ),
-        )
-      ) {
-        score += 10;
-      }
-    },
-  );
+  words.forEach((word) => {
+    if (searchable.some((value) => value.includes(word))) {
+      score += 10;
 
-  if (
-    normalized.includes(
-      product.name.toLowerCase(),
-    )
-  ) {
+      matchedTerms.add(word);
+    }
+  });
+
+  if (normalized.includes(product.name.toLowerCase())) {
     score += 50;
+
+    matchedTerms.add(product.name.toLowerCase());
   }
 
-  return score;
+  return {
+    score,
+    matchedTerms: Array.from(matchedTerms),
+  };
 }
 
 export default function AgenticGuidedShoppingDemo() {
-  const {
-    assistant,
-    products,
-  } =
-    agenticGuidedShopping;
+  const { assistant, products } = agenticGuidedShopping;
 
-  const [
-    input,
-    setInput,
-  ] =
-    useState("");
+  const [input, setInput] = useState("");
 
-  const [
-    messages,
-    setMessages,
-  ] =
-    useState<
-      GuidedShoppingMessage[]
-    >([
-      {
-        id:
-          "welcome",
+  const [messages, setMessages] = useState<GuidedShoppingMessage[]>([
+    {
+      id: "welcome",
 
-        role:
-          "assistant",
+      role: "assistant",
 
-        text:
-          assistant.introduction,
-      },
-    ]);
+      text: assistant.introduction,
+    },
+  ]);
 
-  const [
-    recommendations,
-    setRecommendations,
-  ] =
-    useState<
-      GuidedShoppingProduct[]
-    >([]);
+  const [recommendations, setRecommendations] = useState<
+    GuidedShoppingProduct[]
+  >([]);
 
-  const [
-    selectedProduct,
-    setSelectedProduct,
-  ] =
-    useState<GuidedShoppingProduct | null>(
-      null,
-    );
+  const [matchReasons, setMatchReasons] = useState<Record<string, string[]>>(
+    {},
+  );
 
-  const [
-    pickupChecked,
-    setPickupChecked,
-  ] =
-    useState(false);
+  const [interpretation, setInterpretation] =
+    useState<GuidedShoppingInterpretation>({
+      mode: "discovery",
 
-  const runAgent = (
-    message: string,
-  ) => {
-    const normalized =
-      message
-        .trim()
-        .toLowerCase();
+      heading: "How matching works",
+
+      signals: [
+        {
+          label: "Engine",
+          value: "Deterministic rules",
+        },
+        {
+          label: "Data",
+          value: `${products.length} simulated products`,
+        },
+      ],
+
+      rules: [
+        "Match request terms against catalog fields.",
+        "Apply any budget as a hard filter.",
+        "Rank by match score and show the top three.",
+      ],
+    });
+
+  const [selectedProduct, setSelectedProduct] =
+    useState<GuidedShoppingProduct | null>(null);
+
+  const [pickupChecked, setPickupChecked] = useState(false);
+
+  const runProductFinder = (message: string) => {
+    const normalized = message.trim().toLowerCase();
 
     const availabilityIntent =
-      normalized.includes(
-        "available",
-      ) ||
-      normalized.includes(
-        "pickup",
-      ) ||
-      normalized.includes(
-        "near me",
-      ) ||
-      normalized.includes(
-        "store",
+      normalized.includes("available") ||
+      normalized.includes("pickup") ||
+      normalized.includes("near me") ||
+      normalized.includes("store");
+
+    if (availabilityIntent && recommendations.length > 0) {
+      const available = recommendations.filter(
+        (product) => product.pickup.quantity > 0,
       );
 
-    if (
-      availabilityIntent &&
-      recommendations.length > 0
-    ) {
-      const available =
-        recommendations.filter(
-          (product) =>
-            product.pickup.quantity > 0,
-        );
+      setRecommendations(available);
 
-      setRecommendations(
-        available,
-      );
+      setPickupChecked(true);
 
-      setPickupChecked(
-        true,
-      );
+      setInterpretation({
+        mode: "availability",
+
+        heading: "Pickup request interpreted",
+
+        signals: [
+          {
+            label: "Request type",
+            value: "Pickup availability",
+          },
+          {
+            label: "Shortlist checked",
+            value: `${recommendations.length} products`,
+          },
+          {
+            label: "Inventory source",
+            value: "Simulated store data",
+          },
+        ],
+
+        rules: [
+          "Keep the current recommendation shortlist.",
+          "Retain products with simulated pickup quantity above zero.",
+          "Display store, distance, and quantity from the local dataset.",
+        ],
+      });
 
       return {
         text:
           available.length > 0
-            ? `I checked the simulated store inventory. ${available.length} of the recommended products are available for pickup nearby. The closest options are shown below.`
+            ? `The simulated inventory check found ${available.length} shortlisted products available for pickup. Store and distance data are shown below.`
             : "None of the current recommendations are available for simulated store pickup.",
       };
     }
 
-    const budget =
-      extractBudget(
-        message,
-      );
+    const budget = extractBudget(message);
 
-    const ranked =
-      products
-        .map(
-          (product) => ({
-            product,
+    const ranked = products
+      .map((product) => {
+        const match = scoreProduct(product, message);
 
-            score:
-              scoreProduct(
-                product,
-                message,
-              ),
-          }),
-        )
-        .filter(
-          ({
-            product,
-            score,
-          }) => {
-            if (
-              budget !== null &&
-              product.price > budget
-            ) {
-              return false;
-            }
+        return {
+          product,
+          ...match,
+        };
+      })
+      .filter(({ product, score }) => {
+        if (budget !== null && product.price > budget) {
+          return false;
+        }
 
-            return score > 0;
-          },
-        )
-        .sort(
-          (a, b) =>
-            b.score -
-            a.score,
-        )
-        .slice(
-          0,
-          3,
-        )
-        .map(
-          ({
-            product,
-          }) =>
-            product,
-        );
+        return score > 0;
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3);
 
-    const fallback =
-      products
-        .filter(
-          (product) =>
-            budget === null ||
-            product.price <= budget,
-        )
-        .slice(
-          0,
-          3,
-        );
+    const fallback = products
+      .filter((product) => budget === null || product.price <= budget)
+      .slice(0, 3)
+      .map((product) => ({
+        product,
+        score: 0,
+        matchedTerms: [] as string[],
+      }));
 
-    const results =
-      ranked.length > 0
-        ? ranked
-        : fallback;
+    const results = ranked.length > 0 ? ranked : fallback;
 
-    setRecommendations(
-      results,
+    const resultProducts = results.map(({ product }) => product);
+
+    const resultReasons = Object.fromEntries(
+      results.map(({ product, matchedTerms }) => {
+        const reasons = matchedTerms
+          .slice(0, 3)
+          .map((term) => `Matches “${term}”`);
+
+        if (budget !== null) {
+          reasons.push(`Within ${formatCurrency(budget)} budget`);
+        }
+
+        if (reasons.length === 0) {
+          reasons.push("Shown as a catalog fallback");
+        }
+
+        return [product.id, reasons];
+      }),
     );
 
-    setPickupChecked(
-      false,
-    );
+    setRecommendations(resultProducts);
 
-    setSelectedProduct(
-      null,
-    );
+    setMatchReasons(resultReasons);
 
-    if (
-      results.length === 0
-    ) {
+    setPickupChecked(false);
+
+    setSelectedProduct(null);
+
+    const detectedTerms = Array.from(
+      new Set(results.flatMap(({ matchedTerms }) => matchedTerms)),
+    ).slice(0, 6);
+
+    setInterpretation({
+      mode: "discovery",
+
+      heading: "Request interpreted",
+
+      signals: [
+        {
+          label: "Request type",
+          value: "Product discovery",
+        },
+        {
+          label: "Matched terms",
+          value:
+            detectedTerms.length > 0
+              ? detectedTerms.join(", ")
+              : "No direct catalog terms",
+        },
+        {
+          label: "Budget",
+          value:
+            budget !== null
+              ? `${formatCurrency(budget)} maximum`
+              : "Not specified",
+        },
+        {
+          label: "Catalog evaluated",
+          value: `${products.length} simulated products`,
+        },
+      ],
+
+      rules: [
+        "Add 10 points for each request term found in catalog fields.",
+        budget !== null
+          ? `Exclude products above ${formatCurrency(budget)}.`
+          : "No price constraint applied.",
+        "Sort by score and show the top three matches.",
+      ],
+    });
+
+    if (resultProducts.length === 0) {
       return {
-        text:
-          "I couldn't find a product matching those constraints. Try adjusting the budget or describing the use case differently.",
+        text: "I couldn't find a product matching those constraints. Try adjusting the budget or describing the use case differently.",
       };
     }
 
     const budgetText =
-      budget !== null
-        ? ` within your ${formatCurrency(
-            budget,
-          )} budget`
-        : "";
+      budget !== null ? ` within your ${formatCurrency(budget)} budget` : "";
 
     return {
-      text:
-        `I found ${results.length} options${budgetText}. I prioritized products whose attributes and use cases best match your request. You can inspect the recommendations below or ask which are available for pickup.`,
+      text: `The rule-based matcher found ${resultProducts.length} options${budgetText}. Review the detected signals, matching rules, and per-product reasons shown alongside the results.`,
     };
   };
 
-  const sendMessage = (
-    message: string,
-  ) => {
-    const trimmed =
-      message.trim();
+  const sendMessage = (message: string) => {
+    const trimmed = message.trim();
 
     if (!trimmed) {
       return;
     }
 
-    const userMessage:
-      GuidedShoppingMessage =
-      {
-        id:
-          createMessageId(),
+    const userMessage: GuidedShoppingMessage = {
+      id: createMessageId(),
 
-        role:
-          "user",
+      role: "user",
 
-        text:
-          trimmed,
-      };
+      text: trimmed,
+    };
 
-    const response =
-      runAgent(
-        trimmed,
-      );
+    const response = runProductFinder(trimmed);
 
-    const assistantMessage:
-      GuidedShoppingMessage =
-      {
-        id:
-          createMessageId(),
+    const assistantMessage: GuidedShoppingMessage = {
+      id: createMessageId(),
 
-        role:
-          "assistant",
+      role: "assistant",
 
-        text:
-          response.text,
-      };
+      text: response.text,
+    };
 
-    setMessages(
-      (current) => [
-        ...current,
-        userMessage,
-        assistantMessage,
-      ],
-    );
+    setMessages((current) => [...current, userMessage, assistantMessage]);
 
     setInput("");
   };
 
-  const handleSubmit =
-    () => {
-      sendMessage(
-        input,
-      );
-    };
+  const handleSubmit = () => {
+    sendMessage(input);
+  };
 
-  const resetConversation =
-    () => {
-      setMessages([
+  const resetConversation = () => {
+    setMessages([
+      {
+        id: "welcome",
+
+        role: "assistant",
+
+        text: assistant.introduction,
+      },
+    ]);
+
+    setInput("");
+
+    setRecommendations([]);
+
+    setMatchReasons({});
+
+    setInterpretation({
+      mode: "discovery",
+
+      heading: "How matching works",
+
+      signals: [
         {
-          id:
-            "welcome",
-
-          role:
-            "assistant",
-
-          text:
-            assistant.introduction,
+          label: "Engine",
+          value: "Deterministic rules",
         },
-      ]);
+        {
+          label: "Data",
+          value: `${products.length} simulated products`,
+        },
+      ],
 
-      setInput("");
+      rules: [
+        "Match request terms against catalog fields.",
+        "Apply any budget as a hard filter.",
+        "Rank by match score and show the top three.",
+      ],
+    });
 
-      setRecommendations(
-        [],
-      );
+    setSelectedProduct(null);
 
-      setSelectedProduct(
-        null,
-      );
-
-      setPickupChecked(
-        false,
-      );
-    };
+    setPickupChecked(false);
+  };
 
   return (
     <div
@@ -496,7 +495,7 @@ export default function AgenticGuidedShoppingDemo() {
             text-slate-300
           "
         >
-          <Sparkles
+          <SlidersHorizontal
             aria-hidden="true"
             className="
               h-4
@@ -504,17 +503,14 @@ export default function AgenticGuidedShoppingDemo() {
               text-cyan-400
             "
           />
-
-          Engineering Lab Demo
+          Transparent Prototype
           {" • "}
-          Simulated Agentic Logic
+          Deterministic Matching
         </div>
 
         <button
           type="button"
-          onClick={
-            resetConversation
-          }
+          onClick={resetConversation}
           className="
             text-xs
             font-semibold
@@ -570,10 +566,7 @@ export default function AgenticGuidedShoppingDemo() {
                   text-white
                 "
               >
-                <Bot
-                  aria-hidden="true"
-                  className="h-6 w-6"
-                />
+                <Search aria-hidden="true" className="h-6 w-6" />
               </div>
 
               <div>
@@ -583,9 +576,7 @@ export default function AgenticGuidedShoppingDemo() {
                     text-slate-950
                   "
                 >
-                  {
-                    assistant.name
-                  }
+                  {assistant.name}
                 </p>
 
                 <div
@@ -606,8 +597,7 @@ export default function AgenticGuidedShoppingDemo() {
                       bg-emerald-500
                     "
                   />
-
-                  Guided shopping demo
+                  Rule-based product matching
                 </div>
               </div>
             </div>
@@ -622,29 +612,18 @@ export default function AgenticGuidedShoppingDemo() {
               sm:p-7
             "
           >
-            {messages.map(
-              (
-                message,
-              ) => (
-                <div
-                  key={
-                    message.id
-                  }
-                  className={`
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`
                     flex
                     gap-3
-                    ${
-                      message.role ===
-                      "user"
-                        ? "justify-end"
-                        : "justify-start"
-                    }
+                    ${message.role === "user" ? "justify-end" : "justify-start"}
                   `}
-                >
-                  {message.role ===
-                    "assistant" && (
-                    <div
-                      className="
+              >
+                {message.role === "assistant" && (
+                  <div
+                    className="
                         flex
                         h-8
                         w-8
@@ -655,16 +634,13 @@ export default function AgenticGuidedShoppingDemo() {
                         bg-blue-50
                         text-blue-600
                       "
-                    >
-                      <Bot
-                        aria-hidden="true"
-                        className="h-4 w-4"
-                      />
-                    </div>
-                  )}
+                  >
+                    <Search aria-hidden="true" className="h-4 w-4" />
+                  </div>
+                )}
 
-                  <div
-                    className={`
+                <div
+                  className={`
                       max-w-[82%]
                       rounded-2xl
                       px-4
@@ -672,22 +648,18 @@ export default function AgenticGuidedShoppingDemo() {
                       text-sm
                       leading-6
                       ${
-                        message.role ===
-                        "user"
+                        message.role === "user"
                           ? "rounded-br-md bg-slate-950 text-white"
                           : "rounded-bl-md bg-slate-100 text-slate-700"
                       }
                     `}
-                  >
-                    {
-                      message.text
-                    }
-                  </div>
+                >
+                  {message.text}
+                </div>
 
-                  {message.role ===
-                    "user" && (
-                    <div
-                      className="
+                {message.role === "user" && (
+                  <div
+                    className="
                         flex
                         h-8
                         w-8
@@ -698,16 +670,12 @@ export default function AgenticGuidedShoppingDemo() {
                         bg-slate-100
                         text-slate-500
                       "
-                    >
-                      <User
-                        aria-hidden="true"
-                        className="h-4 w-4"
-                      />
-                    </div>
-                  )}
-                </div>
-              ),
-            )}
+                  >
+                    <User aria-hidden="true" className="h-4 w-4" />
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
 
           <div
@@ -740,21 +708,12 @@ export default function AgenticGuidedShoppingDemo() {
                 gap-2
               "
             >
-              {assistant.prompts.map(
-                (
-                  prompt,
-                ) => (
-                  <button
-                    key={
-                      prompt.label
-                    }
-                    type="button"
-                    onClick={() =>
-                      sendMessage(
-                        prompt.message,
-                      )
-                    }
-                    className="
+              {assistant.prompts.map((prompt) => (
+                <button
+                  key={prompt.label}
+                  type="button"
+                  onClick={() => sendMessage(prompt.message)}
+                  className="
                       rounded-full
                       border
                       border-slate-200
@@ -768,13 +727,10 @@ export default function AgenticGuidedShoppingDemo() {
                       hover:border-blue-200
                       hover:text-blue-600
                     "
-                  >
-                    {
-                      prompt.label
-                    }
-                  </button>
-                ),
-              )}
+                >
+                  {prompt.label}
+                </button>
+              ))}
             </div>
 
             <div
@@ -801,37 +757,18 @@ export default function AgenticGuidedShoppingDemo() {
                   focus-within:ring-blue-100
                 "
               >
-                <span className="sr-only">
-                  Shopping request
-                </span>
+                <span className="sr-only">Shopping request</span>
 
                 <input
                   type="text"
-                  value={
-                    input
-                  }
-                  onChange={(
-                    event,
-                  ) =>
-                    setInput(
-                      event
-                        .target
-                        .value,
-                    )
-                  }
-                  onKeyDown={(
-                    event,
-                  ) => {
-                    if (
-                      event.key ===
-                      "Enter"
-                    ) {
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
                       handleSubmit();
                     }
                   }}
-                  placeholder={
-                    assistant.placeholder
-                  }
+                  placeholder={assistant.placeholder}
                   className="
                     h-13
                     min-w-0
@@ -847,9 +784,7 @@ export default function AgenticGuidedShoppingDemo() {
 
               <button
                 type="button"
-                onClick={
-                  handleSubmit
-                }
+                onClick={handleSubmit}
                 aria-label="Send shopping request"
                 className="
                   flex
@@ -865,10 +800,7 @@ export default function AgenticGuidedShoppingDemo() {
                   hover:bg-blue-500
                 "
               >
-                <Send
-                  aria-hidden="true"
-                  className="h-5 w-5"
-                />
+                <Send aria-hidden="true" className="h-5 w-5" />
               </button>
             </div>
 
@@ -880,9 +812,7 @@ export default function AgenticGuidedShoppingDemo() {
                 text-slate-400
               "
             >
-              {
-                assistant.disclaimer
-              }
+              {assistant.disclaimer}
             </p>
           </div>
         </div>
@@ -912,7 +842,7 @@ export default function AgenticGuidedShoppingDemo() {
                   text-blue-600
                 "
               >
-                Agent Recommendations
+                Recommended Matches
               </p>
 
               <h3
@@ -923,12 +853,11 @@ export default function AgenticGuidedShoppingDemo() {
                   text-slate-950
                 "
               >
-                Recommended for you
+                Results and rationale
               </h3>
             </div>
 
-            {recommendations.length >
-              0 && (
+            {recommendations.length > 0 && (
               <span
                 className="
                   rounded-full
@@ -940,16 +869,150 @@ export default function AgenticGuidedShoppingDemo() {
                   text-blue-700
                 "
               >
-                {
-                  recommendations.length
-                }{" "}
-                matches
+                {recommendations.length} matches
               </span>
             )}
           </div>
 
-          {recommendations.length ===
-          0 ? (
+          <section
+            className="
+              mt-6
+              rounded-2xl
+              border
+              border-blue-200
+              bg-blue-50
+              p-5
+            "
+          >
+            <div
+              className="
+                flex
+                items-start
+                gap-3
+              "
+            >
+              <div
+                className="
+                  flex
+                  h-9
+                  w-9
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-blue-600
+                  text-white
+                "
+              >
+                <ListFilter aria-hidden="true" className="h-4 w-4" />
+              </div>
+
+              <div>
+                <p
+                  className="
+                    text-xs
+                    font-bold
+                    uppercase
+                    tracking-[0.14em]
+                    text-blue-700
+                  "
+                >
+                  Logic Inspector
+                </p>
+
+                <h4
+                  className="
+                    mt-1
+                    font-bold
+                    text-slate-950
+                  "
+                >
+                  {interpretation.heading}
+                </h4>
+              </div>
+            </div>
+
+            <dl
+              className="
+                mt-4
+                grid
+                gap-2
+                sm:grid-cols-2
+              "
+            >
+              {interpretation.signals.map((signal) => (
+                <div
+                  key={signal.label}
+                  className="
+                      rounded-xl
+                      border
+                      border-blue-100
+                      bg-white/80
+                      p-3
+                    "
+                >
+                  <dt
+                    className="
+                        text-[10px]
+                        font-bold
+                        uppercase
+                        tracking-[0.12em]
+                        text-slate-400
+                      "
+                  >
+                    {signal.label}
+                  </dt>
+
+                  <dd
+                    className="
+                        mt-1
+                        text-xs
+                        font-semibold
+                        text-slate-700
+                      "
+                  >
+                    {signal.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <div
+              className="
+                mt-4
+                space-y-2
+              "
+            >
+              {interpretation.rules.map((rule) => (
+                <div
+                  key={rule}
+                  className="
+                      flex
+                      items-start
+                      gap-2
+                      text-xs
+                      leading-5
+                      text-slate-600
+                    "
+                >
+                  <CheckCircle2
+                    aria-hidden="true"
+                    className="
+                        mt-0.5
+                        h-3.5
+                        w-3.5
+                        shrink-0
+                        text-blue-600
+                      "
+                  />
+
+                  <span>{rule}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {recommendations.length === 0 ? (
             <div
               className="
                 mt-6
@@ -979,10 +1042,7 @@ export default function AgenticGuidedShoppingDemo() {
                   text-blue-600
                 "
               >
-                <Sparkles
-                  aria-hidden="true"
-                  className="h-7 w-7"
-                />
+                <Search aria-hidden="true" className="h-7 w-7" />
               </div>
 
               <h4
@@ -992,7 +1052,7 @@ export default function AgenticGuidedShoppingDemo() {
                   text-slate-950
                 "
               >
-                Start the conversation
+                Describe what you need
               </h4>
 
               <p
@@ -1004,10 +1064,8 @@ export default function AgenticGuidedShoppingDemo() {
                   text-slate-500
                 "
               >
-                Describe what you&apos;re
-                looking for and this
-                demo will evaluate the
-                simulated catalog.
+                Describe what you&apos;re looking for and this demo will
+                evaluate the simulated catalog.
               </p>
             </div>
           ) : (
@@ -1017,22 +1075,13 @@ export default function AgenticGuidedShoppingDemo() {
                 space-y-4
               "
             >
-              {recommendations.map(
-                (
-                  product,
-                  index,
-                ) => {
-                  const selected =
-                    selectedProduct
-                      ?.id ===
-                    product.id;
+              {recommendations.map((product, index) => {
+                const selected = selectedProduct?.id === product.id;
 
-                  return (
-                    <article
-                      key={
-                        product.id
-                      }
-                      className={`
+                return (
+                  <article
+                    key={product.id}
+                    className={`
                         rounded-2xl
                         border
                         bg-white
@@ -1044,114 +1093,90 @@ export default function AgenticGuidedShoppingDemo() {
                             : "border-slate-200"
                         }
                       `}
-                    >
-                      <div
-                        className="
+                  >
+                    <div
+                      className="
                           grid
                           grid-cols-[90px_1fr]
                           gap-4
                         "
-                      >
-                        <ProductVisual
-                          product={
-                            product
-                          }
-                        />
+                    >
+                      <ProductVisual product={product} />
 
-                        <div
-                          className="
+                      <div
+                        className="
                             min-w-0
                           "
-                        >
-                          <div
-                            className="
+                      >
+                        <div
+                          className="
                               flex
                               items-start
                               justify-between
                               gap-2
                             "
-                          >
-                            <div>
-                              <p
-                                className="
+                        >
+                          <div>
+                            <p
+                              className="
                                   text-[10px]
                                   font-bold
                                   uppercase
                                   tracking-[0.12em]
                                   text-blue-600
                                 "
-                              >
-                                Recommendation{" "}
-                                {
-                                  index +
-                                  1
-                                }
-                              </p>
+                            >
+                              Match {index + 1}
+                            </p>
 
-                              <h4
-                                className="
+                            <h4
+                              className="
                                   mt-1
                                   font-bold
                                   text-slate-950
                                 "
-                              >
-                                {
-                                  product.name
-                                }
-                              </h4>
-                            </div>
+                            >
+                              {product.name}
+                            </h4>
+                          </div>
 
-                            <span
-                              className="
+                          <span
+                            className="
                                 shrink-0
                                 text-sm
                                 font-bold
                                 text-slate-950
                               "
-                            >
-                              {formatCurrency(
-                                product.price,
-                              )}
-                            </span>
-                          </div>
+                          >
+                            {formatCurrency(product.price)}
+                          </span>
+                        </div>
 
-                          <p
-                            className="
+                        <p
+                          className="
                               mt-2
                               text-xs
                               leading-5
                               text-slate-500
                             "
-                          >
-                            {
-                              product.description
-                            }
-                          </p>
-                        </div>
+                        >
+                          {product.description}
+                        </p>
                       </div>
+                    </div>
 
-                      <div
-                        className="
+                    <div
+                      className="
                           mt-4
                           flex
                           flex-wrap
                           gap-2
                         "
-                      >
-                        {product.attributes
-                          .slice(
-                            0,
-                            3,
-                          )
-                          .map(
-                            (
-                              attribute,
-                            ) => (
-                              <span
-                                key={
-                                  attribute
-                                }
-                                className="
+                    >
+                      {product.attributes.slice(0, 3).map((attribute) => (
+                        <span
+                          key={attribute}
+                          className="
                                   rounded-full
                                   bg-slate-100
                                   px-2.5
@@ -1160,18 +1185,64 @@ export default function AgenticGuidedShoppingDemo() {
                                   font-semibold
                                   text-slate-600
                                 "
-                              >
-                                {
-                                  attribute
-                                }
-                              </span>
-                            ),
-                          )}
-                      </div>
+                        >
+                          {attribute}
+                        </span>
+                      ))}
+                    </div>
 
-                      {pickupChecked && (
-                        <div
-                          className="
+                    <div
+                      className="
+                          mt-4
+                          rounded-xl
+                          border
+                          border-blue-100
+                          bg-blue-50
+                          p-3
+                        "
+                    >
+                      <p
+                        className="
+                            text-[10px]
+                            font-bold
+                            uppercase
+                            tracking-[0.12em]
+                            text-blue-700
+                          "
+                      >
+                        Why it matched
+                      </p>
+
+                      <div
+                        className="
+                            mt-2
+                            flex
+                            flex-wrap
+                            gap-2
+                          "
+                      >
+                        {(matchReasons[product.id] ?? []).map((reason) => (
+                          <span
+                            key={reason}
+                            className="
+                                  rounded-full
+                                  bg-white
+                                  px-2.5
+                                  py-1
+                                  text-[10px]
+                                  font-semibold
+                                  text-blue-700
+                                "
+                          >
+                            {reason}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {pickupChecked && (
+                      <div
+                        className="
                             mt-4
                             flex
                             items-start
@@ -1180,70 +1251,54 @@ export default function AgenticGuidedShoppingDemo() {
                             bg-emerald-50
                             p-3
                           "
-                        >
-                          <MapPin
-                            aria-hidden="true"
-                            className="
+                      >
+                        <MapPin
+                          aria-hidden="true"
+                          className="
                               mt-0.5
                               h-4
                               w-4
                               shrink-0
                               text-emerald-600
                             "
-                          />
+                        />
 
-                          <div>
-                            <p
-                              className="
+                        <div>
+                          <p
+                            className="
                                 text-xs
                                 font-bold
                                 text-emerald-800
                               "
-                            >
-                              Available at{" "}
-                              {
-                                product.pickup
-                                  .store
-                              }
-                            </p>
+                          >
+                            Available at {product.pickup.store}
+                          </p>
 
-                            <p
-                              className="
+                          <p
+                            className="
                                 mt-1
                                 text-[11px]
                                 text-emerald-700
                               "
-                            >
-                              {
-                                product.pickup
-                                  .distance
-                              }{" "}
-                              miles away •{" "}
-                              {
-                                product.pickup
-                                  .quantity
-                              }{" "}
-                              in simulated inventory
-                            </p>
-                          </div>
+                          >
+                            {product.pickup.distance} miles away •{" "}
+                            {product.pickup.quantity} in simulated inventory
+                          </p>
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      <div
-                        className="
+                    <div
+                      className="
                           mt-4
                           flex
                           gap-2
                         "
-                      >
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setSelectedProduct(
-                              product,
-                            )
-                          }
-                          className="
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProduct(product)}
+                        className="
                             inline-flex
                             flex-1
                             items-center
@@ -1259,23 +1314,15 @@ export default function AgenticGuidedShoppingDemo() {
                             transition-colors
                             hover:bg-slate-800
                           "
-                        >
-                          <ShoppingBag
-                            aria-hidden="true"
-                            className="h-4 w-4"
-                          />
+                      >
+                        <ShoppingBag aria-hidden="true" className="h-4 w-4" />
+                        View Product
+                      </button>
 
-                          View Product
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setPickupChecked(
-                              true,
-                            )
-                          }
-                          className="
+                      <button
+                        type="button"
+                        onClick={() => setPickupChecked(true)}
+                        className="
                             inline-flex
                             flex-1
                             items-center
@@ -1292,19 +1339,14 @@ export default function AgenticGuidedShoppingDemo() {
                             text-slate-700
                             hover:bg-slate-50
                           "
-                        >
-                          <MapPin
-                            aria-hidden="true"
-                            className="h-4 w-4"
-                          />
-
-                          Check Pickup
-                        </button>
-                      </div>
-                    </article>
-                  );
-                },
-              )}
+                      >
+                        <MapPin aria-hidden="true" className="h-4 w-4" />
+                        Check Pickup
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           )}
 
@@ -1344,9 +1386,7 @@ export default function AgenticGuidedShoppingDemo() {
                       text-slate-950
                     "
                   >
-                    {
-                      selectedProduct.name
-                    }
+                    {selectedProduct.name}
                   </p>
 
                   <p
@@ -1357,13 +1397,9 @@ export default function AgenticGuidedShoppingDemo() {
                       text-slate-600
                     "
                   >
-                    Product selection is
-                    simulated. In a live
-                    implementation this
-                    action could open the
-                    PDP, configure a
-                    variant, or add the
-                    product to cart.
+                    Product selection is simulated. In a live implementation
+                    this action could open the PDP, configure a variant, or add
+                    the product to cart.
                   </p>
                 </div>
               </div>
@@ -1401,7 +1437,7 @@ export default function AgenticGuidedShoppingDemo() {
                   font-bold
                 "
               >
-                Commerce orchestration
+                Prototype data flow
               </p>
             </div>
 
@@ -1413,13 +1449,9 @@ export default function AgenticGuidedShoppingDemo() {
                 text-slate-400
               "
             >
-              The experience combines
-              catalog attributes,
-              pricing, discovery logic,
-              product recommendations,
-              and simulated store
-              inventory in one guided
-              journey.
+              The interface combines a local catalog, explicit matching rules,
+              pricing, and simulated store data. No model or external API is
+              running behind the interaction.
             </p>
           </div>
         </aside>

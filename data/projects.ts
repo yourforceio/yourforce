@@ -3,8 +3,7 @@ import type { Projects } from "@/types/project";
 export const projects: Projects = {
   badge: "Selected Commerce Work",
 
-  heading:
-    "Commerce Experiences Built for Real Business Complexity",
+  heading: "Commerce Experiences Built for Real Business Complexity",
 
   description:
     "A selection of enterprise commerce platforms and digital experiences delivered across fashion, home décor, event rentals, and international consumer brands.",
@@ -31,8 +30,9 @@ export const projects: Projects = {
       description:
         "A long-term commerce transformation for a confidential US fashion retailer, modernizing the storefront across three architectural generations while preserving a reliable customer experience.",
 
-      image:
-        "/images/projects/enterprise-fashion-commerce.jpg",
+      image: "/images/projects/enterprise-fashion-commerce.jpg",
+
+      visualTheme: "indigo",
 
       overview:
         "This project represents extensive hands-on experience across the evolution of a large Salesforce Commerce Cloud implementation. The engagement began with a SiteGenesis Controllers storefront, progressed to a hybrid headless model, and ultimately moved to a complete Salesforce Commerce Cloud PWA Kit architecture.",
@@ -83,14 +83,12 @@ export const projects: Projects = {
       caseStudy: {
         imageEyebrow: "Commerce Modernization",
 
-        imageLabel:
-          "Progressive Storefront Transformation",
+        imageLabel: "Progressive Storefront Transformation",
 
         summary: {
           platform: "Salesforce Commerce Cloud",
 
-          architecture:
-            "SiteGenesis → Hybrid → PWA Kit",
+          architecture: "SiteGenesis → Hybrid → PWA Kit",
 
           commerceModel: "Enterprise Retail",
 
@@ -110,8 +108,7 @@ export const projects: Projects = {
         cta: {
           eyebrow: "Start a Conversation",
 
-          title:
-            "Ready to Modernize Your Commerce Platform?",
+          title: "Ready to Modernize Your Commerce Platform?",
 
           description:
             "Let’s discuss your current architecture, customer journey, integrations, and the most practical path toward modernization.",
@@ -140,8 +137,9 @@ export const projects: Projects = {
       description:
         "An enterprise retail experience built on Salesforce Reference Architecture, supporting extensive product discovery, professional buying programs, promotions, project tools, and expert-assisted commerce.",
 
-      image:
-        "/images/projects/lighting-new-york.jpg",
+      image: "/images/projects/lighting-new-york.jpg",
+
+      visualTheme: "gold",
 
       overview:
         "Lighting New York operates a catalog-rich commerce platform covering residential and commercial lighting, ceiling fans, furniture, décor, outdoor products, and accessories. The storefront combines traditional product discovery with brand navigation, room-based shopping, image search, saved projects, promotional merchandising, account capabilities, and direct access to lighting experts.",
@@ -196,8 +194,7 @@ export const projects: Projects = {
 
           architecture: "SFRA",
 
-          commerceModel:
-            "Retail + Professional Trade",
+          commerceModel: "Retail + Professional Trade",
 
           deliveryFocus:
             "Product discovery, merchandising, saved projects, and expert-assisted commerce",
@@ -215,14 +212,12 @@ export const projects: Projects = {
         cta: {
           eyebrow: "Start a Conversation",
 
-          title:
-            "Planning a Catalog-Rich Commerce Experience?",
+          title: "Planning a Catalog-Rich Commerce Experience?",
 
           description:
             "Let’s discuss product discovery, merchandising, integrations, professional buying journeys, and scalable commerce architecture.",
 
-          service:
-            "commerce-platform-engineering",
+          service: "commerce-platform-engineering",
         },
       },
 
@@ -247,6 +242,8 @@ export const projects: Projects = {
         "An event-focused commerce platform that allows customers to rent or purchase formalwear while coordinating fittings, appointments, shared orders, and event-specific requirements.",
 
       image: "/images/projects/friar-tux.jpg",
+
+      visualTheme: "charcoal",
 
       overview:
         "Friar Tux provides an integrated online and showroom experience for suits, tuxedos, accessories, and formalwear. Unlike a traditional retail storefront, the platform supports both purchases and time-sensitive rentals for weddings, quinceañeras, school dances, black-tie occasions, and other special events.",
@@ -294,8 +291,7 @@ export const projects: Projects = {
       caseStudy: {
         imageEyebrow: "Commerce Experience",
 
-        imageLabel:
-          "Rental, Retail & Event Coordination",
+        imageLabel: "Rental, Retail & Event Coordination",
 
         summary: {
           platform: "Salesforce Commerce Cloud",
@@ -320,14 +316,12 @@ export const projects: Projects = {
         cta: {
           eyebrow: "Start a Conversation",
 
-          title:
-            "Building a More Complex Commerce Journey?",
+          title: "Building a More Complex Commerce Journey?",
 
           description:
             "Let’s discuss your commerce model, customer workflows, integrations, and the architecture required to support them.",
 
-          service:
-            "commerce-platform-engineering",
+          service: "commerce-platform-engineering",
         },
       },
 
@@ -351,8 +345,9 @@ export const projects: Projects = {
       description:
         "A localized commerce and marketing platform supporting a major Italian coffee brand across multiple product systems, customer markets, promotional campaigns, and digital touchpoints.",
 
-      image:
-        "/images/projects/caffe-borbone.jpg",
+      image: "/images/projects/caffe-borbone.jpg",
+
+      visualTheme: "crimson",
 
       overview:
         "Caffè Borbone is a Naples-based coffee brand offering traditional coffee, compostable pods, compatible capsules, coffee beans, machines, beverages, and accessories. Its digital platform supports international customers while communicating the brand’s Neapolitan identity, product quality, compatibility options, and sustainability initiatives.",
@@ -400,16 +395,14 @@ export const projects: Projects = {
       caseStudy: {
         imageEyebrow: "International Commerce",
 
-        imageLabel:
-          "Localized Consumer Commerce & Marketing",
+        imageLabel: "Localized Consumer Commerce & Marketing",
 
         summary: {
           platform: "Salesforce Commerce Cloud",
 
           architecture: "SFRA",
 
-          commerceModel:
-            "International Direct-to-Consumer",
+          commerceModel: "International Direct-to-Consumer",
 
           deliveryFocus:
             "Localization, compatibility, promotions, content, and lifecycle marketing",
@@ -427,19 +420,16 @@ export const projects: Projects = {
         cta: {
           eyebrow: "Start a Conversation",
 
-          title:
-            "Planning an International Commerce Experience?",
+          title: "Planning an International Commerce Experience?",
 
           description:
             "Let’s discuss localization, product complexity, customer communication, integrations, and scalable international delivery.",
 
-          service:
-            "commerce-platform-engineering",
+          service: "commerce-platform-engineering",
         },
       },
 
-      liveUrl:
-        "https://www.caffeborbone.com/en-int/",
+      liveUrl: "https://www.caffeborbone.com/en-int/",
 
       githubUrl: "",
     },

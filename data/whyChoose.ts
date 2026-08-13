@@ -1,72 +1,53 @@
-import {
-  Handshake,
-  Layers3,
-  RefreshCw,
-} from "lucide-react";
+import { Handshake, Layers3, RefreshCw } from "lucide-react";
 
 import type { WhyChoose } from "@/types/whyChoose";
 
 export const whyChoose: WhyChoose = {
-  badge: "⭐ Why Choose YourForce",
+  badge: "Why YourForce",
 
-  heading:
-    "Built for Complex Commerce. Designed for Long-Term Growth.",
+  heading: "Commerce engineering that stays practical as you grow.",
 
   description:
-    "YourForce combines enterprise-commerce experience, practical modernization strategies, and direct technical collaboration to deliver platforms that remain scalable, maintainable, and ready for change.",
+    "Direct senior engineering, controlled modernization, and architecture shaped around real business requirements—not unnecessary complexity.",
 
   supportingText:
-    "Deep enterprise-commerce experience with broader delivery capabilities across leading platforms, integrations, and modern frontend architecture.",
+    "From architecture through launch and optimization, technical decisions remain connected to business outcomes and customer experience.",
 
   items: [
     {
-      eyebrow: "Platform Expertise",
-
-      title: "Multi-Platform Commerce Engineering",
-
+      eyebrow: "Platform Fit",
+      title: "Architecture Built Around the Business",
       description:
-        "We help businesses build and evolve commerce experiences across Salesforce Commerce Cloud, Adobe Commerce, Shopify, WooCommerce, and modern headless architectures.",
-
+        "Select and evolve the commerce architecture that best supports your customers, operations, integrations, and growth plans.",
       icon: Layers3,
-
       highlights: [
         "Platform-fit guidance",
         "Storefront and backend engineering",
-        "Commerce ecosystem integrations",
+        "Integration-ready design",
       ],
     },
-
     {
-      eyebrow: "Modernization Strategy",
-
-      title: "Progressive Change Without Unnecessary Risk",
-
+      eyebrow: "Controlled Modernization",
+      title: "Progress Without Unnecessary Disruption",
       description:
-        "We modernize legacy platforms through practical, phased delivery that protects active business operations while introducing better architecture and customer experiences.",
-
+        "Modernize established platforms in practical phases that protect active operations while improving architecture and experience.",
       icon: RefreshCw,
-
       highlights: [
         "Phased replatforming",
         "Hybrid and headless transitions",
-        "Performance and delivery improvements",
+        "Performance-led improvements",
       ],
     },
-
     {
-      eyebrow: "Delivery Partnership",
-
-      title: "Direct, Transparent, Long-Term Collaboration",
-
+      eyebrow: "Direct Partnership",
+      title: "Senior Involvement From Planning to Launch",
       description:
-        "We work closely with stakeholders throughout planning, implementation, launch, and continuous improvement—with clear communication and visible technical decisions.",
-
+        "Work directly with experienced engineering leadership throughout discovery, delivery, production launch, and continued improvement.",
       icon: Handshake,
-
       highlights: [
-        "Senior engineering involvement",
-        "Clear progress and communication",
-        "Support and optimization after launch",
+        "Visible technical decisions",
+        "Time-zone aligned collaboration",
+        "Support beyond launch",
       ],
     },
   ],

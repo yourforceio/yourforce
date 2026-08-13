@@ -1,48 +1,31 @@
-import {
-  BadgeDollarSign,
-  Clock3,
-  Globe2,
-  Laptop2,
-} from "lucide-react";
+import { BadgeDollarSign, Clock3, Globe2, Laptop2 } from "lucide-react";
 
 import type { Highlight } from "@/types/highlight";
 
 export const highlights: Highlight[] = [
   {
     title: "Global Commerce Delivery",
-
     description:
-      "Commerce engineering experience across international markets, platforms, currencies, integrations, and customer journeys.",
-
+      "Experience across international markets, platforms, integrations, and customer journeys.",
     icon: Globe2,
-
     featured: true,
   },
-
   {
     title: "Remote-First Engineering",
-
     description:
-      "A collaborative remote delivery model designed to integrate smoothly with distributed product and engineering teams.",
-
+      "Direct collaboration designed to fit distributed product and engineering teams.",
     icon: Laptop2,
   },
-
   {
-    title: "Cost-Effective Engineering",
-
+    title: "Practical Engagement Models",
     description:
-      "Senior engineering capability with practical engagement models that balance delivery quality, scalability, and cost.",
-
+      "Senior capability structured around delivery priorities, scalability, and responsible cost.",
     icon: BadgeDollarSign,
   },
-
   {
-    title: "Time-Zone Aligned Collaboration",
-
+    title: "Time-Zone Alignment",
     description:
-      "Flexible working-hour alignment to support customer teams across North America, Europe, the Middle East, and Asia.",
-
+      "Flexible working-hour overlap for teams across North America, Europe, the Middle East, and Asia.",
     icon: Clock3,
   },
 ];

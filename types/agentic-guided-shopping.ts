@@ -1,7 +1,4 @@
-export type GuidedShoppingCategory =
-  | "Men"
-  | "Women"
-  | "Accessories";
+export type GuidedShoppingCategory = "Men" | "Women" | "Accessories";
 
 export type GuidedShoppingProduct = {
   id: string;
@@ -39,11 +36,22 @@ export type GuidedShoppingPrompt = {
 export type GuidedShoppingMessage = {
   id: string;
 
-  role:
-    | "assistant"
-    | "user";
+  role: "assistant" | "user";
 
   text: string;
+};
+
+export type GuidedShoppingInterpretation = {
+  mode: "discovery" | "availability";
+
+  heading: string;
+
+  signals: {
+    label: string;
+    value: string;
+  }[];
+
+  rules: string[];
 };
 
 export type AgenticGuidedShoppingData = {

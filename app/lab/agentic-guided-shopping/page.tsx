@@ -5,9 +5,9 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
-  Bot,
   CheckCircle2,
   FlaskConical,
+  ListFilter,
 } from "lucide-react";
 
 import Container from "@/components/layout/Container";
@@ -18,60 +18,44 @@ import { agenticGuidedShopping } from "@/data/agentic-guided-shopping";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title:
-    agenticGuidedShopping.metadata.title,
+  title: agenticGuidedShopping.metadata.title,
 
-  description:
-    agenticGuidedShopping.metadata.description,
+  description: agenticGuidedShopping.metadata.description,
 
   alternates: {
-    canonical:
-      "/lab/agentic-guided-shopping",
+    canonical: "/lab/agentic-guided-shopping",
   },
 
   openGraph: {
-    type:
-      "website",
+    type: "website",
 
-    url:
-      "/lab/agentic-guided-shopping",
+    url: "/lab/agentic-guided-shopping",
 
-    title:
-      agenticGuidedShopping.metadata.title,
+    title: agenticGuidedShopping.metadata.title,
 
-    description:
-      agenticGuidedShopping.metadata.description,
+    description: agenticGuidedShopping.metadata.description,
 
     images: [
       {
-        url:
-          site.image,
+        url: site.image,
 
-        width:
-          1200,
+        width: 1200,
 
-        height:
-          630,
+        height: 630,
 
-        alt:
-          "YourForce Agentic Guided Shopping Engineering Lab",
+        alt: "YourForce Conversational Product Finder Engineering Lab",
       },
     ],
   },
 
   twitter: {
-    card:
-      "summary_large_image",
+    card: "summary_large_image",
 
-    title:
-      agenticGuidedShopping.metadata.title,
+    title: agenticGuidedShopping.metadata.title,
 
-    description:
-      agenticGuidedShopping.metadata.description,
+    description: agenticGuidedShopping.metadata.description,
 
-    images: [
-      site.image,
-    ],
+    images: [site.image],
   },
 };
 
@@ -151,11 +135,7 @@ export default function AgenticGuidedShoppingLabPage() {
                 hover:text-white
               "
             >
-              <ArrowLeft
-                aria-hidden="true"
-                className="h-4 w-4"
-              />
-
+              <ArrowLeft aria-hidden="true" className="h-4 w-4" />
               YourForce Labs
             </Link>
 
@@ -186,25 +166,10 @@ export default function AgenticGuidedShoppingLabPage() {
                     text-blue-200
                   "
                 >
-                  <FlaskConical
-                    aria-hidden="true"
-                    className="h-4 w-4"
-                  />
-
-                  Lab{" "}
-                  {
-                    agenticGuidedShopping
-                      .lab
-                      .number
-                  }
-
+                  <FlaskConical aria-hidden="true" className="h-4 w-4" />
+                  Lab {agenticGuidedShopping.lab.number}
                   {" • "}
-
-                  {
-                    agenticGuidedShopping
-                      .lab
-                      .eyebrow
-                  }
+                  {agenticGuidedShopping.lab.eyebrow}
                 </div>
 
                 <h1
@@ -219,11 +184,7 @@ export default function AgenticGuidedShoppingLabPage() {
                     lg:text-6xl
                   "
                 >
-                  {
-                    agenticGuidedShopping
-                      .lab
-                      .title
-                  }
+                  {agenticGuidedShopping.lab.title}
                 </h1>
 
                 <p
@@ -235,11 +196,7 @@ export default function AgenticGuidedShoppingLabPage() {
                     text-slate-300
                   "
                 >
-                  {
-                    agenticGuidedShopping
-                      .lab
-                      .description
-                  }
+                  {agenticGuidedShopping.lab.description}
                 </p>
               </div>
 
@@ -262,47 +219,39 @@ export default function AgenticGuidedShoppingLabPage() {
                     text-blue-300
                   "
                 >
-                  Guided Shopping Features
+                  Prototype Capabilities
                 </p>
 
                 <div className="mt-4 space-y-3">
                   {[
-                    "Natural-language intent",
-                    "Product recommendations",
-                    "Contextual refinement",
-                    "Inventory-aware fulfilment",
-                  ].map(
-                    (
-                      item,
-                    ) => (
-                      <div
-                        key={
-                          item
-                        }
-                        className="
+                    "Visible request signals",
+                    "Deterministic catalog matching",
+                    "Match explanations",
+                    "Simulated pickup context",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="
                           flex
                           items-center
                           gap-3
                           text-sm
                           text-slate-300
                         "
-                      >
-                        <CheckCircle2
-                          aria-hidden="true"
-                          className="
+                    >
+                      <CheckCircle2
+                        aria-hidden="true"
+                        className="
                             h-4
                             w-4
                             shrink-0
                             text-cyan-400
                           "
-                        />
+                      />
 
-                        {
-                          item
-                        }
-                      </div>
-                    ),
-                  )}
+                      {item}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -354,7 +303,7 @@ export default function AgenticGuidedShoppingLabPage() {
                     text-blue-600
                   "
                 >
-                  Interactive Experience
+                  Interactive Prototype
                 </p>
 
                 <h2
@@ -367,7 +316,7 @@ export default function AgenticGuidedShoppingLabPage() {
                     sm:text-3xl
                   "
                 >
-                  Start a guided shopping conversation
+                  Try the product-finding flow
                 </h2>
               </div>
 
@@ -379,11 +328,8 @@ export default function AgenticGuidedShoppingLabPage() {
                   text-slate-500
                 "
               >
-                Describe what you need,
-                set a budget, refine your
-                request, and check
-                simulated store
-                availability.
+                Describe what you need, inspect the detected signals and
+                matching rules, then check simulated availability.
               </p>
             </div>
 
@@ -423,10 +369,7 @@ export default function AgenticGuidedShoppingLabPage() {
                   text-blue-600
                 "
               >
-                <Bot
-                  aria-hidden="true"
-                  className="h-6 w-6"
-                />
+                <ListFilter aria-hidden="true" className="h-6 w-6" />
               </div>
 
               <h2
@@ -439,11 +382,7 @@ export default function AgenticGuidedShoppingLabPage() {
                   sm:text-4xl
                 "
               >
-                {
-                  agenticGuidedShopping
-                    .architecture
-                    .heading
-                }
+                {agenticGuidedShopping.architecture.heading}
               </h2>
 
               <p
@@ -454,11 +393,7 @@ export default function AgenticGuidedShoppingLabPage() {
                   text-slate-600
                 "
               >
-                {
-                  agenticGuidedShopping
-                    .architecture
-                    .description
-                }
+                {agenticGuidedShopping.architecture.description}
               </p>
             </div>
 
@@ -469,67 +404,51 @@ export default function AgenticGuidedShoppingLabPage() {
                 sm:grid-cols-2
               "
             >
-              {agenticGuidedShopping
-                .architecture
-                .items
-                .map(
-                  (
-                    item,
-                    index,
-                  ) => (
-                    <article
-                      key={
-                        item.title
-                      }
-                      className="
+              {agenticGuidedShopping.architecture.items.map((item, index) => (
+                <article
+                  key={item.title}
+                  className="
                         rounded-3xl
                         border
                         border-slate-200
                         bg-slate-50
                         p-7
                       "
-                    >
-                      <p
-                        className="
+                >
+                  <p
+                    className="
                           text-xs
                           font-black
                           tracking-[0.18em]
                           text-blue-600
                         "
-                      >
-                        0
-                        {index +
-                          1}
-                      </p>
+                  >
+                    0{index + 1}
+                  </p>
 
-                      <h3
-                        className="
+                  <h3
+                    className="
                           mt-4
                           text-xl
                           font-bold
                           text-slate-950
                         "
-                      >
-                        {
-                          item.title
-                        }
-                      </h3>
+                  >
+                    {item.title}
+                  </h3>
 
-                      <p
-                        className="
+                  <p
+                    className="
                           mt-3
                           text-sm
                           leading-7
                           text-slate-600
                         "
-                      >
-                        {
-                          item.description
-                        }
-                      </p>
-                    </article>
-                  ),
-                )}
+                  >
+                    {item.description}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </Container>
@@ -610,12 +529,8 @@ export default function AgenticGuidedShoppingLabPage() {
                   text-slate-300
                 "
               >
-                YourForce.io helps
-                businesses connect
-                modern commerce
-                platforms, search,
-                inventory, fulfilment,
-                and emerging agentic
+                YourForce.io helps businesses connect modern commerce platforms,
+                search, inventory, fulfilment, and responsible decision-support
                 experiences.
               </p>
 
@@ -639,11 +554,7 @@ export default function AgenticGuidedShoppingLabPage() {
                 "
               >
                 Discuss Your Project
-
-                <ArrowRight
-                  aria-hidden="true"
-                  className="h-4 w-4"
-                />
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
               </Link>
             </div>
           </div>

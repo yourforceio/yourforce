@@ -2,107 +2,80 @@ import type { AgenticGuidedShoppingData } from "@/types/agentic-guided-shopping"
 
 export const agenticGuidedShopping: AgenticGuidedShoppingData = {
   metadata: {
-    title:
-      "Agentic Guided Shopping | YourForce Engineering Lab",
+    title: "Conversational Product Finder | YourForce Engineering Lab",
 
     description:
-      "Explore an interactive guided shopping prototype from YourForce.io demonstrating conversational product discovery, intent understanding, recommendations, and inventory-aware fulfilment.",
+      "Explore a transparent, rule-based product finding prototype from YourForce.io demonstrating request interpretation, catalog matching, and simulated inventory-aware fulfilment.",
   },
 
   lab: {
-    number:
-      "04",
+    number: "04",
 
-    eyebrow:
-      "Conversational Commerce",
+    eyebrow: "Conversational Commerce",
 
-    title:
-      "Agentic Guided Shopping",
+    title: "Conversational Product Finder",
 
     description:
-      "An interactive conversational commerce experience demonstrating customer intent, product recommendations, contextual refinement, inventory awareness, and guided fulfilment.",
+      "A transparent commerce prototype that turns a shopper request into visible catalog signals, rule-based product matches, and simulated pickup options.",
   },
 
   assistant: {
-    name:
-      "NORTH / FORM Shopping Assistant",
+    name: "NORTH / FORM Product Guide",
 
     introduction:
-      "Tell me what you're looking for. I can help narrow products by style, use case, attributes, budget, and store availability.",
+      "Describe what you need and this prototype will show the filters it detected, the rules it applied, and the products that matched.",
 
-    placeholder:
-      "Ask for a product, style, budget, or pickup option...",
+    placeholder: "Describe a product, use case, budget, or pickup need...",
 
     disclaimer:
-      "Simulated agentic experience using local catalog logic. No live AI model, customer data, or external commerce service is connected.",
+      "Rule-based prototype using a simulated catalog and inventory. No live AI model, customer data, or external commerce service is connected.",
 
     prompts: [
       {
-        label:
-          "Travel jacket under $150",
+        label: "Travel jacket under $150",
 
         message:
           "I'm looking for a lightweight jacket under $150 for travelling.",
       },
 
       {
-        label:
-          "Everyday style under $100",
+        label: "Everyday style under $100",
 
-        message:
-          "Show me something versatile for everyday use under $100.",
+        message: "Show me something versatile for everyday use under $100.",
       },
 
       {
-        label:
-          "Travel accessories",
+        label: "Travel accessories",
 
-        message:
-          "I need a practical accessory for travelling.",
+        message: "I need a practical accessory for travelling.",
       },
 
       {
-        label:
-          "Available near me",
+        label: "Available near me",
 
-        message:
-          "Which recommended products are available for pickup near me?",
+        message: "Which recommended products are available for pickup near me?",
       },
     ],
   },
 
   products: [
     {
-      id:
-        "agent-001",
+      id: "agent-001",
 
-      slug:
-        "commuter-overshirt",
+      slug: "commuter-overshirt",
 
-      name:
-        "Commuter Overshirt",
+      name: "Commuter Overshirt",
 
-      category:
-        "Men",
+      category: "Men",
 
-      price:
-        128,
+      price: 128,
 
       description:
         "A structured lightweight layer designed for travel, commuting, and everyday movement.",
 
-      attributes: [
-        "Lightweight",
-        "Layering",
-        "Cotton",
-        "Navy",
-      ],
+      attributes: ["Lightweight", "Layering", "Cotton", "Navy"],
 
-      useCases: [
-        "Travel",
-        "Everyday",
-        "Commuting",
-      ],
+      useCases: ["Travel", "Everyday", "Commuting"],
 
       keywords: [
         "jacket",
@@ -115,59 +88,39 @@ export const agenticGuidedShopping: AgenticGuidedShoppingData = {
       ],
 
       visual: {
-        from:
-          "#dbeafe",
+        from: "#dbeafe",
 
-        to:
-          "#93c5fd",
+        to: "#93c5fd",
 
-        accent:
-          "#1d4ed8",
+        accent: "#1d4ed8",
       },
 
       pickup: {
-        store:
-          "SoHo",
+        store: "SoHo",
 
-        distance:
-          1.2,
+        distance: 1.2,
 
-        quantity:
-          8,
+        quantity: 8,
       },
     },
 
     {
-      id:
-        "agent-002",
+      id: "agent-002",
 
-      slug:
-        "essential-knit",
+      slug: "essential-knit",
 
-      name:
-        "Essential Knit",
+      name: "Essential Knit",
 
-      category:
-        "Women",
+      category: "Women",
 
-      price:
-        96,
+      price: 96,
 
       description:
         "A lightweight everyday knit designed for versatile layering and comfortable daily wear.",
 
-      attributes: [
-        "Lightweight",
-        "Soft",
-        "Cotton Blend",
-        "Cream",
-      ],
+      attributes: ["Lightweight", "Soft", "Cotton Blend", "Cream"],
 
-      useCases: [
-        "Everyday",
-        "Layering",
-        "Travel",
-      ],
+      useCases: ["Everyday", "Layering", "Travel"],
 
       keywords: [
         "knit",
@@ -179,59 +132,39 @@ export const agenticGuidedShopping: AgenticGuidedShoppingData = {
       ],
 
       visual: {
-        from:
-          "#fce7f3",
+        from: "#fce7f3",
 
-        to:
-          "#f9a8d4",
+        to: "#f9a8d4",
 
-        accent:
-          "#be185d",
+        accent: "#be185d",
       },
 
       pickup: {
-        store:
-          "Fifth Avenue",
+        store: "Fifth Avenue",
 
-        distance:
-          2.8,
+        distance: 2.8,
 
-        quantity:
-          7,
+        quantity: 7,
       },
     },
 
     {
-      id:
-        "agent-003",
+      id: "agent-003",
 
-      slug:
-        "studio-jacket",
+      slug: "studio-jacket",
 
-      name:
-        "Studio Jacket",
+      name: "Studio Jacket",
 
-      category:
-        "Women",
+      category: "Women",
 
-      price:
-        168,
+      price: 168,
 
       description:
         "A lightweight statement jacket with modern proportions and premium technical construction.",
 
-      attributes: [
-        "Lightweight",
-        "Premium",
-        "Technical Cotton",
-        "Sand",
-      ],
+      attributes: ["Lightweight", "Premium", "Technical Cotton", "Sand"],
 
-      useCases: [
-        "Everyday",
-        "Travel",
-        "Smart Casual",
-      ],
+      useCases: ["Everyday", "Travel", "Smart Casual"],
 
       keywords: [
         "jacket",
@@ -243,259 +176,167 @@ export const agenticGuidedShopping: AgenticGuidedShoppingData = {
       ],
 
       visual: {
-        from:
-          "#ede9fe",
+        from: "#ede9fe",
 
-        to:
-          "#c4b5fd",
+        to: "#c4b5fd",
 
-        accent:
-          "#6d28d9",
+        accent: "#6d28d9",
       },
 
       pickup: {
-        store:
-          "Williamsburg",
+        store: "Williamsburg",
 
-        distance:
-          4.6,
+        distance: 4.6,
 
-        quantity:
-          6,
+        quantity: 6,
       },
     },
 
     {
-      id:
-        "agent-004",
+      id: "agent-004",
 
-      slug:
-        "everyday-tote",
+      slug: "everyday-tote",
 
-      name:
-        "Everyday Tote",
+      name: "Everyday Tote",
 
-      category:
-        "Accessories",
+      category: "Accessories",
 
-      price:
-        74,
+      price: 74,
 
       description:
         "A spacious canvas tote designed for everyday essentials, commuting, and short trips.",
 
-      attributes: [
-        "Canvas",
-        "Spacious",
-        "Natural",
-        "Lightweight",
-      ],
+      attributes: ["Canvas", "Spacious", "Natural", "Lightweight"],
 
-      useCases: [
-        "Travel",
-        "Everyday",
-        "Commuting",
-      ],
+      useCases: ["Travel", "Everyday", "Commuting"],
 
-      keywords: [
-        "bag",
-        "tote",
-        "accessory",
-        "travel",
-        "everyday",
-        "canvas",
-      ],
+      keywords: ["bag", "tote", "accessory", "travel", "everyday", "canvas"],
 
       visual: {
-        from:
-          "#fef3c7",
+        from: "#fef3c7",
 
-        to:
-          "#fcd34d",
+        to: "#fcd34d",
 
-        accent:
-          "#a16207",
+        accent: "#a16207",
       },
 
       pickup: {
-        store:
-          "SoHo",
+        store: "SoHo",
 
-        distance:
-          1.2,
+        distance: 1.2,
 
-        quantity:
-          5,
+        quantity: 5,
       },
     },
 
     {
-      id:
-        "agent-005",
+      id: "agent-005",
 
-      slug:
-        "travel-cap",
+      slug: "travel-cap",
 
-      name:
-        "Travel Cap",
+      name: "Travel Cap",
 
-      category:
-        "Accessories",
+      category: "Accessories",
 
-      price:
-        42,
+      price: 42,
 
       description:
         "A lightweight everyday cap designed for travel, outdoor use, and uncomplicated styling.",
 
-      attributes: [
-        "Lightweight",
-        "Cotton",
-        "Olive",
-        "Packable",
-      ],
+      attributes: ["Lightweight", "Cotton", "Olive", "Packable"],
 
-      useCases: [
-        "Travel",
-        "Everyday",
-        "Outdoor",
-      ],
+      useCases: ["Travel", "Everyday", "Outdoor"],
 
-      keywords: [
-        "cap",
-        "hat",
-        "travel",
-        "accessory",
-        "lightweight",
-        "outdoor",
-      ],
+      keywords: ["cap", "hat", "travel", "accessory", "lightweight", "outdoor"],
 
       visual: {
-        from:
-          "#ccfbf1",
+        from: "#ccfbf1",
 
-        to:
-          "#5eead4",
+        to: "#5eead4",
 
-        accent:
-          "#0f766e",
+        accent: "#0f766e",
       },
 
       pickup: {
-        store:
-          "Fifth Avenue",
+        store: "Fifth Avenue",
 
-        distance:
-          2.8,
+        distance: 2.8,
 
-        quantity:
-          3,
+        quantity: 3,
       },
     },
 
     {
-      id:
-        "agent-006",
+      id: "agent-006",
 
-      slug:
-        "minimal-crossbody",
+      slug: "minimal-crossbody",
 
-      name:
-        "Minimal Crossbody",
+      name: "Minimal Crossbody",
 
-      category:
-        "Accessories",
+      category: "Accessories",
 
-      price:
-        88,
+      price: 88,
 
       description:
         "A compact crossbody designed to keep travel and everyday essentials secure and accessible.",
 
-      attributes: [
-        "Compact",
-        "Recycled Nylon",
-        "Black",
-        "Hands-Free",
-      ],
+      attributes: ["Compact", "Recycled Nylon", "Black", "Hands-Free"],
 
-      useCases: [
-        "Travel",
-        "Everyday",
-        "Commuting",
-      ],
+      useCases: ["Travel", "Everyday", "Commuting"],
 
-      keywords: [
-        "bag",
-        "crossbody",
-        "travel",
-        "accessory",
-        "compact",
-        "black",
-      ],
+      keywords: ["bag", "crossbody", "travel", "accessory", "compact", "black"],
 
       visual: {
-        from:
-          "#e5e7eb",
+        from: "#e5e7eb",
 
-        to:
-          "#9ca3af",
+        to: "#9ca3af",
 
-        accent:
-          "#111827",
+        accent: "#111827",
       },
 
       pickup: {
-        store:
-          "Jersey City",
+        store: "Jersey City",
 
-        distance:
-          6.9,
+        distance: 6.9,
 
-        quantity:
-          4,
+        quantity: 4,
       },
     },
   ],
 
   architecture: {
-    heading:
-      "What this lab demonstrates",
+    heading: "How the prototype works",
 
     description:
-      "The prototype uses deterministic local logic and simulated commerce data to demonstrate how conversational shopping could orchestrate catalog discovery, recommendations, inventory, and fulfilment services.",
+      "The experience makes its deterministic matching logic visible. It demonstrates the commerce workflow honestly today while defining a practical path to richer search or AI services later.",
 
     items: [
       {
-        title:
-          "Intent Understanding",
+        title: "Request Interpretation",
 
         description:
-          "Natural-language requests are interpreted into product attributes, categories, use cases, and budget constraints.",
+          "Shopper text is parsed locally into visible terms, use cases, categories, and budget constraints.",
       },
 
       {
-        title:
-          "Guided Discovery",
+        title: "Transparent Matching",
 
         description:
-          "Catalog signals are evaluated to recommend products relevant to the shopper's expressed needs.",
+          "Catalog fields are scored with deterministic rules, and each result shows the signals that contributed to its match.",
       },
 
       {
-        title:
-          "Commerce Context",
+        title: "Commerce Context",
 
         description:
           "Recommendations can incorporate pricing, product attributes, store availability, and fulfilment context.",
       },
 
       {
-        title:
-          "Agent-Ready Architecture",
+        title: "Integration Path",
 
         description:
-          "The experience can later be connected to a real AI agent, commerce APIs, search services, inventory systems, and Salesforce Agentforce.",
+          "The same interface can later connect to commerce APIs, search, inventory, or a clearly identified AI service when those integrations are real.",
       },
     ],
   },
