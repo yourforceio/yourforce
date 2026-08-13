@@ -5,7 +5,6 @@ import StructuredData from "@/components/seo/StructuredData";
 import About from "@/components/sections/About";
 import CTA from "@/components/sections/CTA";
 import Hero from "@/components/sections/Hero";
-import Highlights from "@/components/sections/Highlights";
 import Portfolio from "@/components/sections/Portfolio";
 import Process from "@/components/sections/Process";
 import Services from "@/components/sections/Services";
@@ -65,8 +64,6 @@ export default function Home() {
         <Portfolio />
 
         <Services />
-
-        <Highlights />
 
         <About />
 

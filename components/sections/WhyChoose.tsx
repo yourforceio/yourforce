@@ -38,7 +38,7 @@ export default function WhyChoose() {
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
             {whyChoose.items.map((item, index) => {
               const Icon = item.icon;
               const isFeatured = index === 1;

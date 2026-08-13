@@ -1,4 +1,4 @@
-import { Handshake, Layers3, RefreshCw } from "lucide-react";
+import { BadgeDollarSign, Globe2, Handshake, Layers3, RefreshCw } from "lucide-react";
 
 import type { WhyChoose } from "@/types/whyChoose";
 
@@ -46,8 +46,20 @@ export const whyChoose: WhyChoose = {
       icon: Handshake,
       highlights: [
         "Visible technical decisions",
-        "Time-zone aligned collaboration",
+        "Direct access to senior engineering—no hand-offs",
         "Support beyond launch",
+      ],
+    },
+    {
+      eyebrow: "Global Delivery",
+      title: "Built for Distributed, Global Teams",
+      description:
+        "Senior engineering delivered through a flexible, transparent model—with working-hour overlap across North America, Europe, the Middle East, and Asia, structured around delivery priorities and responsible cost.",
+      icon: Globe2,
+      highlights: [
+        "International markets & multi-platform experience",
+        "Time-zone aligned collaboration",
+        "Practical, cost-conscious engagement",
       ],
     },
   ],
