@@ -12,68 +12,44 @@ type PortfolioCardProps = {
 };
 
 type ProjectTheme = {
-  card: string;
   imageBackground: string;
   imageGlow: string;
-  category: string;
-  eyebrow: string;
-  title: string;
-  chip: string;
-  primaryLink: string;
-  focusRing: string;
 };
 
+// Only the decorative image-frame gradient varies per project.
+// Badge, tags, links, and borders stay consistent brand blue everywhere,
+// so per-card color variety never bleeds into text or interactive elements.
 const projectThemes: Record<ProjectVisualTheme, ProjectTheme> = {
   indigo: {
-    card: "border-indigo-200 hover:border-indigo-300 hover:shadow-indigo-950/10",
     imageBackground:
       "bg-gradient-to-br from-indigo-950 via-indigo-800 to-cyan-500",
     imageGlow: "bg-cyan-300/30",
-    category: "border-indigo-100/80 bg-indigo-50/95 text-indigo-800",
-    eyebrow: "text-indigo-600",
-    title: "hover:text-indigo-700 focus-visible:ring-indigo-500",
-    chip: "border-indigo-200 bg-indigo-50 text-indigo-700 group-hover:bg-indigo-100",
-    primaryLink:
-      "text-indigo-600 hover:text-indigo-700 focus-visible:ring-indigo-500",
-    focusRing: "focus-visible:ring-indigo-500",
   },
   gold: {
-    card: "border-amber-200 hover:border-amber-300 hover:shadow-amber-950/10",
     imageBackground:
       "bg-gradient-to-br from-slate-950 via-blue-900 to-amber-400",
     imageGlow: "bg-amber-200/35",
-    category: "border-amber-100/80 bg-amber-50/95 text-amber-900",
-    eyebrow: "text-amber-700",
-    title: "hover:text-amber-700 focus-visible:ring-amber-500",
-    chip: "border-amber-200 bg-amber-50 text-amber-800 group-hover:bg-amber-100",
-    primaryLink:
-      "text-amber-700 hover:text-amber-800 focus-visible:ring-amber-500",
-    focusRing: "focus-visible:ring-amber-500",
   },
   charcoal: {
-    card: "border-zinc-300 hover:border-purple-300 hover:shadow-purple-950/10",
     imageBackground:
       "bg-gradient-to-br from-zinc-950 via-slate-900 to-purple-950",
     imageGlow: "bg-purple-300/20",
-    category: "border-zinc-200/80 bg-zinc-50/95 text-zinc-900",
-    eyebrow: "text-purple-700",
-    title: "hover:text-purple-700 focus-visible:ring-purple-500",
-    chip: "border-purple-200 bg-purple-50 text-purple-800 group-hover:bg-purple-100",
-    primaryLink:
-      "text-purple-700 hover:text-purple-800 focus-visible:ring-purple-500",
-    focusRing: "focus-visible:ring-purple-500",
   },
   crimson: {
-    card: "border-red-200 hover:border-red-300 hover:shadow-red-950/10",
     imageBackground: "bg-gradient-to-br from-red-950 via-red-800 to-orange-200",
     imageGlow: "bg-orange-100/35",
-    category: "border-red-100/80 bg-red-50/95 text-red-900",
-    eyebrow: "text-red-700",
-    title: "hover:text-red-700 focus-visible:ring-red-500",
-    chip: "border-red-200 bg-red-50 text-red-800 group-hover:bg-red-100",
-    primaryLink: "text-red-700 hover:text-red-800 focus-visible:ring-red-500",
-    focusRing: "focus-visible:ring-red-500",
   },
+};
+
+// Shared brand-blue treatment for every card, regardless of image theme.
+const cardStyle = {
+  card: "border-slate-200 hover:border-blue-300 hover:shadow-blue-950/10",
+  category: "border-blue-100/80 bg-blue-50/95 text-blue-800",
+  eyebrow: "text-blue-600",
+  title: "hover:text-blue-700 focus-visible:ring-blue-500",
+  chip: "border-blue-200 bg-blue-50 text-blue-700 group-hover:bg-blue-100",
+  primaryLink: "text-blue-600 hover:text-blue-700 focus-visible:ring-blue-500",
+  focusRing: "focus-visible:ring-blue-500",
 };
 
 export default function PortfolioCard({
@@ -115,7 +91,7 @@ export default function PortfolioCard({
         duration-300
         hover:-translate-y-1
         hover:shadow-2xl
-        ${theme.card}
+        ${cardStyle.card}
       `}
     >
       {/* Project image */}
@@ -127,7 +103,7 @@ export default function PortfolioCard({
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-inset
-          ${theme.focusRing}
+          ${cardStyle.focusRing}
         `}
       >
         <div
@@ -175,7 +151,7 @@ export default function PortfolioCard({
               leading-4
               shadow-sm
               md:backdrop-blur-md
-              ${theme.category}
+              ${cardStyle.category}
             `}
           >
             {project.category}
@@ -187,7 +163,7 @@ export default function PortfolioCard({
       <div className="flex flex-1 flex-col p-7 sm:p-8">
         <div>
           <p
-            className={`text-xs font-bold uppercase tracking-[0.16em] ${theme.eyebrow}`}
+            className={`text-xs font-bold uppercase tracking-[0.16em] ${cardStyle.eyebrow}`}
           >
             Commerce Case Study
           </p>
@@ -199,7 +175,7 @@ export default function PortfolioCard({
                 transition-colors
                 focus-visible:outline-none
                 focus-visible:ring-2
-                ${theme.title}
+                ${cardStyle.title}
               `}
             >
               {project.title}
@@ -224,7 +200,7 @@ export default function PortfolioCard({
                   font-semibold
                   transition-colors
                   duration-200
-                  ${theme.chip}
+                  ${cardStyle.chip}
                 `}
               >
                 {technology.name}
@@ -245,7 +221,7 @@ export default function PortfolioCard({
                   font-semibold
                   transition-colors
                   duration-200
-                  ${theme.chip}
+                  ${cardStyle.chip}
                 `}
               >
                 +{remainingTechnologies} more
@@ -266,7 +242,7 @@ export default function PortfolioCard({
               transition-colors
               focus-visible:outline-none
               focus-visible:ring-2
-              ${theme.primaryLink}
+              ${cardStyle.primaryLink}
             `}
           >
             Explore Case Study
