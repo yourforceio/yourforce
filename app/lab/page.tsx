@@ -16,6 +16,41 @@ import Container from "@/components/layout/Container";
 
 import { lab } from "@/data/lab";
 import { site } from "@/data/site";
+import type { LabCategory } from "@/types/lab";
+
+type LabPlatform = "all" | LabCategory;
+
+type LabPageProps = {
+  searchParams?:
+    | Promise<{
+        platform?: string;
+      }>
+    | {
+        platform?: string;
+      };
+};
+
+const platformTabs: Array<{
+  label: string;
+  value: LabPlatform;
+}> = [
+  {
+    label: "All Experiences",
+    value: "all",
+  },
+  {
+    label: "Shopify",
+    value: "shopify",
+  },
+  {
+    label: "Salesforce Commerce Cloud",
+    value: "sfcc",
+  },
+  {
+    label: "AI & Commerce",
+    value: "ai-commerce",
+  },
+];
 
 export const metadata: Metadata = {
   title: lab.metadata.title,
@@ -50,7 +85,33 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LabPage() {
+export default async function LabPage({
+  searchParams,
+}: LabPageProps) {
+  const resolvedSearchParams = await searchParams;
+
+  const requestedPlatform =
+    resolvedSearchParams?.platform;
+
+  const activePlatform = platformTabs.some(
+    (tab) => tab.value === requestedPlatform,
+  )
+    ? (requestedPlatform as LabPlatform)
+    : "all";
+
+  const visibleItems = lab.items
+    .filter(
+      (item) =>
+        activePlatform === "all" ||
+        item.categories.includes(activePlatform),
+    )
+    .sort((first, second) => {
+      const firstRank = first.featuredRank ?? 999;
+      const secondRank = second.featuredRank ?? 999;
+
+      return firstRank - secondRank;
+    });
+
   return (
     <main>
       {/* Hero */}
@@ -298,15 +359,105 @@ export default function LabPage() {
               </p>
             </div>
 
+            {/* Platform filters */}
+            <nav
+              aria-label="Filter Lab experiences by platform"
+              className="
+                mt-10
+                flex
+                flex-wrap
+                gap-2
+                rounded-2xl
+                border
+                border-slate-200
+                bg-white
+                p-2
+                shadow-sm
+              "
+            >
+              {platformTabs.map((tab) => {
+                const active = tab.value === activePlatform;
+
+                const href =
+                  tab.value === "all"
+                    ? "/lab"
+                    : `/lab?platform=${tab.value}`;
+
+                return (
+                  <Link
+                    key={tab.value}
+                    href={href}
+                    aria-current={active ? "page" : undefined}
+                    scroll={false}
+                    className={
+                      active
+                        ? `
+                            inline-flex
+                            items-center
+                            justify-center
+                            rounded-xl
+                            bg-slate-950
+                            px-4
+                            py-2.5
+                            text-sm
+                            font-bold
+                            text-white
+                            shadow-sm
+                          `
+                        : `
+                            inline-flex
+                            items-center
+                            justify-center
+                            rounded-xl
+                            px-4
+                            py-2.5
+                            text-sm
+                            font-semibold
+                            text-slate-600
+                            transition-colors
+                            hover:bg-slate-100
+                            hover:text-slate-950
+                          `
+                    }
+                  >
+                    {tab.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
             <div
               className="
-                mt-12
+                mt-8
+                flex
+                items-center
+                justify-between
+                gap-4
+              "
+            >
+              <p className="text-sm font-semibold text-slate-600">
+                {visibleItems.length}{" "}
+                {visibleItems.length === 1
+                  ? "experience"
+                  : "experiences"}
+              </p>
+
+              {activePlatform === "all" && (
+                <p className="text-sm text-slate-500">
+                  Featured experiences appear first.
+                </p>
+              )}
+            </div>
+
+            <div
+              className="
+                mt-6
                 grid
                 gap-7
                 md:grid-cols-2
               "
             >
-              {lab.items.map((item) => {
+              {visibleItems.map((item) => {
                 const Icon = item.icon;
 
                 const available =
@@ -725,6 +876,16 @@ export default function LabPage() {
                         {available ? (
                           <Link
                             href={item.href}
+                            target={
+                              item.external
+                                ? "_blank"
+                                : undefined
+                            }
+                            rel={
+                              item.external
+                                ? "noopener noreferrer"
+                                : undefined
+                            }
                             className="
                               inline-flex
                               items-center
@@ -736,7 +897,7 @@ export default function LabPage() {
                               hover:text-blue-500
                             "
                           >
-                            Enter Lab
+                            {item.ctaLabel ?? "Enter Lab"}
 
                             <ArrowRight
                               aria-hidden="true"

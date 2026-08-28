@@ -4,12 +4,19 @@ export type LabStatus =
   | "available"
   | "coming-soon";
 
+export type LabCategory =
+  | "shopify"
+  | "sfcc"
+  | "ai-commerce";
+
 export type LabItem = {
   slug: string;
   number: string;
   eyebrow: string;
   title: string;
   description: string;
+
+  categories: LabCategory[];
 
   technologies: string[];
   capabilities: string[];
@@ -23,9 +30,12 @@ export type LabItem = {
   added: string;
 
   href: string;
+  external?: boolean;
+  ctaLabel?: string;
   status: LabStatus;
   icon: LucideIcon;
   featured?: boolean;
+  featuredRank?: number;
 };
 
 export type LabData = {

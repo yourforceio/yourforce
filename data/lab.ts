@@ -1,8 +1,10 @@
 import {
   MapPinned,
   Search,
+  Shirt,
   ShoppingBag,
   SlidersHorizontal,
+  Store,
 } from "lucide-react";
 
 import type { LabData } from "@/types/lab";
@@ -58,6 +60,8 @@ export const lab: LabData = {
       description:
         "A modern commerce journey demonstrating product discovery, product detail, cart interactions, responsive UX, and headless storefront architecture.",
 
+      categories: ["sfcc"],
+
       technologies: ["Next.js", "React", "TypeScript"],
 
       capabilities: [
@@ -83,7 +87,6 @@ export const lab: LabData = {
 
       icon: ShoppingBag,
 
-      featured: true,
     },
 
     {
@@ -97,6 +100,8 @@ export const lab: LabData = {
 
       description:
         "An interactive product discovery experience exploring instant search, filtering, sorting, recommendations, and responsive commerce UX patterns.",
+
+      categories: ["sfcc"],
 
       technologies: ["React", "Search APIs", "TypeScript"],
 
@@ -136,6 +141,8 @@ export const lab: LabData = {
       description:
         "A store pickup and fulfilment experience demonstrating location discovery, inventory availability, preferred stores, and fulfilment selection.",
 
+      categories: ["sfcc"],
+
       technologies: ["Next.js", "Commerce APIs", "React"],
 
       capabilities: [
@@ -174,6 +181,8 @@ export const lab: LabData = {
       description:
         "A transparent, rule-based commerce prototype that turns shopper requests into catalog matches, inventory context, and guided fulfilment.",
 
+      categories: ["ai-commerce"],
+
       technologies: ["Rule-Based Logic", "Commerce Data", "React"],
 
       capabilities: [
@@ -198,6 +207,102 @@ export const lab: LabData = {
       status: "available",
 
       icon: SlidersHorizontal,
+    },
+
+    {
+      slug: "virtual-try-on",
+
+      number: "05",
+
+      eyebrow: "AI Commerce Experience",
+
+      title: "Virtual Try-On",
+
+      description:
+        "An end-customer apparel experience that lets shoppers choose a product, upload a selfie, and preview the garment composited onto their photo.",
+
+      categories: ["ai-commerce"],
+
+      technologies: ["Visual AI", "Image Processing", "Commerce UX"],
+
+      capabilities: [
+        "Product selection",
+        "Selfie upload",
+        "Garment composition",
+        "Generated try-on preview",
+      ],
+
+      preview: {
+        src: "/images/lab/virtual-try-on-preview.png",
+
+        alt: "Preview of the YourForce Virtual Try-On experience",
+      },
+
+      duration: "~2 min live demo",
+
+      added: "Added Aug 2026",
+
+      href: "https://tryfit.yourforce.io/demo",
+
+      external: true,
+
+      ctaLabel: "Experience Demo",
+
+      status: "available",
+
+      icon: Shirt,
+
+      featured: true,
+
+      featuredRank: 2,
+    },
+
+    {
+      slug: "shopify-commerce-tools",
+
+      number: "06",
+
+      eyebrow: "Shopify Commerce",
+
+      title: "Shopify Commerce Experience Lab",
+
+      description:
+        "A production-connected Shopify demonstration covering variant-level policies, back-in-stock demand capture, and an enhanced cart drawer, with low-stock automation in progress.",
+
+      categories: ["shopify"],
+
+      technologies: ["Shopify", "React Router", "Theme Extensions"],
+
+      capabilities: [
+        "Variant Final Sale",
+        "Rain Check notifications",
+        "Enhanced cart drawer",
+        "Low-stock automation (next)",
+      ],
+
+      preview: {
+        src: "/images/lab/shopify-commerce-tools-preview.png",
+
+        alt: "Preview of the YourForce Shopify Commerce Experience Lab",
+      },
+
+      duration: "~5 min guided demo",
+
+      added: "Added Aug 2026",
+
+      href: "https://yourforce-plus-lab.myshopify.com/products/the-complete-snowboard",
+
+      external: true,
+
+      ctaLabel: "Open Live Store",
+
+      status: "available",
+
+      icon: Store,
+
+      featured: true,
+
+      featuredRank: 1,
     },
   ],
 
