@@ -47,10 +47,35 @@ const platformTabs: Array<{
     value: "sfcc",
   },
   {
-    label: "AI & Commerce",
+    label: "AI Experiences",
     value: "ai-commerce",
   },
 ];
+
+const platformSectionCopy: Record<
+  LabPlatform,
+  {
+    heading: string;
+    countLabel: string;
+  }
+> = {
+  all: {
+    heading: "Explore our commerce engineering experiences",
+    countLabel: "experience",
+  },
+  shopify: {
+    heading: "Explore our Shopify commerce tools and storefront enhancements",
+    countLabel: "Shopify experience",
+  },
+  sfcc: {
+    heading: "Explore our Salesforce Commerce Cloud engineering work",
+    countLabel: "Salesforce Commerce Cloud experience",
+  },
+  "ai-commerce": {
+    heading: "Explore our AI-powered and conversational commerce work",
+    countLabel: "AI commerce experience",
+  },
+};
 
 export const metadata: Metadata = {
   title: lab.metadata.title,
@@ -103,7 +128,7 @@ export default async function LabPage({
     .filter(
       (item) =>
         activePlatform === "all" ||
-        item.categories.includes(activePlatform),
+        item.categories?.includes(activePlatform) === true,
     )
     .sort((first, second) => {
       const firstRank = first.featuredRank ?? 999;
@@ -111,6 +136,8 @@ export default async function LabPage({
 
       return firstRank - secondRank;
     });
+
+  const sectionCopy = platformSectionCopy[activePlatform];
 
   return (
     <main>
@@ -435,12 +462,17 @@ export default async function LabPage({
                 gap-4
               "
             >
-              <p className="text-sm font-semibold text-slate-600">
-                {visibleItems.length}{" "}
-                {visibleItems.length === 1
-                  ? "experience"
-                  : "experiences"}
-              </p>
+              <div>
+                <h3 className="text-lg font-bold text-slate-950">
+                  {sectionCopy.heading}
+                </h3>
+
+                <p className="mt-1 text-sm font-semibold text-slate-600">
+                  {visibleItems.length}{" "}
+                  {sectionCopy.countLabel}
+                  {visibleItems.length === 1 ? "" : "s"}
+                </p>
+              </div>
 
               {activePlatform === "all" && (
                 <p className="text-sm text-slate-500">
@@ -466,25 +498,16 @@ export default async function LabPage({
                 return (
                   <article
                     key={item.slug}
-                    className="
-                      group
-                      relative
-                      flex
-                      h-full
-                      flex-col
-                      overflow-hidden
-                      rounded-[2rem]
-                      border
-                      border-slate-200
-                      bg-white
-                      shadow-sm
-                      transition-all
-                      duration-300
-                      hover:-translate-y-1
-                      hover:border-blue-200
-                      hover:shadow-xl
-                      hover:shadow-slate-950/5
-                    "
+                    className={`
+                      group relative flex h-full flex-col overflow-hidden
+                      rounded-[2rem] border bg-white transition-all duration-300
+                      hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-950/5
+                      ${
+                        item.highlight
+                          ? "border-blue-300 shadow-lg shadow-blue-950/10 hover:border-blue-400"
+                          : "border-slate-200 shadow-sm hover:border-blue-200"
+                      }
+                    `}
                   >
                     {/* Preview */}
                     <div
@@ -613,7 +636,7 @@ export default async function LabPage({
                             backdrop-blur
                           "
                         >
-                          Interactive Preview
+                          {item.previewLabel ?? "Interactive Preview"}
                         </span>
                       </div>
 
@@ -934,6 +957,59 @@ export default async function LabPage({
                 );
               })}
             </div>
+
+            {activePlatform === "shopify" && (
+              <section
+                aria-labelledby="shopify-roadmap-heading"
+                className="mt-10 rounded-[2rem] border border-blue-200 bg-blue-50/60 p-6 sm:p-8"
+              >
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-600">
+                      Shopify roadmap
+                    </p>
+
+                    <h3
+                      id="shopify-roadmap-heading"
+                      className="mt-2 text-2xl font-bold text-slate-950"
+                    >
+                      Coming next to the Shopify Lab
+                    </h3>
+                  </div>
+
+                  <p className="text-sm text-slate-600">
+                    Planned demonstrations are added as they become ready.
+                  </p>
+                </div>
+
+                <div className="mt-6 grid gap-4 lg:grid-cols-3">
+                  {lab.upcomingShopify.map((feature) => (
+                    <article
+                      key={feature.title}
+                      className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm"
+                    >
+                      <span
+                        className={
+                          feature.statusLabel === "In progress"
+                            ? "inline-flex rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800"
+                            : "inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600"
+                        }
+                      >
+                        {feature.statusLabel}
+                      </span>
+
+                      <h4 className="mt-4 text-lg font-bold text-slate-950">
+                        {feature.title}
+                      </h4>
+
+                      <p className="mt-2 text-sm leading-6 text-slate-600">
+                        {feature.description}
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Roadmap */}
             <div

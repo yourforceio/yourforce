@@ -204,6 +204,8 @@ export const lab: LabData = {
 
       href: "/lab/agentic-guided-shopping",
 
+      previewLabel: "Rule-Based Demo",
+
       status: "available",
 
       icon: SlidersHorizontal,
@@ -247,6 +249,10 @@ export const lab: LabData = {
       external: true,
 
       ctaLabel: "Experience Demo",
+
+      previewLabel: "Live AI Demo",
+
+      highlight: true,
 
       status: "available",
 
@@ -303,6 +309,27 @@ export const lab: LabData = {
       featured: true,
 
       featuredRank: 1,
+    },
+  ],
+
+  upcomingShopify: [
+    {
+      title: "Low-Stock Replenishment Automation",
+      description:
+        "Use Shopify Flow to detect low variant inventory, notify operations, and create a replenishment task.",
+      statusLabel: "In progress",
+    },
+    {
+      title: "AI Shopping Assistant",
+      description:
+        "Guide shoppers through product discovery using conversational recommendations grounded in live catalog data.",
+      statusLabel: "Planned",
+    },
+    {
+      title: "Checkout Rules with Shopify Functions",
+      description:
+        "Demonstrate server-side checkout validation, promotion logic, and configurable commerce rules.",
+      statusLabel: "Planned",
     },
   ],
 

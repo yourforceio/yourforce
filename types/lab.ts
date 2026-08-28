@@ -32,10 +32,18 @@ export type LabItem = {
   href: string;
   external?: boolean;
   ctaLabel?: string;
+  previewLabel?: string;
+  highlight?: boolean;
   status: LabStatus;
   icon: LucideIcon;
   featured?: boolean;
   featuredRank?: number;
+};
+
+export type LabUpcomingItem = {
+  title: string;
+  description: string;
+  statusLabel: "In progress" | "Planned";
 };
 
 export type LabData = {
@@ -64,6 +72,8 @@ export type LabData = {
   };
 
   items: LabItem[];
+
+  upcomingShopify: LabUpcomingItem[];
 
   roadmap: {
     eyebrow: string;
