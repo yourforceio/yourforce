@@ -163,3 +163,59 @@ export const services: Services = {
     },
   ],
 };
+
+export const specializedOperations = {
+  badge: "Specialized Operations Services",
+
+  heading:
+    "Focused Support for Businesses That Keep Moving",
+
+  description:
+    "Alongside our engineering practice, YourForce operates dedicated service desks for US transportation carriers and independent healthcare practices.",
+
+  items: [
+    {
+      eyebrow: "Transportation Operations",
+
+      title: "Trucking Dispatch Services",
+
+      description:
+        "Dedicated dispatch support for owner-operators and small carriers, including load sourcing, rate coordination, route support, and dispatch paperwork.",
+
+      icon: "truck",
+
+      features: [
+        "24/7 dispatch desk",
+        "Load sourcing",
+        "Rate coordination",
+        "Paperwork support",
+      ],
+
+      href: "https://trucking.yourforce.io/",
+
+      ctaLabel: "Explore Dispatch Services",
+    },
+
+    {
+      eyebrow: "Healthcare Operations",
+
+      title: "Medical Billing & Coding",
+
+      description:
+        "Claims submission, coding support, denial follow-up, AR management, and privacy-conscious billing workflows for solo practitioners and small clinics.",
+
+      icon: "billing",
+
+      features: [
+        "Claims and coding",
+        "Denial follow-up",
+        "AR management",
+        "Practice reporting",
+      ],
+
+      href: "https://billing.yourforce.io/",
+
+      ctaLabel: "Explore Billing Services",
+    },
+  ],
+} as const;

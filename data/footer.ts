@@ -72,6 +72,16 @@ export const footer: FooterData = {
           label: "Architecture & Consulting",
           href: "/#services",
         },
+        {
+          label: "Trucking Dispatch",
+          href: "https://trucking.yourforce.io/",
+          external: true,
+        },
+        {
+          label: "Medical Billing & Coding",
+          href: "https://billing.yourforce.io/",
+          external: true,
+        },
       ],
     },
 

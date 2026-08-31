@@ -7,7 +7,9 @@ import CTA from "@/components/sections/CTA";
 import Hero from "@/components/sections/Hero";
 import Portfolio from "@/components/sections/Portfolio";
 import Process from "@/components/sections/Process";
-import Services from "@/components/sections/Services";
+import Services, {
+  SpecializedOperations,
+} from "@/components/sections/Services";
 import WhyChoose from "@/components/sections/WhyChoose";
 
 import { site } from "@/data/site";
@@ -66,6 +68,8 @@ export default function Home() {
         <Services />
 
         <About />
+
+        <SpecializedOperations />
 
         <WhyChoose />
 

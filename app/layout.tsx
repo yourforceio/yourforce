@@ -2,6 +2,7 @@ import type {
   Metadata,
   Viewport,
 } from "next";
+import Script from "next/script";
 
 import {
   Geist,
@@ -14,6 +15,21 @@ import Footer from "@/components/sections/Footer";
 import { site } from "@/data/site";
 
 import "./globals.css";
+
+const googleMeasurementId =
+  site.analytics.googleMeasurementId;
+
+const serviceAnalyticsValues = Object.values(
+  site.specializedServices,
+).reduce<Record<string, string>>(
+  (services, service) => {
+    services[new URL(service.url).hostname] =
+      service.analyticsValue;
+
+    return services;
+  },
+  {},
+);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -175,6 +191,43 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-slate-950 text-slate-100 font-sans">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`}
+          strategy="afterInteractive"
+        />
+
+        <Script
+          id="yourforce-google-analytics"
+          strategy="afterInteractive"
+        >
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${googleMeasurementId}');
+
+            const serviceAnalyticsValues = ${JSON.stringify(serviceAnalyticsValues)};
+
+            document.addEventListener('click', function (event) {
+              const target = event.target;
+              const link = target instanceof Element
+                ? target.closest('a')
+                : null;
+
+              if (!link) return;
+
+              const service = serviceAnalyticsValues[link.hostname];
+
+              if (!service) return;
+
+              gtag('event', 'service_referral_click', {
+                service: service,
+                link_text: (link.textContent || '').trim()
+              });
+            });
+          `}
+        </Script>
+
         <Navbar />
 
         {children}
