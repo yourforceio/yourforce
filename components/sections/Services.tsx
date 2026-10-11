@@ -1,6 +1,9 @@
+import Link from "next/link";
 import {
   ArrowUpRight,
+  FileSpreadsheet,
   HeartPulse,
+  ShieldCheck,
   Truck,
 } from "lucide-react";
 
@@ -61,10 +64,36 @@ export default function Services() {
   );
 }
 
-const operationIcons = {
-  truck: Truck,
-  billing: HeartPulse,
-};
+const operationThemes = {
+  truck: {
+    Icon: Truck,
+    card: "border-amber-400/20 hover:border-amber-400/40",
+    iconBox: "bg-amber-400/10 text-amber-300",
+    eyebrow: "text-amber-300",
+    link: "text-amber-300 hover:text-amber-200 focus-visible:ring-amber-300",
+  },
+  billing: {
+    Icon: HeartPulse,
+    card: "border-teal-400/20 hover:border-teal-400/40",
+    iconBox: "bg-teal-400/10 text-teal-300",
+    eyebrow: "text-teal-300",
+    link: "text-teal-300 hover:text-teal-200 focus-visible:ring-teal-300",
+  },
+  dataEntry: {
+    Icon: FileSpreadsheet,
+    card: "border-sky-400/20 hover:border-sky-400/40",
+    iconBox: "bg-sky-400/10 text-sky-300",
+    eyebrow: "text-sky-300",
+    link: "text-sky-300 hover:text-sky-200 focus-visible:ring-sky-300",
+  },
+  insurance: {
+    Icon: ShieldCheck,
+    card: "border-violet-400/20 hover:border-violet-400/40",
+    iconBox: "bg-violet-400/10 text-violet-300",
+    eyebrow: "text-violet-300",
+    link: "text-violet-300 hover:text-violet-200 focus-visible:ring-violet-300",
+  },
+} as const;
 
 export function SpecializedOperations() {
   return (
@@ -91,24 +120,16 @@ export function SpecializedOperations() {
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           {specializedOperations.items.map((service) => {
-            const Icon = operationIcons[service.icon];
-            const isDispatch = service.icon === "truck";
+            const theme = operationThemes[service.icon];
+            const { Icon } = theme;
 
             return (
               <article
                 key={service.title}
-                className={`group relative overflow-hidden rounded-3xl border bg-slate-900/70 p-8 transition duration-300 hover:-translate-y-1 hover:bg-slate-900 md:p-10 ${
-                  isDispatch
-                    ? "border-amber-400/20 hover:border-amber-400/40"
-                    : "border-teal-400/20 hover:border-teal-400/40"
-                }`}
+                className={`group relative flex flex-col overflow-hidden rounded-3xl border bg-slate-900/70 p-8 transition duration-300 hover:-translate-y-1 hover:bg-slate-900 md:p-10 ${theme.card}`}
               >
                 <div
-                  className={`flex h-14 w-14 items-center justify-center rounded-2xl ${
-                    isDispatch
-                      ? "bg-amber-400/10 text-amber-300"
-                      : "bg-teal-400/10 text-teal-300"
-                  }`}
+                  className={`flex h-14 w-14 items-center justify-center rounded-2xl ${theme.iconBox}`}
                 >
                   <Icon
                     aria-hidden="true"
@@ -117,11 +138,7 @@ export function SpecializedOperations() {
                 </div>
 
                 <p
-                  className={`mt-8 text-sm font-bold uppercase tracking-[0.16em] ${
-                    isDispatch
-                      ? "text-amber-300"
-                      : "text-teal-300"
-                  }`}
+                  className={`mt-8 text-sm font-bold uppercase tracking-[0.16em] ${theme.eyebrow}`}
                 >
                   {service.eyebrow}
                 </p>
@@ -148,20 +165,35 @@ export function SpecializedOperations() {
                   ))}
                 </ul>
 
-                <a
-                  href={service.href}
-                  className={`mt-9 inline-flex items-center gap-2 font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 ${
-                    isDispatch
-                      ? "text-amber-300 hover:text-amber-200 focus-visible:ring-amber-300"
-                      : "text-teal-300 hover:text-teal-200 focus-visible:ring-teal-300"
-                  }`}
-                >
-                  {service.ctaLabel}
-                  <ArrowUpRight
-                    aria-hidden="true"
-                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
-                </a>
+                {(() => {
+                  const linkClassName = `mt-auto inline-flex items-center gap-2 pt-9 font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950 ${theme.link}`;
+
+                  const linkContent = (
+                    <>
+                      {service.ctaLabel}
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
+                    </>
+                  );
+
+                  return service.href.startsWith("/") ? (
+                    <Link
+                      href={service.href}
+                      className={linkClassName}
+                    >
+                      {linkContent}
+                    </Link>
+                  ) : (
+                    <a
+                      href={service.href}
+                      className={linkClassName}
+                    >
+                      {linkContent}
+                    </a>
+                  );
+                })()}
               </article>
             );
           })}

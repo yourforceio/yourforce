@@ -171,7 +171,7 @@ export const specializedOperations = {
     "Focused Support for Businesses That Keep Moving",
 
   description:
-    "Alongside our engineering practice, YourForce operates dedicated service desks for US transportation carriers and independent healthcare practices.",
+    "Alongside our engineering practice, YourForce runs dedicated back-office service desks for US carriers, healthcare practices, and growing businesses.",
 
   items: [
     {
@@ -189,6 +189,7 @@ export const specializedOperations = {
         "Load sourcing",
         "Rate coordination",
         "Paperwork support",
+        "Freight invoicing",
       ],
 
       href: "https://trucking.yourforce.io/",
@@ -216,6 +217,50 @@ export const specializedOperations = {
       href: "https://billing.yourforce.io/",
 
       ctaLabel: "Explore Billing Services",
+    },
+
+    {
+      eyebrow: "Back-Office Operations",
+
+      title: "Data Entry & Document Processing",
+
+      description:
+        "Accurate data entry, record cleanup, and document digitization for US businesses, with a second-person quality review on every batch.",
+
+      icon: "dataEntry",
+
+      features: [
+        "Invoice and form entry",
+        "Data cleanup",
+        "Document digitization",
+        "Quality review",
+      ],
+
+      href: "https://backoffice.yourforce.io/data-entry/",
+
+      ctaLabel: "Request a Pilot",
+    },
+
+    {
+      eyebrow: "Insurance Operations",
+
+      title: "Insurance Document Support",
+
+      description:
+        "Administrative support for certificates of insurance, carrier onboarding packets, and policy or claims paperwork. Document handling only, with no coverage advice or policy sales.",
+
+      icon: "insurance",
+
+      features: [
+        "COI tracking",
+        "Renewal reminders",
+        "Onboarding packets",
+        "Document indexing",
+      ],
+
+      href: "https://backoffice.yourforce.io/insurance-documents/",
+
+      ctaLabel: "Request a Pilot",
     },
   ],
 } as const;
