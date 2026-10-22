@@ -171,6 +171,13 @@ export const services: Services = {
   ],
 };
 
+/** Chips shown under the commerce description (mirrors the card's own copy). */
+export const commerceHighlights = [
+  "Design & development",
+  "Customization",
+  "Long-term support",
+] as const;
+
 /**
  * PHP engineering band, shown directly under the featured commerce card.
  * Magento and WooCommerce run on PHP, so this belongs with commerce,
@@ -179,7 +186,7 @@ export const services: Services = {
 export const phpEngineering = {
   eyebrow: "PHP Engineering",
 
-  title: "PHP Upgrades, Security & Development",
+  title: "PHP Upgrades & Security",
 
   description:
     "Magento and WooCommerce run on PHP, and so do many custom business applications. We upgrade legacy PHP to supported versions, close security gaps, and rescue fragile code so your platform stays fast, compatible, and protected.",
@@ -212,11 +219,17 @@ export const phpEngineering = {
 
     href: "/contact?service=php",
   },
+
+  learnMoreLabel: "Learn more about PHP services",
+
+  learnMoreHref: "/services/php",
 } as const satisfies {
   eyebrow: string;
   title: string;
   description: string;
   features: readonly string[];
+  learnMoreLabel: string;
+  learnMoreHref: string;
   healthCheck: {
     eyebrow: string;
     title: string;

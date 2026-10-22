@@ -15,6 +15,7 @@ import Container from "@/components/layout/Container";
 import ServiceCard from "@/components/ui/ServiceCard";
 
 import {
+  commerceHighlights,
   phpEngineering,
   services,
   specializedOperations,
@@ -103,10 +104,28 @@ function CommerceColumn({ service }: { service: CommerceService }) {
         </p>
 
         <p className="mt-8 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
+          What we deliver
+        </p>
+
+        <ul
+          aria-label="What we deliver"
+          className="mt-3 flex flex-wrap gap-2"
+        >
+          {commerceHighlights.map((item) => (
+            <li
+              key={item}
+              className="rounded-full border border-blue-400/20 bg-blue-400/5 px-3 py-1.5 text-sm text-slate-200"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-8 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
           Platform coverage
         </p>
 
-        <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+        <ul className="mt-3 grid gap-3">
           {service.stack.map((item) => {
             const isPhpPlatform = /magento|woocommerce/i.test(item.name);
 
@@ -213,13 +232,21 @@ function PhpColumn() {
           ))}
         </ul>
 
-        <div className="mt-auto pt-8">
+        <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-4 pt-8">
           <Link
             href={healthCheck.href}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-rose-500 px-6 py-3.5 font-bold text-white transition-colors hover:bg-rose-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
           >
             {healthCheck.ctaLabel}
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
+          </Link>
+
+          <Link
+            href={phpEngineering.learnMoreHref}
+            className="inline-flex items-center gap-2 font-bold text-rose-300 transition-colors hover:text-rose-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
+          >
+            {phpEngineering.learnMoreLabel}
+            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </div>
       </div>
