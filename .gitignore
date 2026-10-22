@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.allai/workspace.db
+.allai/workspace.db
+.allai/
