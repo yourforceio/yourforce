@@ -1,13 +1,20 @@
 import type { Services } from "@/types/service";
 
+/** Icon keys for the dark "Specialized Operations" cards. */
+export type OperationIcon =
+  | "truck"
+  | "billing"
+  | "dataEntry"
+  | "insurance";
+
 export const services: Services = {
-  badge: "⚡ Commerce & Software Services",
+  badge: "Commerce & PHP Engineering",
 
   heading:
-    "Build, Modernize, and Scale Digital Commerce",
+    "Build, Modernize, Secure, and Scale Digital Commerce",
 
   description:
-    "YourForce delivers platform engineering, headless storefronts, commerce modernization, enterprise integrations, and custom software across leading commerce technologies.",
+    "YourForce delivers commerce platform engineering, PHP upgrades and security, headless storefronts, and enterprise integrations, with direct senior engineering involvement.",
 
   items: [
     {
@@ -164,6 +171,62 @@ export const services: Services = {
   ],
 };
 
+/**
+ * PHP engineering band, shown directly under the featured commerce card.
+ * Magento and WooCommerce run on PHP, so this belongs with commerce,
+ * not with the back-office service desks.
+ */
+export const phpEngineering = {
+  eyebrow: "PHP Engineering",
+
+  title: "PHP Upgrades, Security & Development",
+
+  description:
+    "Magento and WooCommerce run on PHP, and so do many custom business applications. We upgrade legacy PHP to supported versions, close security gaps, and rescue fragile code so your platform stays fast, compatible, and protected.",
+
+  features: [
+    "PHP version upgrades",
+    "Security patching & audits",
+    "Magento 2 upgrades",
+    "WooCommerce hardening",
+    "Custom PHP development",
+    "Legacy code rescue",
+  ],
+
+  healthCheck: {
+    eyebrow: "Free PHP Health Check",
+
+    title: "Is your PHP stack safe and supported?",
+
+    description:
+      "Tell us your site and PHP version. We'll review it and send back a clear picture of where you stand.",
+
+    items: [
+      "PHP version and support-status review",
+      "Known-vulnerability and plugin check",
+      "Compatibility report for upgrades",
+      "Prioritized upgrade roadmap",
+    ],
+
+    ctaLabel: "Request Your Free Health Check",
+
+    href: "/contact?service=php",
+  },
+} as const satisfies {
+  eyebrow: string;
+  title: string;
+  description: string;
+  features: readonly string[];
+  healthCheck: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: readonly string[];
+    ctaLabel: string;
+    href: string;
+  };
+};
+
 export const specializedOperations = {
   badge: "Specialized Operations Services",
 
@@ -263,4 +326,17 @@ export const specializedOperations = {
       ctaLabel: "Request a Pilot",
     },
   ],
-} as const;
+} as const satisfies {
+  badge: string;
+  heading: string;
+  description: string;
+  items: readonly {
+    eyebrow: string;
+    title: string;
+    description: string;
+    icon: OperationIcon;
+    features: readonly string[];
+    href: string;
+    ctaLabel: string;
+  }[];
+};
