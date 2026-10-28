@@ -112,6 +112,11 @@ export const contact: ContactData = {
             slug: "technical-consulting",
           },
           {
+            label: "School Management Platform",
+            value: "School Management Platform",
+            slug: "school-platform",
+          },
+          {
             label: "Other",
             value: "Other",
             slug: "other",

@@ -73,6 +73,10 @@ export const footer: FooterData = {
           href: "/#services",
         },
         {
+          label: "School Management Platform",
+          href: "/services/schools",
+        },
+        {
           label: "Trucking Dispatch",
           href: "https://trucking.yourforce.io/",
           external: true,

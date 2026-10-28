@@ -27,6 +27,7 @@ export const navigation: NavigationItem[] = [
   {
     label: "Services",
     href: "/#services",
+    routePrefixes: ["/services"],
     sectionIds: [
       "services",
       "highlights",

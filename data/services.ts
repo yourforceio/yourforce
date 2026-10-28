@@ -5,7 +5,8 @@ export type OperationIcon =
   | "truck"
   | "billing"
   | "dataEntry"
-  | "insurance";
+  | "insurance"
+  | "school";
 
 export const services: Services = {
   badge: "Commerce & PHP Engineering",
@@ -247,7 +248,7 @@ export const specializedOperations = {
     "Focused Support for Businesses That Keep Moving",
 
   description:
-    "Alongside our engineering practice, YourForce runs dedicated back-office service desks for US carriers, healthcare practices, and growing businesses.",
+    "Alongside our engineering practice, YourForce runs dedicated back-office service desks for US carriers, healthcare practices, and growing businesses, and builds software products like our school management platform.",
 
   items: [
     {
@@ -337,6 +338,30 @@ export const specializedOperations = {
       href: "https://backoffice.yourforce.io/insurance-documents/",
 
       ctaLabel: "Request a Pilot",
+    },
+
+    {
+      eyebrow: "Education Software",
+
+      title: "YourForce Schools",
+
+      description:
+        "A school management platform with separate portals for administrators, accountants, teachers, students and parents, covering fees, timetables, attendance, exams and your school website.",
+
+      icon: "school",
+
+      features: [
+        "Role-based portals",
+        "Fees & accounts",
+        "Timetable & attendance",
+        "Exams & results",
+        "Parent portal",
+        "School website CMS",
+      ],
+
+      href: "/services/schools",
+
+      ctaLabel: "Explore YourForce Schools",
     },
   ],
 } as const satisfies {

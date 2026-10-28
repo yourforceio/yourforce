@@ -58,6 +58,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
 
+    {
+      url: `${baseUrl}/services/schools`,
+      lastModified: new Date("2026-10-28T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+
     // Engineering Lab
     {
       url: `${baseUrl}/lab/headless-commerce`,
