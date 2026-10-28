@@ -7,16 +7,16 @@ export const schoolsPage = {
     badge: "YourForce Schools",
 
     heading:
-      "One School Management Platform for Admissions, Fees, Academics and Parents",
+      "One School Management Platform for Students, Fees, Academics and Parents",
 
     description:
-      "YourForce Schools brings every part of running a school into one secure system. Administrators, accountants, clerks, teachers, students and parents each get their own portal, and every school's data stays separate and protected.",
+      "YourForce Schools brings every part of running a school into one secure system. Administrators, accountants, clerks and teachers each get their own view of the school, parents get their own portal, and every school's data stays separate and protected.",
 
     primaryCta: "Book a Demo",
     primaryHref: "/contact?service=school-platform",
 
-    secondaryCta: "See the Features",
-    secondaryHref: "#features",
+    secondaryCta: "Try the Live Demo",
+    secondaryHref: "https://app.yourforce.io/demo",
 
     highlights: [
       "Private schools",
@@ -34,11 +34,33 @@ export const schoolsPage = {
       "Tell us about your school and we'll walk you through the platform using your classes, fee structure and staff roles.",
 
     items: [
-      "Portals for every role in your school",
+      "The right view for every role in your school",
       "Fee collection and accounts in one place",
       "Timetable, attendance and exams",
       "Parent access and your school website",
     ],
+  },
+
+  liveDemo: {
+    eyebrow: "Live Demo",
+
+    heading: "Explore a sample school running on the platform",
+
+    description:
+      "Greenfield Public School is a made-up primary school with real-sized data. Visit its website, then sign in as an admin, teacher, parent or accountant and click around.",
+
+    stats: [
+      { value: "2,000", label: "students" },
+      { value: "69", label: "teachers" },
+      { value: "50", label: "sections" },
+      { value: "1,400", label: "parent accounts" },
+    ],
+
+    primaryCta: "Try the Live Demo",
+    primaryHref: "https://app.yourforce.io/demo",
+
+    secondaryCta: "See the school's website",
+    secondaryHref: "https://greenfield.yourforce.io",
   },
 
   challenges: {
@@ -82,9 +104,9 @@ export const schoolsPage = {
 
     items: [
       {
-        title: "Role-based portals",
+        title: "Role-based access",
         description:
-          "Separate, secure portals for administrators, accountants, clerks, teachers, students, parents and staff. Each person sees only what their role needs.",
+          "Administrators, accountants, clerks and teachers each see only the screens their role needs, and teachers only the classes they teach. Parents have their own portal.",
       },
       {
         title: "Fees & accounts",
@@ -157,7 +179,7 @@ export const schoolsPage = {
       {
         title: "School groups & chains",
         description:
-          "Several campuses on one platform, with each school's data kept separate and secure.",
+          "Run each campus as its own school on the platform, with separate data, settings and website.",
       },
       {
         title: "Academies & colleges",
@@ -176,7 +198,7 @@ export const schoolsPage = {
       {
         question: "Who can use YourForce Schools?",
         answer:
-          "Administrators, accountants, clerks, teachers, students, parents and staff. Each role has its own portal with only the screens and data it needs.",
+          "Administrators, accountants, clerks and teachers, plus parents through their own portal. Each role sees only the screens and data it needs.",
       },
       {
         question: "Is our school's data kept separate from other schools?",
@@ -191,7 +213,12 @@ export const schoolsPage = {
       {
         question: "Can we run more than one campus?",
         answer:
-          "Yes. School groups can manage several campuses on the same platform, each with its own data and settings.",
+          "Yes. Each campus runs as its own school on the platform, with its own data, settings and website. A shared head-office view across campuses is on our roadmap.",
+      },
+      {
+        question: "Can we try it before booking a demo?",
+        answer:
+          "Yes. Explore our live sample school with 2,000 students, sign in as an admin, teacher, parent or accountant, and visit the school's own website. Then book a demo to see it with your own setup.",
       },
       {
         question: "How do we get started?",

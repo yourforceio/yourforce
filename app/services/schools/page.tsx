@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   BookOpenCheck,
   CalendarClock,
   CalendarX2,
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "YourForce Schools — School Management Platform",
     description:
-      "Run admissions, fees, academics and parent communication from one secure platform built for private schools and school groups.",
+      "Run students, fees, academics and parent communication from one secure platform. Explore a live sample school with 2,000 students.",
     url: "/services/schools",
     type: "website",
   },
@@ -92,6 +93,7 @@ export default function SchoolsProductPage() {
   const {
     hero,
     overview,
+    liveDemo,
     challenges,
     features,
     process,
@@ -160,6 +162,7 @@ export default function SchoolsProductPage() {
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
                 >
                   {hero.secondaryCta}
+                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
                 </a>
               </div>
             </div>
@@ -196,6 +199,58 @@ export default function SchoolsProductPage() {
                 ))}
               </ul>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Live demo */}
+      <section className="border-b border-emerald-100 bg-emerald-50/60 py-16">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-600">
+                {liveDemo.eyebrow}
+              </p>
+              <h2 className="mt-3 text-3xl font-black leading-tight tracking-tight text-slate-950 md:text-4xl">
+                {liveDemo.heading}
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-slate-600">
+                {liveDemo.description}
+              </p>
+
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <a
+                  href={liveDemo.primaryHref}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 font-bold text-white transition-colors hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4"
+                >
+                  {liveDemo.primaryCta}
+                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                </a>
+                <a
+                  href={liveDemo.secondaryHref}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-bold text-slate-900 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4"
+                >
+                  {liveDemo.secondaryCta}
+                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+
+            <dl className="grid grid-cols-2 gap-4">
+              {liveDemo.stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-3xl border border-emerald-100 bg-white p-6 shadow-sm"
+                >
+                  <dt className="text-sm font-medium text-slate-500">
+                    {stat.label}
+                  </dt>
+                  <dd className="mt-1 text-4xl font-black tracking-tight text-slate-950">
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </Container>
       </section>
