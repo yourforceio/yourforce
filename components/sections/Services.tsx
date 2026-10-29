@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Check,
   FileSpreadsheet,
-  GraduationCap,
   HeartPulse,
   ShieldCheck,
   ShoppingCart,
@@ -284,13 +283,6 @@ const operationThemes = {
     iconBox: "bg-violet-400/10 text-violet-300",
     eyebrow: "text-violet-300",
     link: "text-violet-300 hover:text-violet-200 focus-visible:ring-violet-300",
-  },
-  school: {
-    Icon: GraduationCap,
-    card: "border-emerald-400/20 hover:border-emerald-400/40",
-    iconBox: "bg-emerald-400/10 text-emerald-300",
-    eyebrow: "text-emerald-300",
-    link: "text-emerald-300 hover:text-emerald-200 focus-visible:ring-emerald-300",
   },
 } as const satisfies Record<OperationIcon, unknown>;
 

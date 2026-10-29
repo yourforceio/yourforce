@@ -1,58 +1,24 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  BookOpenCheck,
-  CalendarClock,
-  CalendarX2,
   Check,
-  FolderSearch,
-  Globe,
-  HeartHandshake,
-  LayoutDashboard,
-  MessageCircleQuestion,
-  Presentation,
-  Rocket,
-  Settings2,
-  Upload,
-  Wallet,
+  type LucideIcon,
 } from "lucide-react";
 
 import Container from "@/components/layout/Container";
 
-import { schoolsPage } from "@/data/schools";
+import type { ProductPageData } from "@/types/product";
 
-export const metadata: Metadata = {
-  title: "YourForce Schools — School Management Platform",
-  description:
-    "YourForce Schools is a school management platform with role-based portals, fee collection and accounts, timetables with clash detection, attendance, exams, a parent portal and a school website CMS. Book a demo.",
-  alternates: {
-    canonical: "/services/schools",
-  },
-  openGraph: {
-    title: "YourForce Schools — School Management Platform",
-    description:
-      "Run students, fees, academics and parent communication from one secure platform. Explore a live sample school with 2,000 students.",
-    url: "/services/schools",
-    type: "website",
-  },
+/** Icons for the "Why it matters", "Features" and "How it works" cards, in content order. */
+export type ProductPageIcons = {
+  challenges: readonly LucideIcon[];
+  features: readonly LucideIcon[];
+  process: readonly LucideIcon[];
 };
 
-const challengeIcons = [Wallet, CalendarX2, MessageCircleQuestion, FolderSearch];
-
-const featureIcons = [
-  LayoutDashboard,
-  Wallet,
-  CalendarClock,
-  BookOpenCheck,
-  HeartHandshake,
-  Globe,
-];
-
-const processIcons = [Presentation, Settings2, Upload, Rocket];
-
+/** The layout shared by every product page; each page passes its own content and icons. */
 function SectionHeading({
   eyebrow,
   heading,
@@ -89,7 +55,13 @@ function SectionHeading({
   );
 }
 
-export default function SchoolsProductPage() {
+export default function ProductPage({
+  data,
+  icons,
+}: {
+  data: ProductPageData;
+  icons: ProductPageIcons;
+}) {
   const {
     hero,
     overview,
@@ -100,7 +72,7 @@ export default function SchoolsProductPage() {
     audiences,
     faq,
     finalCta,
-  } = schoolsPage;
+  } = data;
 
   return (
     <main>
@@ -113,11 +85,11 @@ export default function SchoolsProductPage() {
 
         <Container>
           <Link
-            href="/#specialized-services"
+            href="/products"
             className="relative inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-white"
           >
             <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-            All services
+            All products
           </Link>
 
           <div className="relative mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -266,7 +238,7 @@ export default function SchoolsProductPage() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {challenges.items.map((item, index) => {
-              const Icon = challengeIcons[index % challengeIcons.length];
+              const Icon = icons.challenges[index % icons.challenges.length];
 
               return (
                 <article
@@ -304,7 +276,7 @@ export default function SchoolsProductPage() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.items.map((item, index) => {
-              const Icon = featureIcons[index % featureIcons.length];
+              const Icon = icons.features[index % icons.features.length];
 
               return (
                 <article
@@ -338,7 +310,7 @@ export default function SchoolsProductPage() {
 
           <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {process.steps.map((step, index) => {
-              const Icon = processIcons[index % processIcons.length];
+              const Icon = icons.process[index % icons.process.length];
 
               return (
                 <li

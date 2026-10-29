@@ -36,6 +36,13 @@ export const navigation: NavigationItem[] = [
   },
 
   {
+    label: "Products",
+    href: "/products",
+    routePrefixes: ["/products"],
+    showInFooter: true,
+  },
+
+  {
     label: "About",
     href: "/#about",
     sectionIds: [

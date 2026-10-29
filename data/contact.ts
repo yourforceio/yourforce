@@ -117,6 +117,16 @@ export const contact: ContactData = {
             slug: "school-platform",
           },
           {
+            label: "Online Store Platform",
+            value: "Online Store Platform",
+            slug: "commerce-platform",
+          },
+          {
+            label: "Online Booking Platform",
+            value: "Online Booking Platform",
+            slug: "booking-platform",
+          },
+          {
             label: "Other",
             value: "Other",
             slug: "other",

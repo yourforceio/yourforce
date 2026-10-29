@@ -88,7 +88,7 @@ export default function Footer() {
                 grid
                 gap-10
                 sm:grid-cols-2
-                xl:grid-cols-[0.8fr_1.25fr_0.95fr_0.9fr]
+                xl:grid-cols-[0.8fr_1.25fr_1fr_0.95fr_0.9fr]
                 xl:gap-12
               "
             >

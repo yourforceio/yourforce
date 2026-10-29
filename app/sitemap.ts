@@ -58,12 +58,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
 
+    // Products
     {
-      url: `${baseUrl}/services/schools`,
-      lastModified: new Date("2026-10-28T00:00:00.000Z"),
+      url: `${baseUrl}/products`,
+      lastModified: new Date("2026-10-30T00:00:00.000Z"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
+
+    ...["schools", "commerce", "bookings"].map((slug) => ({
+      url: `${baseUrl}/products/${slug}`,
+      lastModified: new Date("2026-10-30T00:00:00.000Z"),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
 
     // Engineering Lab
     {

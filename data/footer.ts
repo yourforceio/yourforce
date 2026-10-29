@@ -38,6 +38,10 @@ export const footer: FooterData = {
           href: "/#services",
         },
         {
+          label: "Products",
+          href: "/products",
+        },
+        {
           label: "About",
           href: "/#about",
         },
@@ -73,10 +77,6 @@ export const footer: FooterData = {
           href: "/#services",
         },
         {
-          label: "School Management Platform",
-          href: "/services/schools",
-        },
-        {
           label: "Trucking Dispatch",
           href: "https://trucking.yourforce.io/",
           external: true,
@@ -85,6 +85,25 @@ export const footer: FooterData = {
           label: "Medical Billing & Coding",
           href: "https://billing.yourforce.io/",
           external: true,
+        },
+      ],
+    },
+
+    {
+      title: "Products",
+
+      links: [
+        {
+          label: "Schools",
+          href: "/products/schools",
+        },
+        {
+          label: "Commerce",
+          href: "/products/commerce",
+        },
+        {
+          label: "Bookings",
+          href: "/products/bookings",
         },
       ],
     },

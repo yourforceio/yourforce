@@ -1,5 +1,7 @@
+import type { ProductPageData } from "@/types/product";
+
 /**
- * Content for the YourForce Schools product page (app/services/schools/page.tsx).
+ * Content for the YourForce Schools product page (app/products/schools/page.tsx).
  * Keep claims here to what the platform actually delivers.
  */
 export const schoolsPage = {
@@ -238,4 +240,4 @@ export const schoolsPage = {
 
     href: "/contact?service=school-platform",
   },
-} as const;
+} as const satisfies ProductPageData;
