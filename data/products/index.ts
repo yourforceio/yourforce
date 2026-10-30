@@ -7,7 +7,7 @@ export const productsIntro = {
   heading: "Software Products Built and Run by YourForce",
 
   description:
-    "Alongside our engineering services, we build and run our own software for schools, online sellers and appointment-based businesses. Each product has a live demo you can try today.",
+    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses and restaurants. Each product has a live demo you can try today.",
 };
 
 export const products = [
@@ -72,5 +72,26 @@ export const products = [
     ctaLabel: "Explore YourForce Bookings",
     demoHref: "https://glow.book.yourforce.io",
     demoLabel: "Try the demo booking page",
+  },
+
+  {
+    slug: "dine",
+    name: "YourForce Dine",
+    eyebrow: "Restaurant Software",
+    description:
+      "Online ordering for restaurants with no commission: your own ordering page for delivery and takeaway, QR codes for ordering from the table, and a live kitchen screen.",
+    icon: "dine",
+    features: [
+      "Your own ordering page",
+      "Table QR codes",
+      "Live kitchen screen",
+      "Add-ons & deals",
+      "Delivery areas",
+      "Reports",
+    ],
+    href: "/products/dine",
+    ctaLabel: "Explore YourForce Dine",
+    demoHref: "https://grill.dine.yourforce.io",
+    demoLabel: "Try the demo restaurant",
   },
 ] as const satisfies readonly ProductSummary[];

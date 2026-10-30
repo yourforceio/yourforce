@@ -127,6 +127,11 @@ export const contact: ContactData = {
             slug: "booking-platform",
           },
           {
+            label: "Restaurant Ordering Platform",
+            value: "Restaurant Ordering Platform",
+            slug: "restaurant-platform",
+          },
+          {
             label: "Other",
             value: "Other",
             slug: "other",

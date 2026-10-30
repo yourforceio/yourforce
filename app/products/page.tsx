@@ -6,6 +6,7 @@ import {
   CalendarCheck,
   GraduationCap,
   ShoppingBag,
+  UtensilsCrossed,
 } from "lucide-react";
 
 import Container from "@/components/layout/Container";
@@ -16,14 +17,14 @@ import type { ProductIcon } from "@/types/product";
 export const metadata: Metadata = {
   title: "Our Products — YourForce Schools, Commerce and Bookings",
   description:
-    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, and YourForce Bookings for appointments. Try each live demo.",
+    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments and YourForce Dine for restaurant ordering. Try each live demo.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "Our Products — YourForce",
     description:
-      "School management, online stores and appointment booking, each with a live demo you can try today.",
+      "School management, online stores, appointment booking and restaurant ordering, each with a live demo you can try today.",
     url: "/products",
     type: "website",
   },
@@ -51,6 +52,13 @@ const productThemes = {
     iconBox: "bg-violet-50 text-violet-600",
     eyebrow: "text-violet-600",
     link: "bg-violet-600 hover:bg-violet-700 focus-visible:ring-violet-400",
+  },
+  dine: {
+    Icon: UtensilsCrossed,
+    card: "hover:border-orange-300",
+    iconBox: "bg-orange-50 text-orange-600",
+    eyebrow: "text-orange-600",
+    link: "bg-orange-600 hover:bg-orange-700 focus-visible:ring-orange-400",
   },
 } as const satisfies Record<ProductIcon, unknown>;
 
@@ -82,7 +90,7 @@ export default function ProductsPage() {
 
       <section className="bg-slate-50 py-20 md:py-24">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2">
             {products.map((product) => {
               const theme = productThemes[product.icon];
               const { Icon } = theme;

@@ -105,6 +105,10 @@ export const footer: FooterData = {
           label: "Bookings",
           href: "/products/bookings",
         },
+        {
+          label: "Dine",
+          href: "/products/dine",
+        },
       ],
     },
 
