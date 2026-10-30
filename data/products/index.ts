@@ -7,7 +7,7 @@ export const productsIntro = {
   heading: "Software Products Built and Run by YourForce",
 
   description:
-    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses and restaurants. Each product has a live demo you can try today.",
+    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants and real estate agencies. Each product has a live demo you can try today.",
 };
 
 export const products = [
@@ -93,5 +93,26 @@ export const products = [
     ctaLabel: "Explore YourForce Dine",
     demoHref: "https://grill.dine.yourforce.io",
     demoLabel: "Try the demo restaurant",
+  },
+
+  {
+    slug: "property",
+    name: "YourForce Property",
+    eyebrow: "Real Estate Software",
+    description:
+      "Your agency's own property website with listings in marla, kanal, lakh and crore, maps with nearby Metro and Orange Line stations, and every enquiry tracked to the right agent.",
+    icon: "property",
+    features: [
+      "Your own agency website",
+      "Marla, kanal, lakh & crore",
+      "Map & nearby stations",
+      "Shortlists & viewing requests",
+      "Enquiry tracking",
+      "WhatsApp & call buttons",
+    ],
+    href: "/products/property",
+    ctaLabel: "Explore YourForce Property",
+    demoHref: "https://skyline.property.yourforce.io",
+    demoLabel: "Visit the demo agency",
   },
 ] as const satisfies readonly ProductSummary[];

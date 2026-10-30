@@ -109,6 +109,10 @@ export const footer: FooterData = {
           label: "Dine",
           href: "/products/dine",
         },
+        {
+          label: "Property",
+          href: "/products/property",
+        },
       ],
     },
 

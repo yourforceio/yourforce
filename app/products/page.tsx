@@ -7,6 +7,7 @@ import {
   GraduationCap,
   ShoppingBag,
   UtensilsCrossed,
+  Building2,
 } from "lucide-react";
 
 import Container from "@/components/layout/Container";
@@ -15,16 +16,16 @@ import { products, productsIntro } from "@/data/products";
 import type { ProductIcon } from "@/types/product";
 
 export const metadata: Metadata = {
-  title: "Our Products — YourForce Schools, Commerce and Bookings",
+  title: "Our Products — YourForce Schools, Commerce, Bookings, Dine and Property",
   description:
-    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments and YourForce Dine for restaurant ordering. Try each live demo.",
+    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments, YourForce Dine for restaurant ordering and YourForce Property for real estate agencies. Try each live demo.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "Our Products — YourForce",
     description:
-      "School management, online stores, appointment booking and restaurant ordering, each with a live demo you can try today.",
+      "School management, online stores, appointment booking, restaurant ordering and real estate agency websites, each with a live demo you can try today.",
     url: "/products",
     type: "website",
   },
@@ -59,6 +60,13 @@ const productThemes = {
     iconBox: "bg-orange-50 text-orange-600",
     eyebrow: "text-orange-600",
     link: "bg-orange-600 hover:bg-orange-700 focus-visible:ring-orange-400",
+  },
+  property: {
+    Icon: Building2,
+    card: "hover:border-sky-300",
+    iconBox: "bg-sky-50 text-sky-600",
+    eyebrow: "text-sky-600",
+    link: "bg-sky-600 hover:bg-sky-700 focus-visible:ring-sky-400",
   },
 } as const satisfies Record<ProductIcon, unknown>;
 

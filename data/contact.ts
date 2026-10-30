@@ -132,6 +132,11 @@ export const contact: ContactData = {
             slug: "restaurant-platform",
           },
           {
+            label: "Real Estate Agency Platform",
+            value: "Real Estate Agency Platform",
+            slug: "property-platform",
+          },
+          {
             label: "Other",
             value: "Other",
             slug: "other",
