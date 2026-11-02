@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import Container from "@/components/layout/Container";
+import ProductStructuredData from "@/components/seo/ProductStructuredData";
 
 import type { ProductPageData } from "@/types/product";
 
@@ -56,9 +57,11 @@ function SectionHeading({
 }
 
 export default function ProductPage({
+  slug,
   data,
   icons,
 }: {
+  slug: string;
   data: ProductPageData;
   icons: ProductPageIcons;
 }) {
@@ -76,6 +79,8 @@ export default function ProductPage({
 
   return (
     <main>
+      <ProductStructuredData slug={slug} faq={faq.items} />
+
       {/* Hero */}
       <section className="relative overflow-hidden bg-slate-950 pb-24 pt-32 text-white md:pt-36">
         <div

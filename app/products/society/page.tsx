@@ -19,14 +19,14 @@ import ProductPage from "@/components/products/ProductPage";
 import { societyPage } from "@/data/products/society";
 
 export const metadata: Metadata = {
-  title: "YourForce Society — Maintenance Dues, Complaints, Notices and Gate Passes for Housing Societies",
+  title: { absolute: "Housing Society Management Software | YourForce Society" },
   description:
     "YourForce Society handles monthly maintenance with receipts and a defaulters list, complaints, notices, visitor gate passes and the committee's accounts, with an account for every resident. Book a demo.",
   alternates: {
     canonical: "/products/society",
   },
   openGraph: {
-    title: "YourForce Society — Maintenance Dues, Complaints, Notices and Gate Passes for Housing Societies",
+    title: "Housing Society Management Software | YourForce Society",
     description:
       "Run your housing society, not the paperwork. Explore Green Valley Society, a live sample society.",
     url: "/products/society",
@@ -37,6 +37,7 @@ export const metadata: Metadata = {
 export default function SocietyProductPage() {
   return (
     <ProductPage
+      slug="society"
       data={societyPage}
       icons={{
         challenges: [Wallet, MessageSquareWarning, DoorOpen, Landmark],

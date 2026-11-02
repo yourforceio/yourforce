@@ -20,14 +20,14 @@ import ProductPage from "@/components/products/ProductPage";
 import { schoolsPage } from "@/data/products/schools";
 
 export const metadata: Metadata = {
-  title: "YourForce Schools — School Management Platform",
+  title: { absolute: "School Management Software in Pakistan | YourForce Schools" },
   description:
     "YourForce Schools is a school management platform with role-based portals, fee collection and accounts, timetables with clash detection, attendance, exams, a parent portal and a school website CMS. Book a demo.",
   alternates: {
     canonical: "/products/schools",
   },
   openGraph: {
-    title: "YourForce Schools — School Management Platform",
+    title: "School Management Software in Pakistan | YourForce Schools",
     description:
       "Run students, fees, academics and parent communication from one secure platform. Explore a live sample school with 2,000 students.",
     url: "/products/schools",
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
 export default function SchoolsProductPage() {
   return (
     <ProductPage
+      slug="schools"
       data={schoolsPage}
       icons={{
         challenges: [Wallet, CalendarX2, MessageCircleQuestion, FolderSearch],

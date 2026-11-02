@@ -20,14 +20,14 @@ import ProductPage from "@/components/products/ProductPage";
 import { rentacarPage } from "@/data/products/rentacar";
 
 export const metadata: Metadata = {
-  title: "YourForce Rent-a-Car — Bookings, Fleet, Drivers and Deposits for Car Rental Companies",
+  title: { absolute: "Rent a Car Software & Booking System | YourForce Rent-a-Car" },
   description:
     "YourForce Rent-a-Car gives car rental companies their own booking website, a fleet calendar that never double-books a car or driver, CNIC and licence checks, deposits and the final bill. Book a demo.",
   alternates: {
     canonical: "/products/rentacar",
   },
   openGraph: {
-    title: "YourForce Rent-a-Car — Bookings, Fleet, Drivers and Deposits for Car Rental Companies",
+    title: "Rent a Car Software & Booking System | YourForce Rent-a-Car",
     description:
       "Every car booked, never twice. Explore Swift Rent a Car, a live sample company.",
     url: "/products/rentacar",
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
 export default function RentacarProductPage() {
   return (
     <ProductPage
+      slug="rentacar"
       data={rentacarPage}
       icons={{
         challenges: [CalendarRange, IdCard, Receipt, TrendingDown],
