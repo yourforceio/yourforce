@@ -8,6 +8,9 @@ import {
   ShoppingBag,
   UtensilsCrossed,
   Building2,
+  Stethoscope,
+  Building,
+  CarFront,
 } from "lucide-react";
 
 import Container from "@/components/layout/Container";
@@ -16,16 +19,16 @@ import { products, productsIntro } from "@/data/products";
 import type { ProductIcon } from "@/types/product";
 
 export const metadata: Metadata = {
-  title: "Our Products — YourForce Schools, Commerce, Bookings, Dine and Property",
+  title: "Our Products — YourForce Schools, Commerce, Bookings, Dine, Property, Clinic, Society and Rent-a-Car",
   description:
-    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments, YourForce Dine for restaurant ordering and YourForce Property for real estate agencies. Try each live demo.",
+    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments, YourForce Dine for restaurant ordering, YourForce Property for real estate agencies, YourForce Clinic for clinics, YourForce Society for housing societies and YourForce Rent-a-Car for car rental companies. Try each live demo.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "Our Products — YourForce",
     description:
-      "School management, online stores, appointment booking, restaurant ordering and real estate agency websites, each with a live demo you can try today.",
+      "School management, online stores, appointment booking, restaurant ordering, real estate, clinics, housing societies and car rental, each with a live demo you can try today.",
     url: "/products",
     type: "website",
   },
@@ -67,6 +70,27 @@ const productThemes = {
     iconBox: "bg-sky-50 text-sky-600",
     eyebrow: "text-sky-600",
     link: "bg-sky-600 hover:bg-sky-700 focus-visible:ring-sky-400",
+  },
+  clinic: {
+    Icon: Stethoscope,
+    card: "hover:border-rose-300",
+    iconBox: "bg-rose-50 text-rose-600",
+    eyebrow: "text-rose-600",
+    link: "bg-rose-600 hover:bg-rose-700 focus-visible:ring-rose-400",
+  },
+  society: {
+    Icon: Building,
+    card: "hover:border-teal-300",
+    iconBox: "bg-teal-50 text-teal-600",
+    eyebrow: "text-teal-600",
+    link: "bg-teal-600 hover:bg-teal-700 focus-visible:ring-teal-400",
+  },
+  rentacar: {
+    Icon: CarFront,
+    card: "hover:border-amber-300",
+    iconBox: "bg-amber-50 text-amber-600",
+    eyebrow: "text-amber-600",
+    link: "bg-amber-600 hover:bg-amber-700 focus-visible:ring-amber-400",
   },
 } as const satisfies Record<ProductIcon, unknown>;
 

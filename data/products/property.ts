@@ -2,8 +2,7 @@ import type { ProductPageData } from "@/types/product";
 
 /**
  * Content for the YourForce Property product page (app/products/property/page.tsx).
- * Keep claims here to what the platform actually delivers (see the property repo). Rental management
- * (landlords, tenants, rent) is still being built, so it's only mentioned as coming soon.
+ * Keep claims here to what the platform actually delivers (see the property repo).
  */
 export const propertyPage = {
   hero: {
@@ -216,7 +215,7 @@ export const propertyPage = {
       {
         question: "Does it handle rentals?",
         answer:
-          "You can list properties for rent today. Rental management, with landlord and tenant accounts, monthly rent and receipts, is coming soon.",
+          "Yes. Besides listing properties for rent, you can manage tenancies: monthly rent with receipts, rent collected by the agency or the landlord, rental applications, maintenance requests, and website accounts for landlords and tenants.",
       },
       {
         question: "Can we try it first?",

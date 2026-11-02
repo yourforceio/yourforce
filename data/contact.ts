@@ -137,6 +137,21 @@ export const contact: ContactData = {
             slug: "property-platform",
           },
           {
+            label: "Clinic Management Platform",
+            value: "Clinic Management Platform",
+            slug: "clinic-platform",
+          },
+          {
+            label: "Housing Society Platform",
+            value: "Housing Society Platform",
+            slug: "society-platform",
+          },
+          {
+            label: "Rent-a-Car Platform",
+            value: "Rent-a-Car Platform",
+            slug: "rentacar-platform",
+          },
+          {
             label: "Other",
             value: "Other",
             slug: "other",

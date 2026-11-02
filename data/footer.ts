@@ -113,6 +113,18 @@ export const footer: FooterData = {
           label: "Property",
           href: "/products/property",
         },
+        {
+          label: "Clinic",
+          href: "/products/clinic",
+        },
+        {
+          label: "Society",
+          href: "/products/society",
+        },
+        {
+          label: "Rent-a-Car",
+          href: "/products/rentacar",
+        },
       ],
     },
 

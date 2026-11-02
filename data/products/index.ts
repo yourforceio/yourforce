@@ -7,7 +7,7 @@ export const productsIntro = {
   heading: "Software Products Built and Run by YourForce",
 
   description:
-    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants and real estate agencies. Each product has a live demo you can try today.",
+    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants, real estate agencies, clinics, housing societies and car rental companies. Each product has a live demo you can try today.",
 };
 
 export const products = [
@@ -114,5 +114,68 @@ export const products = [
     ctaLabel: "Explore YourForce Property",
     demoHref: "https://skyline.property.yourforce.io",
     demoLabel: "Visit the demo agency",
+  },
+
+  {
+    slug: "clinic",
+    name: "YourForce Clinic",
+    eyebrow: "Clinic Software",
+    description:
+      "Run your whole clinic in one system: online appointments, patient files and printed prescriptions, a lab with flagged results, pharmacy stock, bills and panel billing, with reports in the patient's own account.",
+    icon: "clinic",
+    features: [
+      "Appointments & queue",
+      "Prescriptions",
+      "Lab results & reports",
+      "Pharmacy stock",
+      "Bills & panels",
+      "Patient portal",
+    ],
+    href: "/products/clinic",
+    ctaLabel: "Explore YourForce Clinic",
+    demoHref: "https://citycare.clinic.yourforce.io",
+    demoLabel: "Visit the demo clinic",
+  },
+
+  {
+    slug: "society",
+    name: "YourForce Society",
+    eyebrow: "Housing Society Software",
+    description:
+      "Monthly maintenance with receipts and a defaulters list, complaints, notices, visitor gate passes and the committee's accounts, for housing societies and apartment buildings, with an account for every resident.",
+    icon: "society",
+    features: [
+      "Dues & receipts",
+      "Defaulters & reminders",
+      "Complaints",
+      "Notices",
+      "Gate passes",
+      "Income & expense statement",
+    ],
+    href: "/products/society",
+    ctaLabel: "Explore YourForce Society",
+    demoHref: "https://greenvalley.society.yourforce.io",
+    demoLabel: "Visit the demo society",
+  },
+
+  {
+    slug: "rentacar",
+    name: "YourForce Rent-a-Car",
+    eyebrow: "Car Rental Software",
+    description:
+      "Your own booking website, a fleet calendar that never double-books a car or driver, CNIC and licence checks, security deposits and a final bill with extra km and late returns, self-drive or with driver.",
+    icon: "rentacar",
+    features: [
+      "Your own booking website",
+      "No double bookings",
+      "CNIC & licence checks",
+      "Deposits",
+      "Final bill",
+      "Fleet reports",
+    ],
+    href: "/products/rentacar",
+    ctaLabel: "Explore YourForce Rent-a-Car",
+    demoHref: "https://swift.rentacar.yourforce.io",
+    demoLabel: "Visit the demo company",
   },
 ] as const satisfies readonly ProductSummary[];
