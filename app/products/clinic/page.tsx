@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import {
+  BellRing,
   CalendarRange,
+  FileBadge,
   FileText,
   FlaskConical,
+  Languages,
   LifeBuoy,
   MessageSquareWarning,
+  PackageCheck,
+  Percent,
   PhoneCall,
   Pill,
   Receipt,
   Rocket,
   Settings2,
   Stethoscope,
+  Tv,
   Wallet,
 } from "lucide-react";
 
@@ -21,7 +27,7 @@ import { clinicPage } from "@/data/products/clinic";
 export const metadata: Metadata = {
   title: { absolute: "Clinic Management Software in Pakistan | YourForce Clinic" },
   description:
-    "YourForce Clinic runs a clinic from the online appointment to the prescription, the lab report, the pharmacy and the bill, with company and insurance panel billing and a patient portal. Book a demo.",
+    "YourForce Clinic runs a clinic from the online appointment and token to the prescription (in English and Urdu), the lab report, the pharmacy with expiry dates and the bill, with panel billing, doctors' shares and a patient portal. Book a demo.",
   alternates: {
     canonical: "/products/clinic",
   },
@@ -41,7 +47,7 @@ export default function ClinicProductPage() {
       data={clinicPage}
       icons={{
         challenges: [MessageSquareWarning, FlaskConical, Pill, Wallet],
-        features: [CalendarRange, Stethoscope, FlaskConical, Pill, Receipt, FileText],
+        features: [CalendarRange, Stethoscope, FlaskConical, Pill, Receipt, FileText, PackageCheck, Tv, BellRing, Languages, FileBadge, Percent],
         process: [PhoneCall, Settings2, Rocket, LifeBuoy],
       }}
     />

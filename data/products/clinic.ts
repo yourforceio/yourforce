@@ -103,7 +103,7 @@ export const clinicPage = {
       {
         title: "Appointments and the queue",
         description:
-          "Patients book a doctor and a time online, 24/7. Walk-ins join the same queue at the front desk, and every patient gets an MR number.",
+          "Patients book a doctor and a time online, 24/7. Walk-ins join the same queue at the front desk, every patient gets an MR number and a token for the day, and doctors call the next patient in one tap.",
       },
       {
         title: "Consultation and prescription",
@@ -118,17 +118,47 @@ export const clinicPage = {
       {
         title: "Pharmacy and stock",
         description:
-          "Prescribed medicines come off stock when the bill is made. See what's running low and record supplier deliveries and every correction.",
+          "Prescribed medicines come off stock when the bill is made. See what's running low, and record each supplier delivery with its batch number and invoice.",
       },
       {
         title: "Bills and panel billing",
         description:
-          "One bill for the consultation, tests and medicines, paid by cash, card, JazzCash or Easypaisa. Panels get their discount and a monthly statement.",
+          "One bill for the consultation, tests and medicines, paid by cash, card, JazzCash or Easypaisa. Refunds with a reason, and panels get their discount and a monthly statement.",
       },
       {
         title: "Reports in the patient's pocket",
         description:
           "Patients sign in on your website to see their prescriptions, lab reports and bills, with no lost papers and fewer calls asking for results.",
+      },
+      {
+        title: "Expiry dates, earliest first",
+        description:
+          "Every batch has its expiry date. Billing takes from the batch that expires first and never from an expired one, with lists of what expires soon and one-click write-offs.",
+      },
+      {
+        title: "Waiting-room screen",
+        description:
+          "A TV in the waiting room shows each doctor's room, the token being seen now and who's next, updated by itself, with token numbers only and no names.",
+      },
+      {
+        title: "Follow-up reminders",
+        description:
+          "The day before the follow-up date the doctor set, the patient gets a reminder, unless they've already booked. Reception sees this week's follow-ups at a glance.",
+      },
+      {
+        title: "Prescriptions in Urdu too",
+        description:
+          "Dose instructions like 1+0+1 after meals also print in Urdu, so patients who don't read English know exactly how to take their medicine.",
+      },
+      {
+        title: "Certificates and referrals",
+        description:
+          "Print a sick-leave certificate, a fitness certificate or a referral letter to a specialist from the visit, on your letterhead and signed by the doctor.",
+      },
+      {
+        title: "Doctors' share report",
+        description:
+          "Each doctor's consultation and procedure fees for the month, after discounts, with their agreed share and what the clinic keeps, ready to print.",
       },
     ],
   },
@@ -167,6 +197,8 @@ export const clinicPage = {
       { question: "Who can see a patient's records?", answer: "Each person has their own login and role: doctor, receptionist, lab technician, pharmacist or clinic admin. A receptionist sees appointments and bills, not consultation notes." },
       { question: "Do patients need an app?", answer: "No. They book on your clinic's website with their name and mobile number. With a password they can see their prescriptions, lab reports and bills online." },
       { question: "Can we bill companies and insurers?", answer: "Yes. Put a patient on a panel; their bills split between the panel and the patient, and you print a statement for each panel at month end." },
+      { question: "Can patients read the prescription in Urdu?", answer: "Yes. Dose instructions print in English and Urdu, for example 1+0+1 after meals also reads صبح ایک گولی، رات ایک گولی — کھانے کے بعد. You can switch the Urdu off in settings." },
+      { question: "Does the pharmacy track expiry dates?", answer: "Yes. Every delivery is recorded with its batch number and expiry. Billing uses the batch that expires first and refuses expired stock, and the pharmacy has lists of what expires in the next 90 days and what has already expired." },
       { question: "Can we use it without a lab or pharmacy?", answer: "Yes. Use only the parts you need. Tests can still be ordered for an outside lab and the report uploaded." },
       { question: "Can we try it first?", answer: "Yes. Explore City Care Clinic, our sample clinic, then book a demo to see it with your own doctors and fees." },
       { question: "Is there a contract?", answer: "No. Pay monthly or yearly and stop any time. Start with a free trial." },
