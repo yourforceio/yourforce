@@ -11,6 +11,8 @@ import {
   Stethoscope,
   Building,
   CarFront,
+  BookOpenCheck,
+  Wrench,
 } from "lucide-react";
 
 import Container from "@/components/layout/Container";
@@ -19,16 +21,16 @@ import { products, productsIntro } from "@/data/products";
 import type { ProductIcon } from "@/types/product";
 
 export const metadata: Metadata = {
-  title: "Our Products — YourForce Schools, Commerce, Bookings, Dine, Property, Clinic, Society and Rent-a-Car",
+  title: "Our Products — YourForce Schools, Commerce, Bookings, Dine, Property, Clinic, Society, Rent-a-Car, Learn and Services",
   description:
-    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments, YourForce Dine for restaurant ordering, YourForce Property for real estate agencies, YourForce Clinic for clinics, YourForce Society for housing societies and YourForce Rent-a-Car for car rental companies. Try each live demo.",
+    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments, YourForce Dine for restaurant ordering, YourForce Property for real estate agencies, YourForce Clinic for clinics, YourForce Society for housing societies and YourForce Rent-a-Car for car rental companies, YourForce Learn for academies and tutors, and YourForce Services, our home-services marketplace. Try each live demo.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "Our Products — YourForce",
     description:
-      "School management, online stores, appointment booking, restaurant ordering, real estate, clinics, housing societies and car rental, each with a live demo you can try today.",
+      "School management, online stores, appointment booking, restaurant ordering, real estate, clinics, housing societies, car rental, online courses and home services, each with a live demo you can try today.",
     url: "/products",
     type: "website",
   },
@@ -91,6 +93,20 @@ const productThemes = {
     iconBox: "bg-amber-50 text-amber-600",
     eyebrow: "text-amber-600",
     link: "bg-amber-600 hover:bg-amber-700 focus-visible:ring-amber-400",
+  },
+  learn: {
+    Icon: BookOpenCheck,
+    card: "hover:border-indigo-300",
+    iconBox: "bg-indigo-50 text-indigo-600",
+    eyebrow: "text-indigo-600",
+    link: "bg-indigo-600 hover:bg-indigo-700 focus-visible:ring-indigo-400",
+  },
+  services: {
+    Icon: Wrench,
+    card: "hover:border-green-300",
+    iconBox: "bg-green-50 text-green-600",
+    eyebrow: "text-green-600",
+    link: "bg-green-600 hover:bg-green-700 focus-visible:ring-green-400",
   },
 } as const satisfies Record<ProductIcon, unknown>;
 

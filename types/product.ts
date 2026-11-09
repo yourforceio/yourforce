@@ -1,4 +1,4 @@
-export type ProductIcon = "school" | "commerce" | "bookings" | "dine" | "property" | "clinic" | "society" | "rentacar";
+export type ProductIcon = "school" | "commerce" | "bookings" | "dine" | "property" | "clinic" | "society" | "rentacar" | "learn" | "services";
 
 type TitledItem = {
   title: string;

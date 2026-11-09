@@ -7,7 +7,7 @@ export const productsIntro = {
   heading: "Software Products Built and Run by YourForce",
 
   description:
-    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants, real estate agencies, clinics, housing societies and car rental companies. Each product has a live demo you can try today.",
+    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants, real estate agencies, clinics, housing societies, car rental companies and academies, and we run our own home-services marketplace. Each product has a live demo you can try today.",
 };
 
 export const products = [
@@ -177,5 +177,47 @@ export const products = [
     ctaLabel: "Explore YourForce Rent-a-Car",
     demoHref: "https://swift.rentacar.yourforce.io",
     demoLabel: "Visit the demo company",
+  },
+
+  {
+    slug: "learn",
+    name: "YourForce Learn",
+    eyebrow: "Online Course Platform",
+    description:
+      "Your own course website with video lessons, notes and quizzes, payments by JazzCash, Easypaisa or bank, every student's progress, questions to the teacher and certificates anyone can check.",
+    icon: "learn",
+    features: [
+      "Your own course website",
+      "Video, notes & quizzes",
+      "JazzCash & bank payments",
+      "Student progress",
+      "Q&A & reviews",
+      "Verifiable certificates",
+    ],
+    href: "/products/learn",
+    ctaLabel: "Explore YourForce Learn",
+    demoHref: "https://brightfuture.learn.yourforce.io",
+    demoLabel: "Visit the demo academy",
+  },
+
+  {
+    slug: "services",
+    name: "YourForce Services",
+    eyebrow: "Home Services Marketplace",
+    description:
+      "CNIC-verified plumbers, electricians, AC technicians, carpenters, painters, masons, labourers and cleaners, with ratings from real jobs and a small visit fee to confirm. Run by YourForce, launching in Lahore.",
+    icon: "services",
+    features: [
+      "CNIC-verified workers",
+      "Search by trade & area",
+      "Ratings from real jobs",
+      "Visit fee by JazzCash",
+      "Worker app in Urdu",
+      "Launching in Lahore",
+    ],
+    href: "/products/services",
+    ctaLabel: "Explore YourForce Services",
+    demoHref: "https://lahore.services.yourforce.io",
+    demoLabel: "See the Lahore preview",
   },
 ] as const satisfies readonly ProductSummary[];

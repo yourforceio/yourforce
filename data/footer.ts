@@ -125,6 +125,14 @@ export const footer: FooterData = {
           label: "Rent-a-Car",
           href: "/products/rentacar",
         },
+        {
+          label: "Learn",
+          href: "/products/learn",
+        },
+        {
+          label: "Services",
+          href: "/products/services",
+        },
       ],
     },
 

@@ -15,6 +15,8 @@ const ACCENTS: Record<string, { accent: string; strong: string }> = {
   clinic: { accent: "#fb7185", strong: "#e11d48" },
   society: { accent: "#2dd4bf", strong: "#0d9488" },
   rentacar: { accent: "#fbbf24", strong: "#d97706" },
+  learn: { accent: "#a5b4fc", strong: "#4f46e5" },
+  services: { accent: "#4ade80", strong: "#16a34a" },
 };
 
 const productFor = (slug: string) => {

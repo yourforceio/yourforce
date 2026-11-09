@@ -61,14 +61,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Products
     {
       url: `${baseUrl}/products`,
-      lastModified: new Date("2026-11-03T00:00:00.000Z"),
+      lastModified: new Date("2026-11-10T00:00:00.000Z"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
 
-    ...["schools", "commerce", "bookings", "dine", "property", "clinic", "society", "rentacar"].map((slug) => ({
+    ...["schools", "commerce", "bookings", "dine", "property", "clinic", "society", "rentacar", "learn", "services"].map((slug) => ({
       url: `${baseUrl}/products/${slug}`,
-      lastModified: new Date("2026-11-03T00:00:00.000Z"),
+      lastModified: new Date("2026-11-10T00:00:00.000Z"),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

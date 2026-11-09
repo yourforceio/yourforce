@@ -152,6 +152,16 @@ export const contact: ContactData = {
             slug: "rentacar-platform",
           },
           {
+            label: "Online Course Platform (Learn)",
+            value: "Online Course Platform",
+            slug: "learn-platform",
+          },
+          {
+            label: "Home Services: join as a worker or partner",
+            value: "Home Services Marketplace",
+            slug: "services-platform",
+          },
+          {
             label: "Other",
             value: "Other",
             slug: "other",
