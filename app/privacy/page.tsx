@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     url: pageUrl,
     title: "Privacy Policy | YourForce",
     description: "Learn how YourForce handles personal information submitted through its website and contact form.",
+    images: [{ url: site.image, width: 1200, height: 630, alt: "YourForce privacy policy" }],
   },
 };
 
@@ -30,7 +31,6 @@ export default function PrivacyPage() {
           <p className="yf-label text-mist">{privacyPolicy.badge}</p>
           <h1 className="mt-5 font-display text-[clamp(40px,5.4vw,72px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
             {privacyPolicy.title}
-            <span className="text-gold">.</span>
           </h1>
           <p className="mt-6 max-w-[760px] text-[18px] leading-relaxed text-mist">{privacyPolicy.description}</p>
           <p className="mt-6 text-sm font-bold text-mist">Last updated: {privacyPolicy.lastUpdated}</p>

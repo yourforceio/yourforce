@@ -9,7 +9,7 @@ export const commercePage = {
     badge: "YourForce Commerce",
 
     heading:
-      "Your Own Online Store, Ready to Take Orders in a Day",
+      "Your own online store, ready to take orders in a day",
 
     description:
       "YourForce Commerce gives sellers in Pakistan a fast, mobile-first store on their own web address. Take cash on delivery, bank transfer, JazzCash and Easypaisa, run Eid sales and offers, and manage every order from your phone.",

@@ -25,7 +25,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "PHP Upgrades, Security & Development",
   description:
-    "PHP version upgrades, security patching, Magento 2 and WooCommerce hardening, custom PHP development, and legacy code rescue. Request a free PHP health check.",
+    "PHP upgrades, security patches, Magento 2 and WooCommerce hardening, and legacy code rescue. Start with a free PHP health check of your store.",
   alternates: {
     canonical: "/services/php",
   },

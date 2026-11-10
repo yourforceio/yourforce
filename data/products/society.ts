@@ -8,7 +8,7 @@ export const societyPage = {
   hero: {
     badge: "YourForce Society",
 
-    heading: "Run Your Housing Society, Not the Paperwork",
+    heading: "Run your housing society, not the paperwork",
 
     description:
       "YourForce Society handles monthly maintenance with receipts and a defaulters list, complaints, notices, visitor gate passes and the committee's accounts, and gives every resident their own account to see it all from their phone.",

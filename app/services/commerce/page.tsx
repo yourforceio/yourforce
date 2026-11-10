@@ -5,9 +5,9 @@ import { Check } from "lucide-react";
 import { commercePage as c } from "@/data/commerce-services";
 import { site } from "@/data/site";
 
-const title = "Commerce Engineering for Salesforce Commerce Cloud, Shopify Plus & Magento";
+const title = "Salesforce, Shopify Plus & Magento Engineering";
 const description =
-  "Founder-led commerce engineering: builds, headless storefronts, migrations, integrations and support on Salesforce Commerce Cloud, Shopify Plus, Adobe Commerce and WooCommerce. Remote-first, in your time zone.";
+  "Founder-led engineering for Salesforce Commerce Cloud, Shopify Plus, Adobe Commerce and WooCommerce: builds, headless, migrations and integrations.";
 
 export const metadata: Metadata = {
   title,

@@ -22,7 +22,7 @@ import { rentacarPage } from "@/data/products/rentacar";
 export const metadata: Metadata = {
   title: { absolute: "Rent a Car Software & Booking System | YourForce Rent-a-Car" },
   description:
-    "YourForce Rent-a-Car gives car rental companies their own booking website, a fleet calendar that never double-books a car or driver, CNIC and licence checks, deposits and the final bill. Book a demo.",
+    "Car rental software: your own booking website, a fleet calendar that never double-books, CNIC and licence checks, deposits and the final bill.",
   alternates: {
     canonical: "/products/rentacar",
   },

@@ -3,10 +3,10 @@ import type { HeadlessCommerceData } from "@/types/headless-commerce";
 export const headlessCommerce: HeadlessCommerceData = {
   metadata: {
     title:
-        "Headless Commerce Storefront | YourForce Engineering Lab",
+        "Headless Commerce Storefront Demo",
 
     description:
-        "Explore an interactive headless commerce storefront prototype from YourForce.io demonstrating product discovery, product detail, cart interactions, commerce state, and responsive storefront architecture.",
+        "Try a headless commerce storefront prototype: product listing, product detail, variants and a working cart, built with Next.js and React.",
     },
 
   lab: {

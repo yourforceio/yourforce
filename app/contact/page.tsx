@@ -14,7 +14,7 @@ type ContactPageProps = {
 };
 
 const description =
-  "Contact YourForce about commerce engineering on Salesforce Commerce Cloud, Shopify Plus, Adobe Commerce or WooCommerce, our ready-made business software, or back-office support for US teams. We reply within one working day.";
+  "Contact YourForce about commerce engineering, our ready-made business software or US back-office support. A real person replies within one working day.";
 
 export const metadata: Metadata = {
   title: "Contact",

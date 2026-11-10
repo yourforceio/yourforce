@@ -22,7 +22,7 @@ import { learnPage } from "@/data/products/learn";
 export const metadata: Metadata = {
   title: { absolute: "Online Course Platform for Academies & Tutors | YourForce Learn" },
   description:
-    "YourForce Learn gives academies, tutors and institutes their own course website with video lessons, notes and quizzes, JazzCash, Easypaisa and bank payments, student progress, Q&A and verifiable certificates. Book a demo.",
+    "Your own course website for academies and tutors: video lessons, quizzes, JazzCash and bank payments, student progress and verifiable certificates.",
   alternates: {
     canonical: "/products/learn",
   },

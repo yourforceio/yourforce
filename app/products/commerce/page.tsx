@@ -23,7 +23,7 @@ import { commercePage } from "@/data/products/commerce";
 export const metadata: Metadata = {
   title: { absolute: "Online Store Builder in Pakistan, COD & JazzCash | YourForce Commerce" },
   description:
-    "YourForce Commerce is an online store platform for sellers in Pakistan: your own web address, cash on delivery, JazzCash and Easypaisa, product variants, Eid sales and offers, order management and reports. Book a demo.",
+    "Your own online store in Pakistan with cash on delivery, JazzCash and Easypaisa, product variants, sales and offers, and orders managed on your phone.",
   alternates: {
     canonical: "/products/commerce",
   },

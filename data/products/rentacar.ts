@@ -8,7 +8,7 @@ export const rentacarPage = {
   hero: {
     badge: "YourForce Rent-a-Car",
 
-    heading: "Every Car Booked, Never Twice",
+    heading: "Every car booked, never twice",
 
     description:
       "YourForce Rent-a-Car gives car rental companies their own booking website, a calendar for the whole fleet, CNIC and licence checks, security deposits and a final bill that adds extra km and late returns, from the first WhatsApp to the car back in the yard.",

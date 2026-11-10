@@ -8,9 +8,9 @@ import { homeProducts } from "@/data/home";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Our Products — YourForce Schools, Commerce, Bookings, Dine, Property, Clinic, Society, Rent-a-Car, Learn and Services",
+  title: "Business Software Products with Live Demos",
   description:
-    "Software products built and run by YourForce: YourForce Schools for school management, YourForce Commerce for online stores, YourForce Bookings for appointments, YourForce Dine for restaurant ordering, YourForce Property for real estate agencies, YourForce Clinic for clinics, YourForce Society for housing societies and YourForce Rent-a-Car for car rental companies, YourForce Learn for academies and tutors, and YourForce Services, our home-services marketplace. Try each live demo.",
+    "Ten products built by YourForce: schools, online courses, clinics, online stores, restaurants, salons, property, societies, car rental and home services.",
   alternates: {
     canonical: "/products",
   },

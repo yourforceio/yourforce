@@ -8,7 +8,7 @@ export const clinicPage = {
   hero: {
     badge: "YourForce Clinic",
 
-    heading: "Run Your Whole Clinic in One System",
+    heading: "Run your whole clinic in one system",
 
     description:
       "YourForce Clinic takes a patient from the online appointment to the doctor's prescription, the lab report, the pharmacy and the bill, with company and insurance panels billed at month end and every patient able to see their reports online.",

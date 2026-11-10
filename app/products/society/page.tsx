@@ -21,7 +21,7 @@ import { societyPage } from "@/data/products/society";
 export const metadata: Metadata = {
   title: { absolute: "Housing Society Management Software | YourForce Society" },
   description:
-    "YourForce Society handles monthly maintenance with receipts and a defaulters list, complaints, notices, visitor gate passes and the committee's accounts, with an account for every resident. Book a demo.",
+    "Housing society software: maintenance dues with receipts, a defaulters list, complaints, notices, gate passes and the committee's accounts.",
   alternates: {
     canonical: "/products/society",
   },

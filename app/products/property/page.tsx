@@ -22,7 +22,7 @@ import { propertyPage } from "@/data/products/property";
 export const metadata: Metadata = {
   title: { absolute: "Real Estate Agency Website & CRM in Pakistan | YourForce Property" },
   description:
-    "YourForce Property gives real estate agencies their own website with listings in marla, kanal, lakh and crore, maps with nearby Metro Bus and Orange Line stations, shortlists and viewing requests, and every enquiry tracked to the right agent. Book a demo.",
+    "A website for real estate agencies: listings in marla and kanal, maps with nearby Metro stations, viewing requests and every enquiry tracked.",
   alternates: {
     canonical: "/products/property",
   },

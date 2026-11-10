@@ -27,7 +27,7 @@ import { clinicPage } from "@/data/products/clinic";
 export const metadata: Metadata = {
   title: { absolute: "Clinic Management Software in Pakistan | YourForce Clinic" },
   description:
-    "YourForce Clinic runs a clinic from the online appointment and token to the prescription (in English and Urdu), the lab report, the pharmacy with expiry dates and the bill, with panel billing, doctors' shares and a patient portal. Book a demo.",
+    "Clinic software for Pakistan: appointments and tokens, prescriptions in English and Urdu, lab reports, pharmacy stock with expiry dates, and billing.",
   alternates: {
     canonical: "/products/clinic",
   },

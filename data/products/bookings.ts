@@ -9,7 +9,7 @@ export const bookingsPage = {
     badge: "YourForce Bookings",
 
     heading:
-      "Online Booking for Salons, Clinics and Spas, Open 24/7",
+      "Online booking for salons, clinics and spas, open 24/7",
 
     description:
       "YourForce Bookings lets clients book appointments online at any hour on your own booking page. Your team works from one clear calendar, reminders go out automatically, and two clients can never get the same slot.",

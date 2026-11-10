@@ -5,7 +5,7 @@ export const site = {
     "YourForce | Commerce Engineering for Salesforce, Shopify & Magento",
 
   description:
-    "Senior, remote-first commerce engineering for Salesforce Commerce Cloud, Shopify Plus, Adobe Commerce and WooCommerce, plus ready-made business software and back-office support for US teams.",
+    "Founder-led commerce engineering for Salesforce Commerce Cloud, Shopify Plus and Magento, plus ready-made business software and US back-office support.",
 
   url: "https://www.yourforce.io",
 

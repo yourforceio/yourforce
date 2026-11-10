@@ -8,7 +8,7 @@ export const learnPage = {
   hero: {
     badge: "YourForce Learn",
 
-    heading: "Your Classes, Online",
+    heading: "Your classes, online",
 
     description:
       "YourForce Learn gives academies, tutors and institutes their own course website: video lessons, notes and quizzes, payments by JazzCash, Easypaisa or bank, each student's progress, questions to the teacher, and a certificate anyone can check.",

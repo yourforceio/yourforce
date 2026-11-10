@@ -22,7 +22,7 @@ import { schoolsPage } from "@/data/products/schools";
 export const metadata: Metadata = {
   title: { absolute: "School Management Software in Pakistan | YourForce Schools" },
   description:
-    "YourForce Schools is a school management platform with role-based portals, fee collection and accounts, timetables with clash detection, attendance, exams, a parent portal and a school website CMS. Book a demo.",
+    "School management software for Pakistan: fees and accounts, timetables without clashes, attendance, exams, a parent portal and your school website.",
   alternates: {
     canonical: "/products/schools",
   },

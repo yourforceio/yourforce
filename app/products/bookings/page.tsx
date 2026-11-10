@@ -22,7 +22,7 @@ import { bookingsPage } from "@/data/products/bookings";
 export const metadata: Metadata = {
   title: { absolute: "Salon & Clinic Appointment Booking Software | YourForce Bookings" },
   description:
-    "YourForce Bookings lets clients book appointments online 24/7 on your own page, with staff calendars, no double bookings, SMS and WhatsApp reminders, deposits by JazzCash and Easypaisa, and reports. Book a demo.",
+    "Online booking for salons, clinics and spas: your own booking page, staff calendars, no double bookings, and deposits by JazzCash and Easypaisa.",
   alternates: {
     canonical: "/products/bookings",
   },

@@ -62,7 +62,6 @@ export default function LabDetailLayout({ data, aside, demo, children, icon: Ico
               </p>
               <h1 className="mt-5 max-w-[900px] font-display text-[clamp(36px,4.8vw,64px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
                 {lab.title}
-                <span className="text-gold">.</span>
               </h1>
               <p className="mt-6 max-w-[680px] text-[18px] leading-relaxed text-mist">{lab.description}</p>
             </div>

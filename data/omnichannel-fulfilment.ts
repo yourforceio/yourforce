@@ -3,10 +3,10 @@ import type { OmnichannelFulfilmentData } from "@/types/omnichannel-fulfilment";
 export const omnichannelFulfilment: OmnichannelFulfilmentData = {
   metadata: {
     title:
-        "Omnichannel Fulfilment | YourForce Engineering Lab",
+        "Omnichannel Fulfilment Demo",
 
     description:
-        "Explore an interactive omnichannel fulfilment prototype from YourForce.io demonstrating store discovery, inventory availability, preferred stores, and BOPIS selection.",
+        "Try a store pickup prototype: find nearby stores, check store-level stock, set a preferred store and choose buy online, pick up in store.",
     },
 
   lab: {

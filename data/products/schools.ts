@@ -9,7 +9,7 @@ export const schoolsPage = {
     badge: "YourForce Schools",
 
     heading:
-      "One School Management Platform for Students, Fees, Academics and Parents",
+      "One school management platform for students, fees, academics and parents",
 
     description:
       "YourForce Schools brings every part of running a school into one secure system. Administrators, accountants, clerks and teachers each get their own view of the school, parents get their own portal, and every school's data stays separate and protected.",

@@ -9,7 +9,7 @@ export const propertyPage = {
     badge: "YourForce Property",
 
     heading:
-      "Your Agency's Own Property Website, With Every Enquiry Tracked",
+      "Your agency's own property website, with every enquiry tracked",
 
     description:
       "YourForce Property gives real estate agencies their own website with listings in marla, kanal, lakh and crore, a map and nearby Metro Bus and Orange Line stations on every property, and one place to follow up every call, WhatsApp and viewing until the deal is done.",

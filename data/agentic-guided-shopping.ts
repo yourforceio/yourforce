@@ -2,10 +2,10 @@ import type { AgenticGuidedShoppingData } from "@/types/agentic-guided-shopping"
 
 export const agenticGuidedShopping: AgenticGuidedShoppingData = {
   metadata: {
-    title: "Conversational Product Finder | YourForce Engineering Lab",
+    title: "Conversational Product Finder Demo",
 
     description:
-      "Explore a transparent, rule-based product finding prototype from YourForce.io demonstrating request interpretation, catalog matching, and simulated inventory-aware fulfilment.",
+      "Try a rule-based product finder: describe what you need, see how the request is read and matched to the catalogue, and check simulated stock.",
   },
 
   lab: {

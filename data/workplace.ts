@@ -15,7 +15,7 @@ export const workplace: Workplace = {
     title: "Remote Workplace",
 
     description:
-      "Learn how YourForce.io supports remote-first engineering through flexible working hours, clear communication, ownership, time-zone alignment, and dependable delivery.",
+      "How YourForce works remote-first: flexible hours, clear written communication, ownership, and working hours matched to your time zone.",
   },
 
   badge:

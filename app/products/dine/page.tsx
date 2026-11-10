@@ -22,7 +22,7 @@ import { dinePage } from "@/data/products/dine";
 export const metadata: Metadata = {
   title: { absolute: "Restaurant Online Ordering & QR Menu System | YourForce Dine" },
   description:
-    "YourForce Dine gives restaurants their own ordering page for delivery and takeaway, QR codes for ordering from the table, a live kitchen screen, add-ons and deals, and reports. No commission on orders. Book a demo.",
+    "Restaurant ordering with no commission: your own page for delivery and takeaway, QR table ordering, a live kitchen screen, deals and reports.",
   alternates: {
     canonical: "/products/dine",
   },

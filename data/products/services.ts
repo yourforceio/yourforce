@@ -10,7 +10,7 @@ export const servicesPage = {
   hero: {
     badge: "YourForce Services",
 
-    heading: "Trusted Hands for Your Home",
+    heading: "Trusted hands for your home",
 
     description:
       "YourForce Services connects homes with CNIC-verified plumbers, electricians, AC technicians, carpenters, painters, masons, labourers and cleaners. Customers see ratings from real jobs, pay a small visit fee to confirm, and pay for the work in cash. Launching in Lahore.",

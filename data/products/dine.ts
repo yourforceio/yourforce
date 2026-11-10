@@ -9,7 +9,7 @@ export const dinePage = {
     badge: "YourForce Dine",
 
     heading:
-      "Online Ordering for Your Restaurant, With No Commission",
+      "Online ordering for your restaurant, with no commission",
 
     description:
       "YourForce Dine gives restaurants their own ordering page for delivery and takeaway, QR codes that let diners order from the table, and a live kitchen screen that shows every order as it comes in. You pay a fixed monthly fee and keep every rupee from your orders.",

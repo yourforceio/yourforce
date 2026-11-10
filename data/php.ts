@@ -7,7 +7,7 @@ export const phpPage = {
     badge: "PHP Engineering",
 
     heading:
-      "PHP Upgrades, Security & Development for Commerce and Custom Apps",
+      "PHP upgrades, security and development for commerce and custom apps",
 
     description:
       "Magento and WooCommerce run on PHP, and so do many business-critical applications. We move legacy PHP to supported versions, close security gaps, and rescue fragile code, with direct senior engineering involvement.",

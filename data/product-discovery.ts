@@ -3,10 +3,10 @@ import type { ProductDiscoveryData } from "@/types/product-discovery";
 export const productDiscovery: ProductDiscoveryData = {
   metadata: {
     title:
-        "Smart Product Discovery | YourForce Engineering Lab",
+        "Smart Product Discovery Demo",
 
     description:
-        "Explore an interactive product discovery prototype from YourForce.io demonstrating instant search, faceted filtering, sorting, relevance, suggestions, and modern commerce discovery patterns.",
+        "Try a product discovery prototype: instant search, multi-select facets, sorting, relevance and recovery from searches with no results.",
     },
 
   lab: {

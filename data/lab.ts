@@ -12,10 +12,10 @@ import type { LabData } from "@/types/lab";
 export const lab: LabData = {
   metadata: {
     title:
-      "YourForce Engineering Lab | Interactive Commerce & Software Experiences",
+      "Engineering Lab: Interactive Commerce Demos",
 
     description:
-      "Explore interactive commerce experiences and engineering prototypes built by YourForce.io across headless commerce, product discovery, omnichannel fulfilment, and conversational product finding.",
+      "Try interactive commerce demos built by YourForce: a headless storefront, product search, store pickup, a conversational product finder and virtual try-on.",
   },
 
   hero: {
