@@ -2,14 +2,13 @@ import type {
   Metadata,
   Viewport,
 } from "next";
-import Script from "next/script";
 
 import {
   Bricolage_Grotesque,
   DM_Sans,
-  Geist,
-  Geist_Mono,
 } from "next/font/google";
+
+import ConsentAnalytics from "@/components/analytics/ConsentAnalytics";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/sections/Footer";
@@ -32,18 +31,6 @@ const serviceAnalyticsValues = Object.values(
   },
   {},
 );
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 // 2026 brand fonts: Bricolage Grotesque for headings (font-display), DM Sans for text (font-sans).
 const bricolage = Bricolage_Grotesque({
@@ -134,7 +121,7 @@ export const metadata: Metadata = {
         url: site.image,
         width: 1200,
         height: 630,
-        alt: `${site.name} — Enterprise Software Development`,
+        alt: `${site.name}: commerce engineering for Salesforce, Shopify and Magento brands`,
       },
     ],
   },
@@ -146,7 +133,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: site.image,
-        alt: `${site.name} — Enterprise Software Development`,
+        alt: `${site.name}: commerce engineering for Salesforce, Shopify and Magento brands`,
       },
     ],
 
@@ -203,45 +190,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${bricolage.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-ink text-slate-100 font-sans">
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`}
-          strategy="afterInteractive"
-        />
-
-        <Script
-          id="yourforce-google-analytics"
-          strategy="afterInteractive"
-        >
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${googleMeasurementId}');
-
-            const serviceAnalyticsValues = ${JSON.stringify(serviceAnalyticsValues)};
-
-            document.addEventListener('click', function (event) {
-              const target = event.target;
-              const link = target instanceof Element
-                ? target.closest('a')
-                : null;
-
-              if (!link) return;
-
-              const service = serviceAnalyticsValues[link.hostname];
-
-              if (!service) return;
-
-              gtag('event', 'service_referral_click', {
-                service: service,
-                link_text: (link.textContent || '').trim()
-              });
-            });
-          `}
-        </Script>
+        {/* Google Analytics loads only after the visitor accepts (see the banner). */}
+        <ConsentAnalytics measurementId={googleMeasurementId} serviceAnalyticsValues={serviceAnalyticsValues} />
 
         <Navbar />
 

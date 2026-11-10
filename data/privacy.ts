@@ -8,7 +8,7 @@ export const privacyPolicy: PrivacyPolicy = {
   description:
     "This Privacy Policy explains how YourForce collects, uses, protects, and shares personal information across our main website and our trucking dispatch and medical billing service websites.",
 
-  lastUpdated: "August 31, 2026",
+  lastUpdated: "November 11, 2026",
 
   contactEmail: "hello@yourforce.io",
 
@@ -56,6 +56,8 @@ export const privacyPolicy: PrivacyPolicy = {
 
       paragraphs: [
         "We use Google Analytics 4 across yourforce.io (including www.yourforce.io), trucking.yourforce.io, and billing.yourforce.io to understand website traffic, service interest, navigation, and performance. Our current Google Analytics measurement ID is G-4ZWXW52HB3.",
+
+        "On www.yourforce.io, Google Analytics only loads after you accept it in the cookie banner. If you decline, no analytics script is loaded and no analytics cookie is set. You can change your choice at any time with the Cookie settings link at the bottom of every page.",
 
         "Google Analytics may use cookies or similar technologies to recognise a browser or device and generate usage statistics. Google may process analytics data on our behalf in accordance with its own terms, privacy documentation, and the settings of our Analytics property.",
 

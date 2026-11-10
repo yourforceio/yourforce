@@ -26,17 +26,17 @@ export default function HomeHero() {
         </div>
 
         <div className="relative h-[clamp(300px,36vw,460px)] min-w-0 flex-[1_1_460px]" aria-hidden>
-          <div className="absolute left-0 right-[14%] top-0 overflow-hidden rounded-2xl border border-ink-line bg-ink-2 shadow-[0_30px_80px_rgba(0,0,0,.45)]">
+          <div className="absolute left-0 right-[14%] top-0 overflow-hidden rounded-2xl border border-ink-line bg-ink-2 shadow-[0_14px_32px_rgba(0,0,0,.35)]">
             <div className="flex items-center gap-2 border-b border-ink-line px-3.5 py-3">
               <span className="h-2.5 w-2.5 rounded-full bg-[#3A4249]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#3A4249]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#3A4249]" />
             </div>
             <div className="relative aspect-video">
-              <Image src="/images/lab/headless-commerce-preview.png" alt="" fill priority sizes="(min-width: 1024px) 520px, 90vw" className="object-cover object-top" />
+              <Image src="/images/lab/headless-commerce-preview.png" alt="" fill sizes="(min-width: 1024px) 520px, 90vw" className="object-cover object-top" />
             </div>
           </div>
-          <div className="absolute bottom-[34px] right-0 w-[52%] overflow-hidden rounded-[14px] border border-ink-line bg-ink-2 shadow-[0_30px_80px_rgba(0,0,0,.6)]">
+          <div className="absolute bottom-[34px] right-0 w-[52%] overflow-hidden rounded-[14px] border border-ink-line bg-ink-2 shadow-[0_14px_32px_rgba(0,0,0,.45)]">
             <div className="relative aspect-[16/10]">
               <Image src="/images/lab/omnichannel-fulfilment-preview.png" alt="" fill sizes="(min-width: 1024px) 320px, 50vw" className="object-cover object-left-top" />
             </div>

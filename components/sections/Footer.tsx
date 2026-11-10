@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaLinkedinIn } from "react-icons/fa6";
 
+import { CookieSettingsButton } from "@/components/analytics/ConsentAnalytics";
 import Logo from "@/components/branding/Logo";
 import { engineering, homeProducts, operations } from "@/data/home";
 
@@ -67,7 +68,10 @@ export default function Footer() {
         ))}
       </div>
       <div className="mx-auto flex max-w-[1240px] flex-wrap justify-between gap-3 border-t border-ink-line px-6 pb-9 pt-5 text-sm">
-        <span>© {new Date().getFullYear()} YourForce</span>
+        <span className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <span>© {new Date().getFullYear()} YourForce</span>
+          <CookieSettingsButton className="text-mist underline-offset-2 hover:text-paper hover:underline" />
+        </span>
         <a href="mailto:hello@yourforce.io" className="font-bold text-paper hover:underline">hello@yourforce.io</a>
       </div>
     </footer>
