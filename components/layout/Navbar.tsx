@@ -23,6 +23,7 @@ import {
 
 import Logo from "@/components/branding/Logo";
 import { engineering, healthCheck, homeProducts, operations } from "@/data/home";
+import { site } from "@/data/site";
 
 type MenuName = "services" | "products" | null;
 
@@ -179,9 +180,9 @@ export default function Navbar() {
               </span>
               <span className="flex items-center gap-5">
                 <a href="mailto:hello@yourforce.io" className="font-bold text-ink hover:underline">hello@yourforce.io</a>
-                <Link href="/contact" onClick={close} className="inline-flex items-center gap-1.5 font-bold text-ink hover:underline">
+                <a href={site.bookCall} onClick={close} className="inline-flex items-center gap-1.5 font-bold text-ink hover:underline">
                   Book a call <ArrowRight aria-hidden className="h-4 w-4" />
-                </Link>
+                </a>
               </span>
             </div>
           </div>

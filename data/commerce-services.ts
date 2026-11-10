@@ -6,13 +6,15 @@
  * (fixed scope / retainer / dedicated engineer), platform partner status, client results.
  */
 
+import { site } from "@/data/site";
+
 export const commercePage = {
   hero: {
     label: "Commerce engineering",
     heading: "Commerce engineering for the platform you already run",
     description:
       "Senior, founder-led engineering for Salesforce Commerce Cloud, Shopify Plus, Adobe Commerce and WooCommerce. New builds, headless storefronts, migrations, integrations and long-term support, working in your time zone.",
-    primary: { label: "Book a call", href: "/contact?service=commerce-platform-engineering" },
+    primary: { label: "Book a call", href: site.bookCall },
     secondary: { label: "Free PHP health check", href: "/contact?service=php" },
   },
 
@@ -142,7 +144,7 @@ export const commercePage = {
   cta: {
     heading: "Tell us about your platform",
     description: "30 minutes with the founder. Bring your roadmap or your biggest headache.",
-    primary: { label: "Book a call", href: "/contact?service=commerce-platform-engineering" },
+    primary: { label: "Book a call", href: site.bookCall },
     email: "hello@yourforce.io",
   },
 };

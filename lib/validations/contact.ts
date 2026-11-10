@@ -40,7 +40,7 @@ export const contactSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(10, "Please provide at least 10 characters about your project.")
+    .min(10, "Please tell us a little more (at least 10 characters).")
     .max(
       5000,
       "Project details must be 5,000 characters or fewer.",

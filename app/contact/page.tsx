@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { CalendarClock, Clock3, Mail, MapPin } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa6";
 
 import ContactForm from "@/components/contact/ContactForm";
@@ -30,13 +30,6 @@ export const metadata: Metadata = {
   },
 };
 
-// The three ways in. Each pre-selects the closest option in the form and jumps to it.
-const routes = [
-  { who: "For commerce brands", title: "Commerce engineering", description: "Builds, upgrades, headless storefronts and integrations.", href: "?service=commerce-platform-engineering#form" },
-  { who: "For growing businesses", title: "Ready-made software", description: "A demo of one of our ten products, with your own data.", href: "#form" },
-  { who: "For US teams", title: "Operations support", description: "Trucking dispatch, medical billing, data entry or insurance paperwork.", href: "#form" },
-];
-
 function resolveInitialService(service?: string | string[]): string {
   const requestedService = Array.isArray(service) ? service[0] : service;
   if (!requestedService) return "";
@@ -48,71 +41,63 @@ function resolveInitialService(service?: string | string[]): string {
 export default async function ContactPage({ searchParams }: ContactPageProps) {
   const params = await searchParams;
   const initialService = resolveInitialService(params.service);
-  const { info, faq, hero } = contact;
+  const { faq, hero } = contact;
 
   return (
     <main className="bg-paper text-ink">
       {/* Hero */}
-      <div className="bg-ink text-paper">
-        <section className="mx-auto max-w-[1240px] px-6 pb-14 pt-16">
+      <section className="bg-ink text-paper">
+        <div className="mx-auto max-w-[1240px] px-6 pb-12 pt-14">
           <p className="yf-label text-mist">{hero.badge}</p>
-          <h1 className="mt-5 font-display text-[clamp(40px,5.4vw,76px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
+          <h1 className="mt-5 font-display text-[clamp(38px,5vw,68px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
             {hero.title} {hero.highlight}
             <span className="text-gold">.</span>
           </h1>
-          <p className="mt-6 max-w-[680px] text-[19px] leading-relaxed text-mist">{hero.description}</p>
-          <ul className="mt-7 flex flex-wrap gap-2">
-            {hero.highlights.map((h) => (
-              <li key={h} className="rounded-full border border-ink-line px-3.5 py-2 text-sm font-bold text-[#C9CED4]">{h}</li>
-            ))}
-          </ul>
-        </section>
-        <div className="mx-auto grid max-w-[1240px] grid-cols-1 gap-4 px-6 pb-16 md:grid-cols-3">
-          {routes.map((r) => (
-            <Link key={r.title} href={r.href} className="group flex flex-col gap-3 rounded-3xl border border-ink-line bg-ink-2 p-6 hover:border-[#4A525B]">
-              <span className="yf-label normal-case tracking-normal text-mist">{r.who}</span>
-              <span className="font-display text-[26px] font-extrabold leading-tight tracking-[-0.02em]">{r.title}</span>
-              <span className="text-[15px] text-[#C9CED4]">{r.description}</span>
-              <span className="mt-1 inline-flex self-start border-b-2 border-[#4A525B] font-bold group-hover:border-paper">Start here →</span>
-            </Link>
-          ))}
+          <p className="mt-5 max-w-[640px] text-[18px] leading-relaxed text-mist">
+            Book a 30-minute call, or send a message below. A real person reads every message and replies within one working day.
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Form + details */}
-      <section id="form" className="mx-auto grid max-w-[1240px] scroll-mt-24 items-start gap-6 px-6 py-[88px] lg:grid-cols-[1.25fr_0.75fr]">
+      {/* Form + ways to reach us */}
+      <section id="form" className="mx-auto grid max-w-[1240px] scroll-mt-24 items-start gap-6 px-6 pb-[88px] pt-10 lg:grid-cols-[1.3fr_0.7fr]">
         <ContactForm initialService={initialService} />
 
-        <aside className="flex flex-col gap-4">
+        <aside className="flex flex-col gap-4 lg:sticky lg:top-24">
           <div className="rounded-[28px] bg-ink p-7 text-paper">
-            <p className="yf-label text-mist">{info.nextSteps.eyebrow}</p>
-            <ol className="mt-5 flex flex-col">
-              {info.nextSteps.items.map((s) => (
-                <li key={s.number} className="flex gap-4 border-t border-ink-line py-4 first:border-0 first:pt-0">
-                  <span className="shrink-0 font-display text-[15px] font-extrabold text-gold">{s.number}</span>
-                  <span>
-                    <span className="block font-bold">{s.title}</span>
-                    <span className="mt-1 block text-[15px] text-mist">{s.description}</span>
-                  </span>
-                </li>
-              ))}
-            </ol>
+            <CalendarClock aria-hidden className="h-7 w-7 text-gold" strokeWidth={1.9} />
+            <h2 className="mt-4 font-display text-[26px] font-extrabold leading-tight">Prefer to talk?</h2>
+            <p className="mt-2 text-[15px] text-mist">Book 30 minutes with the founder, at a time that suits you in your own time zone. Best for commerce engineering and operations support.</p>
+            <a href={site.bookCall} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex rounded-full bg-gold px-6 py-[14px] font-bold text-ink hover:bg-[#f7c561]">
+              Book a call
+            </a>
           </div>
 
           <div className="rounded-[28px] border border-line bg-white p-7">
-            <p className="text-xs font-bold uppercase tracking-[0.06em] text-subtle">{info.primaryContact.title}</p>
-            <a href={info.primaryContact.href} className="mt-2 block break-all font-display text-2xl font-extrabold hover:underline">{info.primaryContact.value}</a>
-            <p className="mt-2 text-[15px] text-muted">{info.primaryContact.description}</p>
-            <dl className="mt-5 flex flex-col border-t border-line-soft">
-              {info.details.map((d) => (
-                <div key={d.title} className="border-b border-line-soft py-3.5 last:border-0">
-                  <dt className="text-xs font-bold uppercase tracking-[0.06em] text-subtle">{d.title}</dt>
-                  <dd className="mt-1 font-bold">{d.value}</dd>
-                  <dd className="mt-0.5 text-sm text-muted">{d.description}</dd>
-                </div>
-              ))}
-            </dl>
-            <a href="https://www.linkedin.com/company/yourforce-io/" className="mt-3 inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink px-4 py-2.5 text-sm font-bold hover:bg-ink hover:text-paper">
+            <ul className="flex flex-col gap-4 text-[15px]">
+              <li className="flex items-start gap-3">
+                <Mail aria-hidden className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={2} />
+                <span>
+                  <a href="mailto:hello@yourforce.io" className="font-bold hover:underline">hello@yourforce.io</a>
+                  <span className="block text-muted">We reply within one working day.</span>
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin aria-hidden className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={2} />
+                <span>
+                  <span className="font-bold">Lahore, Pakistan</span>
+                  <span className="block text-muted">Remote-first: we work with teams wherever they are.</span>
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock3 aria-hidden className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={2} />
+                <span>
+                  <span className="font-bold">In your time zone</span>
+                  <span className="block text-muted">Calls and replies are planned around your working day.</span>
+                </span>
+              </li>
+            </ul>
+            <a href="https://www.linkedin.com/company/yourforce-io/" className="mt-6 inline-flex items-center gap-2 rounded-full border-[1.5px] border-ink px-4 py-2.5 text-sm font-bold hover:bg-ink hover:text-paper">
               <FaLinkedinIn aria-hidden className="h-3.5 w-3.5" /> YourForce on LinkedIn
             </a>
           </div>

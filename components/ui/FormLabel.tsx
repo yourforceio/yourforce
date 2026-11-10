@@ -4,23 +4,12 @@ interface FormLabelProps {
   required?: boolean;
 }
 
-export default function FormLabel({
-  htmlFor,
-  children,
-  required = false,
-}: FormLabelProps) {
+/** Form label. Optional fields say "optional" instead of required ones carrying an asterisk. */
+export default function FormLabel({ htmlFor, children, required = false }: FormLabelProps) {
   return (
-    <label
-      htmlFor={htmlFor}
-      className="mb-2 block text-sm font-bold text-ink"
-    >
+    <label htmlFor={htmlFor} className="mb-2 block text-sm font-bold text-ink">
       {children}
-
-      {required && (
-        <span className="ml-1 text-red-600" aria-label="required">
-          *
-        </span>
-      )}
+      {!required && <span className="ml-1.5 font-medium text-subtle">(optional)</span>}
     </label>
   );
 }

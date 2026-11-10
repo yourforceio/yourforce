@@ -46,125 +46,163 @@ export const contact: ContactData = {
     fields: [
       {
         name: "name",
-        label: "Full Name",
+        label: "Your name",
         type: "text",
         required: true,
-        placeholder: "John Doe",
+        placeholder: "e.g. Ayesha Khan",
         autoComplete: "name",
       },
 
       {
         name: "email",
-        label: "Email Address",
+        label: "Email",
         type: "email",
         required: true,
-        placeholder: "john@example.com",
+        placeholder: "you@company.com",
         autoComplete: "email",
       },
 
       {
         name: "phone",
-        label: "Phone Number",
+        label: "Phone or WhatsApp",
         type: "tel",
-        placeholder: "+92 300 1234567",
+        placeholder: "0300 1234567 or +1 555 010 0000",
         autoComplete: "tel",
       },
 
       {
         name: "service",
-        label: "Service Required",
+        label: "What do you need?",
         type: "select",
         required: true,
-        placeholder: "Select a service",
-
-        helper:
-          "Choose the closest option. We’ll refine it during discovery.",
+        placeholder: "Choose one",
 
         options: [
           {
             label: "Commerce Platform Engineering",
             value: "Commerce Platform Engineering",
             slug: "commerce-platform-engineering",
+            group: "engineering",
           },
           {
             label: "Headless Commerce & Storefronts",
             value: "Headless Commerce & Storefronts",
             slug: "headless-commerce",
+            group: "engineering",
           },
           {
             label: "Migration & Modernization",
             value: "Migration & Modernization",
             slug: "migration-modernization",
+            group: "engineering",
           },
           {
             label: "Integrations & Automation",
             value: "Integrations & Automation",
             slug: "integrations-automation",
+            group: "engineering",
           },
           {
             label: "Enterprise Software & Consulting",
             value: "Enterprise Software & Consulting",
             slug: "enterprise-software",
+            group: "engineering",
           },
           {
             label: "Architecture & Technical Consulting",
             value: "Architecture & Technical Consulting",
             slug: "technical-consulting",
+            group: "engineering",
           },
           {
             label: "PHP Upgrades & Free Health Check",
             value: "PHP Upgrades & Free Health Check",
             slug: "php",
+            group: "engineering",
           },
           {
-            label: "School Management Platform",
+            label: "Schools (school management)",
             value: "School Management Platform",
             slug: "school-platform",
+            group: "software",
           },
           {
-            label: "Online Store Platform",
+            label: "Commerce (online store)",
             value: "Online Store Platform",
             slug: "commerce-platform",
+            group: "software",
           },
           {
-            label: "Online Booking Platform",
+            label: "Bookings (salons, spas and clinics)",
             value: "Online Booking Platform",
             slug: "booking-platform",
+            group: "software",
           },
           {
-            label: "Restaurant Ordering Platform",
+            label: "Dine (restaurant ordering)",
             value: "Restaurant Ordering Platform",
             slug: "restaurant-platform",
+            group: "software",
           },
           {
-            label: "Real Estate Agency Platform",
+            label: "Property (real estate agencies)",
             value: "Real Estate Agency Platform",
             slug: "property-platform",
+            group: "software",
           },
           {
-            label: "Clinic Management Platform",
+            label: "Clinic (clinic management)",
             value: "Clinic Management Platform",
             slug: "clinic-platform",
+            group: "software",
           },
           {
-            label: "Housing Society Platform",
+            label: "Society (housing societies)",
             value: "Housing Society Platform",
             slug: "society-platform",
+            group: "software",
           },
           {
-            label: "Rent-a-Car Platform",
+            label: "Rent-a-Car (car rental)",
             value: "Rent-a-Car Platform",
             slug: "rentacar-platform",
+            group: "software",
           },
           {
-            label: "Online Course Platform (Learn)",
+            label: "Learn (online courses)",
             value: "Online Course Platform",
             slug: "learn-platform",
+            group: "software",
           },
           {
-            label: "Home Services: join as a worker or partner",
+            label: "Services (join as a worker or partner)",
             value: "Home Services Marketplace",
             slug: "services-platform",
+            group: "software",
+          },
+          {
+            label: "Trucking dispatch",
+            value: "Trucking Dispatch",
+            slug: "trucking-dispatch",
+            group: "operations",
+          },
+          {
+            label: "Medical billing and coding",
+            value: "Medical Billing & Coding",
+            slug: "medical-billing",
+            group: "operations",
+          },
+          {
+            label: "Data entry and documents",
+            value: "Data Entry & Documents",
+            slug: "data-entry",
+            group: "operations",
+          },
+          {
+            label: "Insurance document support",
+            value: "Insurance Document Support",
+            slug: "insurance-documents",
+            group: "operations",
           },
           {
             label: "Other",
@@ -176,12 +214,9 @@ export const contact: ContactData = {
 
       {
         name: "budget",
-        label: "Estimated Budget",
+        label: "Budget",
         type: "select",
-        placeholder: "Select a budget range",
-
-        helper:
-          "An approximate range helps us recommend the right approach.",
+        placeholder: "Choose a range",
 
         options: [
           {
@@ -213,12 +248,9 @@ export const contact: ContactData = {
 
       {
         name: "timeline",
-        label: "Preferred Timeline",
+        label: "Timeline",
         type: "select",
-        placeholder: "Select a timeline",
-
-        helper:
-          "Select the nearest timeframe, even if it is flexible.",
+        placeholder: "Choose a timeframe",
 
         options: [
           {
@@ -246,7 +278,7 @@ export const contact: ContactData = {
 
       {
         name: "message",
-        label: "Project Details",
+        label: "Tell us more",
         type: "textarea",
         required: true,
         fullWidth: true,

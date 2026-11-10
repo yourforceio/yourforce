@@ -19,6 +19,9 @@ export const site = {
 
   hireUs: "Start Your Project",
 
+  // 30-minute call with the founder (Calendly). Every "Book a call" button uses this.
+  bookCall: "https://calendly.com/your-force-you/30min",
+
   analytics: {
     googleMeasurementId: "G-4ZWXW52HB3",
   },

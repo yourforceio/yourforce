@@ -18,6 +18,9 @@ export interface ContactSelectOption {
    * /contact?service=headless-commerce
    */
   slug?: string;
+
+  /** Which contact tab lists this option. */
+  group?: "engineering" | "software" | "operations";
 }
 
 export interface ContactFormField {

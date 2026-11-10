@@ -5,6 +5,8 @@
  * - Medical billing: say a Business Associate Agreement is signed at onboarding; don't claim "HIPAA compliant".
  */
 
+import { site } from "@/data/site";
+
 export type HomeProduct = {
   slug: string;
   /** One-line note under the product in the header's Products menu. */
@@ -22,7 +24,7 @@ export const hero = {
   heading: "Commerce engineering for Salesforce, Shopify and Magento brands",
   description:
     "Senior engineers for the platform you already run: builds, upgrades, headless storefronts and integrations. We also make ready-made software for growing businesses, and run back-office desks for US teams.",
-  primary: { label: "Book a call", href: "/contact?service=commerce-platform-engineering" },
+  primary: { label: "Book a call", href: site.bookCall },
   secondary: { label: "Free PHP health check", href: "/contact?service=php" },
   caption: "From our Labs: headless storefront and omnichannel OMS",
 };
@@ -87,7 +89,7 @@ export const why = {
   label: "Why YourForce",
   heading: "Remote-first, across the globe",
   description: "We plan our day around yours, so your team gets answers while it's still working.",
-  cta: { label: "Book a call", href: "/contact" },
+  cta: { label: "Book a call", href: site.bookCall },
   points: [
     { title: "Remote-first, any time zone", description: "We work across the globe and match your working hours, wherever your team is." },
     { title: "Founder-led, senior only", description: "You talk directly to the engineer doing the work. No account managers in between." },
@@ -118,7 +120,7 @@ export const founder = {
   ],
   points: ["Scopes and architects every engagement", "Reviews the code that ships", "Built the ten YourForce products"],
   stack: ["Salesforce Commerce Cloud", "Shopify Plus", "Adobe Commerce", "Next.js", "Custom platforms"],
-  cta: { label: "Book 30 minutes with the founder", href: "/contact" },
+  cta: { label: "Book 30 minutes with the founder", href: site.bookCall },
   experienceTitle: "Platforms our founder engineered before YourForce",
   experienceNote: "Delivered while employed at other companies, and shown here as experience rather than YourForce client work.",
   experience: [
@@ -181,7 +183,7 @@ export const contactSection = {
     eyebrow: "Commerce engineering · operations",
     title: "30 minutes with the founder",
     description: "Bring your roadmap or your biggest headache. We book it in your time zone.",
-    primary: { label: "Book a call", href: "/contact" },
+    primary: { label: "Book a call", href: site.bookCall },
     email: "hello@yourforce.io",
   },
   software: {
