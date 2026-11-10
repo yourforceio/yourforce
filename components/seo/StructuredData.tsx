@@ -46,6 +46,7 @@ export default function StructuredData() {
           "@type": "ContactPoint",
           contactType: "sales",
           email: "hello@yourforce.io",
+          telephone: "+1-207-816-4438",
           url: contactUrl,
           availableLanguage: ["English"],
         },

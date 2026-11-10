@@ -322,7 +322,7 @@ export function ContactBlock() {
             <p className="font-display text-[26px] font-extrabold leading-tight">{software.title}</p>
             <p className="text-[15px] text-muted">{software.description}</p>
             <div className="mt-1 flex flex-wrap gap-2.5">
-              <Link href={software.primary.href} className="rounded-full bg-ink px-[22px] py-3.5 font-bold text-paper hover:bg-ink-2">{software.primary.label}</Link>
+              <a href={software.primary.href} target="_blank" rel="noopener noreferrer" className="rounded-full bg-ink px-[22px] py-3.5 font-bold text-paper hover:bg-ink-2">{software.primary.label}</a>
               <Link href={software.secondary.href} className="rounded-full border-[1.5px] border-ink px-5 py-3 font-bold hover:bg-ink hover:text-paper">{software.secondary.label}</Link>
             </div>
           </div>

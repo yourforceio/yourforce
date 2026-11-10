@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CalendarClock, Clock3, Mail, MapPin } from "lucide-react";
+import { CalendarClock, Clock3, Mail, MapPin, MessageCircle } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa6";
 
 import ContactForm from "@/components/contact/ContactForm";
@@ -54,7 +54,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             <span className="text-gold">.</span>
           </h1>
           <p className="mt-5 max-w-[640px] text-[18px] leading-relaxed text-mist">
-            Book a 30-minute call, or send a message below. A real person reads every message and replies within one working day.
+            Book a 30-minute call, message us on WhatsApp, or send a message below. A real person reads every message and replies within one working day.
           </p>
         </div>
       </section>
@@ -80,6 +80,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 <span>
                   <a href="mailto:hello@yourforce.io" className="font-bold hover:underline">hello@yourforce.io</a>
                   <span className="block text-muted">We reply within one working day.</span>
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MessageCircle aria-hidden className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={2} />
+                <span>
+                  <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" className="font-bold hover:underline">WhatsApp {site.whatsapp.display}</a>
+                  <span className="block text-muted">Quickest for questions about our products.</span>
                 </span>
               </li>
               <li className="flex items-start gap-3">

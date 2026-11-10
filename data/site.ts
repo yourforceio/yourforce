@@ -22,6 +22,9 @@ export const site = {
   // 30-minute call with the founder (Calendly). Every "Book a call" button uses this.
   bookCall: "https://calendly.com/your-force-you/30min",
 
+  // WhatsApp (shown as +1 207 816 4438). One number for every audience.
+  whatsapp: { display: "+1 207 816 4438", href: "https://wa.me/12078164438" },
+
   analytics: {
     googleMeasurementId: "G-4ZWXW52HB3",
   },

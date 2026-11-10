@@ -3,6 +3,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 
 import { CookieSettingsButton } from "@/components/analytics/ConsentAnalytics";
 import Logo from "@/components/branding/Logo";
+import { site } from "@/data/site";
 import { engineering, homeProducts, operations } from "@/data/home";
 
 type FooterLink = { label: string; href: string };
@@ -72,7 +73,10 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} YourForce</span>
           <CookieSettingsButton className="text-mist underline-offset-2 hover:text-paper hover:underline" />
         </span>
-        <a href="mailto:hello@yourforce.io" className="font-bold text-paper hover:underline">hello@yourforce.io</a>
+        <span className="flex flex-wrap gap-x-5 gap-y-2">
+          <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" className="font-bold text-paper hover:underline">WhatsApp {site.whatsapp.display}</a>
+          <a href="mailto:hello@yourforce.io" className="font-bold text-paper hover:underline">hello@yourforce.io</a>
+        </span>
       </div>
     </footer>
   );

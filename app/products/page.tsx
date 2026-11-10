@@ -111,7 +111,10 @@ export default function ProductsPage() {
             </h2>
             <p className="mt-4 text-lg text-mist">Free trial, no setup fee, cancel any time. We reply within one working day.</p>
           </div>
-          <Link href="/contact#form" className="rounded-full bg-gold px-7 py-4 font-bold text-ink hover:bg-[#f7c561]">Request a demo</Link>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/contact?service=other#form" className="rounded-full bg-gold px-7 py-4 font-bold text-ink hover:bg-[#f7c561]">Request a demo</Link>
+            <a href={site.whatsapp.href} target="_blank" rel="noopener noreferrer" className="rounded-full border-[1.5px] border-[#4A525B] px-6 py-[15px] font-bold text-paper hover:border-paper">WhatsApp {site.whatsapp.display}</a>
+          </div>
         </div>
       </section>
     </main>

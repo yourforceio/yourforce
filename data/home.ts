@@ -189,9 +189,8 @@ export const contactSection = {
   software: {
     eyebrow: "Ready-made software · Pakistan",
     title: "See it with your own data",
-    description: "Ask for a demo with your own data or a call back. We reply within one working day.",
-    // TODO: replace with the WhatsApp number once it's arranged.
-    primary: { label: "Request a demo", href: "/contact?service=other" },
-    secondary: { label: "Compare products", href: "/products" },
+    description: "Message us on WhatsApp, or ask for a demo with your own data. We reply within one working day.",
+    primary: { label: "WhatsApp us", href: site.whatsapp.href },
+    secondary: { label: "Request a demo", href: "/contact?service=other" },
   },
 };
