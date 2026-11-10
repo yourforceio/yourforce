@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Check, type LucideIcon } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, KeyRound, type LucideIcon } from "lucide-react";
 
 import ProductStructuredData from "@/components/seo/ProductStructuredData";
 
@@ -36,6 +36,9 @@ export default function ProductPage({ slug, data, icons }: { slug: string; data:
   const { hero, overview, liveDemo, challenges, features, process, audiences, faq, finalCta } = data;
   const product = homeProducts.find((p) => p.slug === slug);
   const color = product?.color ?? "#F5B83D";
+  // Each product site has a demo guide at /demo (sign-ins, password and what to try). Schools' demo button
+  // already goes to its guide (app.yourforce.io/demo), so it doesn't get a second link.
+  const demoGuide = liveDemo.primaryHref.endsWith("/demo") ? null : `${liveDemo.secondaryHref.replace(/\/$/, "")}/demo`;
 
   return (
     <main className="bg-paper text-ink">
@@ -134,6 +137,13 @@ export default function ProductPage({ slug, data, icons }: { slug: string; data:
                 <ArrowUpRight aria-hidden className="h-4 w-4" />
               </a>
             </div>
+            {demoGuide && (
+              <a href={demoGuide} className="mt-5 inline-flex items-center gap-2 text-[15px] font-bold hover:underline">
+                <KeyRound aria-hidden className="h-4 w-4" strokeWidth={2.2} />
+                Demo sign-ins and what to try as each role
+                <ArrowUpRight aria-hidden className="h-4 w-4" />
+              </a>
+            )}
           </div>
         </div>
       </section>
