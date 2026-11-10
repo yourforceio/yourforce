@@ -2,27 +2,25 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
-  ArrowRight,
   Bug,
-  ClipboardCheck,
   Check,
+  ClipboardCheck,
+  Clock,
   Code2,
+  FlaskConical,
+  Layers,
+  RefreshCw,
   Rocket,
   SearchCheck,
+  Server,
   ShieldAlert,
   ShieldCheck,
   Wrench,
-  FlaskConical,
-  Clock,
-  Server,
-  RefreshCw,
-  Layers,
 } from "lucide-react";
-
-import Container from "@/components/layout/Container";
 
 import { phpEngineering } from "@/data/services";
 import { phpPage } from "@/data/php";
+import { site } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "PHP Upgrades, Security & Development",
@@ -37,351 +35,198 @@ export const metadata: Metadata = {
       "Move legacy PHP to supported versions, close security gaps, and keep your commerce platform fast and protected.",
     url: "/services/php",
     type: "website",
+    images: [{ url: site.image, width: 1200, height: 630, alt: "YourForce PHP upgrades and security" }],
   },
 };
 
 const riskIcons = [ShieldAlert, Bug, Server, Clock];
-
-const serviceIcons = [
-  RefreshCw,
-  ShieldCheck,
-  Layers,
-  Wrench,
-  Code2,
-  SearchCheck,
-];
-
+const serviceIcons = [RefreshCw, ShieldCheck, Layers, Wrench, Code2, SearchCheck];
 const processIcons = [ClipboardCheck, SearchCheck, FlaskConical, Rocket];
 
-function SectionHeading({
-  eyebrow,
-  heading,
-  description,
-  dark = false,
-}: {
-  eyebrow: string;
-  heading: string;
-  description?: string;
-  dark?: boolean;
-}) {
+const container = "mx-auto max-w-[1240px] px-6";
+const h2 = "font-display font-extrabold leading-none tracking-[-0.03em]";
+
+function Heading({ label, heading, description, dark = false }: { label: string; heading: string; description?: string; dark?: boolean }) {
   return (
-    <div className="max-w-3xl">
-      <p className="text-sm font-bold uppercase tracking-[0.16em] text-rose-500">
-        {eyebrow}
-      </p>
-      <h2
-        className={`mt-3 text-3xl font-black leading-tight tracking-tight md:text-4xl ${
-          dark ? "text-white" : "text-slate-950"
-        }`}
-      >
-        {heading}
-      </h2>
-      {description && (
-        <p
-          className={`mt-4 text-lg leading-8 ${
-            dark ? "text-slate-300" : "text-slate-600"
-          }`}
-        >
-          {description}
-        </p>
-      )}
+    <div className="max-w-[760px]">
+      <p className={`yf-label ${dark ? "text-mist" : ""}`}>{label}</p>
+      <h2 className={`${h2} mt-3.5 text-[clamp(30px,3.8vw,48px)] leading-[1.02]`}>{heading}</h2>
+      {description && <p className={`mt-4 text-[17px] ${dark ? "text-mist" : "text-muted"}`}>{description}</p>}
     </div>
   );
 }
 
+// FAQ structured data so Google can show the questions in results.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: phpPage.faq.items.map((q) => ({
+    "@type": "Question",
+    name: q.question,
+    acceptedAnswer: { "@type": "Answer", text: q.answer },
+  })),
+};
+
 export default function PhpServicePage() {
-  const { hero, risks, services, process, platforms, faq, finalCta } =
-    phpPage;
+  const { hero, risks, services, process, platforms, faq, finalCta } = phpPage;
   const { healthCheck } = phpEngineering;
 
   return (
-    <main>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-950 pb-24 pt-32 text-white md:pt-36">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-rose-500/15 blur-3xl"
-        />
+    <main className="bg-paper text-ink">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-        <Container>
-          <Link
-            href="/services"
-            className="relative inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-white"
-          >
-            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-            All services
+      {/* Hero */}
+      <section className="bg-ink text-paper">
+        <div className={`${container} pb-20 pt-12`}>
+          <Link href="/services/commerce" className="inline-flex items-center gap-2 text-sm font-bold text-mist hover:text-paper">
+            <ArrowLeft aria-hidden className="h-4 w-4" />
+            Commerce engineering
           </Link>
 
-          <div className="relative mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <span className="inline-flex items-center rounded-full border border-rose-400/25 bg-rose-400/10 px-4 py-2 text-sm font-medium text-rose-300">
-                {hero.badge}
-              </span>
-
-              <h1 className="mt-7 text-4xl font-black leading-tight tracking-tight md:text-5xl">
+              <p className="yf-label text-mist">{hero.badge}</p>
+              <h1 className="mt-5 font-display text-[clamp(36px,4.6vw,62px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
                 {hero.heading}
+                <span className="text-gold">.</span>
               </h1>
-
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                {hero.description}
-              </p>
-
-              <ul
-                aria-label="Platforms covered"
-                className="mt-6 flex flex-wrap gap-2"
-              >
+              <p className="mt-6 max-w-[620px] text-[18px] leading-relaxed text-mist">{hero.description}</p>
+              <ul aria-label="Platforms covered" className="mt-6 flex flex-wrap gap-2">
                 {hero.highlights.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200"
-                  >
-                    {item}
-                  </li>
+                  <li key={item} className="rounded-full border border-ink-line px-3.5 py-2 text-sm font-bold text-[#C9CED4]">{item}</li>
                 ))}
               </ul>
-
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link
-                  href={hero.primaryHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-rose-500 px-6 py-3.5 font-bold text-white transition-colors hover:bg-rose-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
-                >
-                  {hero.primaryCta}
-                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                </Link>
-
-                <a
-                  href={hero.secondaryHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
-                >
-                  {hero.secondaryCta}
-                </a>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href={hero.primaryHref} className="rounded-full bg-gold px-6 py-[15px] font-bold text-ink hover:bg-[#f7c561]">{hero.primaryCta}</Link>
+                <a href={hero.secondaryHref} className="rounded-full border-[1.5px] border-[#4A525B] px-6 py-3.5 font-bold text-paper hover:border-paper">{hero.secondaryCta}</a>
               </div>
             </div>
 
-            {/* Health check card */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-8">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-rose-300">
-                {healthCheck.eyebrow}
-              </p>
-
-              <h2 className="mt-3 text-2xl font-bold tracking-tight">
-                {healthCheck.title}
-              </h2>
-
-              <p className="mt-3 text-sm leading-6 text-slate-300">
-                {healthCheck.description}
-              </p>
-
-              <ul className="mt-6 space-y-3">
+            <div className="rounded-[28px] bg-paper p-7 text-ink md:p-8">
+              <p className="yf-label">{healthCheck.eyebrow}</p>
+              <h2 className="mt-3 font-display text-[26px] font-extrabold leading-tight">{healthCheck.title}</h2>
+              <p className="mt-3 text-[15px] text-muted">{healthCheck.description}</p>
+              <ul className="mt-6 flex flex-col gap-2.5">
                 {healthCheck.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-slate-200"
-                  >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose-400/15 text-rose-300">
-                      <Check
-                        aria-hidden="true"
-                        className="h-3 w-3"
-                        strokeWidth={3}
-                      />
-                    </span>
+                  <li key={item} className="flex items-start gap-3 rounded-2xl bg-white p-4 text-[15px] font-bold">
+                    <Check aria-hidden className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={2.4} />
                     {item}
                   </li>
                 ))}
               </ul>
+              <Link href={hero.primaryHref} className="mt-6 inline-block font-bold hover:underline">Request yours →</Link>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Why it matters */}
-      <section className="bg-white py-24">
-        <Container>
-          <SectionHeading
-            eyebrow={risks.eyebrow}
-            heading={risks.heading}
-            description={risks.description}
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {risks.items.map((item, index) => {
-              const Icon = riskIcons[index % riskIcons.length];
-
-              return (
-                <article
-                  key={item.title}
-                  className="flex gap-5 rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-rose-50 text-rose-500">
-                    <Icon aria-hidden="true" className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-950">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 leading-7 text-slate-600">
-                      {item.description}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </Container>
+      <section className={`${container} py-[88px]`}>
+        <Heading label={risks.eyebrow} heading={risks.heading} description={risks.description} />
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
+          {risks.items.map((item, index) => {
+            const Icon = riskIcons[index % riskIcons.length];
+            return (
+              <article key={item.title} className="flex gap-5 rounded-3xl border border-line bg-white p-7">
+                <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gold-soft text-ink">
+                  <Icon className="h-6 w-6" strokeWidth={1.9} />
+                </span>
+                <div>
+                  <h3 className="font-display text-[21px] font-bold">{item.title}</h3>
+                  <p className="mt-2 text-[15px] text-muted">{item.description}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </section>
 
       {/* What we do */}
-      <section
-        id={services.id}
-        className="scroll-mt-24 bg-slate-50 py-24"
-      >
-        <Container>
-          <SectionHeading
-            eyebrow={services.eyebrow}
-            heading={services.heading}
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <section id={services.id} className="scroll-mt-24 border-y border-line bg-white">
+        <div className={`${container} py-[88px]`}>
+          <Heading label={services.eyebrow} heading={services.heading} />
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {services.items.map((item, index) => {
               const Icon = serviceIcons[index % serviceIcons.length];
-
               return (
-                <article
-                  key={item.title}
-                  className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                    <Icon aria-hidden="true" className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-5 text-xl font-bold text-slate-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 leading-7 text-slate-600">
-                    {item.description}
-                  </p>
+                <article key={item.title} className="rounded-[22px] border border-line bg-paper/50 p-7">
+                  <span aria-hidden className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-gold">
+                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  </span>
+                  <h3 className="mt-5 font-display text-[21px] font-bold">{item.title}</h3>
+                  <p className="mt-2 text-[15px] text-muted">{item.description}</p>
                 </article>
               );
             })}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Process */}
-      <section className="bg-slate-950 py-24 text-white">
-        <Container>
-          <SectionHeading
-            eyebrow={process.eyebrow}
-            heading={process.heading}
-            dark
-          />
-
-          <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {process.steps.map((step, index) => {
-              const Icon = processIcons[index % processIcons.length];
-
-              return (
-                <li
-                  key={step.title}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-7"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-400/10 text-rose-300">
-                      <Icon aria-hidden="true" className="h-6 w-6" />
-                    </div>
-                    <span className="text-sm font-bold text-slate-500">
-                      0{index + 1}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-xl font-bold">{step.title}</h3>
-                  <p className="mt-2 leading-7 text-slate-300">
-                    {step.description}
-                  </p>
-                </li>
-              );
-            })}
-          </ol>
-        </Container>
+      <section className={`${container} py-[88px]`}>
+        <Heading label={process.eyebrow} heading={process.heading} />
+        <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {process.steps.map((step, index) => {
+            const Icon = processIcons[index % processIcons.length];
+            return (
+              <li key={step.title} className="flex min-h-[220px] flex-col justify-between gap-6 rounded-3xl bg-ink p-7 text-paper">
+                <span className="flex items-center justify-between">
+                  <span className="font-display text-[44px] font-extrabold leading-none text-gold">{String(index + 1).padStart(2, "0")}</span>
+                  <Icon aria-hidden className="h-6 w-6 text-mist" strokeWidth={1.9} />
+                </span>
+                <span>
+                  <span className="block font-display text-[22px] font-bold">{step.title}</span>
+                  <span className="mt-1.5 block text-[15px] text-mist">{step.description}</span>
+                </span>
+              </li>
+            );
+          })}
+        </ol>
       </section>
 
       {/* Platforms */}
-      <section className="bg-white py-24">
-        <Container>
-          <SectionHeading
-            eyebrow={platforms.eyebrow}
-            heading={platforms.heading}
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <section className="border-y border-line bg-white">
+        <div className={`${container} py-[88px]`}>
+          <Heading label={platforms.eyebrow} heading={platforms.heading} />
+          <div className="mt-10 grid gap-x-10 md:grid-cols-3">
             {platforms.items.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-3xl border border-slate-200 bg-slate-50 p-7"
-              >
-                <h3 className="text-xl font-bold text-slate-950">
-                  {item.title}
-                </h3>
-                <p className="mt-2 leading-7 text-slate-600">
-                  {item.description}
-                </p>
+              <article key={item.title} className="border-t-2 border-ink py-5">
+                <h3 className="font-display text-[21px] font-bold">{item.title}</h3>
+                <p className="mt-2 text-[15px] text-muted">{item.description}</p>
               </article>
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-slate-50 py-24">
-        <Container>
-          <SectionHeading eyebrow={faq.eyebrow} heading={faq.heading} />
-
-          <div className="mt-12 max-w-3xl space-y-4">
-            {faq.items.map((item) => (
-              <details
-                key={item.question}
-                className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold text-slate-950 [&::-webkit-details-marker]:hidden">
-                  {item.question}
-                  <span
-                    aria-hidden="true"
-                    className="text-2xl font-normal text-slate-400 transition-transform group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="mt-4 leading-7 text-slate-600">
-                  {item.answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </Container>
+      <section className={`${container} grid gap-10 py-[88px] lg:grid-cols-[0.8fr_1.2fr]`}>
+        <Heading label={faq.eyebrow} heading={faq.heading} />
+        <div>
+          {faq.items.map((item) => (
+            <details key={item.question} className="group border-b border-line py-5 first:pt-0">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-xl font-bold [&::-webkit-details-marker]:hidden">
+                {item.question}
+                <span aria-hidden className="mt-1 text-2xl leading-none text-subtle transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 max-w-[640px] text-base text-muted">{item.answer}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden bg-slate-950 py-24 text-white">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-rose-500/15 blur-3xl"
-        />
-
-        <Container>
-          <div className="relative mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-black tracking-tight md:text-4xl">
+      <section className="px-6 pb-[88px]">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 rounded-[32px] bg-ink px-8 py-12 text-paper md:px-12">
+          <div className="max-w-[640px]">
+            <h2 className={`${h2} text-[clamp(30px,3.8vw,48px)] leading-[1.02]`}>
               {finalCta.heading}
+              <span className="text-gold">.</span>
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              {finalCta.description}
-            </p>
-            <Link
-              href={finalCta.href}
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-rose-500 px-8 py-4 font-bold text-white transition-colors hover:bg-rose-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
-            >
-              {finalCta.ctaLabel}
-              <ArrowRight aria-hidden="true" className="h-4 w-4" />
-            </Link>
+            <p className="mt-4 text-lg text-mist">{finalCta.description}</p>
           </div>
-        </Container>
+          <Link href={finalCta.href} className="rounded-full bg-gold px-7 py-4 font-bold text-ink hover:bg-[#f7c561]">{finalCta.ctaLabel}</Link>
+        </div>
       </section>
     </main>
   );

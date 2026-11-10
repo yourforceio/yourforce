@@ -9,36 +9,36 @@ import type { ContactData } from "@/types/contact";
 
 export const contact: ContactData = {
   hero: {
-    badge: "Let’s Talk",
+    badge: "Contact",
 
-    title: "Tell Us What",
+    title: "Tell us what",
 
-    highlight: "You’re Building.",
+    highlight: "you're running",
 
     description:
-      "Share your commerce challenge, modernization plans, integration requirements, or software product idea. We’ll help you identify a practical technical direction and the right next step.",
+      "A commerce platform that needs work, a product you'd like to try with your own data, or a back-office desk for your US team. A real person reads every message and replies within one working day.",
 
     highlights: [
-      "Multi-platform commerce",
-      "Senior engineering involvement",
-      "Global remote delivery",
+      "Reply within one working day",
+      "Founder-led",
+      "Remote-first, any time zone",
     ],
   },
 
   form: {
-    eyebrow: "Project Enquiry",
+    eyebrow: "Send us a message",
 
     title: "Tell us about your project",
 
     description:
-      "Provide a few details about your goals, current platform, and delivery requirements. We typically respond within one business day.",
+      "A few details about what you run and what you need. Budget and timeline are optional.",
 
     requiredNote:
       "Required fields are marked with an asterisk.",
 
-    submitLabel: "Send Project Enquiry",
+    submitLabel: "Send message",
 
-    submittingLabel: "Sending Enquiry...",
+    submittingLabel: "Sending...",
 
     privacyNote:
       "Your information is used only to respond to your enquiry.",
@@ -253,7 +253,7 @@ export const contact: ContactData = {
         rows: 7,
 
         placeholder:
-          "Describe your current platform, business goals, required integrations, timeline, and any challenges you are facing...",
+          "What you run today (platform, product or service), what's getting in the way, and any deadlines...",
       },
     ],
   },
@@ -271,7 +271,7 @@ export const contact: ContactData = {
       value: "hello@yourforce.io",
 
       description:
-        "Send your requirements directly. We typically reply within one business day.",
+        "Write to us directly. We reply within one working day.",
 
       href: "mailto:hello@yourforce.io",
       icon: Mail,
@@ -279,31 +279,31 @@ export const contact: ContactData = {
 
     details: [
       {
-        title: "Engineering Base",
+        title: "Based in",
         value: "Lahore, Pakistan",
 
         description:
-          "Supporting international teams through remote delivery.",
+          "Remote-first: we work with teams wherever they are.",
 
         icon: MapPin,
       },
 
       {
-        title: "Availability",
-        value: "Flexible, Time-Zone Aligned",
+        title: "Working hours",
+        value: "Set to your time zone",
 
         description:
-          "Available across global business hours, with flexible overlap based on project and team needs.",
+          "We plan our day around yours, so your team gets answers while it's still working.",
 
         icon: Clock3,
       },
 
       {
-        title: "Remote Collaboration",
-        value: "Worldwide",
+        title: "How we work",
+        value: "Remote, founder-led",
 
         description:
-          "Working seamlessly with distributed teams across North America, Europe, the Middle East, and beyond.",
+          "You talk directly to the engineer doing the work, by call, email or chat.",
 
         icon: Globe2,
       },
@@ -317,24 +317,24 @@ export const contact: ContactData = {
       items: [
         {
           number: "01",
-          title: "We review your enquiry",
+          title: "You tell us",
 
           description:
-            "We assess your goals, current platform, requirements, and known constraints.",
+            "What you run and what is getting in the way.",
         },
         {
           number: "02",
-          title: "We share initial direction",
+          title: "We reply within one working day",
 
           description:
-            "You receive practical observations and any important follow-up questions.",
+            "With questions, or a time for a call in your time zone.",
         },
         {
           number: "03",
-          title: "We agree on the next step",
+          title: "You get a clear next step",
 
           description:
-            "When appropriate, we arrange a discovery discussion and define the way forward.",
+            "A fixed-scope plan, a pilot or a demo with your data. No obligation.",
         },
       ],
     },
@@ -348,10 +348,10 @@ export const contact: ContactData = {
   },
 
   faq: {
-    title: "Frequently Asked Questions",
+    title: "Common questions",
 
     description:
-      "Answers to some of the most common questions we receive.",
+      "Answers to what people ask us most.",
 
     items: [
       {
@@ -359,28 +359,28 @@ export const contact: ContactData = {
           "How quickly can you start a project?",
 
         answer:
-          "Project availability depends on scope and current commitments. After reviewing your requirements, we can provide a realistic start date and delivery approach.",
+          "It depends on the scope. After reading your message we'll give you a realistic start date. For our ready-made products, setup usually starts as soon as you're ready.",
       },
       {
         question:
-          "Do you work with international clients?",
+          "Do you work with teams outside Pakistan?",
 
         answer:
-          "Yes. YourForce supports companies remotely across North America, Europe, the Middle East, and Asia.",
+          "Yes. We're remote-first and plan our working day around yours, wherever your team is.",
       },
       {
         question:
           "Which commerce platforms do you support?",
 
         answer:
-          "We support Salesforce Commerce Cloud, Adobe Commerce, Shopify, WooCommerce, and modern headless commerce architectures.",
+          "Salesforce Commerce Cloud, Shopify Plus, Adobe Commerce (Magento) and WooCommerce, plus headless storefronts in Next.js and React.",
       },
       {
         question:
           "Can you work with an existing development team?",
 
         answer:
-          "Yes. We can collaborate with internal engineering teams, agencies, platform partners, and other technology vendors.",
+          "Yes. We can work alongside your own developers or another agency, or take over an existing codebase.",
       },
     ],
   },

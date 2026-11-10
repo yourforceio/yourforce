@@ -12,12 +12,12 @@ export default function FormLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className="mb-2 block text-sm font-medium text-slate-300"
+      className="mb-2 block text-sm font-bold text-ink"
     >
       {children}
 
       {required && (
-        <span className="ml-1 text-red-500" aria-label="required">
+        <span className="ml-1 text-red-600" aria-label="required">
           *
         </span>
       )}

@@ -18,7 +18,6 @@ import {
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import Button from "@/components/ui/Button";
 import FormLabel from "@/components/ui/FormLabel";
 
 import { contact } from "@/data/contact";
@@ -42,12 +41,13 @@ const baseFieldClassName = `
   w-full
   rounded-xl
   border
-  bg-slate-950
+  bg-paper
   px-4
   py-3.5
-  text-white
-  placeholder:text-slate-600
+  text-ink
+  placeholder:text-[#8A8F95]
   transition
+  focus:bg-white
   focus:outline-none
   focus:ring-2
 `;
@@ -58,14 +58,14 @@ const getFieldClassName = (
   `${baseFieldClassName} ${
     hasError
       ? `
-        border-red-500/70
-        focus:border-red-500
-        focus:ring-red-500/20
+        border-red-600
+        focus:border-red-600
+        focus:ring-red-600/20
       `
       : `
-        border-slate-700
-        focus:border-blue-500
-        focus:ring-blue-500/25
+        border-line
+        focus:border-ink
+        focus:ring-ink/10
       `
   }`;
 
@@ -191,33 +191,31 @@ export default function ContactForm({
   return (
     <div
       className="
-        rounded-3xl
+        rounded-[28px]
         border
-        border-slate-800
-        bg-slate-900/70
+        border-line
+        bg-white
         p-6
-        shadow-2xl
-        shadow-black/10
-        backdrop-blur-xl
-        sm:p-8
+        text-ink
+        sm:p-9
       "
     >
       {/* Form introduction */}
       <div className="mb-8">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400">
+        <p className="yf-label">
           {contact.form.eyebrow}
         </p>
 
-        <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
+        <h2 className="mt-3 font-display text-[32px] font-extrabold leading-tight tracking-[-0.02em]">
           {contact.form.title}
         </h2>
 
-        <p className="mt-4 max-w-2xl leading-7 text-slate-400">
+        <p className="mt-3 max-w-2xl leading-7 text-muted">
           {contact.form.description}
         </p>
 
-        <p className="mt-4 text-sm text-slate-500">
-          <span className="mr-1 text-red-400">
+        <p className="mt-3 text-sm text-subtle">
+          <span className="mr-1 text-red-600">
             *
           </span>
 
@@ -376,7 +374,7 @@ export default function ContactForm({
                     !hasError && (
                       <p
                         id={helperId}
-                        className="mt-2 text-xs leading-5 text-slate-500"
+                        className="mt-2 text-xs leading-5 text-subtle"
                       >
                         {field.helper}
                       </p>
@@ -386,7 +384,7 @@ export default function ContactForm({
                     <p
                       id={errorId}
                       role="alert"
-                      className="mt-2 text-sm text-red-400"
+                      className="mt-2 text-sm text-red-700"
                     >
                       {String(
                         error.message,
@@ -419,8 +417,8 @@ export default function ContactForm({
               ${
                 status.type ===
                 "success"
-                  ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-                  : "border-red-500/30 bg-red-500/10 text-red-300"
+                  ? "border-emerald-600/30 bg-emerald-50 text-emerald-800"
+                  : "border-red-600/30 bg-red-50 text-red-800"
               }
             `}
           >
@@ -436,27 +434,27 @@ export default function ContactForm({
             flex-col
             gap-5
             border-t
-            border-slate-800
+            border-line-soft
             pt-6
             sm:flex-row
             sm:items-center
             sm:justify-between
           "
         >
-          <p className="flex max-w-md items-start gap-2 text-xs leading-5 text-slate-500">
+          <p className="flex max-w-md items-start gap-2 text-xs leading-5 text-subtle">
             <ShieldCheck
               aria-hidden="true"
-              className="mt-0.5 h-4 w-4 shrink-0 text-blue-400"
+              className="mt-0.5 h-4 w-4 shrink-0 text-ink"
             />
 
             {contact.form.privacyNote}
           </p>
 
-          <Button
+          <button
             type="submit"
             disabled={isSubmitting}
             aria-busy={isSubmitting}
-            className="w-full px-7 py-3.5 sm:w-auto"
+            className="inline-flex w-full items-center justify-center rounded-full bg-gold px-7 py-[15px] font-bold text-ink transition hover:bg-[#f7c561] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
             {isSubmitting ? (
               <>
@@ -483,7 +481,7 @@ export default function ContactForm({
                 />
               </>
             )}
-          </Button>
+          </button>
         </div>
       </form>
     </div>

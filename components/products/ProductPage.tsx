@@ -1,15 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Check, type LucideIcon } from "lucide-react";
 
-import Container from "@/components/layout/Container";
 import ProductStructuredData from "@/components/seo/ProductStructuredData";
 
+import { homeProducts } from "@/data/home";
 import type { ProductPageData } from "@/types/product";
 
 /** Icons for the "Why it matters", "Features" and "How it works" cards, in content order. */
@@ -19,407 +14,237 @@ export type ProductPageIcons = {
   process: readonly LucideIcon[];
 };
 
-/** The layout shared by every product page; each page passes its own content and icons. */
-function SectionHeading({
-  eyebrow,
-  heading,
-  description,
-  dark = false,
-}: {
-  eyebrow: string;
-  heading: string;
-  description?: string;
-  dark?: boolean;
-}) {
+const container = "mx-auto max-w-[1240px] px-6";
+const h2 = "font-display font-extrabold tracking-[-0.03em]";
+
+function Heading({ label, heading, description, dark = false }: { label: string; heading: string; description?: string; dark?: boolean }) {
   return (
-    <div className="max-w-3xl">
-      <p className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-500">
-        {eyebrow}
-      </p>
-      <h2
-        className={`mt-3 text-3xl font-black leading-tight tracking-tight md:text-4xl ${
-          dark ? "text-white" : "text-slate-950"
-        }`}
-      >
-        {heading}
-      </h2>
-      {description && (
-        <p
-          className={`mt-4 text-lg leading-8 ${
-            dark ? "text-slate-300" : "text-slate-600"
-          }`}
-        >
-          {description}
-        </p>
-      )}
+    <div className="max-w-[760px]">
+      <p className={`yf-label ${dark ? "text-mist" : ""}`}>{label}</p>
+      <h2 className={`${h2} mt-3.5 text-[clamp(30px,3.8vw,48px)] leading-[1.02]`}>{heading}</h2>
+      {description && <p className={`mt-4 text-[17px] ${dark ? "text-mist" : "text-muted"}`}>{description}</p>}
     </div>
   );
 }
 
-export default function ProductPage({
-  slug,
-  data,
-  icons,
-}: {
-  slug: string;
-  data: ProductPageData;
-  icons: ProductPageIcons;
-}) {
-  const {
-    hero,
-    overview,
-    liveDemo,
-    challenges,
-    features,
-    process,
-    audiences,
-    faq,
-    finalCta,
-  } = data;
+/**
+ * The layout shared by every product page (2026 redesign); each page passes its own content and icons.
+ * The product's colour (from data/home.ts) is used only as a small marker; the demo screenshot is
+ * public/images/products/<slug>-demo.webp.
+ */
+export default function ProductPage({ slug, data, icons }: { slug: string; data: ProductPageData; icons: ProductPageIcons }) {
+  const { hero, overview, liveDemo, challenges, features, process, audiences, faq, finalCta } = data;
+  const product = homeProducts.find((p) => p.slug === slug);
+  const color = product?.color ?? "#F5B83D";
 
   return (
-    <main>
+    <main className="bg-paper text-ink">
       <ProductStructuredData slug={slug} faq={faq.items} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-950 pb-24 pt-32 text-white md:pt-36">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl"
-        />
-
-        <Container>
-          <Link
-            href="/products"
-            className="relative inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-white"
-          >
-            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+      <section className="bg-ink text-paper">
+        <div className={`${container} pb-20 pt-12`}>
+          <Link href="/products" className="inline-flex items-center gap-2 text-sm font-bold text-mist hover:text-paper">
+            <ArrowLeft aria-hidden className="h-4 w-4" />
             All products
           </Link>
 
-          <div className="relative mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <span className="inline-flex items-center rounded-full border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-300">
+              <p className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.06em] text-mist">
+                <span aria-hidden className="h-2.5 w-2.5 rounded-[3px]" style={{ background: color }} />
                 {hero.badge}
-              </span>
-
-              <h1 className="mt-7 text-4xl font-black leading-tight tracking-tight md:text-5xl">
-                {hero.heading}
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                {hero.description}
               </p>
-
-              <ul
-                aria-label="Who it is for"
-                className="mt-6 flex flex-wrap gap-2"
-              >
+              <h1 className="mt-5 font-display text-[clamp(36px,4.6vw,62px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
+                {hero.heading}
+                <span className="text-gold">.</span>
+              </h1>
+              <p className="mt-6 max-w-[620px] text-[18px] leading-relaxed text-mist">{hero.description}</p>
+              <ul aria-label="Who it is for" className="mt-6 flex flex-wrap gap-2">
                 {hero.highlights.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200"
-                  >
-                    {item}
-                  </li>
+                  <li key={item} className="rounded-full border border-ink-line px-3.5 py-2 text-sm font-bold text-[#C9CED4]">{item}</li>
                 ))}
               </ul>
-
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <Link
-                  href={hero.primaryHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 font-bold text-white transition-colors hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
-                >
-                  {hero.primaryCta}
-                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                </Link>
-
-                <a
-                  href={hero.secondaryHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
-                >
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href={hero.primaryHref} className="rounded-full bg-gold px-6 py-[15px] font-bold text-ink hover:bg-[#f7c561]">{hero.primaryCta}</Link>
+                <a href={hero.secondaryHref} className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-[#4A525B] px-6 py-3.5 font-bold text-paper hover:border-paper">
                   {hero.secondaryCta}
-                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+                  <ArrowUpRight aria-hidden className="h-4 w-4" />
                 </a>
               </div>
             </div>
 
-            {/* Walkthrough card */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-7 md:p-8">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-300">
-                {overview.eyebrow}
-              </p>
-
-              <h2 className="mt-3 text-2xl font-bold tracking-tight">
-                {overview.title}
-              </h2>
-
-              <p className="mt-3 text-sm leading-6 text-slate-300">
-                {overview.description}
-              </p>
-
-              <ul className="mt-6 space-y-3">
+            <div className="rounded-[28px] bg-paper p-7 text-ink md:p-8">
+              <p className="yf-label">{overview.eyebrow}</p>
+              <h2 className="mt-3 font-display text-[26px] font-extrabold leading-tight">{overview.title}</h2>
+              <p className="mt-3 text-[15px] text-muted">{overview.description}</p>
+              <ul className="mt-6 flex flex-col gap-2.5">
                 {overview.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-slate-200"
-                  >
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-400/15 text-emerald-300">
-                      <Check
-                        aria-hidden="true"
-                        className="h-3 w-3"
-                        strokeWidth={3}
-                      />
-                    </span>
+                  <li key={item} className="flex items-start gap-3 rounded-2xl bg-white p-4 text-[15px] font-bold">
+                    <Check aria-hidden className="mt-0.5 h-5 w-5 shrink-0" strokeWidth={2.4} />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* Live demo */}
-      <section className="border-b border-emerald-100 bg-emerald-50/60 py-16">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-600">
-                {liveDemo.eyebrow}
-              </p>
-              <h2 className="mt-3 text-3xl font-black leading-tight tracking-tight text-slate-950 md:text-4xl">
-                {liveDemo.heading}
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-slate-600">
-                {liveDemo.description}
-              </p>
+      {/* Live demo, with a screenshot of the demo site */}
+      <section className="border-b border-line bg-white">
+        <div className={`${container} grid gap-12 py-[88px] lg:grid-cols-[1.05fr_0.95fr] lg:items-center`}>
+          <a href={liveDemo.primaryHref} className="group block overflow-hidden rounded-2xl border border-line bg-paper shadow-[0_24px_60px_rgba(15,18,21,.12)]">
+            <span className="flex items-center gap-2 border-b border-line px-3.5 py-3">
+              <span className="h-2.5 w-2.5 rounded-full bg-line" />
+              <span className="h-2.5 w-2.5 rounded-full bg-line" />
+              <span className="h-2.5 w-2.5 rounded-full bg-line" />
+              <span className="ml-3 truncate text-xs font-bold text-subtle">{liveDemo.primaryHref.replace(/^https?:\/\//, "")}</span>
+            </span>
+            <span className="relative block aspect-[16/10]">
+              <Image
+                src={`/images/products/${slug}-demo.webp`}
+                alt={`${product?.demoName ?? "The live demo"}, the YourForce ${product?.name ?? ""} demo`}
+                fill
+                sizes="(min-width: 1024px) 600px, 92vw"
+                className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.01]"
+              />
+            </span>
+          </a>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                <a
-                  href={liveDemo.primaryHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 font-bold text-white transition-colors hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4"
-                >
-                  {liveDemo.primaryCta}
-                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-                </a>
-                <a
-                  href={liveDemo.secondaryHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-bold text-slate-900 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-4"
-                >
-                  {liveDemo.secondaryCta}
-                  <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-
-            <dl className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="yf-label">{liveDemo.eyebrow}</p>
+            <h2 className={`${h2} mt-3.5 text-[clamp(30px,3.6vw,46px)] leading-[1.02]`}>{liveDemo.heading}</h2>
+            <p className="mt-4 text-[17px] text-muted">{liveDemo.description}</p>
+            <dl className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
               {liveDemo.stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-3xl border border-emerald-100 bg-white p-6 shadow-sm"
-                >
-                  <dt className="text-sm font-medium text-slate-500">
-                    {stat.label}
-                  </dt>
-                  <dd className="mt-1 text-4xl font-black tracking-tight text-slate-950">
-                    {stat.value}
-                  </dd>
+                <div key={stat.label} className="rounded-2xl bg-paper p-4">
+                  <dd className="font-display text-[30px] font-extrabold leading-none">{stat.value}</dd>
+                  <dt className="mt-1.5 text-[13px] font-bold text-subtle">{stat.label}</dt>
                 </div>
               ))}
             </dl>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href={liveDemo.primaryHref} className="inline-flex items-center gap-1.5 rounded-full bg-ink px-6 py-[15px] font-bold text-paper hover:bg-ink-2">
+                {liveDemo.primaryCta}
+                <ArrowUpRight aria-hidden className="h-4 w-4" />
+              </a>
+              <a href={liveDemo.secondaryHref} className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-ink px-6 py-3.5 font-bold hover:bg-ink hover:text-paper">
+                {liveDemo.secondaryCta}
+                <ArrowUpRight aria-hidden className="h-4 w-4" />
+              </a>
+            </div>
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* Why it matters */}
-      <section className="bg-white py-24">
-        <Container>
-          <SectionHeading
-            eyebrow={challenges.eyebrow}
-            heading={challenges.heading}
-            description={challenges.description}
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {challenges.items.map((item, index) => {
-              const Icon = icons.challenges[index % icons.challenges.length];
-
-              return (
-                <article
-                  key={item.title}
-                  className="flex gap-5 rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-500">
-                    <Icon aria-hidden="true" className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-950">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 leading-7 text-slate-600">
-                      {item.description}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </Container>
+      <section className={`${container} py-[88px]`}>
+        <Heading label={challenges.eyebrow} heading={challenges.heading} description={challenges.description} />
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
+          {challenges.items.map((item, index) => {
+            const Icon = icons.challenges[index % icons.challenges.length];
+            return (
+              <article key={item.title} className="flex gap-5 rounded-3xl border border-line bg-white p-7">
+                <span aria-hidden className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gold-soft text-ink">
+                  <Icon className="h-6 w-6" strokeWidth={1.9} />
+                </span>
+                <div>
+                  <h3 className="font-display text-[21px] font-bold">{item.title}</h3>
+                  <p className="mt-2 text-[15px] text-muted">{item.description}</p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </section>
 
-      {/* What we do */}
-      <section
-        id={features.id}
-        className="scroll-mt-24 bg-slate-50 py-24"
-      >
-        <Container>
-          <SectionHeading
-            eyebrow={features.eyebrow}
-            heading={features.heading}
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Features */}
+      <section id={features.id} className="scroll-mt-24 border-y border-line bg-white">
+        <div className={`${container} py-[88px]`}>
+          <Heading label={features.eyebrow} heading={features.heading} />
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {features.items.map((item, index) => {
               const Icon = icons.features[index % icons.features.length];
-
               return (
-                <article
-                  key={item.title}
-                  className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                    <Icon aria-hidden="true" className="h-6 w-6" />
-                  </div>
-                  <h3 className="mt-5 text-xl font-bold text-slate-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 leading-7 text-slate-600">
-                    {item.description}
-                  </p>
+                <article key={item.title} className="rounded-[22px] border border-line bg-paper/50 p-7">
+                  <span aria-hidden className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-gold">
+                    <Icon className="h-5 w-5" strokeWidth={2} />
+                  </span>
+                  <h3 className="mt-5 font-display text-[21px] font-bold">{item.title}</h3>
+                  <p className="mt-2 text-[15px] text-muted">{item.description}</p>
                 </article>
               );
             })}
           </div>
-        </Container>
+        </div>
       </section>
 
-      {/* Process */}
-      <section className="bg-slate-950 py-24 text-white">
-        <Container>
-          <SectionHeading
-            eyebrow={process.eyebrow}
-            heading={process.heading}
-            dark
-          />
-
-          <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {process.steps.map((step, index) => {
-              const Icon = icons.process[index % icons.process.length];
-
-              return (
-                <li
-                  key={step.title}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-7"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300">
-                      <Icon aria-hidden="true" className="h-6 w-6" />
-                    </div>
-                    <span className="text-sm font-bold text-slate-500">
-                      0{index + 1}
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-xl font-bold">{step.title}</h3>
-                  <p className="mt-2 leading-7 text-slate-300">
-                    {step.description}
-                  </p>
-                </li>
-              );
-            })}
-          </ol>
-        </Container>
+      {/* How it works */}
+      <section className={`${container} py-[88px]`}>
+        <Heading label={process.eyebrow} heading={process.heading} />
+        <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {process.steps.map((step, index) => {
+            const Icon = icons.process[index % icons.process.length];
+            return (
+              <li key={step.title} className="flex min-h-[220px] flex-col justify-between gap-6 rounded-3xl bg-ink p-7 text-paper">
+                <span className="flex items-center justify-between">
+                  <span className="font-display text-[44px] font-extrabold leading-none text-gold">{String(index + 1).padStart(2, "0")}</span>
+                  <Icon aria-hidden className="h-6 w-6 text-mist" strokeWidth={1.9} />
+                </span>
+                <span>
+                  <span className="block font-display text-[22px] font-bold">{step.title}</span>
+                  <span className="mt-1.5 block text-[15px] text-mist">{step.description}</span>
+                </span>
+              </li>
+            );
+          })}
+        </ol>
       </section>
 
       {/* Who it is for */}
-      <section className="bg-white py-24">
-        <Container>
-          <SectionHeading
-            eyebrow={audiences.eyebrow}
-            heading={audiences.heading}
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <section className="border-y border-line bg-white">
+        <div className={`${container} py-[88px]`}>
+          <Heading label={audiences.eyebrow} heading={audiences.heading} />
+          <div className="mt-10 grid gap-x-10 md:grid-cols-3">
             {audiences.items.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-3xl border border-slate-200 bg-slate-50 p-7"
-              >
-                <h3 className="text-xl font-bold text-slate-950">
-                  {item.title}
-                </h3>
-                <p className="mt-2 leading-7 text-slate-600">
-                  {item.description}
-                </p>
+              <article key={item.title} className="border-t-2 border-ink py-5">
+                <h3 className="font-display text-[21px] font-bold">{item.title}</h3>
+                <p className="mt-2 text-[15px] text-muted">{item.description}</p>
               </article>
             ))}
           </div>
-        </Container>
+        </div>
       </section>
 
       {/* FAQ */}
-      <section className="bg-slate-50 py-24">
-        <Container>
-          <SectionHeading eyebrow={faq.eyebrow} heading={faq.heading} />
-
-          <div className="mt-12 max-w-3xl space-y-4">
-            {faq.items.map((item) => (
-              <details
-                key={item.question}
-                className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold text-slate-950 [&::-webkit-details-marker]:hidden">
-                  {item.question}
-                  <span
-                    aria-hidden="true"
-                    className="text-2xl font-normal text-slate-400 transition-transform group-open:rotate-45"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="mt-4 leading-7 text-slate-600">
-                  {item.answer}
-                </p>
-              </details>
-            ))}
-          </div>
-        </Container>
+      <section className={`${container} grid gap-10 py-[88px] lg:grid-cols-[0.8fr_1.2fr]`}>
+        <Heading label={faq.eyebrow} heading={faq.heading} />
+        <div>
+          {faq.items.map((item) => (
+            <details key={item.question} className="group border-b border-line py-5 first:pt-0">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-display text-xl font-bold [&::-webkit-details-marker]:hidden">
+                {item.question}
+                <span aria-hidden className="mt-1 text-2xl leading-none text-subtle transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 max-w-[640px] text-base text-muted">{item.answer}</p>
+            </details>
+          ))}
+        </div>
       </section>
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden bg-slate-950 py-24 text-white">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-24 -bottom-24 h-96 w-96 rounded-full bg-emerald-500/15 blur-3xl"
-        />
-
-        <Container>
-          <div className="relative mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-black tracking-tight md:text-4xl">
+      <section className="px-6 pb-[88px]">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 rounded-[32px] bg-ink px-8 py-12 text-paper md:px-12">
+          <div className="max-w-[640px]">
+            <h2 className={`${h2} text-[clamp(30px,3.8vw,48px)] leading-[1.02]`}>
               {finalCta.heading}
+              <span className="text-gold">.</span>
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-300">
-              {finalCta.description}
-            </p>
-            <Link
-              href={finalCta.href}
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-8 py-4 font-bold text-white transition-colors hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4 focus-visible:ring-offset-slate-950"
-            >
-              {finalCta.ctaLabel}
-              <ArrowRight aria-hidden="true" className="h-4 w-4" />
-            </Link>
+            <p className="mt-4 text-lg text-mist">{finalCta.description}</p>
           </div>
-        </Container>
+          <Link href={finalCta.href} className="rounded-full bg-gold px-7 py-4 font-bold text-ink hover:bg-[#f7c561]">{finalCta.ctaLabel}</Link>
+        </div>
       </section>
     </main>
   );

@@ -1,3 +1,6 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
 import { ImageResponse } from "next/og";
 
 import { products } from "@/data/products";
@@ -30,10 +33,17 @@ export const ogAlt = (slug: string) => {
   return `${product.name}: ${product.eyebrow}`;
 };
 
-/** `headline` is the page's hero heading. */
-export default function productOgImage(slug: string, headline: string) {
+/** `headline` is the page's hero heading. Ink background with the YF mark; the product colour is a small marker. */
+// Bricolage Grotesque (OFL), stored in assets/fonts so the images don't depend on a network fetch at build time.
+const fontFile = (name: string) => readFile(join(process.cwd(), "assets/fonts", name));
+
+export default async function productOgImage(slug: string, headline: string) {
   const product = productFor(slug);
-  const { accent, strong } = ACCENTS[slug] ?? ACCENTS.schools;
+  const [bold, extraBold] = await Promise.all([
+    fontFile("bricolage-grotesque-700.ttf"),
+    fontFile("bricolage-grotesque-800.ttf"),
+  ]);
+  const { strong } = ACCENTS[slug] ?? ACCENTS.schools;
 
   return new ImageResponse(
     (
@@ -45,42 +55,36 @@ export default function productOgImage(slug: string, headline: string) {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "64px 72px",
-          color: "#fff",
-          fontFamily: "sans-serif",
-          background: `radial-gradient(circle at 88% 12%, ${strong}55, transparent 45%), #060b18`,
+          color: "#F5F4F0",
+          fontFamily: "Bricolage",
+          background: "#0F1215",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              display: "flex",
-              padding: "8px 18px",
-              borderRadius: 999,
-              background: strong,
-              fontSize: 22,
-              fontWeight: 800,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-            }}
-          >
-            {product.eyebrow}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <svg width="66" height="60" viewBox="0 0 310 280">
+              <polygon points="29,32 112,168 109,187 60,260 117,262 154,204 154,136 83,33" fill="#F5B83D" />
+              <polygon points="290,89 185,89 162,102 155,207 119,261 160,261 192,213 193,186 232,185 253,156 195,153 194,129 268,124" fill="#F5F4F0" />
+              <polygon points="180,72 248,73 255,68 277,33 207,32" fill="#F5B83D" />
+            </svg>
+            <div style={{ display: "flex", fontSize: 34, fontWeight: 800, letterSpacing: -0.5 }}>YourForce</div>
           </div>
-          <div style={{ display: "flex", fontSize: 26, color: "rgba(255,255,255,0.6)" }}>
-            yourforce.io
-          </div>
+          <div style={{ display: "flex", fontSize: 24, color: "#B9BFC6" }}>yourforce.io</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 40, color: accent }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 30, fontWeight: 700, color: "#B9BFC6" }}>
+            <div style={{ display: "flex", width: 18, height: 18, borderRadius: 5, background: strong }} />
             {product.name}
           </div>
           <div
             style={{
               display: "flex",
-              marginTop: 16,
-              fontSize: headline.length > 50 ? 56 : 70,
-              lineHeight: 1.12,
-              letterSpacing: -1.5,
+              marginTop: 18,
+              fontSize: headline.length > 50 ? 58 : 72,
+              fontWeight: 800,
+              lineHeight: 1.04,
+              letterSpacing: -2,
             }}
           >
             {headline}
@@ -93,24 +97,29 @@ export default function productOgImage(slug: string, headline: string) {
               key={feature}
               style={{
                 display: "flex",
-                padding: "10px 18px",
-                borderRadius: 14,
-                border: "1px solid rgba(255,255,255,0.18)",
-                background: "rgba(255,255,255,0.06)",
+                padding: "10px 20px",
+                borderRadius: 999,
+                border: "1.5px solid #3A4249",
                 alignItems: "center",
                 gap: 12,
                 fontSize: 24,
+                fontWeight: 700,
+                color: "#DCE0E4",
               }}
             >
-              <div
-                style={{ display: "flex", width: 12, height: 12, borderRadius: 999, background: accent }}
-              />
+              <div style={{ display: "flex", width: 10, height: 10, borderRadius: 3, background: "#F5B83D" }} />
               {feature}
             </div>
           ))}
         </div>
       </div>
     ),
-    ogSize,
+    {
+      ...ogSize,
+      fonts: [
+        { name: "Bricolage", data: bold, weight: 700, style: "normal" },
+        { name: "Bricolage", data: extraBold, weight: 800, style: "normal" },
+      ],
+    },
   );
 }
