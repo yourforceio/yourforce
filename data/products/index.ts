@@ -58,7 +58,7 @@ export const products = [
     name: "YourForce Bookings",
     eyebrow: "Appointment Software",
     description:
-      "Online booking for salons, clinics and spas. Clients book 24/7 on your own page, your team shares one calendar, and reminders go out automatically.",
+      "Online booking for salons, clinics and spas. Clients book 24/7 on your own page, your team shares one calendar, and reminders go out by SMS or WhatsApp once set up.",
     icon: "bookings",
     features: [
       "Your own booking page",

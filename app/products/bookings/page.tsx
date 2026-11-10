@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Salon & Clinic Appointment Booking Software | YourForce Bookings",
     description:
-      "Clients book online 24/7, your team shares one calendar and reminders go out automatically. Try Glow Salon & Spa, a live sample salon.",
+      "Clients book online 24/7, your team shares one calendar and reminders go out once set up. Try Glow Salon & Spa, a live sample salon.",
     url: "/products/bookings",
     type: "website",
   },

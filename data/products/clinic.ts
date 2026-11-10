@@ -143,7 +143,7 @@ export const clinicPage = {
       {
         title: "Follow-up reminders",
         description:
-          "The day before the follow-up date the doctor set, the patient gets a reminder, unless they've already booked. Reception sees this week's follow-ups at a glance.",
+          "The day before the follow-up date the doctor set, the patient gets a reminder by SMS or WhatsApp (switched on as part of your setup), unless they've already booked. Reception sees this week's follow-ups at a glance.",
       },
       {
         title: "Prescriptions in Urdu too",

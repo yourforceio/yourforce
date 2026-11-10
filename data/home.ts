@@ -2,7 +2,7 @@
  * Homepage content (2026 redesign). Keep claims here to what is true:
  * - The four "experience" projects were delivered by the founder while employed elsewhere. Never present them as
  *   YourForce client work.
- * - Medical billing: say a Business Associate Agreement is signed at onboarding; don't claim "HIPAA compliant".
+ * - Medical billing: a pilot until HIPAA safeguards are in place; don't promise a BAA or claim "HIPAA compliant".
  */
 
 import { site } from "@/data/site";
@@ -164,7 +164,7 @@ export const operations = {
   description: "Dedicated desks for US carriers, healthcare practices and growing businesses. Start with a small pilot.",
   desks: [
     { icon: "truck", menuTitle: "Trucking dispatch", menu: "Loads, rates and paperwork", category: "Transportation", title: "Trucking Dispatch", description: "Dispatch support for owner-operators and small carriers: finding loads, negotiating rates, routes and paperwork.", tags: ["Load sourcing", "Rate negotiation", "Freight invoicing"], trust: "For owner-operators and small fleets", href: "https://trucking.yourforce.io/", cta: "Explore dispatch" },
-    { icon: "billing", menuTitle: "Medical billing", menu: "Claims, denials and AR", category: "Healthcare", title: "Medical Billing & Coding", description: "Claims, coding and follow-up for solo practitioners and small clinics, so you get paid for the work you do.", tags: ["Claims & coding", "Denial management", "AR follow-up"], trust: "BAA signed before we see patient data", href: "https://billing.yourforce.io/", cta: "Explore billing" },
+    { icon: "billing", menuTitle: "Medical billing", menu: "Claims, denials and AR", category: "Healthcare · pilot", title: "Medical Billing & Coding", description: "Claims, coding and follow-up for solo practitioners and small clinics, so you get paid for the work you do.", tags: ["Claims & coding", "Denial management", "AR follow-up"], trust: "Starts as a small pilot", href: "https://billing.yourforce.io/", cta: "Explore billing" },
     { icon: "documents", menuTitle: "Data entry", menu: "Forms, records and cleanup", category: "Back office", title: "Data Entry & Documents", description: "Invoices, forms and records entered, cleaned up and digitised for US businesses.", tags: ["Form entry", "Data cleanup", "Digitisation"], trust: "Second-person check on every batch", href: "https://backoffice.yourforce.io/data-entry/", cta: "Request a pilot" },
     { icon: "insurance", menuTitle: "Insurance documents", menu: "COIs, renewals and packets", category: "Insurance", title: "Insurance Document Support", description: "Certificates of insurance, carrier onboarding packets and policy paperwork, tracked and filed.", tags: ["COI tracking", "Renewals", "Onboarding packets"], trust: "Paperwork only, no coverage advice", href: "https://backoffice.yourforce.io/insurance-documents/", cta: "Request a pilot" },
   ],

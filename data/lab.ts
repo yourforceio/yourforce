@@ -273,7 +273,7 @@ export const lab: LabData = {
       title: "Shopify Commerce Experience Lab",
 
       description:
-        "A production-connected Shopify demonstration covering variant-level policies, back-in-stock demand capture, and an enhanced cart drawer, with low-stock automation in progress.",
+        "A production-connected Shopify demonstration covering variant-level policies, back-in-stock demand capture, and an enhanced cart drawer, with low-stock automation in progress. The store is password-protected: ask us and we'll send you access.",
 
       categories: ["shopify"],
 
@@ -296,11 +296,12 @@ export const lab: LabData = {
 
       added: "Added Aug 2026",
 
-      href: "https://yourforce-plus-lab.myshopify.com/products/the-complete-snowboard",
+      // The lab store is a password-protected Shopify development store, so the button asks for access.
+      href: "/contact?service=commerce-platform-engineering",
 
-      external: true,
+      ctaLabel: "Ask for store access",
 
-      ctaLabel: "Open Live Store",
+      previewLabel: "Access on request",
 
       status: "available",
 

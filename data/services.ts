@@ -261,7 +261,7 @@ export const specializedOperations = {
       icon: "truck",
 
       features: [
-        "24/7 dispatch desk",
+        "Dedicated dispatch desk",
         "Load sourcing",
         "Rate coordination",
         "Paperwork support",

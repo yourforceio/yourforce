@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { products, productsIntro } from "@/data/products";
 import { homeProducts } from "@/data/home";
+import { fromPrice } from "@/data/pricing";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -76,6 +77,7 @@ export default function ProductsPage() {
                         {product.eyebrow}
                       </p>
                       <h3 className="mt-3 font-display text-[28px] font-extrabold leading-tight tracking-[-0.02em]">{product.name}</h3>
+                      <p className="mt-2 text-[15px] font-bold">{fromPrice(product.slug) ?? "Free for workers; customers pay a small visit fee"}</p>
                       <p className="mt-3 text-[15px] text-muted">{product.description}</p>
                       <ul aria-label={`${product.name} features`} className="mt-5 flex flex-wrap gap-1.5">
                         {product.features.map((feature) => (

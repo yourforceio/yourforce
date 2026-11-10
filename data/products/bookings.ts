@@ -12,7 +12,7 @@ export const bookingsPage = {
       "Online booking for salons, clinics and spas, open 24/7",
 
     description:
-      "YourForce Bookings lets clients book appointments online at any hour on your own booking page. Your team works from one clear calendar, reminders go out automatically, and two clients can never get the same slot.",
+      "YourForce Bookings lets clients book appointments online at any hour on your own booking page. Your team works from one clear calendar, reminders go out by SMS or WhatsApp once we switch them on during setup, and two clients can never get the same slot.",
 
     primaryCta: "Book a Demo",
     primaryHref: "/contact?service=booking-platform",
@@ -38,7 +38,7 @@ export const bookingsPage = {
     items: [
       "Your own booking page, live in a day",
       "Staff calendars with no double bookings",
-      "SMS and WhatsApp reminders",
+      "SMS and WhatsApp reminders, set up with you",
       "Deposits by bank, JazzCash or Easypaisa",
     ],
   },
@@ -118,7 +118,7 @@ export const bookingsPage = {
       {
         title: "SMS & WhatsApp reminders",
         description:
-          "Automatic confirmations and reminders before each visit, with a link to reschedule or cancel.",
+          "Confirmations and reminders before each visit, with a link to reschedule or cancel. SMS or WhatsApp sending is switched on as part of your setup.",
       },
       {
         title: "Deposits",

@@ -1,5 +1,6 @@
 import { site } from "@/data/site";
 import { products } from "@/data/products";
+import { pricing } from "@/data/pricing";
 
 /** SoftwareApplication, FAQPage and BreadcrumbList data for one product page, so Google knows what each product is. */
 export default function ProductStructuredData({
@@ -37,6 +38,20 @@ export default function ProductStructuredData({
           name: "Pakistan",
         },
         sameAs: [product.demoHref],
+
+        // Monthly plan prices (data/pricing.ts), so Google can show the price range.
+        ...(pricing[slug]
+          ? {
+              offers: {
+                "@type": "AggregateOffer",
+                priceCurrency: "PKR",
+                lowPrice: Math.min(...pricing[slug].plans.map((p) => p.monthly)),
+                highPrice: Math.max(...pricing[slug].plans.map((p) => p.monthly)),
+                offerCount: pricing[slug].plans.length,
+                url: pricing[slug].detailsHref,
+              },
+            }
+          : {}),
 
         provider: {
           "@id": organizationId,
