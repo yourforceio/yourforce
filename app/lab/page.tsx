@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-
 import Image from "next/image";
 import Link from "next/link";
-
-import {
-  ArrowRight,
-  CalendarDays,
-  Check,
-  Clock3,
-  FlaskConical,
-  Sparkles,
-} from "lucide-react";
-
-import Container from "@/components/layout/Container";
+import { ArrowUpRight, Check, Clock3 } from "lucide-react";
 
 import { lab } from "@/data/lab";
 import { site } from "@/data/site";
@@ -21,1357 +10,199 @@ import type { LabCategory } from "@/types/lab";
 type LabPlatform = "all" | LabCategory;
 
 type LabPageProps = {
-  searchParams?:
-    | Promise<{
-        platform?: string;
-      }>
-    | {
-        platform?: string;
-      };
+  searchParams?: Promise<{ platform?: string }>;
 };
 
-const platformTabs: Array<{
-  label: string;
-  value: LabPlatform;
-}> = [
-  {
-    label: "All Experiences",
-    value: "all",
-  },
-  {
-    label: "Shopify",
-    value: "shopify",
-  },
-  {
-    label: "Salesforce Commerce Cloud",
-    value: "sfcc",
-  },
-  {
-    label: "AI Experiences",
-    value: "ai-commerce",
-  },
+// Filter tabs; the active one comes from ?platform= so each view has its own address.
+// The "sfcc" category holds Next.js prototypes of storefront, search and fulfilment patterns (simulated data),
+// so it is labelled "Commerce patterns" rather than claiming Salesforce Commerce Cloud builds.
+const platformTabs: { label: string; value: LabPlatform }[] = [
+  { label: "All", value: "all" },
+  { label: "Shopify", value: "shopify" },
+  { label: "Commerce patterns", value: "sfcc" },
+  { label: "AI experiences", value: "ai-commerce" },
 ];
 
-const platformSectionCopy: Record<
-  LabPlatform,
-  {
-    heading: string;
-    countLabel: string;
-  }
-> = {
-  all: {
-    heading: "Explore our commerce engineering experiences",
-    countLabel: "experience",
-  },
-  shopify: {
-    heading: "Explore our Shopify commerce tools and storefront enhancements",
-    countLabel: "Shopify experience",
-  },
-  sfcc: {
-    heading: "Explore our Salesforce Commerce Cloud engineering work",
-    countLabel: "Salesforce Commerce Cloud experience",
-  },
-  "ai-commerce": {
-    heading: "Explore our AI-powered and conversational commerce work",
-    countLabel: "AI commerce experience",
-  },
+const platformHeading: Record<LabPlatform, string> = {
+  all: "Every Labs experience",
+  shopify: "Shopify commerce tools and storefront enhancements",
+  sfcc: "Storefront, search and fulfilment patterns",
+  "ai-commerce": "AI-assisted and conversational commerce",
 };
 
 export const metadata: Metadata = {
   title: lab.metadata.title,
-
   description: lab.metadata.description,
-
-  alternates: {
-    canonical: "/lab",
-  },
-
+  alternates: { canonical: "/lab" },
   openGraph: {
     type: "website",
     url: "/lab",
     title: lab.metadata.title,
     description: lab.metadata.description,
-
-    images: [
-      {
-        url: site.image,
-        width: 1200,
-        height: 630,
-        alt: "YourForce Engineering Lab",
-      },
-    ],
+    images: [{ url: site.image, width: 1200, height: 630, alt: "YourForce Engineering Lab" }],
   },
-
-  twitter: {
-    card: "summary_large_image",
-    title: lab.metadata.title,
-    description: lab.metadata.description,
-    images: [site.image],
-  },
+  twitter: { card: "summary_large_image", title: lab.metadata.title, description: lab.metadata.description, images: [site.image] },
 };
 
-export default async function LabPage({
-  searchParams,
-}: LabPageProps) {
-  const resolvedSearchParams = await searchParams;
+const container = "mx-auto max-w-[1240px] px-6";
+const h2 = "font-display font-extrabold tracking-[-0.03em]";
 
-  const requestedPlatform =
-    resolvedSearchParams?.platform;
+export default async function LabPage({ searchParams }: LabPageProps) {
+  const requested = (await searchParams)?.platform;
+  const active: LabPlatform = platformTabs.some((t) => t.value === requested) ? (requested as LabPlatform) : "all";
 
-  const activePlatform = platformTabs.some(
-    (tab) => tab.value === requestedPlatform,
-  )
-    ? (requestedPlatform as LabPlatform)
-    : "all";
-
-  const visibleItems = lab.items
-    .filter(
-      (item) =>
-        activePlatform === "all" ||
-        item.categories?.includes(activePlatform) === true,
-    )
-    .sort((first, second) => {
-      const firstRank = first.featuredRank ?? 999;
-      const secondRank = second.featuredRank ?? 999;
-
-      return firstRank - secondRank;
-    });
-
-  const sectionCopy = platformSectionCopy[activePlatform];
+  const items = lab.items
+    .filter((item) => active === "all" || item.categories?.includes(active))
+    .sort((a, b) => (a.featuredRank ?? 999) - (b.featuredRank ?? 999));
 
   return (
-    <main>
+    <main className="bg-paper text-ink">
       {/* Hero */}
-      <section
-        className="
-          relative
-          overflow-hidden
-          border-b
-          border-white/10
-          bg-slate-950
-          py-20
-          text-white
-          sm:py-24
-          lg:py-28
-        "
-      >
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-          "
-        >
-          <div
-            className="
-              absolute
-              -left-44
-              -top-24
-              h-[520px]
-              w-[520px]
-              rounded-full
-              bg-blue-600/20
-              blur-[150px]
-            "
-          />
-
-          <div
-            className="
-              absolute
-              -right-44
-              bottom-0
-              h-[460px]
-              w-[460px]
-              rounded-full
-              bg-cyan-500/10
-              blur-[150px]
-            "
-          />
-
-          <div
-            className="
-              absolute
-              inset-0
-              opacity-[0.035]
-              [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
-              [background-size:48px_48px]
-            "
-          />
+      <section className="bg-ink text-paper">
+        <div className={`${container} pb-16 pt-16`}>
+          <p className="yf-label text-mist">{lab.hero.badge}</p>
+          <h1 className="mt-5 max-w-[900px] font-display text-[clamp(40px,5.4vw,76px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
+            {lab.hero.heading.primary} {lab.hero.heading.accent.replace(/\.$/, "")}
+            <span className="text-gold">.</span>
+          </h1>
+          <p className="mt-6 max-w-[700px] text-[19px] leading-relaxed text-mist">{lab.hero.description}</p>
+          <ul className="mt-7 flex flex-wrap gap-2">
+            {lab.hero.tags.map((t) => (
+              <li key={t} className="rounded-full border border-ink-line px-3.5 py-2 text-sm font-bold text-[#C9CED4]">{t}</li>
+            ))}
+          </ul>
         </div>
-
-        <Container>
-          <div
-            className="
-              relative
-              z-10
-              mx-auto
-              max-w-5xl
-              text-center
-            "
-          >
-            <div
-              className="
-                inline-flex
-                items-center
-                gap-2
-                rounded-full
-                border
-                border-blue-400/25
-                bg-blue-500/10
-                px-4
-                py-2
-                text-sm
-                font-semibold
-                text-blue-200
-                backdrop-blur
-              "
-            >
-              <FlaskConical
-                aria-hidden="true"
-                className="h-4 w-4"
-              />
-
-              {lab.hero.badge}
-            </div>
-
-            <h1
-              className="
-                mt-8
-                text-4xl
-                font-black
-                tracking-[-0.045em]
-                text-white
-                sm:text-5xl
-                md:text-6xl
-                lg:text-7xl
-              "
-            >
-              {lab.hero.heading.primary}
-
-              <span
-                className="
-                  mt-1
-                  block
-                  bg-gradient-to-r
-                  from-blue-400
-                  via-cyan-300
-                  to-blue-400
-                  bg-clip-text
-                  text-transparent
-                "
-              >
-                {lab.hero.heading.accent}
-              </span>
-            </h1>
-
-            <p
-              className="
-                mx-auto
-                mt-7
-                max-w-3xl
-                text-base
-                leading-8
-                text-slate-300
-                sm:text-lg
-              "
-            >
-              {lab.hero.description}
-            </p>
-
-            {/* Descriptive chips — intentionally not interactive */}
-            <div
-              className="
-                mt-8
-                flex
-                flex-wrap
-                justify-center
-                gap-2
-              "
-            >
-              {lab.hero.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="
-                    rounded-full
-                    border
-                    border-slate-700
-                    bg-slate-900/70
-                    px-3.5
-                    py-2
-                    text-xs
-                    font-semibold
-                    text-slate-300
-                  "
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Container>
       </section>
 
-      {/* Lab Experiences */}
-      <section
-        className="
-          relative
-          overflow-hidden
-          bg-slate-50
-          py-20
-          sm:py-24
-          lg:py-28
-        "
-      >
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            opacity-[0.025]
-            [background-image:linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)]
-            [background-size:48px_48px]
-          "
-        />
-
-        <Container>
-          <div className="relative">
-            <div
-              className="
-                grid
-                gap-8
-                lg:grid-cols-[0.62fr_1.38fr]
-                lg:items-end
-                lg:gap-16
-              "
-            >
-              <div>
-                <p
-                  className="
-                    text-xs
-                    font-bold
-                    uppercase
-                    tracking-[0.18em]
-                    text-blue-600
-                  "
-                >
-                  {lab.introduction.eyebrow}
-                </p>
-
-                <h2
-                  className="
-                    mt-4
-                    text-3xl
-                    font-bold
-                    tracking-[-0.03em]
-                    text-slate-950
-                    sm:text-4xl
-                    lg:text-5xl
-                  "
-                >
-                  {lab.introduction.heading}
-                </h2>
-              </div>
-
-              <p
-                className="
-                  max-w-3xl
-                  text-base
-                  leading-8
-                  text-slate-600
-                "
-              >
-                {lab.introduction.description}
-              </p>
-            </div>
-
-            {/* Platform filters */}
-            <nav
-              aria-label="Filter Lab experiences by platform"
-              className="
-                mt-10
-                flex
-                flex-wrap
-                gap-2
-                rounded-2xl
-                border
-                border-slate-200
-                bg-white
-                p-2
-                shadow-sm
-              "
-            >
-              {platformTabs.map((tab) => {
-                const active = tab.value === activePlatform;
-
-                const href =
-                  tab.value === "all"
-                    ? "/lab"
-                    : `/lab?platform=${tab.value}`;
-
-                return (
-                  <Link
-                    key={tab.value}
-                    href={href}
-                    aria-current={active ? "page" : undefined}
-                    scroll={false}
-                    className={
-                      active
-                        ? `
-                            inline-flex
-                            items-center
-                            justify-center
-                            rounded-xl
-                            bg-slate-950
-                            px-4
-                            py-2.5
-                            text-sm
-                            font-bold
-                            text-white
-                            shadow-sm
-                          `
-                        : `
-                            inline-flex
-                            items-center
-                            justify-center
-                            rounded-xl
-                            px-4
-                            py-2.5
-                            text-sm
-                            font-semibold
-                            text-slate-600
-                            transition-colors
-                            hover:bg-slate-100
-                            hover:text-slate-950
-                          `
-                    }
-                  >
-                    {tab.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div
-              className="
-                mt-8
-                flex
-                items-center
-                justify-between
-                gap-4
-              "
-            >
-              <div>
-                <h3 className="text-lg font-bold text-slate-950">
-                  {sectionCopy.heading}
-                </h3>
-
-                <p className="mt-1 text-sm font-semibold text-slate-600">
-                  {visibleItems.length}{" "}
-                  {sectionCopy.countLabel}
-                  {visibleItems.length === 1 ? "" : "s"}
-                </p>
-              </div>
-
-              {activePlatform === "all" && (
-                <p className="text-sm text-slate-500">
-                  Featured experiences appear first.
-                </p>
-              )}
-            </div>
-
-            <div
-              className="
-                mt-6
-                grid
-                gap-7
-                md:grid-cols-2
-              "
-            >
-              {visibleItems.map((item) => {
-                const Icon = item.icon;
-
-                const available =
-                  item.status === "available";
-
-                return (
-                  <article
-                    key={item.slug}
-                    className={`
-                      group relative flex h-full flex-col overflow-hidden
-                      rounded-[2rem] border bg-white transition-all duration-300
-                      hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-950/5
-                      ${
-                        item.highlight
-                          ? "border-blue-300 shadow-lg shadow-blue-950/10 hover:border-blue-400"
-                          : "border-slate-200 shadow-sm hover:border-blue-200"
-                      }
-                    `}
-                  >
-                    {/* Preview */}
-                    <div
-                      className="
-                        relative
-                        aspect-[16/10]
-                        overflow-hidden
-                        border-b
-                        border-slate-200
-                        bg-slate-100
-                      "
-                    >
-                      <Image
-                        src={item.preview.src}
-                        alt={item.preview.alt}
-                        fill
-                        sizes="
-                          (max-width: 767px) 100vw,
-                          (max-width: 1280px) 50vw,
-                          600px
-                        "
-                        className="
-                          object-cover
-                          object-top
-                          transition-transform
-                          duration-500
-                          group-hover:scale-[1.025]
-                        "
-                      />
-
-                      <div
-                        aria-hidden="true"
-                        className="
-                          pointer-events-none
-                          absolute
-                          inset-0
-                          bg-gradient-to-t
-                          from-slate-950/20
-                          via-transparent
-                          to-transparent
-                        "
-                      />
-
-                      {/* Lab number / featured */}
-                      <div
-                        className="
-                          absolute
-                          left-4
-                          top-4
-                          flex
-                          items-center
-                          gap-2
-                        "
-                      >
-                        <span
-                          className="
-                            rounded-full
-                            border
-                            border-white/30
-                            bg-slate-950/80
-                            px-3
-                            py-1.5
-                            text-[10px]
-                            font-black
-                            uppercase
-                            tracking-[0.14em]
-                            text-white
-                            backdrop-blur
-                          "
-                        >
-                          Lab {item.number}
-                        </span>
-
-                        {item.featured && (
-                          <span
-                            className="
-                              inline-flex
-                              items-center
-                              gap-1.5
-                              rounded-full
-                              border
-                              border-blue-300/30
-                              bg-blue-600/90
-                              px-3
-                              py-1.5
-                              text-[10px]
-                              font-black
-                              uppercase
-                              tracking-[0.12em]
-                              text-white
-                              backdrop-blur
-                            "
-                          >
-                            <Sparkles
-                              aria-hidden="true"
-                              className="h-3 w-3"
-                            />
-
-                            Featured
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Interactive preview — positioned away from image captions */}
-                      <div
-                        className="
-                          absolute
-                          right-4
-                          top-4
-                        "
-                      >
-                        <span
-                          className="
-                            rounded-full
-                            border
-                            border-white/30
-                            bg-slate-950/80
-                            px-3
-                            py-1.5
-                            text-[10px]
-                            font-bold
-                            uppercase
-                            tracking-[0.12em]
-                            text-white
-                            shadow-sm
-                            backdrop-blur
-                          "
-                        >
-                          {item.previewLabel ?? "Interactive Preview"}
-                        </span>
-                      </div>
-
-                      {!available && (
-                        <div
-                          className="
-                            absolute
-                            inset-0
-                            flex
-                            items-center
-                            justify-center
-                            bg-slate-950/55
-                            backdrop-blur-[2px]
-                          "
-                        >
-                          <span
-                            className="
-                              rounded-full
-                              border
-                              border-white/20
-                              bg-white/10
-                              px-4
-                              py-2
-                              text-xs
-                              font-bold
-                              uppercase
-                              tracking-[0.14em]
-                              text-white
-                              backdrop-blur
-                            "
-                          >
-                            Coming Soon
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div
-                      className="
-                        flex
-                        flex-1
-                        flex-col
-                        p-6
-                        sm:p-7
-                        lg:p-8
-                      "
-                    >
-                      <div
-                        className="
-                          flex
-                          items-start
-                          justify-between
-                          gap-5
-                        "
-                      >
-                        <div>
-                          <p
-                            className="
-                              text-xs
-                              font-bold
-                              uppercase
-                              tracking-[0.16em]
-                              text-blue-600
-                            "
-                          >
-                            {item.eyebrow}
-                          </p>
-
-                          <h3
-                            className="
-                              mt-3
-                              text-2xl
-                              font-bold
-                              tracking-tight
-                              text-slate-950
-                              sm:text-[1.7rem]
-                            "
-                          >
-                            {item.title}
-                          </h3>
-                        </div>
-
-                        <div
-                          className="
-                            flex
-                            h-12
-                            w-12
-                            shrink-0
-                            items-center
-                            justify-center
-                            rounded-2xl
-                            border
-                            border-blue-100
-                            bg-blue-50
-                            text-blue-600
-                            transition-colors
-                            group-hover:border-blue-200
-                            group-hover:bg-blue-100
-                          "
-                        >
-                          <Icon
-                            aria-hidden="true"
-                            className="h-5 w-5"
-                          />
-                        </div>
-                      </div>
-
-                      <p
-                        className="
-                          mt-5
-                          text-sm
-                          leading-7
-                          text-slate-600
-                        "
-                      >
-                        {item.description}
-                      </p>
-
-                      {/* Demo metadata */}
-                      <div
-                        className="
-                          mt-5
-                          flex
-                          flex-wrap
-                          gap-x-5
-                          gap-y-2
-                          border-y
-                          border-slate-100
-                          py-4
-                          text-xs
-                          font-medium
-                          text-slate-500
-                        "
-                      >
-                        <span
-                          className="
-                            inline-flex
-                            items-center
-                            gap-2
-                          "
-                        >
-                          <Clock3
-                            aria-hidden="true"
-                            className="
-                              h-4
-                              w-4
-                              text-blue-600
-                            "
-                          />
-
-                          {item.duration}
-                        </span>
-
-                        <span
-                          className="
-                            inline-flex
-                            items-center
-                            gap-2
-                          "
-                        >
-                          <CalendarDays
-                            aria-hidden="true"
-                            className="
-                              h-4
-                              w-4
-                              text-blue-600
-                            "
-                          />
-
-                          {item.added}
-                        </span>
-                      </div>
-
-                      {/* Technologies */}
-                      <div
-                        className="
-                          mt-5
-                          flex
-                          flex-wrap
-                          gap-2
-                        "
-                      >
-                        {item.technologies.map(
-                          (technology) => (
-                            <span
-                              key={technology}
-                              className="
-                                rounded-full
-                                border
-                                border-slate-200
-                                bg-slate-50
-                                px-3
-                                py-1.5
-                                text-[11px]
-                                font-semibold
-                                text-slate-600
-                              "
-                            >
-                              {technology}
-                            </span>
-                          ),
-                        )}
-                      </div>
-
-                      {/* Capabilities */}
-                      <div
-                        className="
-                          mt-6
-                          grid
-                          gap-3
-                          sm:grid-cols-2
-                        "
-                      >
-                        {item.capabilities.map(
-                          (capability) => (
-                            <div
-                              key={capability}
-                              className="
-                                flex
-                                items-start
-                                gap-2.5
-                                text-sm
-                                text-slate-600
-                              "
-                            >
-                              <span
-                                className="
-                                  mt-0.5
-                                  flex
-                                  h-5
-                                  w-5
-                                  shrink-0
-                                  items-center
-                                  justify-center
-                                  rounded-full
-                                  bg-emerald-50
-                                  text-emerald-600
-                                "
-                              >
-                                <Check
-                                  aria-hidden="true"
-                                  className="h-3 w-3"
-                                />
-                              </span>
-
-                              {capability}
-                            </div>
-                          ),
-                        )}
-                      </div>
-
-                      {/* CTA */}
-                      <div
-                        className="
-                          mt-auto
-                          pt-8
-                        "
-                      >
-                        {available ? (
-                          <Link
-                            href={item.href}
-                            target={
-                              item.external
-                                ? "_blank"
-                                : undefined
-                            }
-                            rel={
-                              item.external
-                                ? "noopener noreferrer"
-                                : undefined
-                            }
-                            className="
-                              inline-flex
-                              items-center
-                              gap-2
-                              text-sm
-                              font-bold
-                              text-blue-600
-                              transition-colors
-                              hover:text-blue-500
-                            "
-                          >
-                            {item.ctaLabel ?? "Enter Lab"}
-
-                            <ArrowRight
-                              aria-hidden="true"
-                              className="
-                                h-4
-                                w-4
-                                transition-transform
-                                group-hover:translate-x-1
-                              "
-                            />
-                          </Link>
-                        ) : (
-                          <span
-                            className="
-                              inline-flex
-                              items-center
-                              rounded-full
-                              bg-slate-100
-                              px-3
-                              py-2
-                              text-xs
-                              font-bold
-                              uppercase
-                              tracking-[0.12em]
-                              text-slate-500
-                            "
-                          >
-                            Coming Soon
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-
-            {activePlatform === "shopify" && (
-              <section
-                aria-labelledby="shopify-roadmap-heading"
-                className="mt-10 rounded-[2rem] border border-blue-200 bg-blue-50/60 p-6 sm:p-8"
-              >
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-blue-600">
-                      Shopify roadmap
-                    </p>
-
-                    <h3
-                      id="shopify-roadmap-heading"
-                      className="mt-2 text-2xl font-bold text-slate-950"
-                    >
-                      Coming next to the Shopify Lab
-                    </h3>
-                  </div>
-
-                  <p className="text-sm text-slate-600">
-                    Planned demonstrations are added as they become ready.
-                  </p>
-                </div>
-
-                <div className="mt-6 grid gap-4 lg:grid-cols-3">
-                  {lab.upcomingShopify.map((feature) => (
-                    <article
-                      key={feature.title}
-                      className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm"
-                    >
-                      <span
-                        className={
-                          feature.statusLabel === "In progress"
-                            ? "inline-flex rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800"
-                            : "inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600"
-                        }
-                      >
-                        {feature.statusLabel}
-                      </span>
-
-                      <h4 className="mt-4 text-lg font-bold text-slate-950">
-                        {feature.title}
-                      </h4>
-
-                      <p className="mt-2 text-sm leading-6 text-slate-600">
-                        {feature.description}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Roadmap */}
-            <div
-              className="
-                mt-12
-                flex
-                flex-col
-                gap-5
-                rounded-3xl
-                border
-                border-blue-100
-                bg-blue-50/60
-                p-7
-                sm:flex-row
-                sm:items-center
-                sm:justify-between
-                sm:p-8
-              "
-            >
-              <div
-                className="
-                  flex
-                  items-start
-                  gap-4
-                "
-              >
-                <div
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-xl
-                    bg-blue-600
-                    text-white
-                  "
-                >
-                  <Sparkles
-                    aria-hidden="true"
-                    className="h-5 w-5"
-                  />
-                </div>
-
-                <div>
-                  <p
-                    className="
-                      text-xs
-                      font-bold
-                      uppercase
-                      tracking-[0.16em]
-                      text-blue-600
-                    "
-                  >
-                    {lab.roadmap.eyebrow}
-                  </p>
-
-                  <h3
-                    className="
-                      mt-2
-                      text-xl
-                      font-bold
-                      text-slate-950
-                    "
-                  >
-                    {lab.roadmap.heading}
-                  </h3>
-
-                  <p
-                    className="
-                      mt-2
-                      max-w-3xl
-                      text-sm
-                      leading-6
-                      text-slate-600
-                    "
-                  >
-                    {lab.roadmap.description}
-                  </p>
-                </div>
-              </div>
-            </div>
+      {/* Experiences */}
+      <section className={`${container} py-[88px]`}>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-[760px]">
+            <p className="yf-label">{lab.introduction.eyebrow}</p>
+            <h2 className={`${h2} mt-3.5 text-[clamp(30px,3.8vw,48px)] leading-[1.02]`}>{lab.introduction.heading}</h2>
+            <p className="mt-4 text-[17px] text-muted">{lab.introduction.description}</p>
           </div>
-        </Container>
+        </div>
+
+        <nav aria-label="Filter Labs experiences by platform" className="mt-10 flex flex-wrap gap-2">
+          {platformTabs.map((tab) => {
+            const on = tab.value === active;
+            return (
+              <Link
+                key={tab.value}
+                href={tab.value === "all" ? "/lab" : `/lab?platform=${tab.value}`}
+                scroll={false}
+                aria-current={on ? "page" : undefined}
+                className={`rounded-full border-[1.5px] px-4 py-2.5 text-sm font-bold ${on ? "border-ink bg-ink text-paper" : "border-[#CFCCC4] hover:border-ink"}`}
+              >
+                {tab.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <p className="mt-5 text-sm font-bold text-subtle">
+          {platformHeading[active]} · {items.length} {items.length === 1 ? "experience" : "experiences"}
+        </p>
+
+        <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {items.map((item) => {
+            const Icon = item.icon;
+            const LinkTag = item.external ? "a" : Link;
+            return (
+              <article key={item.slug} className="flex flex-col overflow-hidden rounded-[26px] border border-line bg-white">
+                <LinkTag href={item.href} className="group relative block aspect-[16/10] border-b border-line bg-paper">
+                  <Image src={item.preview.src} alt={item.preview.alt} fill sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 92vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                  <span className="absolute left-3 top-3 rounded-full bg-ink px-3 py-1.5 font-display text-[13px] font-extrabold text-gold">Lab {item.number}</span>
+                  {item.previewLabel && <span className="absolute right-3 top-3 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-ink">{item.previewLabel}</span>}
+                </LinkTag>
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.06em] text-subtle">
+                    <Icon aria-hidden className="h-4 w-4" strokeWidth={2} />
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="mt-3 font-display text-[24px] font-extrabold leading-tight tracking-[-0.02em]">{item.title}</h3>
+                  <p className="mt-2.5 text-[15px] text-muted">{item.description}</p>
+                  <ul className="mt-4 flex flex-col gap-1.5">
+                    {item.capabilities.map((c) => (
+                      <li key={c} className="flex items-start gap-2 text-sm font-bold">
+                        <Check aria-hidden className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={2.6} />
+                        {c}
+                      </li>
+                    ))}
+                  </ul>
+                  <ul aria-label="Technologies" className="mt-4 flex flex-wrap gap-1.5">
+                    {item.technologies.map((t) => (
+                      <li key={t} className="rounded-full bg-paper px-3 py-1.5 text-xs font-bold text-[#2C3137]">{t}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-6">
+                    <span className="inline-flex items-center gap-1.5 text-[13px] font-bold text-subtle">
+                      <Clock3 aria-hidden className="h-4 w-4" />
+                      {item.duration}
+                    </span>
+                    <LinkTag href={item.href} className="inline-flex items-center gap-1.5 rounded-full bg-ink px-5 py-3 text-sm font-bold text-paper hover:bg-ink-2">
+                      {item.ctaLabel ?? "Try the demo"}
+                      {item.external && <ArrowUpRight aria-hidden className="h-4 w-4" />}
+                    </LinkTag>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Coming next */}
+      <section className="border-y border-line bg-white">
+        <div className={`${container} grid gap-10 py-[88px] lg:grid-cols-[0.8fr_1.2fr]`}>
+          <div>
+            <p className="yf-label">{lab.roadmap.eyebrow}</p>
+            <h2 className={`${h2} mt-3.5 text-[clamp(28px,3.4vw,42px)] leading-[1.04]`}>{lab.roadmap.heading}</h2>
+            <p className="mt-4 text-[17px] text-muted">{lab.roadmap.description}</p>
+          </div>
+          <ol className="flex flex-col">
+            {lab.upcomingShopify.map((f) => (
+              <li key={f.title} className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2 border-b border-line py-5 first:pt-0">
+                <span className="max-w-[560px]">
+                  <span className="block font-display text-xl font-bold">{f.title}</span>
+                  <span className="mt-1.5 block text-[15px] text-muted">{f.description}</span>
+                </span>
+                <span className={`rounded-full px-3 py-1.5 text-xs font-bold ${f.statusLabel === "In progress" ? "bg-gold-soft text-ink" : "bg-paper text-subtle"}`}>
+                  Shopify · {f.statusLabel}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
       {/* Why the Lab */}
-      <section
-        className="
-          bg-white
-          py-20
-          sm:py-24
-          lg:py-28
-        "
-      >
-        <Container>
-          <div
-            className="
-              grid
-              gap-12
-              lg:grid-cols-[0.72fr_1.28fr]
-              lg:gap-20
-            "
-          >
-            <div>
-              <div
-                className="
-                  flex
-                  h-14
-                  w-14
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  border
-                  border-blue-100
-                  bg-blue-50
-                  text-blue-600
-                "
-              >
-                <FlaskConical
-                  aria-hidden="true"
-                  className="h-6 w-6"
-                />
-              </div>
-
-              <p
-                className="
-                  mt-6
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.18em]
-                  text-blue-600
-                "
-              >
-                {lab.philosophy.eyebrow}
-              </p>
-
-              <h2
-                className="
-                  mt-4
-                  text-3xl
-                  font-bold
-                  tracking-[-0.03em]
-                  text-slate-950
-                  sm:text-4xl
-                "
-              >
-                {lab.philosophy.heading}
-              </h2>
-            </div>
-
-            <div
-              className="
-                grid
-                gap-5
-                sm:grid-cols-2
-              "
-            >
-              {lab.philosophy.paragraphs.map(
-                (paragraph, index) => (
-                  <article
-                    key={paragraph}
-                    className="
-                      rounded-3xl
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      p-7
-                      sm:p-8
-                    "
-                  >
-                    <span
-                      className="
-                        text-xs
-                        font-black
-                        tracking-[0.18em]
-                        text-blue-600
-                      "
-                    >
-                      0{index + 1}
-                    </span>
-
-                    <p
-                      className="
-                        mt-5
-                        text-base
-                        leading-8
-                        text-slate-600
-                      "
-                    >
-                      {paragraph}
-                    </p>
-                  </article>
-                ),
-              )}
-            </div>
+      <section className={`${container} py-[88px]`}>
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="yf-label">{lab.philosophy.eyebrow}</p>
+            <h2 className={`${h2} mt-3.5 text-[clamp(28px,3.4vw,42px)] leading-[1.04]`}>{lab.philosophy.heading}</h2>
           </div>
-        </Container>
+          <div className="flex flex-col gap-4 text-[17px] text-muted">
+            {lab.philosophy.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
-      <section
-        className="
-          bg-white
-          pb-20
-          sm:pb-24
-          lg:pb-28
-        "
-      >
-        <Container>
-          <div
-            className="
-              relative
-              overflow-hidden
-              rounded-[2rem]
-              bg-slate-950
-              px-7
-              py-12
-              text-center
-              text-white
-              sm:px-10
-              sm:py-14
-              lg:px-16
-              lg:py-16
-            "
-          >
-            <div
-              aria-hidden="true"
-              className="
-                pointer-events-none
-                absolute
-                -left-24
-                -top-16
-                h-80
-                w-80
-                rounded-full
-                bg-blue-600/20
-                blur-[120px]
-              "
-            />
-
-            <div
-              aria-hidden="true"
-              className="
-                pointer-events-none
-                absolute
-                -right-20
-                bottom-0
-                h-72
-                w-72
-                rounded-full
-                bg-cyan-500/10
-                blur-[120px]
-              "
-            />
-
-            <div className="relative">
-              <p
-                className="
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.18em]
-                  text-blue-300
-                "
-              >
-                Build With YourForce
-              </p>
-
-              <h2
-                className="
-                  mx-auto
-                  mt-4
-                  max-w-3xl
-                  text-3xl
-                  font-bold
-                  tracking-tight
-                  text-white
-                  sm:text-4xl
-                "
-              >
-                {lab.cta.heading}
-              </h2>
-
-              <p
-                className="
-                  mx-auto
-                  mt-5
-                  max-w-2xl
-                  text-base
-                  leading-8
-                  text-slate-300
-                "
-              >
-                {lab.cta.description}
-              </p>
-
-              <div
-                className="
-                  mt-8
-                  flex
-                  flex-col
-                  justify-center
-                  gap-3
-                  sm:flex-row
-                "
-              >
-                <Link
-                  href={lab.cta.primary.href}
-                  className="
-                    inline-flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    bg-blue-600
-                    px-7
-                    py-4
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:-translate-y-0.5
-                    hover:bg-blue-500
-                  "
-                >
-                  {lab.cta.primary.label}
-
-                  <ArrowRight
-                    aria-hidden="true"
-                    className="h-4 w-4"
-                  />
-                </Link>
-
-                <Link
-                  href={lab.cta.secondary.href}
-                  className="
-                    inline-flex
-                    items-center
-                    justify-center
-                    gap-2
-                    rounded-xl
-                    border
-                    border-slate-700
-                    bg-slate-900
-                    px-7
-                    py-4
-                    font-semibold
-                    text-white
-                    transition-all
-                    hover:-translate-y-0.5
-                    hover:border-slate-600
-                    hover:bg-slate-800
-                  "
-                >
-                  {lab.cta.secondary.label}
-                </Link>
-              </div>
-            </div>
+      <section className="px-6 pb-[88px]">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-8 rounded-[32px] bg-ink px-8 py-12 text-paper md:px-12">
+          <div className="max-w-[680px]">
+            <h2 className={`${h2} text-[clamp(28px,3.6vw,46px)] leading-[1.02]`}>{lab.cta.heading}</h2>
+            <p className="mt-4 text-lg text-mist">{lab.cta.description}</p>
           </div>
-        </Container>
+          <div className="flex flex-wrap gap-3">
+            <Link href={lab.cta.primary.href} className="rounded-full bg-gold px-7 py-4 font-bold text-ink hover:bg-[#f7c561]">{lab.cta.primary.label}</Link>
+            <Link href={lab.cta.secondary.href} className="rounded-full border-[1.5px] border-[#4A525B] px-6 py-[15px] font-bold text-paper hover:border-paper">{lab.cta.secondary.label}</Link>
+          </div>
+        </div>
       </section>
     </main>
   );

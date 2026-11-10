@@ -348,7 +348,7 @@ export const lab: LabData = {
     heading: "Show the engineering, not just the outcome.",
 
     paragraphs: [
-      "Case studies demonstrate what we have delivered. The Engineering Lab demonstrates how we think about architecture, customer experience, performance, integrations, and implementation.",
+      "The Engineering Lab shows how we think about architecture, customer experience, performance, integrations and implementation, in demos you can try rather than slides you have to trust.",
 
       "Each experience focuses on a practical engineering challenge and uses simulated data unless a real platform or external integration is explicitly identified.",
     ],
@@ -361,9 +361,9 @@ export const lab: LabData = {
       "YourForce.io helps businesses design, modernize, and engineer scalable digital commerce platforms, enterprise software, integrations, and modern customer experiences.",
 
     primary: {
-      label: "Start Your Project",
+      label: "Discuss your project",
 
-      href: "/contact",
+      href: "/contact?service=commerce-platform-engineering",
     },
 
     secondary: {
