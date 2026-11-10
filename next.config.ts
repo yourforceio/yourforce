@@ -9,6 +9,20 @@ const nextConfig: NextConfig = {
         destination: "/products/schools",
         permanent: true,
       },
+
+      // The portfolio presented the founder's previous-employer projects as YourForce case studies. Until those
+      // pages are rewritten as "founder experience", send visitors to the honestly labelled section on the homepage.
+      // Temporary (307) so it can be undone without browsers caching it.
+      {
+        source: "/portfolio",
+        destination: "/#founder",
+        permanent: false,
+      },
+      {
+        source: "/portfolio/:slug",
+        destination: "/#founder",
+        permanent: false,
+      },
     ];
   },
 };

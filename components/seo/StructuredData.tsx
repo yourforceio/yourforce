@@ -12,7 +12,7 @@ export default function StructuredData() {
   ).toString();
 
   const logoUrl = new URL(
-    "/logo/logo-light.png",
+    "/logo/logo.png",
     site.url,
   ).toString();
 

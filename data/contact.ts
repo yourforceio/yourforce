@@ -112,6 +112,11 @@ export const contact: ContactData = {
             slug: "technical-consulting",
           },
           {
+            label: "PHP Upgrades & Free Health Check",
+            value: "PHP Upgrades & Free Health Check",
+            slug: "php",
+          },
+          {
             label: "School Management Platform",
             value: "School Management Platform",
             slug: "school-platform",

@@ -1,116 +1,75 @@
-import Logo from "@/components/branding/Logo";
-import FooterBottom from "@/components/footer/FooterBottom";
-import FooterColumn from "@/components/footer/FooterColumn";
-import SocialLinks from "@/components/footer/SocialLinks";
-import Container from "@/components/layout/Container";
+import Link from "next/link";
+import { FaLinkedinIn } from "react-icons/fa6";
 
-import { footer } from "@/data/footer";
+import Logo from "@/components/branding/Logo";
+import { engineering, homeProducts, operations } from "@/data/home";
+
+type FooterLink = { label: string; href: string };
+
+const columns: { title: string; links: FooterLink[] }[] = [
+  {
+    title: "Engineering",
+    links: engineering.services.map((s) => ({ label: s.menuTitle, href: s.href })),
+  },
+  {
+    title: "Products",
+    links: homeProducts.map((p) => ({ label: p.name, href: `/products/${p.slug}` })),
+  },
+  {
+    title: "Operations · US",
+    links: operations.desks.map((d) => ({ label: d.menuTitle, href: d.href })),
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "Labs", href: "/lab" },
+      { label: "About", href: "/#founder" },
+      { label: "Workplace", href: "/workplace" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];
+
+function FooterAnchor({ href, label }: FooterLink) {
+  const cls = "text-[15px] leading-8 text-mist hover:text-paper";
+  return href.startsWith("http") ? (
+    <a href={href} className={cls}>{label}</a>
+  ) : (
+    <Link href={href} className={cls}>{label}</Link>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer
-      className="
-        relative
-        overflow-hidden
-        border-t
-        border-white/10
-        bg-slate-950
-        text-white
-      "
-    >
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-0 hidden h-[360px] w-[360px] rounded-full bg-blue-600/10 blur-[130px] md:block" />
-
-        <div className="absolute -right-40 bottom-0 hidden h-[320px] w-[320px] rounded-full bg-cyan-500/[0.06] blur-[120px] md:block" />
-
-        <div
-          className="
-            absolute
-            inset-0
-            opacity-[0.025]
-            [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
-            [background-size:48px_48px]
-          "
-        />
-      </div>
-
-      <Container>
-        <div className="relative pb-8 pt-16 lg:pb-10 lg:pt-20">
-          <div className="grid gap-14 lg:grid-cols-[1.05fr_1.95fr] lg:gap-20">
-            {/* Company information */}
-            <div className="max-w-md">
-              <Logo />
-
-              <p className="mt-6 text-sm font-semibold tracking-wide text-blue-400">
-                {footer.company.tagline}
-              </p>
-
-              <p className="mt-5 text-sm leading-7 text-slate-400">
-                {footer.company.description}
-              </p>
-
-              {/* Availability */}
-              <div
-                className="
-                  mt-6
-                  inline-flex
-                  items-center
-                  gap-2.5
-                  rounded-full
-                  border
-                  border-emerald-500/20
-                  bg-emerald-500/[0.06]
-                  px-3.5
-                  py-2
-                  text-xs
-                  font-semibold
-                  text-emerald-300
-                "
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-40" />
-
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                </span>
-
-                {footer.company.availability}
-              </div>
-
-              <div className="mt-7">
-                <SocialLinks socials={footer.socials} />
-              </div>
-            </div>
-
-            {/* Footer navigation */}
-            <div
-              className="
-                grid
-                gap-10
-                sm:grid-cols-2
-                xl:grid-cols-[0.8fr_1.25fr_1fr_0.95fr_0.9fr]
-                xl:gap-12
-              "
-            >
-              {footer.columns.map((column) => (
-                <FooterColumn
-                  key={column.title}
-                  column={column}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="mt-10 border-t border-white/10 pt-6">
-            <FooterBottom
-              copyright={footer.bottom.copyright}
-              builtWith={footer.bottom.builtWith}
-              links={footer.bottom.links}
-            />
-          </div>
+    <footer className="bg-ink text-mist">
+      <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-x-8 gap-y-10 px-6 pb-8 pt-16 md:grid-cols-4 lg:grid-cols-[1.5fr_1fr_1fr_1.1fr_0.8fr] lg:gap-x-10">
+        <div className="col-span-2 md:col-span-4 lg:col-span-1">
+          <Logo />
+          <p className="mt-3 max-w-[270px] text-[15px]">Commerce engineering, business software and operations support.</p>
+          <a
+            href="https://www.linkedin.com/company/yourforce-io/"
+            aria-label="YourForce on LinkedIn"
+            className="mt-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-ink-line text-paper hover:border-paper"
+          >
+            <FaLinkedinIn aria-hidden className="h-4 w-4" />
+          </a>
         </div>
-      </Container>
+        {columns.map((col) => (
+          <nav key={col.title} aria-label={col.title} className="min-w-0">
+            <p className="mb-3 font-bold text-paper">{col.title}</p>
+            <ul>
+              {col.links.map((l) => (
+                <li key={l.label}><FooterAnchor {...l} /></li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+      </div>
+      <div className="mx-auto flex max-w-[1240px] flex-wrap justify-between gap-3 border-t border-ink-line px-6 pb-9 pt-5 text-sm">
+        <span>© {new Date().getFullYear()} YourForce</span>
+        <a href="mailto:hello@yourforce.io" className="font-bold text-paper hover:underline">hello@yourforce.io</a>
+      </div>
     </footer>
   );
 }

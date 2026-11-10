@@ -199,10 +199,10 @@ export const workplace: Workplace = {
 
     secondary: {
       label:
-        "Explore Our Work",
+        "About the Founder",
 
       href:
-        "/portfolio",
+        "/#founder",
     },
   },
 };

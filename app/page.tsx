@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 
 import StructuredData from "@/components/seo/StructuredData";
-
-import About from "@/components/sections/About";
-import CTA from "@/components/sections/CTA";
-import Hero from "@/components/sections/Hero";
-import Portfolio from "@/components/sections/Portfolio";
-import Process from "@/components/sections/Process";
-import Services, {
-  SpecializedOperations,
-} from "@/components/sections/Services";
-import WhyChoose from "@/components/sections/WhyChoose";
+import HomeHero from "@/components/landing/HomeHero";
+import {
+  ContactBlock,
+  Engineering,
+  Founder,
+  HealthCheck,
+  Labs,
+  Operations,
+  Products,
+  WhyBand,
+} from "@/components/landing/HomeSections";
 
 import { site } from "@/data/site";
+
+const ogAlt = `${site.name}: commerce engineering for Salesforce, Shopify and Magento brands`;
 
 export const metadata: Metadata = {
   title: {
@@ -32,50 +35,33 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: site.title,
     description: site.description,
-    images: [
-      {
-        url: site.image,
-        width: 1200,
-        height: 630,
-        alt: `${site.name} — Enterprise Software Development`,
-      },
-    ],
+    images: [{ url: site.image, width: 1200, height: 630, alt: ogAlt }],
   },
 
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
-    images: [
-      {
-        url: site.image,
-        alt: `${site.name} — Enterprise Software Development`,
-      },
-    ],
+    images: [{ url: site.image, alt: ogAlt }],
   },
 };
 
+/** Homepage (2026 redesign). Content lives in data/home.ts. */
 export default function Home() {
   return (
     <>
       <StructuredData />
 
-      <main>
-        <Hero />
-
-        <Portfolio />
-
-        <Services />
-
-        <About />
-
-        <SpecializedOperations />
-
-        <WhyChoose />
-
-        <Process />
-
-        <CTA />
+      <main className="bg-paper text-ink">
+        <HomeHero />
+        <Engineering />
+        <HealthCheck />
+        <WhyBand />
+        <Labs />
+        <Founder />
+        <Products />
+        <Operations />
+        <ContactBlock />
       </main>
     </>
   );

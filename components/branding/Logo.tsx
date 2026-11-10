@@ -1,62 +1,23 @@
-import Image from "next/image";
 import Link from "next/link";
+
+import YFMark from "@/components/branding/YFMark";
 
 type LogoProps = {
   className?: string;
+  /** "light" for dark backgrounds (the default), "dark" for light ones. */
+  tone?: "light" | "dark";
 };
 
-export default function Logo({
-  className = "",
-}: LogoProps) {
+export default function Logo({ className = "", tone = "light" }: LogoProps) {
   return (
     <Link
       href="/"
       aria-label="YourForce home"
-      className={`
-        group
-        inline-flex
-        shrink-0
-        items-center
-        gap-3
-        rounded-lg
-        transition-opacity
-        duration-200
-        hover:opacity-90
-        focus-visible:outline-none
-        focus-visible:ring-2
-        focus-visible:ring-blue-400
-        focus-visible:ring-offset-4
-        focus-visible:ring-offset-slate-950
-        ${className}
-      `}
+      className={`inline-flex shrink-0 items-center gap-2.5 rounded-lg transition-opacity duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-ink ${className}`}
     >
-      <Image
-        src="/logo/yf-mark-dark.svg"
-        alt=""
-        width={38}
-        height={38}
-        priority
-        className="
-          h-9
-          w-9
-          shrink-0
-          object-contain
-          transition-transform
-          duration-200
-          group-hover:scale-105
-          sm:h-[38px]
-          sm:w-[38px]
-        "
-      />
-
+      <YFMark tone={tone} className="h-9 w-10 shrink-0" />
       <span
-        className="
-          text-[21px]
-          font-semibold
-          tracking-[-0.03em]
-          text-slate-100
-          sm:text-[23px]
-        "
+        className={`font-display text-[24px] font-extrabold tracking-[-0.02em] ${tone === "light" ? "text-paper" : "text-ink"}`}
       >
         YourForce
       </span>

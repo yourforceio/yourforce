@@ -19,7 +19,7 @@ const pageUrl = `${site.url.replace(
 )}/privacy`;
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | YourForce",
+  title: "Privacy Policy",
 
   description:
     "Learn how YourForce collects, uses, protects, and shares personal information submitted through its website and contact form.",

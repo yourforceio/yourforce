@@ -5,11 +5,28 @@
   --foreground: #171717;
 }
 
+/*
+ * Brand tokens (2026 redesign): ink, amber and a warm paper grey.
+ * Amber is for the logo, small markers and one main button per screen; never for text on light backgrounds.
+ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-bricolage);
   --font-mono: var(--font-geist-mono);
+
+  --color-ink: #0f1215;
+  --color-ink-2: #1b2025;
+  --color-ink-line: #2e353c;
+  --color-gold: #f5b83d;
+  --color-gold-soft: #fcefd2;
+  --color-paper: #f5f4f0;
+  --color-line: #e3e1db;
+  --color-line-soft: #eeece6;
+  --color-muted: #3b4148;
+  --color-subtle: #4a5057;
+  --color-mist: #b9bfc6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,4 +47,15 @@ body {
 
 .card-hover {
   @apply hover:-translate-y-2 hover:border-blue-200 hover:shadow-xl;
+}
+
+/* Section label: a small amber square in front of upper-case text. In the components layer so utilities can override it. */
+@layer components {
+  .yf-label {
+    @apply inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.06em];
+  }
+  .yf-label::before {
+    content: "";
+    @apply h-2.5 w-2.5 shrink-0 rounded-[3px] bg-gold;
+  }
 }

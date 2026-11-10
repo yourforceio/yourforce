@@ -1,13 +1,13 @@
 {
   "name": "YourForce",
   "short_name": "YourForce",
-  "description": "Enterprise Software. Salesforce Commerce Cloud. Headless Commerce. PWA Kit Development.",
+  "description": "Commerce engineering for Salesforce, Shopify and Magento brands, ready-made business software, and back-office support for US teams.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#050816",
-  "theme_color": "#2563EB",
+  "background_color": "#0F1215",
+  "theme_color": "#0F1215",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -2,10 +2,10 @@ export const site = {
   name: "YourForce",
 
   title:
-    "YourForce | Enterprise Software & Digital Commerce Engineering",
+    "YourForce | Commerce Engineering for Salesforce, Shopify & Magento",
 
   description:
-    "YourForce delivers enterprise software, digital commerce engineering, and specialized trucking dispatch and medical billing services for businesses worldwide.",
+    "Senior, remote-first commerce engineering for Salesforce Commerce Cloud, Shopify Plus, Adobe Commerce and WooCommerce, plus ready-made business software and back-office support for US teams.",
 
   url: "https://www.yourforce.io",
 

@@ -18,16 +18,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Main pages
     {
       url: baseUrl,
-      lastModified: august8LastModified,
+      lastModified: new Date("2026-11-11T00:00:00.000Z"),
       changeFrequency: "weekly",
       priority: 1,
-    },
-
-    {
-      url: `${baseUrl}/portfolio`,
-      lastModified: august6LastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
     },
 
     {
@@ -56,6 +49,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: august6LastModified,
       changeFrequency: "yearly",
       priority: 0.3,
+    },
+
+    // Services
+    {
+      url: `${baseUrl}/services/commerce`,
+      lastModified: new Date("2026-11-11T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+
+    {
+      url: `${baseUrl}/services/php`,
+      lastModified: new Date("2026-11-11T00:00:00.000Z"),
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
 
     // Products
@@ -98,39 +106,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/lab/agentic-guided-shopping`,
       lastModified: august8LastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    // Case Studies
-    {
-      url:
-        `${baseUrl}/portfolio/enterprise-fashion-commerce-modernization`,
-      lastModified: august6LastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    {
-      url:
-        `${baseUrl}/portfolio/lighting-new-york-commerce-platform`,
-      lastModified: august6LastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    {
-      url:
-        `${baseUrl}/portfolio/friar-tux-rental-commerce`,
-      lastModified: august6LastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-
-    {
-      url:
-        `${baseUrl}/portfolio/caffe-borbone-international-commerce`,
-      lastModified: august6LastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },

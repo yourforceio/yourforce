@@ -367,9 +367,9 @@ export const lab: LabData = {
     },
 
     secondary: {
-      label: "Explore Our Work",
+      label: "About the Founder",
 
-      href: "/portfolio",
+      href: "/#founder",
     },
   },
 };

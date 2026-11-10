@@ -25,7 +25,7 @@ import { phpEngineering } from "@/data/services";
 import { phpPage } from "@/data/php";
 
 export const metadata: Metadata = {
-  title: "PHP Upgrades, Security & Development | YourForce",
+  title: "PHP Upgrades, Security & Development",
   description:
     "PHP version upgrades, security patching, Magento 2 and WooCommerce hardening, custom PHP development, and legacy code rescue. Request a free PHP health check.",
   alternates: {

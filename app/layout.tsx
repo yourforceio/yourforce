@@ -5,6 +5,8 @@ import type {
 import Script from "next/script";
 
 import {
+  Bricolage_Grotesque,
+  DM_Sans,
   Geist,
   Geist_Mono,
 } from "next/font/google";
@@ -43,8 +45,21 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+// 2026 brand fonts: Bricolage Grotesque for headings (font-display), DM Sans for text (font-sans).
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const viewport: Viewport = {
-  themeColor: "#020617",
+  themeColor: "#0F1215",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -188,9 +203,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${dmSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-slate-950 text-slate-100 font-sans">
+      <body className="min-h-full bg-ink text-slate-100 font-sans">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${googleMeasurementId}`}
           strategy="afterInteractive"
