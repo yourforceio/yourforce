@@ -66,6 +66,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
 
+    // US operations desks
+    ...["", "/trucking", "/billing", "/data-entry", "/insurance-documents"].map((p) => ({
+      url: `${baseUrl}/operations${p}`,
+      lastModified: new Date("2026-11-11T00:00:00.000Z"),
+      changeFrequency: "monthly" as const,
+      priority: p ? 0.7 : 0.6,
+    })),
+
     // Products
     {
       url: `${baseUrl}/products`,
