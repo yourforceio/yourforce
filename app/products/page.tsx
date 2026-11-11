@@ -11,21 +11,21 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Business Software Products with Live Demos",
   description:
-    "Ten products built by YourForce: schools, online courses, clinics, online stores, restaurants, salons, property, societies, car rental and home services.",
+    "Eleven products built by YourForce: schools, online courses, clinics, online stores, restaurants, salons, property, societies, car rental, event tickets and home services.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "Our Products — YourForce",
     description:
-      "School management, online stores, appointment booking, restaurant ordering, real estate, clinics, housing societies, car rental, online courses and home services, each with a live demo you can try today.",
+      "School management, online stores, appointment booking, restaurant ordering, real estate, clinics, housing societies, car rental, online courses, event ticketing and home services, each with a live demo you can try today.",
     url: "/products",
     type: "website",
     images: [{ url: site.image, width: 1200, height: 630, alt: "YourForce products" }],
   },
 };
 
-const groups = ["Education", "Health", "Shops & food", "Property", "Vehicles & services"];
+const groups = ["Education", "Health", "Shops & food", "Property", "Cars, events & services"];
 
 export default function ProductsPage() {
   // Join the full product summaries (data/products) with their group, colour and demo name (data/home).
@@ -37,7 +37,7 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-[1240px] px-6 pb-14 pt-16">
           <p className="yf-label text-mist">{productsIntro.badge}</p>
           <h1 className="mt-5 max-w-[920px] font-display text-[clamp(36px,4.8vw,66px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
-            Ten products. Every one with a live demo<span className="text-gold">.</span>
+            Eleven products. Every one with a live demo<span className="text-gold">.</span>
           </h1>
           <p className="mt-6 max-w-[720px] text-[18px] leading-relaxed text-mist">{productsIntro.description}</p>
           <nav aria-label="Jump to an industry" className="mt-8 flex flex-wrap gap-2">

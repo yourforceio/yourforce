@@ -7,7 +7,7 @@ export const productsIntro = {
   heading: "Software Products Built and Run by YourForce",
 
   description:
-    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants, real estate agencies, clinics, housing societies, car rental companies and academies, and we run our own home-services marketplace. Each product has a live demo you can try today.",
+    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants, real estate agencies, clinics, housing societies, car rental companies, academies and event organisers, and we run our own home-services marketplace. Each product has a live demo you can try today.",
 };
 
 export const products = [
@@ -198,6 +198,27 @@ export const products = [
     ctaLabel: "Explore YourForce Learn",
     demoHref: "https://brightfuture.learn.yourforce.io",
     demoLabel: "Visit the demo academy",
+  },
+
+  {
+    slug: "events",
+    name: "YourForce Events",
+    eyebrow: "Event Ticketing Software",
+    description:
+      "Your own ticket website for concerts, attractions and conferences: dates or daily time slots, JazzCash, Easypaisa or pay at the venue, a QR code on every ticket and a scanner for the gate.",
+    icon: "events",
+    features: [
+      "Your own ticket website",
+      "Time slots for attractions",
+      "JazzCash & pay at venue",
+      "QR tickets & gate scanner",
+      "Box office",
+      "Registration & badges",
+    ],
+    href: "/products/events",
+    ctaLabel: "Explore YourForce Events",
+    demoHref: "https://crescent.events.yourforce.io",
+    demoLabel: "Visit the demo organiser",
   },
 
   {

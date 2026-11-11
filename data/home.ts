@@ -41,7 +41,7 @@ export const doors = [
   {
     who: "For growing businesses",
     title: "Ready-made software",
-    description: "Ten products for schools, clinics, shops, restaurants and property, each with a live demo.",
+    description: "Eleven products for schools, clinics, shops, restaurants, property and events, each with a live demo.",
     cta: "See the products",
     href: "#products",
   },
@@ -94,7 +94,7 @@ export const why = {
     { title: "Remote-first, any time zone", description: "We work across the globe and match your working hours, wherever your team is." },
     { title: "Founder-led, senior only", description: "You talk directly to the engineer doing the work. No account managers in between." },
     { title: "One team, end to end", description: "Audit, architecture, code, launch and support, without handing you between vendors." },
-    { title: "We run our own software", description: "Ten YourForce products are live in production. We build systems and keep them running." },
+    { title: "We run our own software", description: "Eleven YourForce products are live in production. We build systems and keep them running." },
     { title: "Start small, no big-bang rewrites", description: "Begin with a free health check or a short review, then improve in phases." },
     { title: "Support after launch", description: "We stay on for upgrades, fixes and new features once you are live." },
   ],
@@ -116,9 +116,9 @@ export const founder = {
   heading: "Led by a commerce engineer, not an account manager.",
   paragraphs: [
     "YourForce was started by an engineer with more than 15 years of hands-on commerce work on Salesforce Commerce Cloud, Shopify, Adobe Commerce and custom platforms, for fashion, home, rental and international consumer brands.",
-    "That experience was built at previous employers. At YourForce it goes into your platform, and into the ten products we build and run ourselves.",
+    "That experience was built at previous employers. At YourForce it goes into your platform, and into the eleven products we build and run ourselves.",
   ],
-  points: ["Scopes and architects every engagement", "Reviews the code that ships", "Built the ten YourForce products"],
+  points: ["Scopes and architects every engagement", "Reviews the code that ships", "Built the eleven YourForce products"],
   stack: ["Salesforce Commerce Cloud", "Shopify Plus", "Adobe Commerce", "Next.js", "Custom platforms"],
   cta: { label: "Book 30 minutes with the founder", href: site.bookCall },
   experienceTitle: "Platforms our founder engineered before YourForce",
@@ -133,7 +133,7 @@ export const founder = {
 
 export const productsSection = {
   label: "Ready-made software",
-  heading: "Ten products. Every one with a live demo.",
+  heading: "Eleven products. Every one with a live demo.",
   description: "Built and run by the same engineers. Free trial, no setup fee, cancel any time.",
   compare: { label: "Compare all products", href: "/products" },
   localHeading: "Built for how business works in Pakistan",
@@ -154,8 +154,9 @@ export const homeProducts: HomeProduct[] = [
   { slug: "bookings", menu: "Salon and spa booking", name: "Bookings", kind: "Salons and spas", group: "Shops & food", color: "#7E22CE", demoName: "Glow Salon & Spa", demoHref: "https://glow.book.yourforce.io" },
   { slug: "property", menu: "Listings and enquiries", name: "Property", kind: "Real estate", group: "Property", color: "#0369A1", demoName: "Skyline Estates", demoHref: "https://skyline.property.yourforce.io" },
   { slug: "society", menu: "Dues and gate passes", name: "Society", kind: "Housing societies", group: "Property", color: "#0F766E", demoName: "Green Valley Society", demoHref: "https://greenvalley.society.yourforce.io" },
-  { slug: "rentacar", menu: "Fleet and bookings", name: "Rent-a-Car", kind: "Car rental", group: "Vehicles & services", color: "#B45309", demoName: "Swift Rent a Car", demoHref: "https://swift.rentacar.yourforce.io" },
-  { slug: "services", menu: "Trusted home workers", name: "Services", kind: "Home services", group: "Vehicles & services", color: "#15803D", demoName: "YourForce Services Lahore", demoHref: "https://lahore.services.yourforce.io" },
+  { slug: "rentacar", menu: "Fleet and bookings", name: "Rent-a-Car", kind: "Car rental", group: "Cars, events & services", color: "#B45309", demoName: "Swift Rent a Car", demoHref: "https://swift.rentacar.yourforce.io" },
+  { slug: "events", menu: "Tickets and check-in", name: "Events", kind: "Events and attractions", group: "Cars, events & services", color: "#6D28D9", demoName: "Crescent Events", demoHref: "https://crescent.events.yourforce.io" },
+  { slug: "services", menu: "Trusted home workers", name: "Services", kind: "Home services", group: "Cars, events & services", color: "#15803D", demoName: "YourForce Services Lahore", demoHref: "https://lahore.services.yourforce.io" },
 ];
 
 export const operations = {

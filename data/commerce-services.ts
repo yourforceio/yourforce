@@ -97,7 +97,7 @@ export const commercePage = {
       label: "Custom software",
       heading: "Software for the work around your store",
       description:
-        "Internal portals, workflow tools and technical roadmaps for the parts of the business no platform covers. We build and run ten products of our own, so we know what it takes to keep software working after launch.",
+        "Internal portals, workflow tools and technical roadmaps for the parts of the business no platform covers. We build and run eleven products of our own, so we know what it takes to keep software working after launch.",
       does: [
         "Staff and partner portals",
         "Workflow and approval tools",

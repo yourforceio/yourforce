@@ -31,7 +31,7 @@ export const contactTabs: ContactTab[] = [
   {
     id: "software",
     label: "Ready-made software",
-    intro: "A demo of one of our ten products, set up with your own details.",
+    intro: "A demo of one of our eleven products, set up with your own details.",
     serviceLabel: "Which product?",
     messageLabel: "Tell us about your business",
     messagePlaceholder: "What kind of business, which city, how many staff or branches, and how you work today...",

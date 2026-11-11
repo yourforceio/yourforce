@@ -20,6 +20,7 @@ const ACCENTS: Record<string, { accent: string; strong: string }> = {
   rentacar: { accent: "#fbbf24", strong: "#d97706" },
   learn: { accent: "#a5b4fc", strong: "#4f46e5" },
   services: { accent: "#4ade80", strong: "#16a34a" },
+  events: { accent: "#c4b5fd", strong: "#7c3aed" },
 };
 
 const productFor = (slug: string) => {

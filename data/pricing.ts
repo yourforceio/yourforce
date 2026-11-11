@@ -23,6 +23,7 @@ export const pricing: Record<string, ProductPricing> = {
   property: { detailsHref: "https://property.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 4000, yearly: 40000 }, { name: "Growth", monthly: 8000, yearly: 80000 }, { name: "Pro", monthly: 15000, yearly: 150000 }] },
   society: { detailsHref: "https://society.yourforce.io/#pricing", plans: [{ name: "Building", monthly: 5000, yearly: 50000 }, { name: "Society", monthly: 12000, yearly: 120000 }, { name: "Large society", monthly: 25000, yearly: 250000 }] },
   rentacar: { detailsHref: "https://rentacar.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 3500, yearly: 35000 }, { name: "Growth", monthly: 7500, yearly: 75000 }, { name: "Fleet", monthly: 15000, yearly: 150000 }] },
+  events: { detailsHref: "https://events.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 3000, yearly: 30000 }, { name: "Organiser", monthly: 7500, yearly: 75000 }, { name: "Pro", monthly: 15000, yearly: 150000 }] },
   // Services is a marketplace: free for workers, customers pay a small visit fee per job. No plans.
 };
 

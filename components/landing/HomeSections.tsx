@@ -203,11 +203,11 @@ export function Products() {
             <Link href={productsSection.compare.href} className="mt-3 inline-block font-bold hover:underline">{productsSection.compare.label} →</Link>
           </div>
         </div>
-        <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {homeProducts.map((p) => (
             <Link key={p.slug} href={`/products/${p.slug}`} className="flex flex-col gap-3 rounded-[18px] border border-line bg-white px-2.5 pb-4 pt-2.5 hover:border-ink">
               <span className="relative block aspect-[16/10] overflow-hidden rounded-[10px] border border-line">
-                <Image src={`/images/products/${p.slug}-demo.webp`} alt={`${p.demoName}, the YourForce ${p.name} demo`} fill sizes="(min-width: 1024px) 230px, 45vw" className="object-cover object-top" />
+                <Image src={`/images/products/${p.slug}-demo.webp`} alt={`${p.demoName}, the YourForce ${p.name} demo`} fill sizes="(min-width: 1024px) 290px, (min-width: 768px) 30vw, 45vw" className="object-cover object-top" />
               </span>
               <span className="flex flex-col gap-0.5 px-1.5">
                 <span className="flex items-center gap-2 font-display text-xl font-extrabold tracking-[-0.01em]">

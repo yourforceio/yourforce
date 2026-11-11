@@ -82,7 +82,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
 
-    ...["schools", "commerce", "bookings", "dine", "property", "clinic", "society", "rentacar", "learn", "services"].map((slug) => ({
+    ...["schools", "commerce", "bookings", "dine", "property", "clinic", "society", "rentacar", "learn", "events", "services"].map((slug) => ({
       url: `${baseUrl}/products/${slug}`,
       lastModified: new Date("2026-11-11T00:00:00.000Z"),
       changeFrequency: "monthly" as const,

@@ -55,7 +55,7 @@ function MenuItem({ href, title, note, Icon, onClick }: { href: string; title: s
 const menuPanel = "absolute inset-x-0 top-full hidden border-b border-line bg-white text-ink shadow-[0_30px_60px_rgba(0,0,0,.28)] lg:block";
 const menuHeading = "mb-2 px-2.5 text-xs font-bold uppercase tracking-[0.08em] text-subtle";
 
-const productGroups = ["Education", "Health", "Shops & food", "Property", "Vehicles & services"].map((group) => ({
+const productGroups = ["Education", "Health", "Shops & food", "Property", "Cars, events & services"].map((group) => ({
   group,
   items: homeProducts.filter((p) => p.group === group),
 }));

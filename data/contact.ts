@@ -175,6 +175,12 @@ export const contact: ContactData = {
             group: "software",
           },
           {
+            label: "Events (tickets and check-in)",
+            value: "Event Ticketing Platform",
+            slug: "events-platform",
+            group: "software",
+          },
+          {
             label: "Services (join as a worker or partner)",
             value: "Home Services Marketplace",
             slug: "services-platform",
