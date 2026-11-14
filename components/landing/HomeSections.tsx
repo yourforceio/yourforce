@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check, FileText, ClipboardPlus, Shield, ShieldCheck, Truck } from "lucide-react";
 
-import { fromPrice } from "@/data/pricing";
+import { fromPrice, livePricingAll } from "@/data/pricing";
 import {
   contactSection,
   engineering,
@@ -189,7 +189,8 @@ export function Founder() {
   );
 }
 
-export function Products() {
+export async function Products() {
+  const prices = await livePricingAll();
   return (
     <section id="products" className="scroll-mt-24 border-y border-line bg-white">
       <div className={`${container} py-[104px]`}>
@@ -215,7 +216,7 @@ export function Products() {
                   {p.name}
                 </span>
                 <span className="text-[13px] text-subtle">{p.kind}</span>
-                <span className="mt-1 text-[13px] font-bold">{fromPrice(p.slug) ?? "Free for workers"}</span>
+                <span className="mt-1 text-[13px] font-bold">{fromPrice(prices[p.slug]) ?? "Free for workers"}</span>
               </span>
             </Link>
           ))}

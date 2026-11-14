@@ -1,14 +1,17 @@
 import { site } from "@/data/site";
 import { products } from "@/data/products";
-import { pricing } from "@/data/pricing";
+import type { ProductPricing } from "@/data/pricing";
 
 /** SoftwareApplication, FAQPage and BreadcrumbList data for one product page, so Google knows what each product is. */
 export default function ProductStructuredData({
   slug,
   faq,
+  plans,
 }: {
   slug: string;
   faq: readonly { question: string; answer: string }[];
+  /** The product's live plans (data/pricing.ts livePricing). */
+  plans?: ProductPricing;
 }) {
   const product = products.find((p) => p.slug === slug);
 
@@ -39,16 +42,16 @@ export default function ProductStructuredData({
         },
         sameAs: [product.demoHref],
 
-        // Monthly plan prices (data/pricing.ts), so Google can show the price range.
-        ...(pricing[slug]
+        // Monthly plan prices (live, data/pricing.ts), so Google can show the price range.
+        ...(plans
           ? {
               offers: {
                 "@type": "AggregateOffer",
                 priceCurrency: "PKR",
-                lowPrice: Math.min(...pricing[slug].plans.map((p) => p.monthly)),
-                highPrice: Math.max(...pricing[slug].plans.map((p) => p.monthly)),
-                offerCount: pricing[slug].plans.length,
-                url: pricing[slug].detailsHref,
+                lowPrice: Math.min(...plans.plans.map((p) => p.monthly)),
+                highPrice: Math.max(...plans.plans.map((p) => p.monthly)),
+                offerCount: plans.plans.length,
+                url: plans.detailsHref,
               },
             }
           : {}),

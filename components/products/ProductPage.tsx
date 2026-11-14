@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowUpRight, Check, KeyRound, type LucideIcon } from "lucid
 import ProductStructuredData from "@/components/seo/ProductStructuredData";
 
 import { homeProducts } from "@/data/home";
-import { pricing, rs } from "@/data/pricing";
+import { livePricing, rs } from "@/data/pricing";
 import type { ProductPageData } from "@/types/product";
 
 /** Icons for the "Why it matters", "Features" and "How it works" cards, in content order. */
@@ -33,7 +33,9 @@ function Heading({ label, heading, description, dark = false }: { label: string;
  * The product's colour (from data/home.ts) is used only as a small marker; the demo screenshot is
  * public/images/products/<slug>-demo.webp.
  */
-export default function ProductPage({ slug, data, icons }: { slug: string; data: ProductPageData; icons: ProductPageIcons }) {
+export default async function ProductPage({ slug, data, icons }: { slug: string; data: ProductPageData; icons: ProductPageIcons }) {
+  // The plans as set in the product's own admin (see data/pricing.ts).
+  const plans = await livePricing(slug);
   const { hero, overview, liveDemo, challenges, features, process, audiences, faq, finalCta } = data;
   const product = homeProducts.find((p) => p.slug === slug);
   const color = product?.color ?? "#F5B83D";
@@ -43,7 +45,7 @@ export default function ProductPage({ slug, data, icons }: { slug: string; data:
 
   return (
     <main className="bg-paper text-ink">
-      <ProductStructuredData slug={slug} faq={faq.items} />
+      <ProductStructuredData slug={slug} faq={faq.items} plans={plans} />
 
       {/* Hero */}
       <section className="bg-ink text-paper">
@@ -228,16 +230,16 @@ export default function ProductPage({ slug, data, icons }: { slug: string; data:
         </div>
       </section>
 
-      {/* Pricing (from data/pricing.ts, copied from each product's plans) */}
-      {pricing[slug] && (
+      {/* Pricing: live from the product's Super admin → Plans (data/pricing.ts) */}
+      {plans && (
         <section id="pricing" className="scroll-mt-24 border-b border-line bg-white">
           <div className={`${container} py-[88px]`}>
             <div className="flex flex-wrap items-end justify-between gap-5">
               <Heading label="Pricing" heading="Simple monthly plans" description="Free trial, no setup fee, cancel any time. Pay monthly, or pay for the year and get two months free." />
-              <a href={pricing[slug].detailsHref} className="inline-flex items-center gap-1.5 font-bold hover:underline">What&apos;s in each plan <ArrowUpRight aria-hidden className="h-4 w-4" /></a>
+              <a href={plans.detailsHref} className="inline-flex items-center gap-1.5 font-bold hover:underline">What&apos;s in each plan <ArrowUpRight aria-hidden className="h-4 w-4" /></a>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-3">
-              {pricing[slug].plans.map((plan) => (
+              {plans.plans.map((plan) => (
                 <article key={plan.name} className="rounded-3xl border border-line bg-paper/50 p-7">
                   <p className="text-sm font-bold uppercase tracking-[0.06em] text-subtle">{plan.name}</p>
                   <p className="mt-4 font-display text-[40px] font-extrabold leading-none tracking-[-0.02em]">{rs(plan.monthly)}<span className="ml-1 font-sans text-base font-medium text-subtle">/ month</span></p>

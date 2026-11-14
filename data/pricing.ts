@@ -1,7 +1,7 @@
 /**
  * Plan prices shown on yourforce.io (product pages, cards and Google structured data).
- * Copied from each product's live Plan table on 2026-11-11 (the product sites show the same plans in their own
- * Pricing section). If a price changes in a product's admin, change it here too.
+ * The prices are set in each product's Super admin → Plans; `livePricing` reads them from the product's /api/plans
+ * and refreshes every 10 minutes. The copy below is only the fallback for when a product can't be reached.
  * Prices are in PKR per month; yearly is the price for a full year paid up front.
  */
 
@@ -13,6 +13,7 @@ export type ProductPricing = {
   detailsHref: string;
 };
 
+/** Fallback copy of each product's plans (last copied 2026-11-11). */
 export const pricing: Record<string, ProductPricing> = {
   schools: { detailsHref: "https://app.yourforce.io/#pricing", plans: [{ name: "Basic", monthly: 5000, yearly: 50000 }, { name: "Standard", monthly: 12000, yearly: 120000 }, { name: "Premium", monthly: 25000, yearly: 250000 }] },
   learn: { detailsHref: "https://learn.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 3000, yearly: 30000 }, { name: "Growth", monthly: 6500, yearly: 65000 }, { name: "Institute", monthly: 12000, yearly: 120000 }] },
@@ -29,8 +30,31 @@ export const pricing: Record<string, ProductPricing> = {
 
 export const rs = (n: number) => `Rs ${n.toLocaleString("en-PK")}`;
 
-/** "From Rs 3,000 / month", or null for products without plans. */
-export const fromPrice = (slug: string) => {
-  const p = pricing[slug];
-  return p ? `From ${rs(Math.min(...p.plans.map((x) => x.monthly)))} / month` : null;
+const isPlan = (x: unknown): x is Plan => {
+  const p = x as Plan;
+  return !!p && typeof p.name === "string" && Number.isFinite(p.monthly) && Number.isFinite(p.yearly);
 };
+
+/** A product's plans as set in its own admin, or the fallback copy if it can't be reached. */
+export async function livePricing(slug: string): Promise<ProductPricing | undefined> {
+  const fallback = pricing[slug];
+  if (!fallback) return undefined;
+  try {
+    const res = await fetch(`${new URL(fallback.detailsHref).origin}/api/plans`, { next: { revalidate: 600 }, signal: AbortSignal.timeout(4000) });
+    if (!res.ok) return fallback;
+    const plans = ((await res.json()) as { plans?: unknown[] }).plans?.filter(isPlan);
+    return plans?.length ? { ...fallback, plans } : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+/** Every product's plans, fetched together. */
+export async function livePricingAll(): Promise<Record<string, ProductPricing>> {
+  const slugs = Object.keys(pricing);
+  const all = await Promise.all(slugs.map((s) => livePricing(s)));
+  return Object.fromEntries(slugs.map((s, i) => [s, all[i]!]));
+}
+
+/** "From Rs 3,000 / month", or null for products without plans. */
+export const fromPrice = (p: ProductPricing | undefined) => (p ? `From ${rs(Math.min(...p.plans.map((x) => x.monthly)))} / month` : null);
