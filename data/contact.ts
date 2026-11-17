@@ -181,6 +181,18 @@ export const contact: ContactData = {
             group: "software",
           },
           {
+            label: "Gym (members, fees and check-in)",
+            value: "Gym Management Platform",
+            slug: "gym-platform",
+            group: "software",
+          },
+          {
+            label: "Sites (business website builder)",
+            value: "Business Website Builder",
+            slug: "sites-platform",
+            group: "software",
+          },
+          {
             label: "Services (join as a worker or partner)",
             value: "Home Services Marketplace",
             slug: "services-platform",

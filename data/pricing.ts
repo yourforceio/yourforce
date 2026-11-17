@@ -13,7 +13,7 @@ export type ProductPricing = {
   detailsHref: string;
 };
 
-/** Fallback copy of each product's plans (last copied 2026-11-11). */
+/** Fallback copy of each product's plans (last copied 2026-11-18). */
 export const pricing: Record<string, ProductPricing> = {
   schools: { detailsHref: "https://app.yourforce.io/#pricing", plans: [{ name: "Basic", monthly: 5000, yearly: 50000 }, { name: "Standard", monthly: 12000, yearly: 120000 }, { name: "Premium", monthly: 25000, yearly: 250000 }] },
   learn: { detailsHref: "https://learn.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 3000, yearly: 30000 }, { name: "Growth", monthly: 6500, yearly: 65000 }, { name: "Institute", monthly: 12000, yearly: 120000 }] },
@@ -25,6 +25,8 @@ export const pricing: Record<string, ProductPricing> = {
   society: { detailsHref: "https://society.yourforce.io/#pricing", plans: [{ name: "Building", monthly: 5000, yearly: 50000 }, { name: "Society", monthly: 12000, yearly: 120000 }, { name: "Large society", monthly: 25000, yearly: 250000 }] },
   rentacar: { detailsHref: "https://rentacar.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 3500, yearly: 35000 }, { name: "Growth", monthly: 7500, yearly: 75000 }, { name: "Fleet", monthly: 15000, yearly: 150000 }] },
   events: { detailsHref: "https://events.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 3000, yearly: 30000 }, { name: "Organiser", monthly: 7500, yearly: 75000 }, { name: "Pro", monthly: 15000, yearly: 150000 }] },
+  gym: { detailsHref: "https://gym.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 3000, yearly: 30000 }, { name: "Growth", monthly: 6000, yearly: 60000 }, { name: "Pro", monthly: 12000, yearly: 120000 }] },
+  sites: { detailsHref: "https://sites.yourforce.io/#pricing", plans: [{ name: "Starter", monthly: 2000, yearly: 20000 }, { name: "Business", monthly: 4000, yearly: 40000 }, { name: "Pro", monthly: 8000, yearly: 80000 }] },
   // Services is a marketplace: free for workers, customers pay a small visit fee per job. No plans.
 };
 

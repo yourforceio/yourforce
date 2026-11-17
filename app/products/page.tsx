@@ -11,7 +11,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Business Software Products with Live Demos",
   description:
-    "Eleven products built by YourForce: schools, online courses, clinics, online stores, restaurants, salons, property, societies, car rental, event tickets and home services.",
+    "Thirteen products built by YourForce: schools, online courses, clinics, gyms, online stores, restaurants, salons, property, societies, car rental, event tickets, business websites and home services.",
   alternates: {
     canonical: "/products",
   },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-const groups = ["Education", "Health", "Shops & food", "Property", "Cars, events & services"];
+const groups = ["Education", "Health & fitness", "Shops & food", "Property", "Events, cars & more"];
 
 export default async function ProductsPage() {
   const prices = await livePricingAll();
@@ -38,7 +38,7 @@ export default async function ProductsPage() {
         <div className="mx-auto max-w-[1240px] px-6 pb-14 pt-16">
           <p className="yf-label text-mist">{productsIntro.badge}</p>
           <h1 className="mt-5 max-w-[920px] font-display text-[clamp(36px,4.8vw,66px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
-            Eleven products. Every one with a live demo<span className="text-gold">.</span>
+            Thirteen products. Every one with a live demo<span className="text-gold">.</span>
           </h1>
           <p className="mt-6 max-w-[720px] text-[18px] leading-relaxed text-mist">{productsIntro.description}</p>
           <nav aria-label="Jump to an industry" className="mt-8 flex flex-wrap gap-2">

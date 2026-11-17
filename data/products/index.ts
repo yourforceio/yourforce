@@ -7,7 +7,7 @@ export const productsIntro = {
   heading: "Software Products Built and Run by YourForce",
 
   description:
-    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants, real estate agencies, clinics, housing societies, car rental companies, academies and event organisers, and we run our own home-services marketplace. Each product has a live demo you can try today.",
+    "Alongside our engineering services, we build and run our own software for schools, online sellers, appointment-based businesses, restaurants, real estate agencies, clinics, housing societies, car rental companies, academies, event organisers and gyms, a website builder for any business, and we run our own home-services marketplace. Each product has a live demo you can try today.",
 };
 
 export const products = [
@@ -219,6 +219,48 @@ export const products = [
     ctaLabel: "Explore YourForce Events",
     demoHref: "https://crescent.events.yourforce.io",
     demoLabel: "Visit the demo organiser",
+  },
+
+  {
+    slug: "gym",
+    name: "YourForce Gym",
+    eyebrow: "Gym Software",
+    description:
+      "Memberships with start and end dates, fees with receipts and a dues list, a QR card on every member's phone for the front desk, classes booked online, and your own gym website.",
+    icon: "gym",
+    features: [
+      "Memberships & renewals",
+      "Fees, receipts & dues",
+      "QR check-in at the desk",
+      "Classes with limited places",
+      "Member account",
+      "Your own gym website",
+    ],
+    href: "/products/gym",
+    ctaLabel: "Explore YourForce Gym",
+    demoHref: "https://ironpeak.gym.yourforce.io",
+    demoLabel: "Visit the demo gym",
+  },
+
+  {
+    slug: "sites",
+    name: "YourForce Sites",
+    eyebrow: "Website Builder",
+    description:
+      "A business website you change yourself: pages from ready-made sections, menus with dropdowns, a rich text editor, SEO on every page, a blog, and every enquiry in one list.",
+    icon: "sites",
+    features: [
+      "Pages from sections",
+      "Rich text & HTML editor",
+      "Menus with dropdowns",
+      "SEO on every page",
+      "Blog & media library",
+      "Enquiries on WhatsApp",
+    ],
+    href: "/products/sites",
+    ctaLabel: "Explore YourForce Sites",
+    demoHref: "https://cedarstone.sites.yourforce.io",
+    demoLabel: "Visit the demo website",
   },
 
   {
