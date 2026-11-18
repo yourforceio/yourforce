@@ -119,7 +119,7 @@ export default function Navbar() {
             Products <ChevronDown aria-hidden className={`h-4 w-4 transition-transform ${open === "products" ? "rotate-180" : ""}`} />
           </button>
           <Link href="/lab" className={navLink}>Labs</Link>
-          <Link href="/contact" className="ml-2 rounded-full bg-gold px-5 py-2.5 text-[15px] font-bold text-ink shadow-[0_6px_20px_-6px_rgba(245,185,66,.6)] transition hover:-translate-y-px hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
+          <Link href="/contact" className="ml-2 rounded-full bg-gold px-5 py-2.5 text-[15px] font-bold text-ink hover:bg-[#f7c561] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink">
             Talk to us
           </Link>
         </nav>
