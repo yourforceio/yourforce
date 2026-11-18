@@ -86,11 +86,14 @@ export default function ContactForm({ initialService = "" }: { initialService?: 
       <p id={`${name}-error`} role="alert" className="mt-2 text-sm text-red-700">{String(errorFor(name))}</p>
     ) : null;
 
+  // Product enquiries are answered on WhatsApp: there the phone is required and the email optional.
+  const software = tabId === "software";
   const textInput = (name: "name" | "email" | "phone") => {
     const f = field(name);
+    const required = name === "phone" ? software : name === "email" ? !software : f.required;
     return (
       <div>
-        <FormLabel htmlFor={name} required={f.required}>{f.label}</FormLabel>
+        <FormLabel htmlFor={name} required={required}>{f.label}</FormLabel>
         <input id={name} type={f.type} autoComplete={f.autoComplete} placeholder={f.placeholder} aria-invalid={!!errorFor(name)} aria-describedby={describedBy(name)} {...register(name)} className={fieldClass(!!errorFor(name))} />
         <ErrorText name={name} />
       </div>
@@ -113,7 +116,7 @@ export default function ContactForm({ initialService = "" }: { initialService?: 
       <div ref={sentRef} className="scroll-mt-28 rounded-[28px] border border-line bg-white p-7 text-ink sm:p-9" role="status" aria-live="polite">
         <CheckCircle2 aria-hidden className="h-10 w-10 text-emerald-700" strokeWidth={2} />
         <h2 className="mt-4 font-display text-[30px] font-extrabold leading-tight tracking-[-0.02em]">Message sent. Thank you.</h2>
-        <p className="mt-3 max-w-[520px] text-[17px] text-muted">A real person reads every message, and we reply within one working day, usually by email.</p>
+        <p className="mt-3 max-w-[520px] text-[17px] text-muted">A real person reads every message, and we reply within one working day, {software ? "usually on WhatsApp" : "usually by email"}.</p>
         <div className="mt-7 flex flex-wrap gap-3">
           {tab.offerCall && (
             <a href={site.bookCall} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-[14px] font-bold text-ink hover:bg-[#f7c561]">
@@ -162,8 +165,7 @@ export default function ContactForm({ initialService = "" }: { initialService?: 
 
         <div className="grid gap-x-5 gap-y-5 md:grid-cols-2">
           {textInput("name")}
-          {textInput("email")}
-          {textInput("phone")}
+          {software ? <>{textInput("phone")}{textInput("email")}</> : <>{textInput("email")}{textInput("phone")}</>}
           {select("service", tab.serviceLabel, options, true)}
           {tab.showBudget && select("budget", field("budget").label, field("budget").options ?? [], false)}
           {tab.showBudget && select("timeline", field("timeline").label, field("timeline").options ?? [], false)}

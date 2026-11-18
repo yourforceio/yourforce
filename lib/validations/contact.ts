@@ -1,5 +1,16 @@
 import { z } from "zod";
 
+import { contact } from "@/data/contact";
+
+/** Product (ready-made software) enquiries: these are answered on WhatsApp, so a phone number is what we need. */
+const SOFTWARE_SERVICES = new Set((contact.form.fields.find((f) => f.name === "service")?.options ?? []).filter((o) => o.group === "software").map((o) => o.value));
+export const needsPhone = (service: string) => SOFTWARE_SERVICES.has(service);
+
+/** A phone number with at least 10 digits, e.g. 0300 1234567, +92 300 1234567 or +1 555 010 0000. */
+const PHONE = /^\+?[\d\s()-]{10,30}$/;
+const digits = (v: string) => v.replace(/\D/g, "").length;
+const EMAIL = z.string().email();
+
 export const contactSchema = z.object({
   name: z
     .string()
@@ -7,12 +18,13 @@ export const contactSchema = z.object({
     .min(2, "Please enter your full name.")
     .max(100, "Name must be 100 characters or fewer."),
 
+  // Required for engineering and operations enquiries, optional for products (checked below).
   email: z
     .string()
     .trim()
-    .min(1, "Please enter your email address.")
-    .email("Please enter a valid email address.")
-    .max(254, "Email address is too long."),
+    .max(254, "Email address is too long.")
+    .optional()
+    .default(""),
 
   phone: z
     .string()
@@ -57,6 +69,16 @@ export const contactSchema = z.object({
     .max(0, "Unable to submit this enquiry.")
     .optional()
     .default(""),
+}).superRefine((d, ctx) => {
+  const email = d.email ?? "";
+  const phone = (d.phone ?? "").trim();
+  if (email && !EMAIL.safeParse(email).success) ctx.addIssue({ code: "custom", path: ["email"], message: "Please enter a valid email address." });
+  if (needsPhone(d.service)) {
+    if (!phone) ctx.addIssue({ code: "custom", path: ["phone"], message: "Please enter your phone or WhatsApp number." });
+    else if (!PHONE.test(phone) || digits(phone) < 10) ctx.addIssue({ code: "custom", path: ["phone"], message: "Please enter a full phone number, e.g. 0300 1234567." });
+  } else if (!email) {
+    ctx.addIssue({ code: "custom", path: ["email"], message: "Please enter your email address." });
+  }
 });
 
 /**

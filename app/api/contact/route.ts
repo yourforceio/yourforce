@@ -106,7 +106,8 @@ export async function POST(
     } = await resend.emails.send({
       from: FROM_EMAIL,
       to: contactEmail,
-      replyTo: data.email,
+      // Product enquiries may come with only a phone number; then the email has a WhatsApp link instead.
+      ...(data.email ? { replyTo: data.email } : {}),
       subject: `New enquiry from ${data.name}`,
       html: contactEmailHtml,
     });
@@ -117,15 +118,15 @@ export async function POST(
       );
     }
 
-    const {
-      error: autoReplySendError,
-    } = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: data.email,
-      subject:
-        "We've received your enquiry",
-      html: autoReplyHtml,
-    });
+    // The confirmation goes only to people who gave an email (product enquiries are answered on WhatsApp).
+    const { error: autoReplySendError } = data.email
+      ? await resend.emails.send({
+          from: FROM_EMAIL,
+          to: data.email,
+          subject: "We've received your enquiry",
+          html: autoReplyHtml,
+        })
+      : { error: null };
 
     if (autoReplySendError) {
       throw new Error(

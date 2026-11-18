@@ -102,6 +102,12 @@ const styles = {
   },
 };
 
+// A wa.me link for the number they gave: Pakistani numbers written 03xx… become 923xx….
+const whatsappLink = (phone: string) => {
+  const d = phone.replace(/\D/g, "");
+  return `https://wa.me/${d.startsWith("0") ? `92${d.slice(1)}` : d}`;
+};
+
 export default function ContactEmail({
   name,
   email,
@@ -146,20 +152,22 @@ export default function ContactEmail({
                 </p>
               </div>
 
-              <div style={styles.row}>
-                <div style={styles.label}>
-                  Email
-                </div>
+              {email && (
+                <div style={styles.row}>
+                  <div style={styles.label}>
+                    Email
+                  </div>
 
-                <p style={styles.value}>
-                  <a
-                    href={`mailto:${email}`}
-                    style={styles.link}
-                  >
-                    {email}
-                  </a>
-                </p>
-              </div>
+                  <p style={styles.value}>
+                    <a
+                      href={`mailto:${email}`}
+                      style={styles.link}
+                    >
+                      {email}
+                    </a>
+                  </p>
+                </div>
+              )}
 
               {phone && (
                 <div style={styles.row}>
@@ -169,6 +177,10 @@ export default function ContactEmail({
 
                   <p style={styles.value}>
                     {phone}
+                    {" · "}
+                    <a href={whatsappLink(phone)} style={styles.link}>
+                      WhatsApp them
+                    </a>
                   </p>
                 </div>
               )}
