@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight, Check, KeyRound, type LucideIcon } from "lucid
 
 import ProductStructuredData from "@/components/seo/ProductStructuredData";
 
+import { guideFor } from "@/data/guides";
 import { homeProducts } from "@/data/home";
 import { livePricing, rs } from "@/data/pricing";
 import type { ProductPageData } from "@/types/product";
@@ -41,6 +42,7 @@ export default async function ProductPage({ slug, data, icons }: { slug: string;
   const color = product?.color ?? "#F5B83D";
   // Each product site has a demo guide at /demo (sign-ins, password and what to try). Schools' demo button
   // already goes to its guide (app.yourforce.io/demo), so it doesn't get a second link.
+  const guide = guideFor(slug);
   const demoGuide = liveDemo.primaryHref.endsWith("/demo") ? null : `${liveDemo.secondaryHref.replace(/\/$/, "")}/demo`;
 
   return (
@@ -57,14 +59,29 @@ export default async function ProductPage({ slug, data, icons }: { slug: string;
 
           <div className="mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <p className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.06em] text-mist">
-                <span aria-hidden className="h-2.5 w-2.5 rounded-[3px]" style={{ background: color }} />
-                {hero.badge}
-              </p>
-              <h1 className="mt-5 font-display text-[clamp(36px,4.6vw,62px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
-                {hero.heading}
-                <span className="text-gold">.</span>
-              </h1>
+              {/* What people search for is the page's headline (h1); the slogan stays as the big line. */}
+              {hero.searchHeading ? (
+                <h1 className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-bold uppercase tracking-[0.06em] text-mist">
+                  <span aria-hidden className="h-2.5 w-2.5 rounded-[3px]" style={{ background: color }} />
+                  <span>{hero.badge}</span>
+                  <span aria-hidden className="text-ink-line">·</span>
+                  <span className="text-[#C9CED4]">{hero.searchHeading}</span>
+                </h1>
+              ) : (
+                <p className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.06em] text-mist">
+                  <span aria-hidden className="h-2.5 w-2.5 rounded-[3px]" style={{ background: color }} />
+                  {hero.badge}
+                </p>
+              )}
+              {(() => {
+                const Slogan = hero.searchHeading ? "p" : "h1";
+                return (
+                  <Slogan className="mt-5 font-display text-[clamp(36px,4.6vw,62px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
+                    {hero.heading}
+                    <span className="text-gold">.</span>
+                  </Slogan>
+                );
+              })()}
               <p className="mt-6 max-w-[620px] text-[18px] leading-relaxed text-mist">{hero.description}</p>
               <ul aria-label="Who it is for" className="mt-6 flex flex-wrap gap-2">
                 {hero.highlights.map((item) => (
@@ -264,6 +281,12 @@ export default async function ProductPage({ slug, data, icons }: { slug: string;
               <p className="mt-3 max-w-[640px] text-base text-muted">{item.answer}</p>
             </details>
           ))}
+          {guide && (
+            <Link href={`/guides/${guide.slug}`} className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-line bg-white p-5 hover:border-ink">
+              <span><span className="yf-label text-subtle">Guide · {guide.readMinutes} min read</span><span className="mt-1 block font-display text-lg font-bold leading-snug">{guide.title}</span></span>
+              <ArrowUpRight aria-hidden className="h-5 w-5 shrink-0" />
+            </Link>
+          )}
         </div>
       </section>
 

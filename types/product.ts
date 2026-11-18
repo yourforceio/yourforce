@@ -23,6 +23,8 @@ export type ProductSummary = {
 export type ProductPageData = {
   hero: {
     badge: string;
+    /** The page's real headline for search engines, shown small beside the badge (the slogan stays big). */
+    searchHeading?: string;
     heading: string;
     description: string;
     primaryCta: string;

@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const societyPage = {
   hero: {
     badge: "YourForce Society",
+    searchHeading: "Housing society management software",
 
     heading: "Run your housing society, not the paperwork",
 

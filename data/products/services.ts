@@ -9,6 +9,7 @@ import type { ProductPageData } from "@/types/product";
 export const servicesPage = {
   hero: {
     badge: "YourForce Services",
+    searchHeading: "Verified plumbers, electricians and home services in Lahore",
 
     heading: "Trusted hands for your home",
 

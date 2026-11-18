@@ -8,6 +8,7 @@ import type { ProductPageData } from "@/types/product";
 export const sitesPage = {
   hero: {
     badge: "YourForce Web",
+    searchHeading: "Website builder for businesses in Pakistan",
 
     heading: "A business website you change yourself",
 

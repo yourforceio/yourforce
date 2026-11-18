@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const rentacarPage = {
   hero: {
     badge: "YourForce Rent-a-Car",
+    searchHeading: "Rent a car software and booking system",
 
     heading: "Every car booked, never twice",
 

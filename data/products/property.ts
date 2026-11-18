@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const propertyPage = {
   hero: {
     badge: "YourForce Property",
+    searchHeading: "Real estate agency website and CRM",
 
     heading:
       "Your agency's own property website, with every enquiry tracked",

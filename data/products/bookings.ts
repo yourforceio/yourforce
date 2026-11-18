@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const bookingsPage = {
   hero: {
     badge: "YourForce Bookings",
+    searchHeading: "Salon and clinic appointment booking software",
 
     heading:
       "Online booking for salons, clinics and spas, open 24/7",

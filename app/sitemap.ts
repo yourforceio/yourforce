@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { guides } from "@/data/guides";
+
 import { site } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -99,6 +101,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+
+    { url: `${baseUrl}/guides`, lastModified: new Date("2026-11-18"), changeFrequency: "monthly", priority: 0.7 },
+
+    ...guides.map((g) => ({ url: `${baseUrl}/guides/${g.slug}`, lastModified: new Date(g.updated), changeFrequency: "monthly" as const, priority: 0.7 })),
 
     ...["schools", "commerce", "bookings", "dine", "property", "clinic", "society", "rentacar", "learn", "events", "gym", "sites", "services"].map((slug) => ({
       url: `${baseUrl}/products/${slug}`,

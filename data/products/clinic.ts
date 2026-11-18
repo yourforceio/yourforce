@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const clinicPage = {
   hero: {
     badge: "YourForce Clinic",
+    searchHeading: "Clinic management software for Pakistan",
 
     heading: "Run your whole clinic in one system",
 

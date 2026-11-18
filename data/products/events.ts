@@ -9,6 +9,7 @@ import type { ProductPageData } from "@/types/product";
 export const eventsPage = {
   hero: {
     badge: "YourForce Events",
+    searchHeading: "Event ticketing software for Pakistan",
 
     heading: "Sell every ticket, scan every guest",
 

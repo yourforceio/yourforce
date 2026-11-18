@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const commercePage = {
   hero: {
     badge: "YourForce Commerce",
+    searchHeading: "Online store builder for Pakistan",
 
     heading:
       "Your own online store, ready to take orders in a day",

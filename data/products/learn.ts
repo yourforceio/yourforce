@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const learnPage = {
   hero: {
     badge: "YourForce Learn",
+    searchHeading: "Online course platform for academies and tutors",
 
     heading: "Your classes, online",
 

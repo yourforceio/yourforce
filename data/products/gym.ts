@@ -8,6 +8,7 @@ import type { ProductPageData } from "@/types/product";
 export const gymPage = {
   hero: {
     badge: "YourForce Gym",
+    searchHeading: "Gym management software for Pakistan",
 
     heading: "Every member, every fee, every visit",
 

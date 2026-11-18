@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const dinePage = {
   hero: {
     badge: "YourForce Dine",
+    searchHeading: "Restaurant online ordering and QR menus",
 
     heading:
       "Online ordering for your restaurant, with no commission",

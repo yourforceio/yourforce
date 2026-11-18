@@ -7,6 +7,7 @@ import type { ProductPageData } from "@/types/product";
 export const schoolsPage = {
   hero: {
     badge: "YourForce Schools",
+    searchHeading: "School management software for Pakistan",
 
     heading:
       "One school management platform for students, fees, academics and parents",
