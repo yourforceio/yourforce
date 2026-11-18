@@ -8,7 +8,7 @@ export const privacyPolicy: PrivacyPolicy = {
   description:
     "This Privacy Policy explains how YourForce collects, uses, protects, and shares personal information across our main website and our trucking dispatch and medical billing service websites.",
 
-  lastUpdated: "November 11, 2026",
+  lastUpdated: "November 18, 2026",
 
   contactEmail: "hello@yourforce.io",
 
@@ -88,9 +88,21 @@ export const privacyPolicy: PrivacyPolicy = {
     },
 
     {
+      id: "software-products",
+
+      title: "5. Data Inside Our Software Products",
+
+      paragraphs: [
+        "Our software products (such as YourForce Schools, Clinic, Gym or Commerce, on addresses like clinic.yourforce.io and the websites we host for each business) hold information that a business puts into them about its own customers, students, patients, members, staff and orders.",
+        "For that information, the business is in charge of it and YourForce handles it only on the business's behalf: to run the product, back it up, support the business and keep it secure. We don't sell it, and we don't use it to market to that business's customers.",
+        "If you are a customer of a business that uses one of our products and have a question about your information, please contact that business first; we will help them answer it. Our Terms of Service explain how a business can export or delete its data.",
+      ],
+    },
+
+    {
       id: "medical-information",
 
-      title: "5. Medical Billing Enquiries and Sensitive Information",
+      title: "6. Medical Billing Enquiries and Sensitive Information",
 
       paragraphs: [
         "The billing.yourforce.io marketing website, general website forms, Calendly booking pages, and ordinary email channels are intended for business enquiries only. They are not approved channels for submitting protected health information or patient records.",
@@ -104,7 +116,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "how-we-use-information",
 
-      title: "6. How We Use Your Information",
+      title: "7. How We Use Your Information",
 
       paragraphs: [
         "We use personal information only when reasonably necessary to operate our websites and business, respond to enquiries, evaluate and deliver services, understand website performance, protect our systems, and comply with legal obligations.",
@@ -125,7 +137,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "legal-bases",
 
-      title: "7. Legal Bases for Processing",
+      title: "8. Legal Bases for Processing",
 
       paragraphs: [
         "Where applicable privacy law requires a legal basis, we may process personal information on one or more of the following grounds.",
@@ -143,7 +155,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "sharing-information",
 
-      title: "8. How We Share Information",
+      title: "9. How We Share Information",
 
       paragraphs: [
         "We do not sell personal information for money. We disclose information only when reasonably necessary to operate our websites and business, communicate with you, provide services, protect our rights, complete a business transaction, or comply with the law.",
@@ -165,7 +177,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "international-transfers",
 
-      title: "9. International Data Transfers",
+      title: "10. International Data Transfers",
 
       paragraphs: [
         "YourForce is based in Pakistan, serves clients internationally, and uses service providers that may process information in Pakistan, the United States, and other countries. These countries may have privacy laws that differ from those where you live.",
@@ -177,7 +189,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "retention",
 
-      title: "10. Data Retention",
+      title: "11. Data Retention",
 
       paragraphs: [
         "We retain personal information only for as long as reasonably necessary for the purposes described in this Privacy Policy, including responding to enquiries, evaluating or delivering services, maintaining appropriate business records, resolving disputes, enforcing agreements, protecting security, and complying with legal obligations.",
@@ -189,7 +201,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "security",
 
-      title: "11. Information Security",
+      title: "12. Information Security",
 
       paragraphs: [
         "We use reasonable technical and organisational measures designed to protect personal information against unauthorised access, loss, alteration, disclosure, or misuse. Access to information is intended to be limited to people and providers that need it for an authorised business purpose.",
@@ -201,7 +213,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "your-rights",
 
-      title: "12. Your Privacy Rights and Choices",
+      title: "13. Your Privacy Rights and Choices",
 
       paragraphs: [
         "Depending on where you live and which laws apply, you may have rights concerning personal information we hold about you. These rights are subject to applicable requirements, limitations, and exceptions.",
@@ -222,7 +234,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "children",
 
-      title: "13. Children’s Privacy",
+      title: "14. Children’s Privacy",
 
       paragraphs: [
         "Our websites and services are intended for businesses and professional users. They are not directed to children under the age of 16, and we do not knowingly collect personal information from children through these websites. If you believe a child has provided us with personal information, please contact us so that we can review and, where appropriate, delete it.",
@@ -232,7 +244,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "third-party-links",
 
-      title: "14. Third-Party Websites and Services",
+      title: "15. Third-Party Websites and Services",
 
       paragraphs: [
         "Our websites include links to third-party websites and services, including Calendly, Google, client projects, and external platforms. When you follow a link or use a third-party service, that provider may collect information under its own terms and privacy notice.",
@@ -244,7 +256,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "policy-changes",
 
-      title: "15. Changes to This Policy",
+      title: "16. Changes to This Policy",
 
       paragraphs: [
         "We may update this Privacy Policy to reflect changes in our services, websites, analytics implementation, service providers, business practices, or legal obligations.",
@@ -256,7 +268,7 @@ export const privacyPolicy: PrivacyPolicy = {
     {
       id: "contact",
 
-      title: "16. Contact Us",
+      title: "17. Contact Us",
 
       paragraphs: [
         "Questions, requests, or concerns regarding this Privacy Policy or the way YourForce handles personal information may be sent to hello@yourforce.io. Service enquiries may also be directed to dispatch@yourforce.io for trucking dispatch or billing@yourforce.io for medical billing, but privacy-rights requests should be sent to hello@yourforce.io.",
