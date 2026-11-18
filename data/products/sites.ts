@@ -18,7 +18,7 @@ export const sitesPage = {
     primaryHref: "/contact?service=sites-platform",
 
     secondaryCta: "Visit the Demo Website",
-    secondaryHref: "https://cedarstone.sites.yourforce.io",
+    secondaryHref: "https://mehrab.sites.yourforce.io",
 
     highlights: ["Pages from ready-made sections", "Built for Google", "Blog & enquiries"],
   },
@@ -45,17 +45,17 @@ export const sitesPage = {
     heading: "Explore a sample business website running on the platform",
 
     description:
-      "Cedar & Stone Interiors is a made-up interior design studio in Lahore with a home page, service pages under a dropdown, a projects gallery, a blog and a contact form. Visit the website, then sign in to its admin as the owner, an editor or a writer to see how each page is built. It's a read-only demo, so nothing is saved.",
+      "Mehrab Architects is a made-up architecture and interiors studio in Islamabad, with a picture-led home page, service pages under a dropdown, a portfolio, a journal and a contact form. Visit the website, then sign in to its admin as the owner, an editor or a writer to see how each page is built. It's a read-only demo, so nothing is saved.",
 
     stats: [
-      { value: "10", label: "pages" },
+      { value: "9", label: "pages" },
       { value: "13", label: "section types" },
-      { value: "7", label: "blog posts" },
+      { value: "5", label: "journal posts" },
       { value: "4", label: "staff roles" },
     ],
 
     primaryCta: "Visit the Demo Website",
-    primaryHref: "https://cedarstone.sites.yourforce.io",
+    primaryHref: "https://mehrab.sites.yourforce.io",
 
     secondaryCta: "See the demo guide",
     secondaryHref: "https://sites.yourforce.io/demo",
@@ -132,7 +132,7 @@ export const sitesPage = {
       { question: "Will Google find my website?", answer: "Every page has its own search title and description with a Google preview, and the website makes its own sitemap and the details Google uses for your business and FAQs." },
       { question: "Where do contact-form messages go?", answer: "Into the Enquiries list in your admin, with buttons to reply on WhatsApp, call or email. SMS and WhatsApp alerts for new enquiries are switched on as part of your setup." },
       { question: "Can my team help?", answer: "Yes. Give an editor access to pages and menus, a writer access to the blog only, and someone else just the enquiries." },
-      { question: "Can we try it first?", answer: "Yes. Explore Cedar & Stone Interiors, our sample website, and its admin, then book a demo to see it with your own business." },
+      { question: "Can we try it first?", answer: "Yes. Explore Mehrab Architects, our sample website, and its admin, then book a demo to see it with your own business." },
       { question: "Is there a contract?", answer: "No. Pay monthly or yearly and stop any time. Start with a free trial." },
     ],
   },

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Website Builder for Businesses in Pakistan | YourForce Sites",
-    description: "A business website you change yourself. Explore Cedar & Stone Interiors, a live sample website.",
+    description: "A business website you change yourself. Explore Mehrab Architects, a live sample website.",
     url: "/products/sites",
     type: "website",
   },
