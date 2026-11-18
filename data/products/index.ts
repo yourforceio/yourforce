@@ -244,7 +244,7 @@ export const products = [
 
   {
     slug: "sites",
-    name: "YourForce Sites",
+    name: "YourForce Web",
     eyebrow: "Website Builder",
     description:
       "A business website you change yourself: pages from ready-made sections, menus with dropdowns, a rich text editor, SEO on every page, a blog, and every enquiry in one list.",
@@ -258,7 +258,7 @@ export const products = [
       "Enquiries on WhatsApp",
     ],
     href: "/products/sites",
-    ctaLabel: "Explore YourForce Sites",
+    ctaLabel: "Explore YourForce Web",
     demoHref: "https://mehrab.sites.yourforce.io",
     demoLabel: "Visit the demo website",
   },

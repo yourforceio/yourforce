@@ -1,18 +1,18 @@
 import type { ProductPageData } from "@/types/product";
 
 /**
- * Content for the YourForce Sites product page (app/products/sites/page.tsx).
+ * Content for the YourForce Web product page (app/products/sites/page.tsx).
  * Keep claims here to what the platform actually delivers (see the sites repo). Not built yet: connecting the
  * business's own domain (each website is at <name>.sites.yourforce.io), automatic SMS sending.
  */
 export const sitesPage = {
   hero: {
-    badge: "YourForce Sites",
+    badge: "YourForce Web",
 
     heading: "A business website you change yourself",
 
     description:
-      "YourForce Sites gives your business a fast, modern website that you manage from your own admin. Build pages from ready-made sections, edit menus with dropdowns, write a blog, and fill in the search title and description for every page. Every message from your contact form arrives in one list, ready to answer on WhatsApp.",
+      "YourForce Web gives your business a fast, modern website that you manage from your own admin. Build pages from ready-made sections, edit menus with dropdowns, write a blog, and fill in the search title and description for every page. Every message from your contact form arrives in one list, ready to answer on WhatsApp.",
 
     primaryCta: "Book a Demo",
     primaryHref: "/contact?service=sites-platform",
@@ -26,7 +26,7 @@ export const sitesPage = {
   overview: {
     eyebrow: "Free Setup Call",
 
-    title: "See YourForce Sites with your own business",
+    title: "See YourForce Web with your own business",
 
     description:
       "Tell us about your business, and we'll show you a website with your services, colours and contact details.",

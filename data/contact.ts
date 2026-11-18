@@ -187,7 +187,7 @@ export const contact: ContactData = {
             group: "software",
           },
           {
-            label: "Sites (business website builder)",
+            label: "Web (business website builder)",
             value: "Business Website Builder",
             slug: "sites-platform",
             group: "software",

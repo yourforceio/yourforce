@@ -158,7 +158,7 @@ export const homeProducts: HomeProduct[] = [
   { slug: "rentacar", menu: "Fleet and bookings", name: "Rent-a-Car", kind: "Car rental", group: "Events, cars & more", color: "#B45309", demoName: "Swift Rent a Car", demoHref: "https://swift.rentacar.yourforce.io" },
   { slug: "events", menu: "Tickets and check-in", name: "Events", kind: "Events and attractions", group: "Events, cars & more", color: "#6D28D9", demoName: "Crescent Events", demoHref: "https://crescent.events.yourforce.io" },
   { slug: "services", menu: "Trusted home workers", name: "Services", kind: "Home services", group: "Events, cars & more", color: "#15803D", demoName: "YourForce Services Lahore", demoHref: "https://lahore.services.yourforce.io" },
-  { slug: "sites", menu: "Your own business website", name: "Sites", kind: "Website builder", group: "Events, cars & more", color: "#0E7490", demoName: "Mehrab Architects", demoHref: "https://mehrab.sites.yourforce.io" },
+  { slug: "sites", menu: "Your own business website", name: "Web", kind: "Website builder", group: "Events, cars & more", color: "#0E7490", demoName: "Mehrab Architects", demoHref: "https://mehrab.sites.yourforce.io" },
 ];
 
 export const operations = {
