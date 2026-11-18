@@ -1,6 +1,22 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Standard security headers on every page. (No Content-Security-Policy yet: Google Analytics and Calendly would
+  // need a tuned policy, tested before it goes live.)
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // The school page moved from Services to Products.

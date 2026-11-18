@@ -58,8 +58,8 @@ export const eventsPage = {
     primaryCta: "Visit the Demo Organiser",
     primaryHref: "https://crescent.events.yourforce.io",
 
-    secondaryCta: "See the demo guide",
-    secondaryHref: "https://events.yourforce.io/demo",
+    secondaryCta: "See the product site",
+    secondaryHref: "https://events.yourforce.io",
   },
 
   challenges: {

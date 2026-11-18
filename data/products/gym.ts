@@ -57,8 +57,8 @@ export const gymPage = {
     primaryCta: "Visit the Demo Gym",
     primaryHref: "https://ironpeak.gym.yourforce.io",
 
-    secondaryCta: "See the demo guide",
-    secondaryHref: "https://gym.yourforce.io/demo",
+    secondaryCta: "See the product site",
+    secondaryHref: "https://gym.yourforce.io",
   },
 
   challenges: {

@@ -57,8 +57,8 @@ export const sitesPage = {
     primaryCta: "Visit the Demo Website",
     primaryHref: "https://mehrab.sites.yourforce.io",
 
-    secondaryCta: "See the demo guide",
-    secondaryHref: "https://sites.yourforce.io/demo",
+    secondaryCta: "See the product site",
+    secondaryHref: "https://sites.yourforce.io",
   },
 
   challenges: {
