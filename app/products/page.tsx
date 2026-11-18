@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Our Products — YourForce",
     description:
-      "School management, online stores, appointment booking, restaurant ordering, real estate, clinics, housing societies, car rental, online courses, event ticketing and home services, each with a live demo you can try today.",
+      "School management, online courses, clinics, gyms, online stores, restaurant ordering, salon booking, real estate, housing societies, car rental, event ticketing, business websites and home services, each with a live demo.",
     url: "/products",
     type: "website",
     images: [{ url: site.image, width: 1200, height: 630, alt: "YourForce products" }],
@@ -32,8 +32,17 @@ export default async function ProductsPage() {
   // Join the full product summaries (data/products) with their group, colour and demo name (data/home).
   const cards = products.map((p) => ({ ...p, meta: homeProducts.find((h) => h.slug === p.slug) }));
 
+  // For Google: the list of products on this page, each linking to its own page (which carries its full details).
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "YourForce products",
+    itemListElement: products.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: p.name, url: `${site.url}${p.href}` })),
+  };
+
   return (
     <main className="bg-paper text-ink">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList).replace(/</g, "\\u003c") }} />
       <section className="bg-ink text-paper">
         <div className="mx-auto max-w-[1240px] px-6 pb-14 pt-16">
           <p className="yf-label text-mist">{productsIntro.badge}</p>

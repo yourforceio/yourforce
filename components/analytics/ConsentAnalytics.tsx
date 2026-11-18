@@ -82,17 +82,17 @@ export default function ConsentAnalytics({ measurementId, serviceAnalyticsValues
       )}
 
       {choice === null && (
-        <div role="region" aria-label="Cookie consent" className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-[760px] rounded-[22px] border border-line bg-white p-5 text-ink shadow-[0_20px_50px_rgba(15,18,21,.25)] sm:inset-x-6 sm:bottom-6 sm:p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-[15px] leading-relaxed text-muted">
+        <div role="region" aria-label="Cookie consent" className="fixed inset-x-3 bottom-3 z-[70] mx-auto max-w-[760px] rounded-[22px] border border-line bg-white p-4 text-ink sm:p-5 shadow-[0_20px_50px_rgba(15,18,21,.25)] sm:inset-x-6 sm:bottom-6 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+            <p className="text-[14px] leading-snug text-muted sm:text-[15px] sm:leading-relaxed">
               We&apos;d like to use Google Analytics to see how the site is used. It only runs if you agree.{" "}
               <Link href="/privacy#analytics-cookies" className="font-bold text-ink underline underline-offset-2">Privacy policy</Link>
             </p>
-            <div className="flex shrink-0 gap-2.5">
-              <button type="button" onClick={() => decide("denied")} className="rounded-full border-[1.5px] border-ink px-5 py-3 text-sm font-bold text-ink hover:bg-ink hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink">
+            <div className="flex shrink-0 gap-2.5 [&>button]:flex-1 sm:[&>button]:flex-none">
+              <button type="button" onClick={() => decide("denied")} className="rounded-full border-[1.5px] border-ink px-5 py-2.5 text-sm sm:py-3 font-bold text-ink hover:bg-ink hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink">
                 Decline
               </button>
-              <button type="button" onClick={() => decide("granted")} className="rounded-full bg-gold px-5 py-3 text-sm font-bold text-ink hover:bg-[#f7c561] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2">
+              <button type="button" onClick={() => decide("granted")} className="rounded-full bg-gold px-5 py-2.5 text-sm sm:py-3 font-bold text-ink hover:bg-[#f7c561] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2">
                 Accept
               </button>
             </div>

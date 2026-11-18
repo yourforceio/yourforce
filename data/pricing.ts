@@ -42,7 +42,7 @@ export async function livePricing(slug: string): Promise<ProductPricing | undefi
   const fallback = pricing[slug];
   if (!fallback) return undefined;
   try {
-    const res = await fetch(`${new URL(fallback.detailsHref).origin}/api/plans`, { next: { revalidate: 600 }, signal: AbortSignal.timeout(4000) });
+    const res = await fetch(`${new URL(fallback.detailsHref).origin}/api/plans`, { next: { revalidate: 600 }, signal: AbortSignal.timeout(10000) });
     if (!res.ok) return fallback;
     const plans = ((await res.json()) as { plans?: unknown[] }).plans?.filter(isPlan);
     return plans?.length ? { ...fallback, plans } : fallback;

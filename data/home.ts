@@ -25,7 +25,7 @@ export const hero = {
   description:
     "Senior engineers for the platform you already run: builds, upgrades, headless storefronts and integrations. We also make ready-made software for growing businesses, and run back-office desks for US teams.",
   primary: { label: "Book a call", href: site.bookCall },
-  secondary: { label: "Free PHP health check", href: "/contact?service=php" },
+  secondary: { label: "See our 13 products", href: "/products" },
   caption: "From our Labs: headless storefront and omnichannel OMS",
 };
 
