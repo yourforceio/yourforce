@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import StructuredData from "@/components/seo/StructuredData";
-import HomeHero from "@/components/landing/HomeHero";
+import HomeHero, { Platforms } from "@/components/landing/HomeHero";
 import {
   ContactBlock,
   Engineering,
@@ -15,7 +15,7 @@ import {
 
 import { site } from "@/data/site";
 
-const ogAlt = `${site.name}: commerce engineering for Salesforce, Shopify and Magento brands`;
+const ogAlt = `${site.name}: commerce engineering, business software and operations support`;
 
 export const metadata: Metadata = {
   title: {
@@ -54,13 +54,15 @@ export default function Home() {
 
       <main className="bg-paper text-ink">
         <HomeHero />
+        {/* Three lines of work, in the order of the doors in the hero. */}
+        <Products />
+        <Platforms />
         <Engineering />
         <HealthCheck />
-        <WhyBand />
         <Labs />
-        <Founder />
-        <Products />
         <Operations />
+        <WhyBand />
+        <Founder />
         <ContactBlock />
       </main>
     </>

@@ -20,13 +20,13 @@ export type HomeProduct = {
 };
 
 export const hero = {
-  badge: "Founder-led · remote-first, across time zones",
-  heading: "Commerce engineering for Salesforce, Shopify and Magento brands",
+  badge: "One team · engineering, software and operations",
+  heading: "Engineering, software and back-office support from one team",
   description:
-    "Senior engineers for the platform you already run: builds, upgrades, headless storefronts and integrations. We also make ready-made software for growing businesses, and run back-office desks for US teams.",
+    "Senior engineers for Salesforce, Shopify and Magento brands, thirteen ready-made products for businesses in Pakistan, and back-office desks for US teams. Pick the one that fits.",
   primary: { label: "Book a call", href: site.bookCall },
   secondary: { label: "See our 13 products", href: "/products" },
-  caption: "From our Labs: headless storefront and omnichannel OMS",
+  caption: "A headless storefront from our Labs, and YourForce Clinic",
 };
 
 export const doors = [
@@ -39,7 +39,7 @@ export const doors = [
     href: "#engineering",
   },
   {
-    who: "For growing businesses",
+    who: "For businesses in Pakistan",
     title: "Ready-made software",
     description: "Thirteen products for schools, clinics, gyms, shops, restaurants, property, events and websites, each with a live demo.",
     cta: "See the products",

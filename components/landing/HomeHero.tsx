@@ -38,7 +38,7 @@ export default function HomeHero() {
           </div>
           <div className="absolute bottom-[34px] right-0 w-[52%] overflow-hidden rounded-[14px] border border-ink-line bg-ink-2 shadow-[0_14px_32px_rgba(0,0,0,.45)]">
             <div className="relative aspect-[16/10]">
-              <Image src="/images/lab/omnichannel-fulfilment-preview.png" alt="" fill sizes="(min-width: 1024px) 320px, 50vw" className="object-cover object-left-top" />
+              <Image src="/images/products/clinic-demo.webp" alt="" fill sizes="(min-width: 1024px) 320px, 50vw" className="object-cover object-left-top" />
             </div>
           </div>
           <span className="absolute bottom-0 left-0 text-[13px] font-bold text-mist">{hero.caption}</span>
@@ -58,7 +58,14 @@ export default function HomeHero() {
         ))}
       </div>
 
-      <div className="border-b border-line bg-white">
+    </div>
+  );
+}
+
+/** The platforms we engineer: a strip just above the engineering section. */
+export function Platforms() {
+  return (
+    <div className="border-b border-line bg-white">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-x-8 gap-y-3.5 px-6 py-[22px] font-display text-[19px] font-bold text-muted">
           <span className="font-sans text-[13px] uppercase tracking-[0.08em] text-subtle">Platforms we engineer</span>
           {platforms.map((p) => (
@@ -66,6 +73,5 @@ export default function HomeHero() {
           ))}
         </div>
       </div>
-    </div>
   );
 }
