@@ -72,6 +72,15 @@ export default function ConsentAnalytics({ measurementId, serviceAnalyticsValues
                 const target = event.target;
                 const link = target instanceof Element ? target.closest('a') : null;
                 if (!link) return;
+                const host = link.hostname.replace(/^www\./, '');
+                if (host === 'wa.me' || host === 'api.whatsapp.com') {
+                  gtag('event', 'whatsapp_click', { page_path: location.pathname });
+                  return;
+                }
+                if (host === 'calendly.com') {
+                  gtag('event', 'book_call_click', { page_path: location.pathname });
+                  return;
+                }
                 const service = serviceAnalyticsValues[link.hostname];
                 if (!service) return;
                 gtag('event', 'service_referral_click', { service: service, link_text: (link.textContent || '').trim() });

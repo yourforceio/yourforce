@@ -73,6 +73,8 @@ export default function ContactForm({ initialService = "" }: { initialService?: 
       const result = (await response.json()) as { success?: boolean; message?: string };
       if (!response.ok || !result.success) throw new Error(result.message ?? "Unable to send your enquiry.");
       setStatus({ type: "success", message: result.message ?? "Thank you. Your message has been sent." });
+      // Counted in Google Analytics (and imported into Google Ads) only when the visitor accepted analytics.
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.("event", "generate_lead", { form: "contact", enquiry_type: tabId, service: data.service || undefined });
       reset({ ...empty });
     } catch (error) {
       setStatus({ type: "error", message: error instanceof Error ? error.message : "Something went wrong. Please try again." });
