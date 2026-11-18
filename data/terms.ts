@@ -64,6 +64,7 @@ export const termsOfService: PrivacyPolicy = {
         "Your data is yours: your customers, students, patients, members, orders, bookings and everything else you put into the product. We use it only to run the product for you and to support you, as described in our Privacy Policy.",
         "We don't sell your data, and we don't contact your customers for our own marketing. Our staff look at your account only when needed to support you, fix a problem or keep the service secure.",
         "You're responsible for having the right to collect the personal information you store, and for telling your own customers how you use it.",
+        "How we keep your data safe is explained on our Data Safety page (yourforce.io/security).",
       ],
     },
     {

@@ -27,6 +27,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
       { label: "Labs", href: "/lab" },
       { label: "About", href: "/#founder" },
       { label: "Workplace", href: "/workplace" },
+      { label: "Data safety", href: "/security" },
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
       { label: "Refunds", href: "/refunds" },
